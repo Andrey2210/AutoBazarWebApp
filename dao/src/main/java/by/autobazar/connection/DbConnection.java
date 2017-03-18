@@ -2,6 +2,7 @@ package by.autobazar.connection;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
+import org.apache.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -11,6 +12,9 @@ import java.util.Properties;
  * Created by Andrey on 10.01.2017.
  */
 public class DbConnection {
+
+    public static final Logger log = Logger.getLogger(DbConnection.class);
+
     private static HikariConfig config;
     private static HikariDataSource  dataSource;
     private static Properties properties;

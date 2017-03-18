@@ -4,6 +4,7 @@ package by.autobazar.dao;
 import by.autobazar.connection.DbConnection;
 import by.autobazar.entity.Car;
 import by.autobazar.entity.Entity;
+import org.apache.log4j.Logger;
 
 import java.io.UnsupportedEncodingException;
 import java.sql.*;
@@ -15,6 +16,8 @@ import java.util.List;
  * Created by Andrey on 21.02.2017.
  */
 public class CarDAO implements Dao<Car>{
+
+    private static final Logger log = Logger.getLogger(CarDAO.class);
 
     private static final String GET_ALL_QUERY = "SELECT cars.id, cars.mark, cars.model," +
             " cars.price, cars.year, cars.transmission, cars.body_type, cars.description, images.image_path, images.status" +
@@ -47,7 +50,25 @@ public class CarDAO implements Dao<Car>{
 
     private static final String GET_AMOUNT_OF_CARS_QUERY = "SELECT COUNT(cars.id) as 'amount' FROM cars";
 
+    private static CarDAO INSTANCE = null;
+
+    private CarDAO() {}
+
+    public static CarDAO getInstance() {
+        if (INSTANCE == null) {
+            synchronized (CarDAO.class) {
+                if (INSTANCE == null) {
+                    INSTANCE = new CarDAO();
+                }
+            }
+        }
+        return INSTANCE;
+    }
+
     public List<Car> getAll() {
+
+        log.info("Get all cars : ");
+
         List<Car> resultList = new LinkedList<>();
         Connection connection = null;
         Statement statement = null;
@@ -65,14 +86,25 @@ public class CarDAO implements Dao<Car>{
                         resultSet.getString("body_type"), description, resultSet.getString("image_path")));
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.warn("SQLException in getAll()");
         } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
+            log.warn("UnsupportedEncodingException in getAll()");
+        }  finally {
+            if(statement != null){
+                try {
+                    statement.close();
+                } catch (SQLException e) {
+                    log.warn("Statement not closed");
+                }
+            }
         }
         return resultList;
     }
 
     public List<Car> getLimitAmount() {
+
+        log.info("getLimitAmount : ");
+
         List<Car> resultList = new LinkedList<>();
         Connection connection = null;
         Statement statement = null;
@@ -98,6 +130,10 @@ public class CarDAO implements Dao<Car>{
     }
 
     public List<String> getCarsMakes() {
+
+        log.info("getCarsMakes : ");
+
+
         List<String> resultList = new LinkedList<>();
         Connection connection = null;
         Statement statement = null;
@@ -116,6 +152,10 @@ public class CarDAO implements Dao<Car>{
     }
 
     public List<String> getCarModels(String make) {
+
+        log.info("getCarModels : " + make);
+
+
         List<String> resultList = new LinkedList<>();
         Connection connection = null;
         PreparedStatement statement = null;
@@ -135,6 +175,10 @@ public class CarDAO implements Dao<Car>{
     }
 
     public List<Car> getLimitOrderBy(String order,int start, int amount) {
+
+        log.info("getLimitOrderBy : " + order + ", position: " + start + ", amount" + amount);
+
+
         List<Car> resultList = new LinkedList<>();
         Connection connection = null;
         Statement statement = null;
@@ -163,6 +207,10 @@ public class CarDAO implements Dao<Car>{
     }
 
     public List<Car> searchCars(HashMap<String, String> search) {
+
+        log.info("searchCars : ");
+
+
         List<Car> resultList = new LinkedList<>();
         Connection connection = null;
         Statement statement = null;
@@ -187,6 +235,9 @@ public class CarDAO implements Dao<Car>{
     }
 
     private String seqarchQuery(HashMap<String, String> search) {
+
+        log.info("seqarchQuery : ");
+
         StringBuilder query = new StringBuilder(SEARCH_QUERY);
         for (String type : search.keySet()) {
         switch(type) {
@@ -202,6 +253,8 @@ public class CarDAO implements Dao<Car>{
                 break;
             case "maxEngineCapacity": query.append(" AND engine_capacity<").append(search.get("maxEngineCapacity"));
                 break;
+            case "command":
+                break;
             default: query.append(" AND ").append(type).append("='").append(search.get(type)).append("'");
         }
         }
@@ -209,6 +262,9 @@ public class CarDAO implements Dao<Car>{
     }
 
     public int getAmountOfCars() {
+
+        log.info("getAmountOfCars : ");
+
         Connection connection = null;
         Statement statement = null;
         ResultSet resultSet = null;

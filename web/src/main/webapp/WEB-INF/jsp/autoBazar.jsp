@@ -8,6 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@page isELIgnored="false"%>
 <html>
 <head>
     <meta charset="utf-8"/>
@@ -178,7 +179,7 @@
         <h1 class="wow zoomInUp" data-wow-delay="0.3s">UNSURE WHICH VEHICLE YOU ARE LOOKING FOR? FIND IT HERE</h1>
         <div class="b-search__main wow zoomInUp" data-wow-delay="0.3s">
             <h4>SELECT VEHICLE BODY TYPE</h4>
-            <form action="/autobazar/carsList" method="POST" class="b-search__main-form">
+            <form action="/controller" method="POST" class="b-search__main-form">
                 <div class="row">
                     <div class="col-xs-2">
                         <input id="type1" type="radio" name="body_type" value="Pickup"/>
@@ -548,6 +549,7 @@
                             <input type="number" min="0" name="maxPrice" class="j-max" value="" placeholder="TO"/>
                         </div>
                         <div class="b-search__main-form-submit">
+                            <input type="hidden" name="command" value="Search" />
                             <button type="submit" class="btn m-btn">Search the Vehicle<span
                                     class="fa fa-angle-right"></span></button>
                         </div>

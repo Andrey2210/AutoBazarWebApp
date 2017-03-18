@@ -1,6 +1,7 @@
 package autobazar.servlet;
 
 import autobazar.command.FrontCommand;
+import autobazar.command.SearchCommand;
 import autobazar.command.UnknownCommand;
 
 import javax.servlet.ServletException;
@@ -13,7 +14,7 @@ import java.io.IOException;
 /**
  * Created by Andrey on 15.03.2017.
  */
-@WebServlet(urlPatterns = "/sss")
+@WebServlet(urlPatterns = "/controller")
 public class FrontControllerServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request,
@@ -26,9 +27,26 @@ public class FrontControllerServlet extends HttpServlet {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-//        FrontCommand command = getCommand(request);
-//        command.init(getServletContext(), request, response);
-//        command.process();
+        FrontCommand command = getCommand(request);
+        //FrontCommand command = new SearchCommand();
+        command.init(getServletContext(), request, response);
+        command.process();
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request,
+                         HttpServletResponse response) throws ServletException, IOException {
+
+        try {
+            System.out.println(Class.forName(String.format(
+                    "autobazar.command.%sCommand",
+                    request.getParameter("command"))));
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        FrontCommand command = getCommand(request);
+        command.init(getServletContext(), request, response);
+        command.process();
     }
 
     private FrontCommand getCommand(HttpServletRequest request) {

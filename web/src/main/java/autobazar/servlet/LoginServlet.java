@@ -38,8 +38,7 @@ public class LoginServlet extends HttpServlet {
 
     private void processLogin(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        UserDAO userDAO = new UserDAO();
-        User user = userDAO.getLoggedUser(req.getParameter("login"), req.getParameter("password"));
+        User user = UserDAO.getInstance().getLoggedUser(req.getParameter("login"), req.getParameter("password"));
         if (user != null) {
             req.getSession().setAttribute("user", user);
             resp.sendRedirect("/autobazar");

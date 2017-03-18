@@ -22,8 +22,7 @@ public class modelsServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String make = req.getParameter("make");
         if(make != null) {
-            CarDAO carDAO= new CarDAO();
-            List<String> modelList = carDAO.getCarModels(make);
+            List<String> modelList = CarDAO.getInstance().getCarModels(make);
             resp.setContentType("text/xml");
             StringBuilder result = new StringBuilder("<?xml version=\"1.0\" ?><models>");
             for(String model : modelList) {

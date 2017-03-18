@@ -20,6 +20,22 @@ public class UserDAO implements Dao<User> {
     private static final String ADD_USER = "INSERT INTO users (users.login, users.email, users.password, users.name, " +
             "users.phone) VALUES (?, ?, ?, ?, ?)";
 
+
+    private static UserDAO INSTANCE = null;
+
+    private UserDAO() {}
+
+    public static UserDAO getInstance() {
+        if (INSTANCE == null) {
+            synchronized (UserDAO.class) {
+                if (INSTANCE == null) {
+                    INSTANCE = new UserDAO();
+                }
+            }
+        }
+        return INSTANCE;
+    }
+
     public User getLoggedUser(String login, String password) {
         User result = null;
         Connection connection = null;
