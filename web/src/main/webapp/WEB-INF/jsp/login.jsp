@@ -41,6 +41,7 @@
                     <ul>
                         <li><a href="#">Register</a></li>
                         <li><a href="#">Sign in</a></li>
+
                     </ul>
                 </nav>
             </div>
@@ -114,7 +115,7 @@
             <div class="col-xs-7">
                 <div class="b-contacts__form">
                     <header class="b-contacts__form-header s-lineDownLeft wow zoomInUp" data-wow-delay="0.5s">
-                        <h2 class="s-titleDet">Login</h2>
+                        <h2 class="s-titleDet">Authorization</h2>
                     </header>
                     <div></div>
                     <form action="/login" method="post" class="s-form wow zoomInUp" data-wow-delay="0.5s">

@@ -47,8 +47,8 @@
                             <div class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle='dropdown'>SIGN IN</a>
                                 <ul class="dropdown-menu dropdown-menu-log">
-                                    <form id="login-form" method="post" action="/login" >
-                                    <input  type="hidden" name="command" value="login"/>
+                                    <form id="login-form" method="post" action="/controller" >
+                                    <input  type="hidden" name="command" value="Login"/>
                                     <li><input  type="text" name="login" placeholder="LOGIN/EMAIL" required=""/></li>
                                     <li><input  type="password" name="password" placeholder="PASSWORD" required=""/></li>
                                     </form>
@@ -62,8 +62,8 @@
                     <div class="col-md-3 col-xs-6">
                         <nav class="b-topBar__nav">
                             <ul>
-                                <form id="logout-form" method="post" action="/login" style="display: none" >
-                                    <input  type="hidden" name="command" value="logout"/>
+                                <form id="logout-form" method="post" action="/controller" style="display: none" >
+                                    <input  type="hidden" name="command" value="Logout"/>
                                 </form>
                                 <li><a class="main-item" href="#" onclick="userLogout()">Sign Out</a></li>
                             </ul>

@@ -2,7 +2,7 @@
  * Created by Andrey on 23.02.2017.
  */
 function onChange(_this){
-    var url = "/models?make="+_this.value;
+    var url = "/controller?command=Model&make="+_this.value;
     load("GET",url);
 }
 

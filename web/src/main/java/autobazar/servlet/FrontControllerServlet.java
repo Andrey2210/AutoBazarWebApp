@@ -20,15 +20,7 @@ public class FrontControllerServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request,
                          HttpServletResponse response) throws ServletException, IOException {
 
-        try {
-            System.out.println(Class.forName(String.format(
-                    "autobazar.command.%sCommand",
-                    request.getParameter("command"))));
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
         FrontCommand command = getCommand(request);
-        //FrontCommand command = new SearchCommand();
         command.init(getServletContext(), request, response);
         command.process();
     }
@@ -37,13 +29,6 @@ public class FrontControllerServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request,
                          HttpServletResponse response) throws ServletException, IOException {
 
-        try {
-            System.out.println(Class.forName(String.format(
-                    "autobazar.command.%sCommand",
-                    request.getParameter("command"))));
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
         FrontCommand command = getCommand(request);
         command.init(getServletContext(), request, response);
         command.process();

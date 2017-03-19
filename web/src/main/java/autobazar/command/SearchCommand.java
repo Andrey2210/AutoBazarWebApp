@@ -21,42 +21,31 @@ public class SearchCommand extends FrontCommand {
 
     @Override
     public void process() throws ServletException, IOException {
-        if(request.getParameter("sort") != null) {
-            PageDetailsDto pageDetails = (PageDetailsDto) request.getSession().getAttribute("pageDetails");
-            pageDetails.setSort(request.getParameter("sort"));
-            request.setAttribute("list",CarDAO.getInstance().getLimitOrderBy(pageDetails.getSort(),(pageDetails.getPageNumber()-1)*pageDetails.getItemsOnPage(), pageDetails.getItemsOnPage()));
-        } else {
-            Enumeration<String> e = request.getParameterNames();
-            HashMap<String, String> search = new HashMap<>();
-            while (e.hasMoreElements()) {
-                String q = e.nextElement();
-                String str = request.getParameter(q);
-                System.out.println(q + ": " + str);
-                if (!str.equals("")) {
-                    search.put(q, str);
-                }
-            }
-            request.setAttribute("list", CarDAO.getInstance().searchCars(search));
-            request.setAttribute("allMakes", CarDAO.getInstance().getCarsMakes());
+        if (request.getSession().getAttribute("pageDetails") == null) {
+            HashMap<String, String> searchParameters = getSearchOptions();
+            PageDetailsDto pageDetails = new PageDetailsDto(CarService.getInstance().getAmountOfCars(searchParameters));
+            pageDetails.setSearchParameters(searchParameters);
+            request.getSession().setAttribute("pageDetails", pageDetails);
+            request.setAttribute("list", CarService.getInstance()
+                    .searchCars(searchParameters, pageDetails.getSort(), 0, pageDetails.getItemsOnPage()));
+
+            request.setAttribute("allMakes", CarService.getInstance().getCarsMakes());
         }
         String page = ConfigurationManager.getInstance().getProperty("path.page.carsList");
         forward(page);
     }
+
+
+    private HashMap<String, String> getSearchOptions() {
+        Enumeration e = request.getParameterNames();
+        HashMap<String, String> serchMap = new HashMap<>();
+        while (e.hasMoreElements()) {
+            String q = (String) e.nextElement();
+            String str = request.getParameter(q);
+            if (!str.equals("")) {
+                serchMap.put(q, str);
+            }
+        }
+        return serchMap;
     }
-//        List<Car> carsList = CarService.getInstance().getLimitAmount();
-//        List<CarDto> carDtoList = new LinkedList<>();
-//        for (Car car : carsList) {
-//            carDtoList.add(new CarDto(car.getMark(), car.getModel(), car.getImage(), car.getPrice(), car.getYear(),
-//                    car.getTransmission()));
-//        }
-//        request.setAttribute("list", carDtoList);
-//        request.setAttribute("allMakes", CarDAO.getInstance().getCarsMakes());
-//
-//        System.out.println(request.getRequestURI());
-//        System.out.println(request.getRequestURL());
-//
-//
-//        forward("autoBazar");
-//
-//    }
-//}
+}

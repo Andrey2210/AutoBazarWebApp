@@ -1,5 +1,7 @@
 package autobazar.dto;
 
+import java.util.HashMap;
+
 /**
  * Created by Andrey on 26.02.2017.
  */
@@ -9,6 +11,7 @@ public class PageDetailsDto {
     private int pageNumber;
     private int amountOfPage;
     private int amountOfItems;
+    private HashMap<String,String> searchParameters;
 
     public PageDetailsDto(int amountOfItems) {
         this.sort = "id";
@@ -57,5 +60,13 @@ public class PageDetailsDto {
 
     public void setAmountOfItems(int amountOfItems) {
         this.amountOfItems = amountOfItems;
+    }
+
+    public HashMap<String, String> getSearchParameters() {
+        return searchParameters;
+    }
+
+    public void setSearchParameters(HashMap<String, String> searchParameters) {
+        this.searchParameters = searchParameters;
     }
 }
