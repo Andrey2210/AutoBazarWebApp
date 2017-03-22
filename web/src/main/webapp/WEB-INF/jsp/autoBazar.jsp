@@ -148,7 +148,7 @@
                         <h3>Find your dream car</h3>
                         <h2>BMW <br/>M5 F10</h2>
                         <p>Model 2012 <span>$65,000</span></p>
-                        <a class="btn m-btn" href="/autobazar?command=Search&mark=Bmw&model=M5">see details<span class="fa fa-angle-right"></span></a>
+                        <a class="btn m-btn" href="/autobazar/controller?command=Search&mark=Bmw&model=M5">see details<span class="fa fa-angle-right"></span></a>
                     </div>
                 </div>
             </div>

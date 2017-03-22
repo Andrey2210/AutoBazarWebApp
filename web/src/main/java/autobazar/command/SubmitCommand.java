@@ -79,8 +79,9 @@ public class SubmitCommand extends FrontCommand {
         File uploadetFile = null;
         Random random = new Random();
         do {
-            String path = context.getRealPath(File.separator + "media" + File.separator + "237x202" + File.separator + random.nextInt() + item.getName());
-            parametersMap.put("image_path", path);
+            int randomValue = random.nextInt();
+            String path = context.getRealPath(File.separator + "media" + File.separator + "237x202" + File.separator + randomValue + item.getName());
+            parametersMap.put("image_path", "media/237x202/" + randomValue + item.getName());
             uploadetFile = new File(path);
         } while (uploadetFile.exists());
 
