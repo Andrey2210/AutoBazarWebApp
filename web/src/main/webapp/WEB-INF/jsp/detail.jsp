@@ -362,7 +362,7 @@
                         <div class="b-world__item-val">
                             <span class="b-world__item-val-title">REGISTERED <span>${car.year.getYear()}</span></span>
                         </div>
-                        <h2><a href="detail.html">${car.mark} ${car.model}</a></h2>
+                        <h2><a href="/autobazar/controller?command=Detail&id=${car.id}">${car.mark} ${car.model}</a></h2>
                         <div class="b-auto__main-item-info">
 												<span class="m-price">
 													$${car.price}
