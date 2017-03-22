@@ -11,14 +11,16 @@ public class PageDetailsDto {
     private int pageNumber;
     private int amountOfPage;
     private int amountOfItems;
+    private String pageType;
     private HashMap<String,String> searchParameters;
 
     public PageDetailsDto(int amountOfItems) {
-        this.sort = "id";
+        this.sort = "cars.id";
         this.itemsOnPage = 5;
         this.pageNumber = 1;
         this.amountOfPage = (int)Math.ceil(amountOfItems/5.);
         this.amountOfItems = amountOfItems;
+        pageType = "items";
     }
 
     public String getSort() {
@@ -35,6 +37,7 @@ public class PageDetailsDto {
 
     public void setItemsOnPage(int itemsOnPage) {
         this.itemsOnPage = itemsOnPage;
+        pageNumber = 1;
         setAmountOfPage(itemsOnPage);
     }
 
@@ -68,5 +71,13 @@ public class PageDetailsDto {
 
     public void setSearchParameters(HashMap<String, String> searchParameters) {
         this.searchParameters = searchParameters;
+    }
+
+    public String getPageType() {
+        return pageType;
+    }
+
+    public void setPageType(String pageType) {
+        this.pageType = pageType;
     }
 }

@@ -226,7 +226,8 @@
 }
 
 .b-submit__main-file textarea{
-    height:190px;
+    height: 190px;
+    width: 100%;
 }
 
 /* Submit4 */

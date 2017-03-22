@@ -54,6 +54,12 @@ public class UserService {
             log.error("Service createUser wasn't executed: not connection" + e);
         } catch (DaoException e) {
             log.error("Service createUser wasn't executed: " + e);
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
         return loggedUser;
     }
@@ -74,6 +80,12 @@ public class UserService {
             user = userDAO.getLoggedUser(login, password);
         } catch (DaoException e) {
             log.error("Service getLoggedUser wasn't executed: " + e);
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
         return user;
     }
@@ -94,8 +106,38 @@ public class UserService {
             flag = userDAO.delete(user);
         } catch (DaoException e) {
             log.error("Service deleteUser wasn't executed, User wasn't deleted : " + e);
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
 
         return flag;
+    }
+
+    public User getUserById(Long id) {
+
+
+        log.info("Service getUserById : ");
+
+
+
+        Connection connection = DbConnection.getConnection();
+        UserDAO userDAO = new UserDAO(connection);
+        User user = null;
+        try {
+            user = userDAO.getById(id);
+        } catch (DaoException e) {
+            log.error("Service getUserById wasn't executed: " + e);
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return user;
     }
 }

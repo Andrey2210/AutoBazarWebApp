@@ -22,13 +22,13 @@ public class LoginCommand extends FrontCommand {
         User user = UserService.getInstance().getLoggedUser(login, password);
         if (user != null) {
             UserAuthenticationDto userAuthenticationDto = new UserAuthenticationDto();
+            userAuthenticationDto.setId(user.getId());
             userAuthenticationDto.setLogin(user.getLogin());
             userAuthenticationDto.setPassword(user.getPassword());
             userAuthenticationDto.setRole(user.getRole());
             request.getSession().setAttribute("user", userAuthenticationDto);
         }
-            page = ConfigurationManager.getInstance().getProperty("path.page.index");
 
-        forward(page);
+        response.sendRedirect("/autobazar/controller");
     }
 }

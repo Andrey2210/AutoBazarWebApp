@@ -15,9 +15,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <title>AUTO BAZAR</title>
 
-    <link rel="shortcut icon" type="image/x-icon" href="../../images/favicon.png"/>
+    <link rel="shortcut icon" type="image/x-icon" href="images/favicon.png"/>
 
-    <link href="../../css/master.css" rel="stylesheet">
+    <link href="css/master.css" rel="stylesheet">
 
 </head>
 <body class="m-home" data-scrolling-animations="true" data-equal-height=".b-auto__main-item">
@@ -38,7 +38,7 @@
                     <div class="col-md-2 col-xs-6">
                         <nav class="b-topBar__nav">
                             <ul>
-                                <li><a class="main-item" href="#">Register</a></li>
+                                <li><a class="main-item" href="/autobazar/registration">Register</a></li>
                             </ul>
                         </nav>
                     </div>
@@ -47,7 +47,7 @@
                             <div class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle='dropdown'>SIGN IN</a>
                                 <ul class="dropdown-menu dropdown-menu-log">
-                                    <form id="login-form" method="post" action="/controller" >
+                                    <form id="login-form" method="post" action="/autobazar/controller" >
                                     <input  type="hidden" name="command" value="Login"/>
                                     <li><input  type="text" name="login" placeholder="LOGIN/EMAIL" required=""/></li>
                                     <li><input  type="password" name="password" placeholder="PASSWORD" required=""/></li>
@@ -62,7 +62,7 @@
                     <div class="col-md-3 col-xs-6">
                         <nav class="b-topBar__nav">
                             <ul>
-                                <form id="logout-form" method="post" action="/controller" style="display: none" >
+                                <form id="logout-form" method="post" action="/autobazar/controller" style="display: none" >
                                     <input  type="hidden" name="command" value="Logout"/>
                                 </form>
                                 <li><a class="main-item" href="#" onclick="userLogout()">Sign Out</a></li>
@@ -97,8 +97,8 @@
         <div class="row">
             <div class="col-sm-3 col-xs-4">
                 <div class="b-nav__logo wow slideInLeft" data-wow-delay="0.3s">
-                    <h3><a href="/autobazar">Auto<span>BAZAR</span></a></h3>
-                    <h2><a href="/autobazar">sell your car with us</a></h2>
+                    <h3><a href="/autobazar/controller">Auto<span>BAZAR</span></a></h3>
+                    <h2><a href="/autobazar/controller">sell your car with us</a></h2>
                 </div>
             </div>
             <div class="col-sm-9 col-xs-8">
@@ -114,7 +114,7 @@
                     <div class="collapse navbar-collapse navbar-main-slide" id="nav">
                         <ul class="navbar-nav-menu">
                             <li>
-                            <li><a href="/autobazar">Home</a></li>
+                            <li><a href="/autobazar/controller">Home</a></li>
                             <li><a href="about.html">About</a></li>
                             <li><a href="/autobazar/carsList">Shop</a></li>
                             <li><a href="contacts.html">Contact</a></li>
@@ -131,35 +131,35 @@
     <div id="carousel" class="slide carousel carousel-fade">
         <div class="carousel-inner">
             <div class="item active">
-                <img src="../../media/main-slider/4.jpg" alt="sliderImg"/>
+                <img src="media/main-slider/4.jpg" alt="sliderImg"/>
                 <div class="container">
                     <div class="carousel-caption b-slider__info">
                         <h3>Find your dream car</h3>
                         <h2>MercedesBenz <br/>CLS63 AMG</h2>
                         <p>Model 2015 <span>$72,000</span></p>
-                        <a class="btn m-btn" href="detail.html">see details<span class="fa fa-angle-right"></span></a>
+                        <a class="btn m-btn" href="/autobazar/controller?command=Search&mark=Mercedes-Benz&model=CLS">see details<span class="fa fa-angle-right"></span></a>
                     </div>
                 </div>
             </div>
             <div class="item">
-                <img src="../../media/main-slider/2.jpg" alt="sliderImg"/>
+                <img src="media/main-slider/2.jpg" alt="sliderImg"/>
                 <div class="container">
                     <div class="carousel-caption b-slider__info">
                         <h3>Find your dream car</h3>
                         <h2>BMW <br/>M5 F10</h2>
                         <p>Model 2012 <span>$65,000</span></p>
-                        <a class="btn m-btn" href="detail.html">see details<span class="fa fa-angle-right"></span></a>
+                        <a class="btn m-btn" href="/autobazar?command=Search&mark=Bmw&model=M5">see details<span class="fa fa-angle-right"></span></a>
                     </div>
                 </div>
             </div>
             <div class="item">
-                <img src="../../media/main-slider/1.jpg" alt="sliderImg"/>
+                <img src="media/main-slider/1.jpg" alt="sliderImg"/>
                 <div class="container">
                     <div class="carousel-caption b-slider__info">
                         <h3>Find your dream car</h3>
                         <h2>PORSCHE <br/>PANAMERA TURBO S</h2>
                         <p>Model 2013 <span>$70,000</span></p>
-                        <a class="btn m-btn" href="detail.html">see details<span class="fa fa-angle-right"></span></a>
+                        <a class="btn m-btn" href="/autobazar/controller?command=Search&mark=Porsche&model=Panamera">see details<span class="fa fa-angle-right"></span></a>
                     </div>
                 </div>
             </div>
@@ -179,7 +179,7 @@
         <h1 class="wow zoomInUp" data-wow-delay="0.3s">UNSURE WHICH VEHICLE YOU ARE LOOKING FOR? FIND IT HERE</h1>
         <div class="b-search__main wow zoomInUp" data-wow-delay="0.3s">
             <h4>SELECT VEHICLE BODY TYPE</h4>
-            <form action="/controller" method="POST" class="b-search__main-form">
+            <form action="/autobazar/controller" method="POST" class="b-search__main-form">
                 <div class="row">
                     <div class="col-xs-2">
                         <input id="type1" type="radio" name="body_type" value="Pickup"/>
@@ -473,7 +473,7 @@
                                 <p>MISSING MANUFACTURER?</p>
                             </div>
                             <div class="col-xs-4">
-                                <select id="models" name="model">
+                                <select id="model" name="model">
                                     <option value="" selected="selected">Model</option>
                                 </select>
                                 <span class="fa fa-caret-down"></span>
@@ -566,7 +566,7 @@
         <div class="row">
             <div class="col-xs-12">
                 <div class="b-homeAuto__latest">
-                    <h5 class="s-titleBg wow zoomInLeft" data-wow-delay="0.3s">GIVING OUR CUSTOMERS BEST DEALS</h5><br/>
+                    <h5 class="s-titleBg wow zoomInLeft" data-wow-delay="0.3s">FIND OUT MORE</h5><br/>
                     <h2 class="s-title wow zoomInLeft" data-wow-delay="0.3s">LATEST VEHICLES ON SALE</h2>
                     <div class="b-auto__main">
                         <div class="row">
@@ -574,7 +574,7 @@
                             <c:forEach var="car" items="${requestScope.list}">
                                 <div class="col-md-3 col-sm-12">
                                     <div class="b-auto__main-item wow zoomInUp" data-wow-delay="0.3s">
-                                        <img class="img-responsive center-block" src="../../${car.image}"/>
+                                        <img class="img-responsive center-block" src="${car.image}"/>
                                         <div class="b-world__item-val">
                                             <span class="b-world__item-val-title">REGISTERED <span>${car.year.getYear()}</span></span>
                                         </div>
@@ -622,7 +622,7 @@
                             Cars Are Adding On Daily Basis</p>
                     </div>
                     <div class="b-asks__first-arrow">
-                        <a href="/autobazar/carsList"><span class="fa fa-angle-right"></span></a>
+                        <a href="/autobazar/controller?command=Search"><span class="fa fa-angle-right"></span></a>
                     </div>
                 </div>
             </div>
@@ -637,7 +637,7 @@
                             Cars Are Adding On Daily Basis</p>
                     </div>
                     <div class="b-asks__first-arrow">
-                        <a href="listings.html"><span class="fa fa-angle-right"></span></a>
+                        <a href="/autobazar/submit"><span class="fa fa-angle-right"></span></a>
                     </div>
                 </div>
             </div>
@@ -676,41 +676,31 @@
 
 
 <!--Main-->
-<script src="../../js/jquery-1.11.3.min.js"></script>
-<script src="../../js/jquery-ui.min.js"></script>
-<script src="../../js/bootstrap.min.js"></script>
-<script src="../../js/modernizr.custom.js"></script>
+<script src="js/jquery-1.11.3.min.js"></script>
+<script src="js/jquery-ui.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/modernizr.custom.js"></script>
 
-<script src="../../assets/rendro-easy-pie-chart/dist/jquery.easypiechart.min.js"></script>
-<script src="../../js/waypoints.min.js"></script>
-<script src="../../js/jquery.easypiechart.min.js"></script>
-<script src="../../js/classie.js"></script>
+<script src="assets/rendro-easy-pie-chart/dist/jquery.easypiechart.min.js"></script>
+<script src="js/waypoints.min.js"></script>
+<script src="js/jquery.easypiechart.min.js"></script>
+<script src="js/classie.js"></script>
 
 <!--Switcher-->
-<script src="../../assets/switcher/js/switcher.js"></script>
+<script src="assets/switcher/js/switcher.js"></script>
 <!--Owl Carousel-->
-<script src="../../assets/owl-carousel/owl.carousel.min.js"></script>
+<script src="assets/owl-carousel/owl.carousel.min.js"></script>
 <!--bxSlider-->
-<script src="../../assets/bxslider/jquery.bxslider.js"></script>
+<script src="assets/bxslider/jquery.bxslider.js"></script>
 <!-- jQuery UI Slider -->
-<script src="../../assets/slider/jquery.ui-slider.js"></script>
+<script src="assets/slider/jquery.ui-slider.js"></script>
 
 <!--Theme-->
-<script src="../../js/jquery.smooth-scroll.js"></script>
-<script src="../../js/wow.min.js"></script>
-<script src="../../js/jquery.placeholder.min.js"></script>
-<script src="../../js/theme.js"></script>
-<script src="../../js/search.js"></script>
+<script src="js/jquery.smooth-scroll.js"></script>
+<script src="js/wow.min.js"></script>
+<script src="js/jquery.placeholder.min.js"></script>
+<script src="js/theme.js"></script>
+<script src="js/search.js"></script>
 
-<script type="text/javascript">
-    function userLogin() {
-    document.getElementById('login-form').submit();
-        return false;
-    }
-    function userLogout() {
-        document.getElementById('logout-form').submit();
-        return false;
-    }
-</script>
 </body>
 </html>

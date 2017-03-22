@@ -2,6 +2,7 @@ package by.autobazar.entity;
 
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 /**
  * Created by Andrey on 21.02.2017.
@@ -16,6 +17,14 @@ public class Car implements Entity {
     private String bodyType;
     private String description;
     private String image;
+    private Additions additions;
+    private Characteristics characteristics;
+    private Conditions conditions;
+    private Locations locations;
+    private User user;
+
+    public Car() {
+    }
 
     public Car(long id, String mark, String model, int price, LocalDate year, String transmission, String bodyType, String description, String image) {
         this.id = id;
@@ -100,5 +109,45 @@ public class Car implements Entity {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public Additions getAdditions() {
+        return additions;
+    }
+
+    public void setAdditions(Additions additions) {
+        this.additions = additions;
+    }
+
+    public Characteristics getCharacteristics() {
+        return characteristics;
+    }
+
+    public void setCharacteristics(Characteristics characteristics) {
+        this.characteristics = characteristics;
+    }
+
+    public Conditions getConditions() {
+        return conditions;
+    }
+
+    public void setConditions(Conditions conditions) {
+        this.conditions = conditions;
+    }
+
+    public Locations getLocations() {
+        return locations;
+    }
+
+    public void setLocations(Locations locations) {
+        this.locations = locations;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

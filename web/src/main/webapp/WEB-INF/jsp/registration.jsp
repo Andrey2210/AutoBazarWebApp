@@ -15,8 +15,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <title>AUTO BAZAR</title>
 
-    <link rel="shortcut icon" type="image/x-icon" href="../../images/favicon.png"/>
-    <link href="../../css/master.css" rel="stylesheet">
+    <link rel="shortcut icon" type="image/x-icon" href="images/favicon.png"/>
+    <link href="css/master.css" rel="stylesheet">
 
     <!--[if lt IE 9]>
     <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -30,26 +30,59 @@
 <header class="b-topBar">
     <div class="container wow slideInDown" data-wow-delay="0.7s">
         <div class="row">
-            <div class="col-md-6 col-xs-6">
+            <div class="col-md-7 col-xs-6">
                 <div class="b-topBar__tel">
                     <span class="fa fa-phone"></span>
                     +375 (44) 557-52-21
                 </div>
             </div>
-            <div class="col-md-4 col-xs-6">
-                <nav class="b-topBar__nav">
-                    <ul>
-                        <li><a href="#">Register</a></li>
-                        <li><a href="#">Sign in</a></li>
-                    </ul>
-                </nav>
-            </div>
+
+            <c:choose>
+                <c:when test="${empty sessionScope.user}">
+                    <div class="col-md-2 col-xs-6">
+                        <nav class="b-topBar__nav">
+                            <ul>
+                                <li><a class="main-item" href="/autobazar/registration">Register</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="col-md-1 col-xs-6">
+                        <div class="b-topBar__lang">
+                            <div class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle='dropdown'>SIGN IN</a>
+                                <ul class="dropdown-menu dropdown-menu-log">
+                                    <form id="login-form" method="post" action="/autobazar/controller" >
+                                        <input  type="hidden" name="command" value="Login"/>
+                                        <li><input  type="text" name="login" placeholder="LOGIN/EMAIL" required=""/></li>
+                                        <li><input  type="password" name="password" placeholder="PASSWORD" required=""/></li>
+                                    </form>
+                                    <li><a href="#" onclick="userLogin()">SIGN IN</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </c:when>
+                <c:otherwise>
+                    <div class="col-md-3 col-xs-6">
+                        <nav class="b-topBar__nav">
+                            <ul>
+                                <form id="logout-form" method="post" action="/autobazar/controller" style="display: none" >
+                                    <input  type="hidden" name="command" value="Logout"/>
+                                </form>
+                                <li><a class="main-item" href="#" onclick="userLogout()">Sign Out</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </c:otherwise>
+            </c:choose>
+
+
             <div class="col-md-2 col-xs-6">
                 <div class="b-topBar__lang">
                     <div class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle='dropdown'>Language</a>
                         <a class="m-langLink dropdown-toggle" data-toggle='dropdown' href="#"><span
-                                class="b-topBar__lang-flag m-en"></span>EN<span class="fa fa-caret-down"></span></a>
+                                class="b-topBar__lang-flag m-en"></span><span class="fa fa-caret-down"></span></a>
                         <ul class="dropdown-menu h-lang">
                             <li><a class="m-langLink dropdown-toggle" data-toggle='dropdown' href="#"><span
                                     class="b-topBar__lang-flag m-en"></span>EN</a></li>
@@ -68,8 +101,8 @@
         <div class="row">
             <div class="col-sm-3 col-xs-4">
                 <div class="b-nav__logo wow slideInLeft" data-wow-delay="0.3s">
-                    <h3><a href="/autobazar">Auto<span>BAZAR</span></a></h3>
-                    <h2><a href="/autobazar">sell your car with us</a></h2>
+                    <h3><a href="/autobazar/controller">Auto<span>BAZAR</span></a></h3>
+                    <h2><a href="/autobazar/controller">sell your car with us</a></h2>
                 </div>
             </div>
             <div class="col-sm-9 col-xs-8">
@@ -85,7 +118,7 @@
                     <div class="collapse navbar-collapse navbar-main-slide" id="nav">
                         <ul class="navbar-nav-menu">
                             <li>
-                            <li><a href="/autobazar">Home</a></li>
+                            <li><a href="/autobazar/controller">Home</a></li>
                             <li><a href="about.html">About</a></li>
                             <li><a href="/autobazar/carsList">Shop</a></li>
                             <li><a href="contacts.html">Contact</a></li>
@@ -99,10 +132,8 @@
 
 <section class="b-pageHeader">
     <div class="container">
-        <h1 class=" wow zoomInLeft" data-wow-delay="0.5s">Auto Listings</h1>
-        <div class="b-pageHeader__search wow zoomInRight" data-wow-delay="0.5s">
-            <h3>Your search returned ${sessionScope.pageDetails.amountOfItems} results</h3>
-        </div>
+        <h1 class=" wow zoomInLeft" data-wow-delay="0.5s">Registration page</h1>
+
     </div>
 </section><!--b-pageHeader-->
 
@@ -117,7 +148,8 @@
                         <h2 class="s-titleDet">Registering</h2>
                     </header>
                     <div></div>
-                    <form action="/registration" method="post" class="s-form wow zoomInUp" data-wow-delay="0.5s">
+                    <form action="/autobazar/controller" method="post" class="s-form wow zoomInUp" data-wow-delay="0.5s">
+                        <input type="hidden" value="Registration" name="command" />
                         <label>Enter login <span>*</span></label>
                         <input type="text" placeholder="YOUR LOGIN" value="" name="login" id="login" />
                         <label>Enter email <span>*</span></label>
@@ -168,29 +200,31 @@
     </div>
 </footer><!--b-footer-->
 <!--Main-->
-<script src="../../js/jquery-1.11.3.min.js"></script>
-<script src="../../js/jquery-ui.min.js"></script>
-<script src="../../js/bootstrap.min.js"></script>
-<script src="../../js/modernizr.custom.js"></script>
+<script src="js/jquery-1.11.3.min.js"></script>
+<script src="js/jquery-ui.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/modernizr.custom.js"></script>
 
-<script src="../../assets/rendro-easy-pie-chart/dist/jquery.easypiechart.min.js"></script>
-<script src="../../js/waypoints.min.js"></script>
-<script src="../../js/jquery.easypiechart.min.js"></script>
-<script src="../../js/classie.js"></script>
+<script src="assets/rendro-easy-pie-chart/dist/jquery.easypiechart.min.js"></script>
+<script src="js/waypoints.min.js"></script>
+<script src="js/jquery.easypiechart.min.js"></script>
+<script src="js/classie.js"></script>
 
 <!--Switcher-->
-<script src="../../assets/switcher/js/switcher.js"></script>
+<script src="assets/switcher/js/switcher.js"></script>
 <!--Owl Carousel-->
-<script src="../../assets/owl-carousel/owl.carousel.min.js"></script>
+<script src="assets/owl-carousel/owl.carousel.min.js"></script>
 <!--bxSlider-->
-<script src="../../assets/bxslider/jquery.bxslider.js"></script>
+<script src="assets/bxslider/jquery.bxslider.js"></script>
 <!-- jQuery UI Slider -->
-<script src="../../assets/slider/jquery.ui-slider.js"></script>
+<script src="assets/slider/jquery.ui-slider.js"></script>
 
 <!--Theme-->
-<script src="../../js/jquery.smooth-scroll.js"></script>
-<script src="../../js/wow.min.js"></script>
-<script src="../../js/jquery.placeholder.min.js"></script>
-<script src="../../js/theme.js"></script>
+<script src="js/jquery.smooth-scroll.js"></script>
+<script src="js/wow.min.js"></script>
+<script src="js/jquery.placeholder.min.js"></script>
+<script src="js/theme.js"></script>
+<script src="js/search.js"></script>
+
 </body>
 </html>

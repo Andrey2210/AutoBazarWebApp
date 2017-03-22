@@ -13,7 +13,6 @@ public class LogoutCommand extends FrontCommand {
     @Override
     public void process() throws ServletException, IOException {
         request.getSession().invalidate();
-        String page = ConfigurationManager.getInstance().getProperty("path.page.index");
-        forward(page);
+        response.sendRedirect("/autobazar/controller");
     }
 }

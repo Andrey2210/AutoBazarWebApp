@@ -6,6 +6,7 @@ import java.time.LocalDate;
  * Created by Andrey on 13.03.2017.
  */
 public class CarDto {
+    private long id;
     private String mark;
     private String model;
     private String image;
@@ -14,15 +15,25 @@ public class CarDto {
     private String transmission;
 
 
-    public  CarDto() {}
+    public CarDto() {
+    }
 
-    public CarDto(String mark, String model, String image, int price, LocalDate year, String transmission) {
+    public CarDto(long id, String mark, String model, String image, int price, LocalDate year, String transmission) {
+        this.id = id;
         this.mark = mark;
         this.model = model;
         this.image = image;
         this.price = price;
         this.year = year;
         this.transmission = transmission;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getMark() {

@@ -212,6 +212,14 @@
     margin-left: 10px;
 }
 
+.b-detail__main-info-text .b-detail__main-aside-about-form-links a{
+    border-color: #b4b4b4!important;
+}
+
+.b-detail__main-aside-about-form-links a:after{
+    background: url(../images/elements/chevron-downGrey.png) center top no-repeat;
+}
+
 #form2{
     display: none;
 }

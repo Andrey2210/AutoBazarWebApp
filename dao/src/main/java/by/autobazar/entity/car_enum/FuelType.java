@@ -3,8 +3,8 @@ package by.autobazar.entity.car_enum;
 /**
  * Created by Andrey on 21.02.2017.
  */
-public enum EngineType {
+public enum FuelType {
     PETROL,
-    DISEL,
+    DIESEL,
     ELECTRO
 }

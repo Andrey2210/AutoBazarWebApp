@@ -13,19 +13,19 @@
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <link rel="shortcut icon" type="image/x-icon" href="../../images/favicon.png"/>
-    <link href="../../css/master.css" rel="stylesheet">
+    <link rel="shortcut icon" type="image/x-icon" href="images/favicon.png"/>
+    <link href="css/master.css" rel="stylesheet">
 </head>
 <body>
 <div class="b-items__cars">
     <c:forEach var="car" items="${requestScope.list}">
         <div class="b-items__cars-one wow zoomInUp" data-wow-delay="0.5s">
             <div class="b-items__cars-one-img">
-                <img src="../../${car.image}" class="img-responsive"/>
+                <img src="${car.image}" class="img-responsive"/>
             </div>
             <div class="b-items__cars-one-info">
                 <form class="b-items__cars-one-info-header s-lineDownLeft">
-                    <h2>${car.mark} ${car.model} 3.5L</h2>
+                    <h2>${car.mark} ${car.model} ${car.characteristics.engineCapacity}L</h2>
                 </form>
                 <div class="row s-noRightMargin">
                     <div class="col-md-9 col-xs-12">
@@ -40,7 +40,7 @@
                                     </div>
                                     <div class="col-xs-6">
                                         <span class="b-items__cars-one-info-value">${car.year.getYear()}</span>
-                                        <span class="b-items__cars-one-info-value">35,000 KM</span>
+                                        <span class="b-items__cars-one-info-value">${car.conditions.milleage} KM</span>
                                         <span class="b-items__cars-one-info-value">${car.transmission}</span>
                                     </div>
                                 </div>
@@ -50,12 +50,12 @@
                                     <div class="col-xs-4">
                                         <span class="b-items__cars-one-info-title">Fuel Type:</span>
                                         <span class="b-items__cars-one-info-title">Color:</span>
-                                        <span class="b-items__cars-one-info-title">Specs:</span>
+                                        <span class="b-items__cars-one-info-title">Doors:</span>
                                     </div>
                                     <div class="col-xs-8">
-                                        <span class="b-items__cars-one-info-value">Petrol</span>
-                                        <span class="b-items__cars-one-info-value">Black</span>
-                                        <span class="b-items__cars-one-info-value">2-Door</span>
+                                        <span class="b-items__cars-one-info-value">${car.characteristics.fuelType}</span>
+                                        <span class="b-items__cars-one-info-value">${car.additions.carColor}</span>
+                                        <span class="b-items__cars-one-info-value">${car.characteristics.doorsNumber}-Door</span>
                                     </div>
                                 </div>
                             </div>
@@ -67,7 +67,7 @@
                                 <h3>Price:</h3>
                                 <h4>$${car.price}</h4>
                             </div>
-                            <a href="#" class="btn m-btn">VIEW DETAILS<span
+                            <a href="/autobazar/controller?command=Detail&id=${car.id}" class="btn m-btn">VIEW DETAILS<span
                                     class="fa fa-angle-right"></span></a>
                         </div>
                     </div>
@@ -206,35 +206,14 @@
         }
         showPagination();
 
-        function onChangeSort(_this) {
-            var value = _this.value;
-            if (_this.name == "itemsOnPage") {
-                $.ajax({
-                    method: "POST",
-                    url: "/autobazar",
-                    data: {'page': value},
-                    success: function (result) {
-                        $(".b-items-cars").html(result);
-                    }
-                });
-            } else {
-                $.ajax({
-                    method: "POST",
-                    url: "/autobazar",
-                    data: {'sort': value},
-                    success: function (result) {
-                        $(".b-items-cars").html(result);
-                    }
-                });
-            }
-        }
+
 
         function onClickPage(_this) {
             var value = _this.innerHTML;
             $.ajax({
                 method: "POST",
-                url: "/autobazar",
-                data: {'pageNumber': value},
+                url: "/autobazar/controller",
+                data: {'pageNumber': value, 'pageType': "items", "command": "PageDetails"},
                 success: function (result) {
                     $(".b-items-cars").html(result);
                 }

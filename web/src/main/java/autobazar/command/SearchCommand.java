@@ -21,6 +21,7 @@ public class SearchCommand extends FrontCommand {
 
     @Override
     public void process() throws ServletException, IOException {
+        String page;
         if (request.getSession().getAttribute("pageDetails") == null) {
             HashMap<String, String> searchParameters = getSearchOptions();
             PageDetailsDto pageDetails = new PageDetailsDto(CarService.getInstance().getAmountOfCars(searchParameters));
@@ -28,10 +29,19 @@ public class SearchCommand extends FrontCommand {
             request.getSession().setAttribute("pageDetails", pageDetails);
             request.setAttribute("list", CarService.getInstance()
                     .searchCars(searchParameters, pageDetails.getSort(), 0, pageDetails.getItemsOnPage()));
+            request.setAttribute("allMakes", CarService.getInstance().getCarsMakes());
+            page = ConfigurationManager.getInstance().getProperty("path.page.carsList");
+        } else {
+            PageDetailsDto pageDetails = (PageDetailsDto) request.getSession().getAttribute("pageDetails");
+            HashMap<String, String> searchParameters = pageDetails.getSearchParameters();
+            request.setAttribute("list", CarService.getInstance()
+                    .searchCars(searchParameters, pageDetails.getSort(),
+                            (pageDetails.getPageNumber()-1)*pageDetails.getItemsOnPage(), pageDetails.getItemsOnPage()));
 
             request.setAttribute("allMakes", CarService.getInstance().getCarsMakes());
+            page = ConfigurationManager.getInstance().getProperty("path.page." + pageDetails.getPageType());
+
         }
-        String page = ConfigurationManager.getInstance().getProperty("path.page.carsList");
         forward(page);
     }
 

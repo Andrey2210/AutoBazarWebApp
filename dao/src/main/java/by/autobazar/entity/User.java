@@ -12,6 +12,9 @@ public class User implements Entity{
     private String phone;
     private String role;
 
+    public User() {
+    }
+
     public User(long id, String login, String email, String password, String name, String phone, String role) {
         this.id = id;
         this.login = login;
@@ -20,6 +23,14 @@ public class User implements Entity{
         this.name = name;
         this.phone = phone;
         this.role = role;
+    }
+
+    public User(String login, String email, String password, String name, String phone) {
+        this.login = login;
+        this.email = email;
+        this.password = password;
+        this.name = name;
+        this.phone = phone;
     }
 
     @Override

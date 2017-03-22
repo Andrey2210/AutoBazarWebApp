@@ -2,11 +2,15 @@
  * Created by Andrey on 23.02.2017.
  */
 function onChange(_this){
-    var url = "/controller?command=Model&make="+_this.value;
+    var url = "/autobazar/controller?command=Model&make="+_this.value;
     load("GET",url);
 }
 
-// Функция, осуществляющая AJAX запрос.
+function onChangeMakes(_this){
+    var url = "/autobazar/controller?command=Model&allMake="+_this.value;
+    load("GET",url);
+}
+
 function load(method,url){
     var xmlHttp = null;
     if (window.XMLHttpRequest) {
@@ -32,7 +36,7 @@ function load(method,url){
 
 function getModels(xml){
     var models = xml.getElementsByTagName("model");
-    var _select = document.getElementById("models");
+    var _select = document.getElementById("model");
     _select.innerHTML = "";
     var option = document.createElement("option");
     var optionText = document.createTextNode("Model");
@@ -46,4 +50,23 @@ function getModels(xml){
         option.setAttribute("value",models[i].firstChild.data);
         _select.appendChild(option);
     }
+}
+
+function userLogin() {
+    document.getElementById('login-form').submit();
+    return false;
+}
+
+function userLogout() {
+    document.getElementById('logout-form').submit();
+    return false;
+}
+
+function nextStep(_this) {
+    _this.style.display = 'none';
+    var nextItem = _this.parentNode.nextElementSibling;
+    nextItem.style.display = 'block';
+    document.getElementById('menu-' + nextItem.id).classList.add("m-active");
+
+    document.getElementById('menu-' + nextItem.id).getElementsByTagName('div')[0].classList.add("m-active");
 }

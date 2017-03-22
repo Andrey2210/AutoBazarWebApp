@@ -8,14 +8,15 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@page isELIgnored="false"%>
 <html>
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <title>AUTO BAZAR</title>
 
-    <link rel="shortcut icon" type="image/x-icon" href="../../images/favicon.png"/>
-    <link href="../../css/master.css" rel="stylesheet">
+    <link rel="shortcut icon" type="image/x-icon" href="images/favicon.png"/>
+    <link href="css/master.css" rel="stylesheet">
 
     <!--[if lt IE 9]>
     <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -28,26 +29,59 @@
 <header class="b-topBar">
     <div class="container wow slideInDown" data-wow-delay="0.7s">
         <div class="row">
-            <div class="col-md-6 col-xs-6">
+            <div class="col-md-7 col-xs-6">
                 <div class="b-topBar__tel">
                     <span class="fa fa-phone"></span>
                     +375 (44) 557-52-21
                 </div>
             </div>
-            <div class="col-md-4 col-xs-6">
-                <nav class="b-topBar__nav">
-                    <ul>
-                        <li><a href="#">Register</a></li>
-                        <li><a href="#">Sign in</a></li>
-                    </ul>
-                </nav>
-            </div>
+
+            <c:choose>
+                <c:when test="${empty sessionScope.user}">
+                    <div class="col-md-2 col-xs-6">
+                        <nav class="b-topBar__nav">
+                            <ul>
+                                <li><a class="main-item" href="/autobazar/registration">Register</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="col-md-1 col-xs-6">
+                        <div class="b-topBar__lang">
+                            <div class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle='dropdown'>SIGN IN</a>
+                                <ul class="dropdown-menu dropdown-menu-log">
+                                    <form id="login-form" method="post" action="/autobazar/controller" >
+                                        <input  type="hidden" name="command" value="Login"/>
+                                        <li><input  type="text" name="login" placeholder="LOGIN/EMAIL" required=""/></li>
+                                        <li><input  type="password" name="password" placeholder="PASSWORD" required=""/></li>
+                                    </form>
+                                    <li><a href="#" onclick="userLogin()">SIGN IN</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </c:when>
+                <c:otherwise>
+                    <div class="col-md-3 col-xs-6">
+                        <nav class="b-topBar__nav">
+                            <ul>
+                                <form id="logout-form" method="post" action="/autobazar/controller" style="display: none" >
+                                    <input  type="hidden" name="command" value="Logout"/>
+                                </form>
+                                <li><a class="main-item" href="#" onclick="userLogout()">Sign Out</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </c:otherwise>
+            </c:choose>
+
+
             <div class="col-md-2 col-xs-6">
                 <div class="b-topBar__lang">
                     <div class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle='dropdown'>Language</a>
                         <a class="m-langLink dropdown-toggle" data-toggle='dropdown' href="#"><span
-                                class="b-topBar__lang-flag m-en"></span>EN<span class="fa fa-caret-down"></span></a>
+                                class="b-topBar__lang-flag m-en"></span><span class="fa fa-caret-down"></span></a>
                         <ul class="dropdown-menu h-lang">
                             <li><a class="m-langLink dropdown-toggle" data-toggle='dropdown' href="#"><span
                                     class="b-topBar__lang-flag m-en"></span>EN</a></li>
@@ -66,8 +100,8 @@
         <div class="row">
             <div class="col-sm-3 col-xs-4">
                 <div class="b-nav__logo wow slideInLeft" data-wow-delay="0.3s">
-                    <h3><a href="/autobazar">Auto<span>BAZAR</span></a></h3>
-                    <h2><a href="/autobazar">sell your car with us</a></h2>
+                    <h3><a href="/autobazar/controller">Auto<span>BAZAR</span></a></h3>
+                    <h2><a href="/autobazar/controller">sell your car with us</a></h2>
                 </div>
             </div>
             <div class="col-sm-9 col-xs-8">
@@ -83,7 +117,7 @@
                     <div class="collapse navbar-collapse navbar-main-slide" id="nav">
                         <ul class="navbar-nav-menu">
                             <li>
-                            <li><a href="/autobazar">Home</a></li>
+                            <li><a href="/autobazar/controller">Home</a></li>
                             <li><a href="about.html">About</a></li>
                             <li><a href="submit1.html">Shop</a></li>
                             <li><a href="contacts.html">Contact</a></li>
@@ -187,18 +221,27 @@
                                 <div class="b-submit__main-element wow zoomInUp" data-wow-delay="0.5s">
                                     <label>Enter Make <span>*</span></label>
                                     <div class='s-relative'>
-                                        <select class="m-select" name="mark">
-                                            <option>Any Make</option>
+                                        <select class="m-select" name="mark" onchange="onChangeMakes(this)">
+                                            <option value="" selected="selected">All Makes</option>
+                                            <c:forEach var="make" items="${requestScope.allMakes}">
+                                                <option value="${make}">${make}</option>
+                                            </c:forEach>
                                         </select>
                                         <span class="fa fa-caret-down"></span>
                                     </div>
                                 </div>
 
                                 <div class="b-submit__main-element wow zoomInUp" data-wow-delay="0.5s">
-                                    <label>Vehicle Manufacturer Year<span>*</span></label>
+                                    <label>Select Body Type <span>*</span></label>
                                     <div class='s-relative'>
-                                        <select class="m-select" name="year">
-                                            <option>Select</option>
+                                        <select class="m-select" name="body_type">
+                                            <option value="" selected="selected">All</option>
+                                            <option>Pickup</option>
+                                            <option>Suv</option>
+                                            <option>Coupe</option>
+                                            <option>Convertible</option>
+                                            <option>Sedan</option>
+                                            <option>Hatchback</option>
                                         </select>
                                         <span class="fa fa-caret-down"></span>
                                     </div>
@@ -208,7 +251,10 @@
                                     <label>Select Fuel Type <span>*</span></label>
                                     <div class='s-relative'>
                                         <select class="m-select" name="fuel_type">
-                                            <option>Select</option>
+                                            <option value="" selected="selected">All</option>
+                                            <option>Petrol</option>
+                                            <option>Diesel</option>
+                                            <option>Electro</option>
                                         </select>
                                         <span class="fa fa-caret-down"></span>
                                     </div>
@@ -217,13 +263,16 @@
 
                                 <div class="b-submit__main-element wow zoomInUp" data-wow-delay="0.5s">
                                     <label>No. of Doors <span>*</span></label>
-                                    <div class='s-relative'>
-                                        <select class="m-select" name="doors_number">
-                                            <option>Select</option>
-                                        </select>
-                                        <span class="fa fa-caret-down"></span>
+                                    <input placeholder="Enter No. of Doors" type="text" name="doors_number"/>
+                                </div>
+
+                                <div class="b-submit__main-element wow zoomInUp" data-wow-delay="0.5s">
+                                    <label>Vehicle Manufacturer Year<span>*</span></label>
+                                    <div class="b-submit__main-element">
+                                        <input type="text" name="year"/>
                                     </div>
                                 </div>
+
                             </div>
 
                             <div class="col-md-6 col-xs-12">
@@ -231,8 +280,8 @@
                                 <div class="b-submit__main-element wow zoomInUp" data-wow-delay="0.5s">
                                     <label>Enter Vehicle Model <span>*</span></label>
                                     <div class='s-relative'>
-                                        <select class="m-select" name="model">
-                                            <option>Select a Model</option>
+                                        <select id="model" class="m-select" name="model">
+                                            <option value="" selected="selected">All Models</option>
                                         </select>
                                         <span class="fa fa-caret-down"></span>
                                     </div>
@@ -242,7 +291,10 @@
                                     <label>Select Drive Type <span>*</span></label>
                                     <div class='s-relative'>
                                         <select class="m-select" name="driving">
-                                            <option>Select</option>
+                                            <option value="" selected="selected">All</option>
+                                            <option>AWD</option>
+                                            <option>FWD</option>
+                                            <option>RWD</option>
                                         </select>
                                         <span class="fa fa-caret-down"></span>
                                     </div>
@@ -252,7 +304,23 @@
                                     <label>Vehicle Transmission Type <span>*</span></label>
                                     <div class='s-relative'>
                                         <select class="m-select" name="transmission">
-                                            <option>Select</option>
+                                            <option value="" selected="selected">All</option>
+                                            <option>Manual</option>
+                                            <option>Automatic</option>
+                                            <option>CVT</option>
+                                        </select>
+                                        <span class="fa fa-caret-down"></span>
+                                    </div>
+                                </div>
+
+                                <div class="b-submit__main-element wow zoomInUp" data-wow-delay="0.5s">
+                                    <label>Select Car Condition <span>*</span></label>
+                                    <div class='s-relative'>
+                                        <select class="m-select" name="car_condition">
+                                            <option value="" selected="selected">All</option>
+                                            <option>Used</option>
+                                            <option>New</option>
+                                            <option>Crash</option>
                                         </select>
                                         <span class="fa fa-caret-down"></span>
                                     </div>
@@ -313,7 +381,19 @@
                                             <label>Select Exterior Color <span>*</span></label>
                                             <div class="s-relative">
                                                 <select class="m-select" name="car_color">
-                                                    <option>Select</option>
+                                                    <option value="" selected="selected">All</option>
+                                                    <option>Black</option>
+                                                    <option>Blue</option>
+                                                    <option>White</option>
+                                                    <option>Green</option>
+                                                    <option>Gray</option>
+                                                    <option>Orange</option>
+                                                    <option>Yellow</option>
+                                                    <option>Brown</option>
+                                                    <option>Red</option>
+                                                    <option>Silver</option>
+                                                    <option>Purple</option>
+                                                    <option>Burgundy</option>
                                                 </select>
                                                 <span class="fa fa-caret-down"></span>
                                             </div>
@@ -324,7 +404,11 @@
                                             <label>Select Interior Material <span>*</span></label>
                                             <div class="s-relative">
                                                 <select class="m-select" name="interior_material">
-                                                    <option>Select</option>
+                                                    <option value="" selected="selected">All</option>
+                                                    <option>Leather</option>
+                                                    <option>Tissue</option>
+                                                    <option>Velours</option>
+                                                    <option>Alcantara</option>
                                                 </select>
                                                 <span class="fa fa-caret-down"></span>
                                             </div>
@@ -334,7 +418,19 @@
                                             <label>Select Interior Color <span>*</span></label>
                                             <div class="s-relative">
                                                 <select class="m-select" name="interior_color">
-                                                    <option>Select</option>
+                                                    <option value="" selected="selected">All</option>
+                                                    <option>Black</option>
+                                                    <option>Blue</option>
+                                                    <option>White</option>
+                                                    <option>Green</option>
+                                                    <option>Gray</option>
+                                                    <option>Orange</option>
+                                                    <option>Yellow</option>
+                                                    <option>Brown</option>
+                                                    <option>Red</option>
+                                                    <option>Silver</option>
+                                                    <option>Purple</option>
+                                                    <option>Burgundy</option>
                                                 </select>
                                                 <span class="fa fa-caret-down"></span>
                                             </div>
@@ -355,7 +451,7 @@
                             </header>
                             <div class="b-submit__main-element">
                                 <label>Your Name <span>*</span></label>
-                                <input type="text" name="name"/>
+                                <input type="text" name="name" value="${requestScope.userData.name}"/>
                             </div>
                             <div class="row">
                                 <div class="col-md-6 col-xs-12">
@@ -376,7 +472,7 @@
                                 <div class="col-md-6 col-xs-12">
                                     <div class="b-submit__main-element">
                                         <label>Enter Your Phone Number <span>*</span></label>
-                                        <input type="text" name="phone"/>
+                                        <input type="text" name="phone" value="${requestScope.userData.phone}"/>
                                     </div>
                                 </div>
 
@@ -406,7 +502,7 @@
                                     <h2>Write Some Additional Comments About Your Vehicle</h2>
                                 </header>
                                 <p></p>
-                                <textarea name="text" placeholder="write additional comments"></textarea>
+                                <textarea name="description" placeholder="write additional comments"></textarea>
                             </div>
                             <button onclick="nextStep(this)" type="button" class="btn m-btn pull-right wow zoomInUp"
                                     data-wow-delay="0.5s">Save &amp; PROCEED
@@ -440,7 +536,7 @@
             <div class="col-xs-4">
                 <div class="b-footer__company wow slideInLeft" data-wow-delay="0.3s">
                     <div class="b-nav__logo">
-                        <h3><a href="/autobazar">Auto<span>BAZAR</span></a></h3>
+                        <h3><a href="/autobazar/controller">Auto<span>BAZAR</span></a></h3>
                     </div>
                     <p>&copy; 2017 Designed by Andrey Berezovskiy</p>
                 </div>
@@ -470,45 +566,31 @@
 </footer><!--b-footer-->
 </div>
 <!--Main-->
-<script src="../../js/jquery-1.11.3.min.js"></script>
-<script src="../../js/jquery-ui.min.js"></script>
-<script src="../../js/bootstrap.min.js"></script>
-<script src="../../js/modernizr.custom.js"></script>
+<script src="js/jquery-1.11.3.min.js"></script>
+<script src="js/jquery-ui.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/modernizr.custom.js"></script>
 
-<script src="../../assets/rendro-easy-pie-chart/dist/jquery.easypiechart.min.js"></script>
-<script src="../../js/waypoints.min.js"></script>
-<script src="../../js/jquery.easypiechart.min.js"></script>
-<script src="../../js/classie.js"></script>
+<script src="assets/rendro-easy-pie-chart/dist/jquery.easypiechart.min.js"></script>
+<script src="js/waypoints.min.js"></script>
+<script src="js/jquery.easypiechart.min.js"></script>
+<script src="js/classie.js"></script>
 
 <!--Switcher-->
-<script src="../../assets/switcher/js/switcher.js"></script>
+<script src="assets/switcher/js/switcher.js"></script>
 <!--Owl Carousel-->
-<script src="../../assets/owl-carousel/owl.carousel.min.js"></script>
+<script src="assets/owl-carousel/owl.carousel.min.js"></script>
 <!--bxSlider-->
-<script src="../../assets/bxslider/jquery.bxslider.js"></script>
+<script src="assets/bxslider/jquery.bxslider.js"></script>
 <!-- jQuery UI Slider -->
-<script src="../../assets/slider/jquery.ui-slider.js"></script>
+<script src="assets/slider/jquery.ui-slider.js"></script>
 
 <!--Theme-->
-<script src="../../js/jquery.smooth-scroll.js"></script>
-<script src="../../js/wow.min.js"></script>
-<script src="../../js/jquery.placeholder.min.js"></script>
-<script src="../../js/theme.js"></script>
+<script src="js/jquery.smooth-scroll.js"></script>
+<script src="js/wow.min.js"></script>
+<script src="js/jquery.placeholder.min.js"></script>
+<script src="js/theme.js"></script>
+<script src="js/search.js"></script>
 
-<script type="text/javascript">
-
-
-
-    function nextStep(_this) {
-        _this.style.display = 'none';
-        var nextItem = _this.parentNode.nextElementSibling;
-        nextItem.style.display = 'block';
-        document.getElementById('menu-' + nextItem.id).classList.add("m-active");
-
-        document.getElementById('menu-' + nextItem.id).getElementsByTagName('div')[0].classList.add("m-active");
-    }
-
-
-</script>
 </body>
 </html>

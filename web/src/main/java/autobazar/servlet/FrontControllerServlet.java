@@ -14,7 +14,7 @@ import java.io.IOException;
 /**
  * Created by Andrey on 15.03.2017.
  */
-@WebServlet(urlPatterns = "/controller")
+@WebServlet(urlPatterns = {"/controller", "/registration", "/login", "/submit"})
 public class FrontControllerServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request,
@@ -44,4 +44,5 @@ public class FrontControllerServlet extends HttpServlet {
             return new UnknownCommand();
         }
     }
+
 }

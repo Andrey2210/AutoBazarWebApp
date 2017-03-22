@@ -43,7 +43,7 @@ public abstract class AbstractDAO <T extends Entity> {
      * @return
      * @throws DaoException
      */
-    public abstract T getById(int id) throws DaoException;
+    public abstract T getById(long id) throws DaoException;
 
     /**
      * Removes an entity object from the database

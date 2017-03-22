@@ -100,7 +100,7 @@ public class UserDAO extends AbstractDAO<User> {
     }
 
     @Override
-    public User getById(int id) throws DaoException {
+    public User getById(long id) throws DaoException {
         log.info("getById : ");
 
         User result = null;

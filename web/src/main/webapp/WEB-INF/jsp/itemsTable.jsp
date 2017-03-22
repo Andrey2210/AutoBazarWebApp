@@ -8,13 +8,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@page isELIgnored="false"%>
+<%@page isELIgnored="false" %>
 <html>
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <link rel="shortcut icon" type="image/x-icon" href="../../images/favicon.png"/>
-    <link href="../../css/master.css" rel="stylesheet">
+    <link rel="shortcut icon" type="image/x-icon" href="images/favicon.png"/>
+    <link href="css/master.css" rel="stylesheet">
 </head>
 <body>
 <div class="row m-border">
@@ -22,11 +22,11 @@
         <div class="col-lg-4 col-md-6 col-xs-12 wow zoomInUp" data-wow-delay="0.5s">
             <div class="b-items__cell">
                 <div class="b-items__cars-one-img">
-                    <img class='img-responsive' src="../../${car.image}"/>
+                    <img class='img-responsive' src="${car.image}"/>
                 </div>
                 <div class="b-items__cell-info">
                     <div class="s-lineDownLeft b-items__cell-info-title">
-                        <h2 class=""><a href="detail.html">${car.mark} ${car.model}</a></h2>
+                        <h2 class=""><a href="/autobazar/controller?command=Detail&id=${car.id}">${car.mark} ${car.model}</a></h2>
                     </div>
                     <p>${car.description}</p>
                     <div>
@@ -38,10 +38,10 @@
                                 <span class="b-items__cars-one-info-title">Specs:</span>
                             </div>
                             <div class="col-xs-7">
-                                <span class="b-items__cars-one-info-value">Sedan</span>
-                                <span class="b-items__cars-one-info-value">35,000 KM</span>
+                                <span class="b-items__cars-one-info-value">${car.bodyType}</span>
+                                <span class="b-items__cars-one-info-value">${car.conditions.milleage} KM</span>
                                 <span class="b-items__cars-one-info-value">6-Speed Auto</span>
-                                <span class="b-items__cars-one-info-value">2-Passenger, 2-Door</span>
+                                <span class="b-items__cars-one-info-value">${car.transmission}, ${car.characteristics.doorsNumber}-Door</span>
                             </div>
                         </div>
                     </div>
@@ -181,40 +181,20 @@
     }
     showPagination();
 
-    function onChangeSort(_this) {
-        var value = _this.value;
-        if (_this.name == "itemsOnPage") {
-            $.ajax({
-                method: "POST",
-                url: "/autobazar",
-                data: {'page': value},
-                success: function (result) {
-                    $(".m-border").html(result);
-                }
-            });
-        } else {
-            $.ajax({
-                method: "POST",
-                url: "/autobazar",
-                data: {'sort': value},
-                success: function (result) {
-                    $(".m-border").html(result);
-                }
-            });
-        }
-    }
+
 
     function onClickPage(_this) {
         var value = _this.innerHTML;
         $.ajax({
             method: "POST",
-            url: "/autobazar",
-            data: {'pageNumber': value},
+            url: "/autobazar/controller",
+            data: {'pageNumber': value, 'pageType': "itemsTable", "command": "PageDetails"},
             success: function (result) {
                 $(".m-border").html(result);
             }
         });
     }
+
 </script>
 </body>
 </html>
