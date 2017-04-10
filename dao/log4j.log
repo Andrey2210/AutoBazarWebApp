@@ -1,0 +1,713 @@
+2017-04-10 06:05:13,631 DEBUG - Visiting attribute path : user.role
+t2017-04-10 06:05:13,631 DEBUG - Visiting attribute path : verified
+t2017-04-10 06:05:13,631 DEBUG - Visiting attribute path : year
+t2017-04-10 06:05:13,631 DEBUG - Building LoadPlan...
+t2017-04-10 06:05:13,632 DEBUG - processing queryspace <gen:0>
+t2017-04-10 06:05:13,635 DEBUG - LoadPlan(entity=by.autobazar.entity.Car)
+    - Returns
+       - EntityReturnImpl(entity=by.autobazar.entity.Car, querySpaceUid=<gen:0>, path=by.autobazar.entity.Car)
+          - EntityAttributeFetchImpl(entity=by.autobazar.entity.User, querySpaceUid=<gen:1>, path=by.autobazar.entity.Car.user)
+    - QuerySpaces
+       - EntityQuerySpaceImpl(uid=<gen:0>, entity=by.autobazar.entity.Car)
+          - SQL table alias mapping - car0_
+          - alias suffix - 0_
+          - suffixed key columns - {F_ID1_0_0_}
+          - JOIN (JoinDefinedByMetadata(user)) : <gen:0> -> <gen:1>
+             - EntityQuerySpaceImpl(uid=<gen:1>, entity=by.autobazar.entity.User)
+                - SQL table alias mapping - user1_
+                - alias suffix - 1_
+                - suffixed key columns - {F_ID1_3_1_}
+
+t2017-04-10 06:05:13,636 DEBUG - Static select for entity by.autobazar.entity.Car [NONE]: select car0_.F_ID as F_ID1_0_0_, car0_.F_BODY_TYPE as F_BODY_T2_0_0_, car0_.F_CAR_COLOR as F_CAR_CO3_0_0_, car0_.F_CONDITION as F_CONDIT4_0_0_, car0_.F_CITY as F_CITY5_0_0_, car0_.F_DESCRIPTION as F_DESCRI6_0_0_, car0_.F_DOORS_NUMBER as F_DOORS_7_0_0_, car0_.F_DRIVING as F_DRIVIN8_0_0_, car0_.F_ENGINE_CAPACITY as F_ENGINE9_0_0_, car0_.F_FUEL_TYPE as F_FUEL_10_0_0_, car0_.F_INTERIOR_COLOR as F_INTER11_0_0_, car0_.F_INTERIOR_MATERIAL as F_INTER12_0_0_, car0_.F_MARK as F_MARK13_0_0_, car0_.F_MILLEAGE as F_MILLE14_0_0_, car0_.F_MODEL as F_MODEL15_0_0_, car0_.F_PRICE as F_PRICE16_0_0_, car0_.F_REGION as F_REGIO17_0_0_, car0_.F_TRANSMISSION as F_TRANS18_0_0_, car0_.F_USER_ID as F_USER_21_0_0_, car0_.F_VERIFIED as F_VERIF19_0_0_, car0_.F_YEAR as F_YEAR20_0_0_, user1_.F_ID as F_ID1_3_1_, user1_.F_EMAIL as F_EMAIL2_3_1_, user1_.F_LOGIN as F_LOGIN3_3_1_, user1_.F_NAME as F_NAME4_3_1_, user1_.F_PASSWORD as F_PASSWO5_3_1_, user1_.F_PHONE as F_PHONE6_3_1_, user1_.F_ROLE as F_ROLE7_3_1_ from T_CAR car0_ left outer join T_USER user1_ on car0_.F_USER_ID=user1_.F_ID where car0_.F_ID=?
+t2017-04-10 06:05:13,636 DEBUG - Adding QuerySpace : uid = <gen:0> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@56bca85b]
+t2017-04-10 06:05:13,636 DEBUG - Visiting attribute path : bodyType
+t2017-04-10 06:05:13,636 DEBUG - Visiting attribute path : carColor
+t2017-04-10 06:05:13,636 DEBUG - Visiting attribute path : carCondition
+t2017-04-10 06:05:13,636 DEBUG - Visiting attribute path : city
+t2017-04-10 06:05:13,636 DEBUG - Visiting attribute path : commentList
+t2017-04-10 06:05:13,637 DEBUG - Visiting attribute path : description
+t2017-04-10 06:05:13,637 DEBUG - Visiting attribute path : doorsNumber
+t2017-04-10 06:05:13,637 DEBUG - Visiting attribute path : driving
+t2017-04-10 06:05:13,637 DEBUG - Visiting attribute path : engineCapacity
+t2017-04-10 06:05:13,637 DEBUG - Visiting attribute path : fuelType
+t2017-04-10 06:05:13,637 DEBUG - Visiting attribute path : imageList
+t2017-04-10 06:05:13,637 DEBUG - Visiting attribute path : interiorColor
+t2017-04-10 06:05:13,637 DEBUG - Visiting attribute path : interiorMaterial
+t2017-04-10 06:05:13,637 DEBUG - Visiting attribute path : mark
+t2017-04-10 06:05:13,637 DEBUG - Visiting attribute path : milleage
+t2017-04-10 06:05:13,637 DEBUG - Visiting attribute path : model
+t2017-04-10 06:05:13,637 DEBUG - Visiting attribute path : price
+t2017-04-10 06:05:13,637 DEBUG - Visiting attribute path : region
+t2017-04-10 06:05:13,637 DEBUG - Visiting attribute path : transmission
+t2017-04-10 06:05:13,638 DEBUG - Visiting attribute path : user
+t2017-04-10 06:05:13,638 DEBUG - Adding QuerySpace : uid = <gen:1> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@75e91545]
+t2017-04-10 06:05:13,638 DEBUG - Visiting attribute path : user.carList
+t2017-04-10 06:05:13,638 DEBUG - Property path deemed to be circular : user.carList
+t2017-04-10 06:05:13,638 DEBUG - Visiting attribute path : user.commentList
+t2017-04-10 06:05:13,638 DEBUG - Visiting attribute path : user.email
+t2017-04-10 06:05:13,638 DEBUG - Visiting attribute path : user.login
+t2017-04-10 06:05:13,638 DEBUG - Visiting attribute path : user.name
+t2017-04-10 06:05:13,638 DEBUG - Visiting attribute path : user.password
+t2017-04-10 06:05:13,638 DEBUG - Visiting attribute path : user.phone
+t2017-04-10 06:05:13,638 DEBUG - Visiting attribute path : user.role
+t2017-04-10 06:05:13,638 DEBUG - Visiting attribute path : verified
+t2017-04-10 06:05:13,638 DEBUG - Visiting attribute path : year
+t2017-04-10 06:05:13,638 DEBUG - Building LoadPlan...
+t2017-04-10 06:05:13,639 DEBUG - processing queryspace <gen:0>
+t2017-04-10 06:05:13,745 DEBUG - LoadPlan(entity=by.autobazar.entity.Car)
+    - Returns
+       - EntityReturnImpl(entity=by.autobazar.entity.Car, querySpaceUid=<gen:0>, path=by.autobazar.entity.Car)
+          - EntityAttributeFetchImpl(entity=by.autobazar.entity.User, querySpaceUid=<gen:1>, path=by.autobazar.entity.Car.user)
+    - QuerySpaces
+       - EntityQuerySpaceImpl(uid=<gen:0>, entity=by.autobazar.entity.Car)
+          - SQL table alias mapping - car0_
+          - alias suffix - 0_
+          - suffixed key columns - {F_ID1_0_0_}
+          - JOIN (JoinDefinedByMetadata(user)) : <gen:0> -> <gen:1>
+             - EntityQuerySpaceImpl(uid=<gen:1>, entity=by.autobazar.entity.User)
+                - SQL table alias mapping - user1_
+                - alias suffix - 1_
+                - suffixed key columns - {F_ID1_3_1_}
+
+t2017-04-10 06:05:13,745 DEBUG - Static select for entity by.autobazar.entity.Car [READ]: select car0_.F_ID as F_ID1_0_0_, car0_.F_BODY_TYPE as F_BODY_T2_0_0_, car0_.F_CAR_COLOR as F_CAR_CO3_0_0_, car0_.F_CONDITION as F_CONDIT4_0_0_, car0_.F_CITY as F_CITY5_0_0_, car0_.F_DESCRIPTION as F_DESCRI6_0_0_, car0_.F_DOORS_NUMBER as F_DOORS_7_0_0_, car0_.F_DRIVING as F_DRIVIN8_0_0_, car0_.F_ENGINE_CAPACITY as F_ENGINE9_0_0_, car0_.F_FUEL_TYPE as F_FUEL_10_0_0_, car0_.F_INTERIOR_COLOR as F_INTER11_0_0_, car0_.F_INTERIOR_MATERIAL as F_INTER12_0_0_, car0_.F_MARK as F_MARK13_0_0_, car0_.F_MILLEAGE as F_MILLE14_0_0_, car0_.F_MODEL as F_MODEL15_0_0_, car0_.F_PRICE as F_PRICE16_0_0_, car0_.F_REGION as F_REGIO17_0_0_, car0_.F_TRANSMISSION as F_TRANS18_0_0_, car0_.F_USER_ID as F_USER_21_0_0_, car0_.F_VERIFIED as F_VERIF19_0_0_, car0_.F_YEAR as F_YEAR20_0_0_, user1_.F_ID as F_ID1_3_1_, user1_.F_EMAIL as F_EMAIL2_3_1_, user1_.F_LOGIN as F_LOGIN3_3_1_, user1_.F_NAME as F_NAME4_3_1_, user1_.F_PASSWORD as F_PASSWO5_3_1_, user1_.F_PHONE as F_PHONE6_3_1_, user1_.F_ROLE as F_ROLE7_3_1_ from T_CAR car0_ left outer join T_USER user1_ on car0_.F_USER_ID=user1_.F_ID where car0_.F_ID=?
+t2017-04-10 06:05:13,746 DEBUG - Adding QuerySpace : uid = <gen:0> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@531c311e]
+t2017-04-10 06:05:13,746 DEBUG - Visiting attribute path : bodyType
+t2017-04-10 06:05:13,746 DEBUG - Visiting attribute path : carColor
+t2017-04-10 06:05:13,746 DEBUG - Visiting attribute path : carCondition
+t2017-04-10 06:05:13,746 DEBUG - Visiting attribute path : city
+t2017-04-10 06:05:13,746 DEBUG - Visiting attribute path : commentList
+t2017-04-10 06:05:13,746 DEBUG - Visiting attribute path : description
+t2017-04-10 06:05:13,746 DEBUG - Visiting attribute path : doorsNumber
+t2017-04-10 06:05:13,746 DEBUG - Visiting attribute path : driving
+t2017-04-10 06:05:13,746 DEBUG - Visiting attribute path : engineCapacity
+t2017-04-10 06:05:13,746 DEBUG - Visiting attribute path : fuelType
+t2017-04-10 06:05:13,746 DEBUG - Visiting attribute path : imageList
+t2017-04-10 06:05:13,746 DEBUG - Visiting attribute path : interiorColor
+t2017-04-10 06:05:13,746 DEBUG - Visiting attribute path : interiorMaterial
+t2017-04-10 06:05:13,746 DEBUG - Visiting attribute path : mark
+t2017-04-10 06:05:13,746 DEBUG - Visiting attribute path : milleage
+t2017-04-10 06:05:13,746 DEBUG - Visiting attribute path : model
+t2017-04-10 06:05:13,747 DEBUG - Visiting attribute path : price
+t2017-04-10 06:05:13,747 DEBUG - Visiting attribute path : region
+t2017-04-10 06:05:13,747 DEBUG - Visiting attribute path : transmission
+t2017-04-10 06:05:13,747 DEBUG - Visiting attribute path : user
+t2017-04-10 06:05:13,747 DEBUG - Adding QuerySpace : uid = <gen:1> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@1fcb4808]
+t2017-04-10 06:05:13,747 DEBUG - Visiting attribute path : verified
+t2017-04-10 06:05:13,747 DEBUG - Visiting attribute path : year
+t2017-04-10 06:05:13,747 DEBUG - Building LoadPlan...
+t2017-04-10 06:05:13,747 DEBUG - processing queryspace <gen:0>
+t2017-04-10 06:05:13,748 DEBUG - LoadPlan(entity=by.autobazar.entity.Car)
+    - Returns
+       - EntityReturnImpl(entity=by.autobazar.entity.Car, querySpaceUid=<gen:0>, path=by.autobazar.entity.Car)
+          - EntityAttributeFetchImpl(entity=by.autobazar.entity.User, querySpaceUid=<gen:1>, path=by.autobazar.entity.Car.user)
+    - QuerySpaces
+       - EntityQuerySpaceImpl(uid=<gen:0>, entity=by.autobazar.entity.Car)
+          - SQL table alias mapping - car0_
+          - alias suffix - 0_
+          - suffixed key columns - {F_ID1_0_0_}
+
+t2017-04-10 06:05:13,748 DEBUG - Static select for entity by.autobazar.entity.Car [UPGRADE]: select car0_.F_ID as F_ID1_0_0_, car0_.F_BODY_TYPE as F_BODY_T2_0_0_, car0_.F_CAR_COLOR as F_CAR_CO3_0_0_, car0_.F_CONDITION as F_CONDIT4_0_0_, car0_.F_CITY as F_CITY5_0_0_, car0_.F_DESCRIPTION as F_DESCRI6_0_0_, car0_.F_DOORS_NUMBER as F_DOORS_7_0_0_, car0_.F_DRIVING as F_DRIVIN8_0_0_, car0_.F_ENGINE_CAPACITY as F_ENGINE9_0_0_, car0_.F_FUEL_TYPE as F_FUEL_10_0_0_, car0_.F_INTERIOR_COLOR as F_INTER11_0_0_, car0_.F_INTERIOR_MATERIAL as F_INTER12_0_0_, car0_.F_MARK as F_MARK13_0_0_, car0_.F_MILLEAGE as F_MILLE14_0_0_, car0_.F_MODEL as F_MODEL15_0_0_, car0_.F_PRICE as F_PRICE16_0_0_, car0_.F_REGION as F_REGIO17_0_0_, car0_.F_TRANSMISSION as F_TRANS18_0_0_, car0_.F_USER_ID as F_USER_21_0_0_, car0_.F_VERIFIED as F_VERIF19_0_0_, car0_.F_YEAR as F_YEAR20_0_0_ from T_CAR car0_ where car0_.F_ID=? for update
+t2017-04-10 06:05:13,748 DEBUG - Adding QuerySpace : uid = <gen:0> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@726e5805]
+t2017-04-10 06:05:13,748 DEBUG - Visiting attribute path : bodyType
+t2017-04-10 06:05:13,748 DEBUG - Visiting attribute path : carColor
+t2017-04-10 06:05:13,748 DEBUG - Visiting attribute path : carCondition
+t2017-04-10 06:05:13,748 DEBUG - Visiting attribute path : city
+t2017-04-10 06:05:13,748 DEBUG - Visiting attribute path : commentList
+t2017-04-10 06:05:13,748 DEBUG - Visiting attribute path : description
+t2017-04-10 06:05:13,748 DEBUG - Visiting attribute path : doorsNumber
+t2017-04-10 06:05:13,748 DEBUG - Visiting attribute path : driving
+t2017-04-10 06:05:13,748 DEBUG - Visiting attribute path : engineCapacity
+t2017-04-10 06:05:13,748 DEBUG - Visiting attribute path : fuelType
+t2017-04-10 06:05:13,748 DEBUG - Visiting attribute path : imageList
+t2017-04-10 06:05:13,748 DEBUG - Visiting attribute path : interiorColor
+t2017-04-10 06:05:13,748 DEBUG - Visiting attribute path : interiorMaterial
+t2017-04-10 06:05:13,748 DEBUG - Visiting attribute path : mark
+t2017-04-10 06:05:13,748 DEBUG - Visiting attribute path : milleage
+t2017-04-10 06:05:13,749 DEBUG - Visiting attribute path : model
+t2017-04-10 06:05:13,749 DEBUG - Visiting attribute path : price
+t2017-04-10 06:05:13,749 DEBUG - Visiting attribute path : region
+t2017-04-10 06:05:13,749 DEBUG - Visiting attribute path : transmission
+t2017-04-10 06:05:13,749 DEBUG - Visiting attribute path : user
+t2017-04-10 06:05:13,749 DEBUG - Adding QuerySpace : uid = <gen:1> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@4b672daa]
+t2017-04-10 06:05:13,749 DEBUG - Visiting attribute path : verified
+t2017-04-10 06:05:13,749 DEBUG - Visiting attribute path : year
+t2017-04-10 06:05:13,749 DEBUG - Building LoadPlan...
+t2017-04-10 06:05:13,749 DEBUG - processing queryspace <gen:0>
+t2017-04-10 06:05:13,750 DEBUG - LoadPlan(entity=by.autobazar.entity.Car)
+    - Returns
+       - EntityReturnImpl(entity=by.autobazar.entity.Car, querySpaceUid=<gen:0>, path=by.autobazar.entity.Car)
+          - EntityAttributeFetchImpl(entity=by.autobazar.entity.User, querySpaceUid=<gen:1>, path=by.autobazar.entity.Car.user)
+    - QuerySpaces
+       - EntityQuerySpaceImpl(uid=<gen:0>, entity=by.autobazar.entity.Car)
+          - SQL table alias mapping - car0_
+          - alias suffix - 0_
+          - suffixed key columns - {F_ID1_0_0_}
+
+t2017-04-10 06:05:13,750 DEBUG - Static select for entity by.autobazar.entity.Car [UPGRADE_NOWAIT]: select car0_.F_ID as F_ID1_0_0_, car0_.F_BODY_TYPE as F_BODY_T2_0_0_, car0_.F_CAR_COLOR as F_CAR_CO3_0_0_, car0_.F_CONDITION as F_CONDIT4_0_0_, car0_.F_CITY as F_CITY5_0_0_, car0_.F_DESCRIPTION as F_DESCRI6_0_0_, car0_.F_DOORS_NUMBER as F_DOORS_7_0_0_, car0_.F_DRIVING as F_DRIVIN8_0_0_, car0_.F_ENGINE_CAPACITY as F_ENGINE9_0_0_, car0_.F_FUEL_TYPE as F_FUEL_10_0_0_, car0_.F_INTERIOR_COLOR as F_INTER11_0_0_, car0_.F_INTERIOR_MATERIAL as F_INTER12_0_0_, car0_.F_MARK as F_MARK13_0_0_, car0_.F_MILLEAGE as F_MILLE14_0_0_, car0_.F_MODEL as F_MODEL15_0_0_, car0_.F_PRICE as F_PRICE16_0_0_, car0_.F_REGION as F_REGIO17_0_0_, car0_.F_TRANSMISSION as F_TRANS18_0_0_, car0_.F_USER_ID as F_USER_21_0_0_, car0_.F_VERIFIED as F_VERIF19_0_0_, car0_.F_YEAR as F_YEAR20_0_0_ from T_CAR car0_ where car0_.F_ID=? for update
+t2017-04-10 06:05:13,750 DEBUG - Adding QuerySpace : uid = <gen:0> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@ea9b7c6]
+t2017-04-10 06:05:13,750 DEBUG - Visiting attribute path : bodyType
+t2017-04-10 06:05:13,750 DEBUG - Visiting attribute path : carColor
+t2017-04-10 06:05:13,750 DEBUG - Visiting attribute path : carCondition
+t2017-04-10 06:05:13,750 DEBUG - Visiting attribute path : city
+t2017-04-10 06:05:13,750 DEBUG - Visiting attribute path : commentList
+t2017-04-10 06:05:13,750 DEBUG - Visiting attribute path : description
+t2017-04-10 06:05:13,750 DEBUG - Visiting attribute path : doorsNumber
+t2017-04-10 06:05:13,750 DEBUG - Visiting attribute path : driving
+t2017-04-10 06:05:13,751 DEBUG - Visiting attribute path : engineCapacity
+t2017-04-10 06:05:13,751 DEBUG - Visiting attribute path : fuelType
+t2017-04-10 06:05:13,751 DEBUG - Visiting attribute path : imageList
+t2017-04-10 06:05:13,751 DEBUG - Visiting attribute path : interiorColor
+t2017-04-10 06:05:13,751 DEBUG - Visiting attribute path : interiorMaterial
+t2017-04-10 06:05:13,751 DEBUG - Visiting attribute path : mark
+t2017-04-10 06:05:13,751 DEBUG - Visiting attribute path : milleage
+t2017-04-10 06:05:13,751 DEBUG - Visiting attribute path : model
+t2017-04-10 06:05:13,751 DEBUG - Visiting attribute path : price
+t2017-04-10 06:05:13,751 DEBUG - Visiting attribute path : region
+t2017-04-10 06:05:13,751 DEBUG - Visiting attribute path : transmission
+t2017-04-10 06:05:13,751 DEBUG - Visiting attribute path : user
+t2017-04-10 06:05:13,751 DEBUG - Adding QuerySpace : uid = <gen:1> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@ed3068a]
+t2017-04-10 06:05:13,752 DEBUG - Visiting attribute path : verified
+t2017-04-10 06:05:13,752 DEBUG - Visiting attribute path : year
+t2017-04-10 06:05:13,752 DEBUG - Building LoadPlan...
+t2017-04-10 06:05:13,752 DEBUG - processing queryspace <gen:0>
+t2017-04-10 06:05:13,752 DEBUG - LoadPlan(entity=by.autobazar.entity.Car)
+    - Returns
+       - EntityReturnImpl(entity=by.autobazar.entity.Car, querySpaceUid=<gen:0>, path=by.autobazar.entity.Car)
+          - EntityAttributeFetchImpl(entity=by.autobazar.entity.User, querySpaceUid=<gen:1>, path=by.autobazar.entity.Car.user)
+    - QuerySpaces
+       - EntityQuerySpaceImpl(uid=<gen:0>, entity=by.autobazar.entity.Car)
+          - SQL table alias mapping - car0_
+          - alias suffix - 0_
+          - suffixed key columns - {F_ID1_0_0_}
+
+t2017-04-10 06:05:13,753 DEBUG - Static select for entity by.autobazar.entity.Car [UPGRADE_SKIPLOCKED]: select car0_.F_ID as F_ID1_0_0_, car0_.F_BODY_TYPE as F_BODY_T2_0_0_, car0_.F_CAR_COLOR as F_CAR_CO3_0_0_, car0_.F_CONDITION as F_CONDIT4_0_0_, car0_.F_CITY as F_CITY5_0_0_, car0_.F_DESCRIPTION as F_DESCRI6_0_0_, car0_.F_DOORS_NUMBER as F_DOORS_7_0_0_, car0_.F_DRIVING as F_DRIVIN8_0_0_, car0_.F_ENGINE_CAPACITY as F_ENGINE9_0_0_, car0_.F_FUEL_TYPE as F_FUEL_10_0_0_, car0_.F_INTERIOR_COLOR as F_INTER11_0_0_, car0_.F_INTERIOR_MATERIAL as F_INTER12_0_0_, car0_.F_MARK as F_MARK13_0_0_, car0_.F_MILLEAGE as F_MILLE14_0_0_, car0_.F_MODEL as F_MODEL15_0_0_, car0_.F_PRICE as F_PRICE16_0_0_, car0_.F_REGION as F_REGIO17_0_0_, car0_.F_TRANSMISSION as F_TRANS18_0_0_, car0_.F_USER_ID as F_USER_21_0_0_, car0_.F_VERIFIED as F_VERIF19_0_0_, car0_.F_YEAR as F_YEAR20_0_0_ from T_CAR car0_ where car0_.F_ID=? for update
+t2017-04-10 06:05:13,753 DEBUG - Adding QuerySpace : uid = <gen:0> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@7c2b6087]
+t2017-04-10 06:05:13,753 DEBUG - Visiting attribute path : bodyType
+t2017-04-10 06:05:13,753 DEBUG - Visiting attribute path : carColor
+t2017-04-10 06:05:13,753 DEBUG - Visiting attribute path : carCondition
+t2017-04-10 06:05:13,753 DEBUG - Visiting attribute path : city
+t2017-04-10 06:05:13,753 DEBUG - Visiting attribute path : commentList
+t2017-04-10 06:05:13,753 DEBUG - Visiting attribute path : description
+t2017-04-10 06:05:13,753 DEBUG - Visiting attribute path : doorsNumber
+t2017-04-10 06:05:13,753 DEBUG - Visiting attribute path : driving
+t2017-04-10 06:05:13,753 DEBUG - Visiting attribute path : engineCapacity
+t2017-04-10 06:05:13,753 DEBUG - Visiting attribute path : fuelType
+t2017-04-10 06:05:13,753 DEBUG - Visiting attribute path : imageList
+t2017-04-10 06:05:13,753 DEBUG - Visiting attribute path : interiorColor
+t2017-04-10 06:05:13,753 DEBUG - Visiting attribute path : interiorMaterial
+t2017-04-10 06:05:13,753 DEBUG - Visiting attribute path : mark
+t2017-04-10 06:05:13,753 DEBUG - Visiting attribute path : milleage
+t2017-04-10 06:05:13,753 DEBUG - Visiting attribute path : model
+t2017-04-10 06:05:13,753 DEBUG - Visiting attribute path : price
+t2017-04-10 06:05:13,753 DEBUG - Visiting attribute path : region
+t2017-04-10 06:05:13,754 DEBUG - Visiting attribute path : transmission
+t2017-04-10 06:05:13,754 DEBUG - Visiting attribute path : user
+t2017-04-10 06:05:13,754 DEBUG - Adding QuerySpace : uid = <gen:1> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@a8e6492]
+t2017-04-10 06:05:13,754 DEBUG - Visiting attribute path : verified
+t2017-04-10 06:05:13,754 DEBUG - Visiting attribute path : year
+t2017-04-10 06:05:13,754 DEBUG - Building LoadPlan...
+t2017-04-10 06:05:13,754 DEBUG - processing queryspace <gen:0>
+t2017-04-10 06:05:13,755 DEBUG - LoadPlan(entity=by.autobazar.entity.Car)
+    - Returns
+       - EntityReturnImpl(entity=by.autobazar.entity.Car, querySpaceUid=<gen:0>, path=by.autobazar.entity.Car)
+          - EntityAttributeFetchImpl(entity=by.autobazar.entity.User, querySpaceUid=<gen:1>, path=by.autobazar.entity.Car.user)
+    - QuerySpaces
+       - EntityQuerySpaceImpl(uid=<gen:0>, entity=by.autobazar.entity.Car)
+          - SQL table alias mapping - car0_
+          - alias suffix - 0_
+          - suffixed key columns - {F_ID1_0_0_}
+
+t2017-04-10 06:05:13,755 DEBUG - Static select for entity by.autobazar.entity.Car [FORCE]: select car0_.F_ID as F_ID1_0_0_, car0_.F_BODY_TYPE as F_BODY_T2_0_0_, car0_.F_CAR_COLOR as F_CAR_CO3_0_0_, car0_.F_CONDITION as F_CONDIT4_0_0_, car0_.F_CITY as F_CITY5_0_0_, car0_.F_DESCRIPTION as F_DESCRI6_0_0_, car0_.F_DOORS_NUMBER as F_DOORS_7_0_0_, car0_.F_DRIVING as F_DRIVIN8_0_0_, car0_.F_ENGINE_CAPACITY as F_ENGINE9_0_0_, car0_.F_FUEL_TYPE as F_FUEL_10_0_0_, car0_.F_INTERIOR_COLOR as F_INTER11_0_0_, car0_.F_INTERIOR_MATERIAL as F_INTER12_0_0_, car0_.F_MARK as F_MARK13_0_0_, car0_.F_MILLEAGE as F_MILLE14_0_0_, car0_.F_MODEL as F_MODEL15_0_0_, car0_.F_PRICE as F_PRICE16_0_0_, car0_.F_REGION as F_REGIO17_0_0_, car0_.F_TRANSMISSION as F_TRANS18_0_0_, car0_.F_USER_ID as F_USER_21_0_0_, car0_.F_VERIFIED as F_VERIF19_0_0_, car0_.F_YEAR as F_YEAR20_0_0_ from T_CAR car0_ where car0_.F_ID=? for update
+t2017-04-10 06:05:13,755 DEBUG - Adding QuerySpace : uid = <gen:0> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@1c7fd41f]
+t2017-04-10 06:05:13,755 DEBUG - Visiting attribute path : bodyType
+t2017-04-10 06:05:13,755 DEBUG - Visiting attribute path : carColor
+t2017-04-10 06:05:13,755 DEBUG - Visiting attribute path : carCondition
+t2017-04-10 06:05:13,755 DEBUG - Visiting attribute path : city
+t2017-04-10 06:05:13,755 DEBUG - Visiting attribute path : commentList
+t2017-04-10 06:05:13,755 DEBUG - Visiting attribute path : description
+t2017-04-10 06:05:13,755 DEBUG - Visiting attribute path : doorsNumber
+t2017-04-10 06:05:13,755 DEBUG - Visiting attribute path : driving
+t2017-04-10 06:05:13,755 DEBUG - Visiting attribute path : engineCapacity
+t2017-04-10 06:05:13,755 DEBUG - Visiting attribute path : fuelType
+t2017-04-10 06:05:13,755 DEBUG - Visiting attribute path : imageList
+t2017-04-10 06:05:13,756 DEBUG - Visiting attribute path : interiorColor
+t2017-04-10 06:05:13,756 DEBUG - Visiting attribute path : interiorMaterial
+t2017-04-10 06:05:13,756 DEBUG - Visiting attribute path : mark
+t2017-04-10 06:05:13,756 DEBUG - Visiting attribute path : milleage
+t2017-04-10 06:05:13,756 DEBUG - Visiting attribute path : model
+t2017-04-10 06:05:13,756 DEBUG - Visiting attribute path : price
+t2017-04-10 06:05:13,756 DEBUG - Visiting attribute path : region
+t2017-04-10 06:05:13,756 DEBUG - Visiting attribute path : transmission
+t2017-04-10 06:05:13,756 DEBUG - Visiting attribute path : user
+t2017-04-10 06:05:13,756 DEBUG - Adding QuerySpace : uid = <gen:1> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@7b324585]
+t2017-04-10 06:05:13,756 DEBUG - Visiting attribute path : verified
+t2017-04-10 06:05:13,756 DEBUG - Visiting attribute path : year
+t2017-04-10 06:05:13,756 DEBUG - Building LoadPlan...
+t2017-04-10 06:05:13,757 DEBUG - processing queryspace <gen:0>
+t2017-04-10 06:05:13,757 DEBUG - LoadPlan(entity=by.autobazar.entity.Car)
+    - Returns
+       - EntityReturnImpl(entity=by.autobazar.entity.Car, querySpaceUid=<gen:0>, path=by.autobazar.entity.Car)
+          - EntityAttributeFetchImpl(entity=by.autobazar.entity.User, querySpaceUid=<gen:1>, path=by.autobazar.entity.Car.user)
+    - QuerySpaces
+       - EntityQuerySpaceImpl(uid=<gen:0>, entity=by.autobazar.entity.Car)
+          - SQL table alias mapping - car0_
+          - alias suffix - 0_
+          - suffixed key columns - {F_ID1_0_0_}
+
+t2017-04-10 06:05:13,757 DEBUG - Static select for entity by.autobazar.entity.Car [PESSIMISTIC_READ]: select car0_.F_ID as F_ID1_0_0_, car0_.F_BODY_TYPE as F_BODY_T2_0_0_, car0_.F_CAR_COLOR as F_CAR_CO3_0_0_, car0_.F_CONDITION as F_CONDIT4_0_0_, car0_.F_CITY as F_CITY5_0_0_, car0_.F_DESCRIPTION as F_DESCRI6_0_0_, car0_.F_DOORS_NUMBER as F_DOORS_7_0_0_, car0_.F_DRIVING as F_DRIVIN8_0_0_, car0_.F_ENGINE_CAPACITY as F_ENGINE9_0_0_, car0_.F_FUEL_TYPE as F_FUEL_10_0_0_, car0_.F_INTERIOR_COLOR as F_INTER11_0_0_, car0_.F_INTERIOR_MATERIAL as F_INTER12_0_0_, car0_.F_MARK as F_MARK13_0_0_, car0_.F_MILLEAGE as F_MILLE14_0_0_, car0_.F_MODEL as F_MODEL15_0_0_, car0_.F_PRICE as F_PRICE16_0_0_, car0_.F_REGION as F_REGIO17_0_0_, car0_.F_TRANSMISSION as F_TRANS18_0_0_, car0_.F_USER_ID as F_USER_21_0_0_, car0_.F_VERIFIED as F_VERIF19_0_0_, car0_.F_YEAR as F_YEAR20_0_0_ from T_CAR car0_ where car0_.F_ID=? lock in share mode
+t2017-04-10 06:05:13,757 DEBUG - Adding QuerySpace : uid = <gen:0> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@2e11485]
+t2017-04-10 06:05:13,757 DEBUG - Visiting attribute path : bodyType
+t2017-04-10 06:05:13,757 DEBUG - Visiting attribute path : carColor
+t2017-04-10 06:05:13,757 DEBUG - Visiting attribute path : carCondition
+t2017-04-10 06:05:13,757 DEBUG - Visiting attribute path : city
+t2017-04-10 06:05:13,758 DEBUG - Visiting attribute path : commentList
+t2017-04-10 06:05:13,758 DEBUG - Visiting attribute path : description
+t2017-04-10 06:05:13,758 DEBUG - Visiting attribute path : doorsNumber
+t2017-04-10 06:05:13,758 DEBUG - Visiting attribute path : driving
+t2017-04-10 06:05:13,758 DEBUG - Visiting attribute path : engineCapacity
+t2017-04-10 06:05:13,758 DEBUG - Visiting attribute path : fuelType
+t2017-04-10 06:05:13,758 DEBUG - Visiting attribute path : imageList
+t2017-04-10 06:05:13,758 DEBUG - Visiting attribute path : interiorColor
+t2017-04-10 06:05:13,758 DEBUG - Visiting attribute path : interiorMaterial
+t2017-04-10 06:05:13,758 DEBUG - Visiting attribute path : mark
+t2017-04-10 06:05:13,758 DEBUG - Visiting attribute path : milleage
+t2017-04-10 06:05:13,758 DEBUG - Visiting attribute path : model
+t2017-04-10 06:05:13,758 DEBUG - Visiting attribute path : price
+t2017-04-10 06:05:13,758 DEBUG - Visiting attribute path : region
+t2017-04-10 06:05:13,758 DEBUG - Visiting attribute path : transmission
+t2017-04-10 06:05:13,758 DEBUG - Visiting attribute path : user
+t2017-04-10 06:05:13,758 DEBUG - Adding QuerySpace : uid = <gen:1> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@662f5666]
+t2017-04-10 06:05:13,758 DEBUG - Visiting attribute path : verified
+t2017-04-10 06:05:13,758 DEBUG - Visiting attribute path : year
+t2017-04-10 06:05:13,758 DEBUG - Building LoadPlan...
+t2017-04-10 06:05:13,759 DEBUG - processing queryspace <gen:0>
+t2017-04-10 06:05:13,759 DEBUG - LoadPlan(entity=by.autobazar.entity.Car)
+    - Returns
+       - EntityReturnImpl(entity=by.autobazar.entity.Car, querySpaceUid=<gen:0>, path=by.autobazar.entity.Car)
+          - EntityAttributeFetchImpl(entity=by.autobazar.entity.User, querySpaceUid=<gen:1>, path=by.autobazar.entity.Car.user)
+    - QuerySpaces
+       - EntityQuerySpaceImpl(uid=<gen:0>, entity=by.autobazar.entity.Car)
+          - SQL table alias mapping - car0_
+          - alias suffix - 0_
+          - suffixed key columns - {F_ID1_0_0_}
+
+t2017-04-10 06:05:13,759 DEBUG - Static select for entity by.autobazar.entity.Car [PESSIMISTIC_WRITE]: select car0_.F_ID as F_ID1_0_0_, car0_.F_BODY_TYPE as F_BODY_T2_0_0_, car0_.F_CAR_COLOR as F_CAR_CO3_0_0_, car0_.F_CONDITION as F_CONDIT4_0_0_, car0_.F_CITY as F_CITY5_0_0_, car0_.F_DESCRIPTION as F_DESCRI6_0_0_, car0_.F_DOORS_NUMBER as F_DOORS_7_0_0_, car0_.F_DRIVING as F_DRIVIN8_0_0_, car0_.F_ENGINE_CAPACITY as F_ENGINE9_0_0_, car0_.F_FUEL_TYPE as F_FUEL_10_0_0_, car0_.F_INTERIOR_COLOR as F_INTER11_0_0_, car0_.F_INTERIOR_MATERIAL as F_INTER12_0_0_, car0_.F_MARK as F_MARK13_0_0_, car0_.F_MILLEAGE as F_MILLE14_0_0_, car0_.F_MODEL as F_MODEL15_0_0_, car0_.F_PRICE as F_PRICE16_0_0_, car0_.F_REGION as F_REGIO17_0_0_, car0_.F_TRANSMISSION as F_TRANS18_0_0_, car0_.F_USER_ID as F_USER_21_0_0_, car0_.F_VERIFIED as F_VERIF19_0_0_, car0_.F_YEAR as F_YEAR20_0_0_ from T_CAR car0_ where car0_.F_ID=? for update
+t2017-04-10 06:05:13,759 DEBUG - Adding QuerySpace : uid = <gen:0> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@fd8294b]
+t2017-04-10 06:05:13,759 DEBUG - Visiting attribute path : bodyType
+t2017-04-10 06:05:13,760 DEBUG - Visiting attribute path : carColor
+t2017-04-10 06:05:13,760 DEBUG - Visiting attribute path : carCondition
+t2017-04-10 06:05:13,760 DEBUG - Visiting attribute path : city
+t2017-04-10 06:05:13,760 DEBUG - Visiting attribute path : commentList
+t2017-04-10 06:05:13,760 DEBUG - Visiting attribute path : description
+t2017-04-10 06:05:13,760 DEBUG - Visiting attribute path : doorsNumber
+t2017-04-10 06:05:13,760 DEBUG - Visiting attribute path : driving
+t2017-04-10 06:05:13,760 DEBUG - Visiting attribute path : engineCapacity
+t2017-04-10 06:05:13,760 DEBUG - Visiting attribute path : fuelType
+t2017-04-10 06:05:13,760 DEBUG - Visiting attribute path : imageList
+t2017-04-10 06:05:13,760 DEBUG - Visiting attribute path : interiorColor
+t2017-04-10 06:05:13,760 DEBUG - Visiting attribute path : interiorMaterial
+t2017-04-10 06:05:13,760 DEBUG - Visiting attribute path : mark
+t2017-04-10 06:05:13,760 DEBUG - Visiting attribute path : milleage
+t2017-04-10 06:05:13,760 DEBUG - Visiting attribute path : model
+t2017-04-10 06:05:13,760 DEBUG - Visiting attribute path : price
+t2017-04-10 06:05:13,760 DEBUG - Visiting attribute path : region
+t2017-04-10 06:05:13,760 DEBUG - Visiting attribute path : transmission
+t2017-04-10 06:05:13,760 DEBUG - Visiting attribute path : user
+t2017-04-10 06:05:13,760 DEBUG - Adding QuerySpace : uid = <gen:1> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@27305e6]
+t2017-04-10 06:05:13,760 DEBUG - Visiting attribute path : verified
+t2017-04-10 06:05:13,760 DEBUG - Visiting attribute path : year
+t2017-04-10 06:05:13,761 DEBUG - Building LoadPlan...
+t2017-04-10 06:05:13,761 DEBUG - processing queryspace <gen:0>
+t2017-04-10 06:05:13,761 DEBUG - LoadPlan(entity=by.autobazar.entity.Car)
+    - Returns
+       - EntityReturnImpl(entity=by.autobazar.entity.Car, querySpaceUid=<gen:0>, path=by.autobazar.entity.Car)
+          - EntityAttributeFetchImpl(entity=by.autobazar.entity.User, querySpaceUid=<gen:1>, path=by.autobazar.entity.Car.user)
+    - QuerySpaces
+       - EntityQuerySpaceImpl(uid=<gen:0>, entity=by.autobazar.entity.Car)
+          - SQL table alias mapping - car0_
+          - alias suffix - 0_
+          - suffixed key columns - {F_ID1_0_0_}
+
+t2017-04-10 06:05:13,761 DEBUG - Static select for entity by.autobazar.entity.Car [PESSIMISTIC_FORCE_INCREMENT]: select car0_.F_ID as F_ID1_0_0_, car0_.F_BODY_TYPE as F_BODY_T2_0_0_, car0_.F_CAR_COLOR as F_CAR_CO3_0_0_, car0_.F_CONDITION as F_CONDIT4_0_0_, car0_.F_CITY as F_CITY5_0_0_, car0_.F_DESCRIPTION as F_DESCRI6_0_0_, car0_.F_DOORS_NUMBER as F_DOORS_7_0_0_, car0_.F_DRIVING as F_DRIVIN8_0_0_, car0_.F_ENGINE_CAPACITY as F_ENGINE9_0_0_, car0_.F_FUEL_TYPE as F_FUEL_10_0_0_, car0_.F_INTERIOR_COLOR as F_INTER11_0_0_, car0_.F_INTERIOR_MATERIAL as F_INTER12_0_0_, car0_.F_MARK as F_MARK13_0_0_, car0_.F_MILLEAGE as F_MILLE14_0_0_, car0_.F_MODEL as F_MODEL15_0_0_, car0_.F_PRICE as F_PRICE16_0_0_, car0_.F_REGION as F_REGIO17_0_0_, car0_.F_TRANSMISSION as F_TRANS18_0_0_, car0_.F_USER_ID as F_USER_21_0_0_, car0_.F_VERIFIED as F_VERIF19_0_0_, car0_.F_YEAR as F_YEAR20_0_0_ from T_CAR car0_ where car0_.F_ID=? for update
+t2017-04-10 06:05:13,761 DEBUG - Adding QuerySpace : uid = <gen:0> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@1ef3efa8]
+t2017-04-10 06:05:13,762 DEBUG - Visiting attribute path : bodyType
+t2017-04-10 06:05:13,762 DEBUG - Visiting attribute path : carColor
+t2017-04-10 06:05:13,762 DEBUG - Visiting attribute path : carCondition
+t2017-04-10 06:05:13,762 DEBUG - Visiting attribute path : city
+t2017-04-10 06:05:13,762 DEBUG - Visiting attribute path : commentList
+t2017-04-10 06:05:13,762 DEBUG - Visiting attribute path : description
+t2017-04-10 06:05:13,762 DEBUG - Visiting attribute path : doorsNumber
+t2017-04-10 06:05:13,762 DEBUG - Visiting attribute path : driving
+t2017-04-10 06:05:13,762 DEBUG - Visiting attribute path : engineCapacity
+t2017-04-10 06:05:13,762 DEBUG - Visiting attribute path : fuelType
+t2017-04-10 06:05:13,762 DEBUG - Visiting attribute path : imageList
+t2017-04-10 06:05:13,762 DEBUG - Visiting attribute path : interiorColor
+t2017-04-10 06:05:13,762 DEBUG - Visiting attribute path : interiorMaterial
+t2017-04-10 06:05:13,762 DEBUG - Visiting attribute path : mark
+t2017-04-10 06:05:13,762 DEBUG - Visiting attribute path : milleage
+t2017-04-10 06:05:13,762 DEBUG - Visiting attribute path : model
+t2017-04-10 06:05:13,762 DEBUG - Visiting attribute path : price
+t2017-04-10 06:05:13,762 DEBUG - Visiting attribute path : region
+t2017-04-10 06:05:13,762 DEBUG - Visiting attribute path : transmission
+t2017-04-10 06:05:13,762 DEBUG - Visiting attribute path : user
+t2017-04-10 06:05:13,762 DEBUG - Adding QuerySpace : uid = <gen:1> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@6f8f9349]
+t2017-04-10 06:05:13,762 DEBUG - Visiting attribute path : verified
+t2017-04-10 06:05:13,763 DEBUG - Visiting attribute path : year
+t2017-04-10 06:05:13,763 DEBUG - Building LoadPlan...
+t2017-04-10 06:05:13,763 DEBUG - processing queryspace <gen:0>
+t2017-04-10 06:05:13,763 DEBUG - LoadPlan(entity=by.autobazar.entity.Car)
+    - Returns
+       - EntityReturnImpl(entity=by.autobazar.entity.Car, querySpaceUid=<gen:0>, path=by.autobazar.entity.Car)
+          - EntityAttributeFetchImpl(entity=by.autobazar.entity.User, querySpaceUid=<gen:1>, path=by.autobazar.entity.Car.user)
+    - QuerySpaces
+       - EntityQuerySpaceImpl(uid=<gen:0>, entity=by.autobazar.entity.Car)
+          - SQL table alias mapping - car0_
+          - alias suffix - 0_
+          - suffixed key columns - {F_ID1_0_0_}
+
+t2017-04-10 06:05:13,763 DEBUG - Static select for entity by.autobazar.entity.Car [OPTIMISTIC]: select car0_.F_ID as F_ID1_0_0_, car0_.F_BODY_TYPE as F_BODY_T2_0_0_, car0_.F_CAR_COLOR as F_CAR_CO3_0_0_, car0_.F_CONDITION as F_CONDIT4_0_0_, car0_.F_CITY as F_CITY5_0_0_, car0_.F_DESCRIPTION as F_DESCRI6_0_0_, car0_.F_DOORS_NUMBER as F_DOORS_7_0_0_, car0_.F_DRIVING as F_DRIVIN8_0_0_, car0_.F_ENGINE_CAPACITY as F_ENGINE9_0_0_, car0_.F_FUEL_TYPE as F_FUEL_10_0_0_, car0_.F_INTERIOR_COLOR as F_INTER11_0_0_, car0_.F_INTERIOR_MATERIAL as F_INTER12_0_0_, car0_.F_MARK as F_MARK13_0_0_, car0_.F_MILLEAGE as F_MILLE14_0_0_, car0_.F_MODEL as F_MODEL15_0_0_, car0_.F_PRICE as F_PRICE16_0_0_, car0_.F_REGION as F_REGIO17_0_0_, car0_.F_TRANSMISSION as F_TRANS18_0_0_, car0_.F_USER_ID as F_USER_21_0_0_, car0_.F_VERIFIED as F_VERIF19_0_0_, car0_.F_YEAR as F_YEAR20_0_0_ from T_CAR car0_ where car0_.F_ID=?
+t2017-04-10 06:05:13,764 DEBUG - Adding QuerySpace : uid = <gen:0> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@75c9e76b]
+t2017-04-10 06:05:13,764 DEBUG - Visiting attribute path : bodyType
+t2017-04-10 06:05:13,764 DEBUG - Visiting attribute path : carColor
+t2017-04-10 06:05:13,764 DEBUG - Visiting attribute path : carCondition
+t2017-04-10 06:05:13,764 DEBUG - Visiting attribute path : city
+t2017-04-10 06:05:13,764 DEBUG - Visiting attribute path : commentList
+t2017-04-10 06:05:13,764 DEBUG - Visiting attribute path : description
+t2017-04-10 06:05:13,764 DEBUG - Visiting attribute path : doorsNumber
+t2017-04-10 06:05:13,764 DEBUG - Visiting attribute path : driving
+t2017-04-10 06:05:13,764 DEBUG - Visiting attribute path : engineCapacity
+t2017-04-10 06:05:13,764 DEBUG - Visiting attribute path : fuelType
+t2017-04-10 06:05:13,764 DEBUG - Visiting attribute path : imageList
+t2017-04-10 06:05:13,764 DEBUG - Visiting attribute path : interiorColor
+t2017-04-10 06:05:13,764 DEBUG - Visiting attribute path : interiorMaterial
+t2017-04-10 06:05:13,764 DEBUG - Visiting attribute path : mark
+t2017-04-10 06:05:13,764 DEBUG - Visiting attribute path : milleage
+t2017-04-10 06:05:13,764 DEBUG - Visiting attribute path : model
+t2017-04-10 06:05:13,764 DEBUG - Visiting attribute path : price
+t2017-04-10 06:05:13,764 DEBUG - Visiting attribute path : region
+t2017-04-10 06:05:13,764 DEBUG - Visiting attribute path : transmission
+t2017-04-10 06:05:13,764 DEBUG - Visiting attribute path : user
+t2017-04-10 06:05:13,764 DEBUG - Adding QuerySpace : uid = <gen:1> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@5c3b6c6e]
+t2017-04-10 06:05:13,765 DEBUG - Visiting attribute path : verified
+t2017-04-10 06:05:13,765 DEBUG - Visiting attribute path : year
+t2017-04-10 06:05:13,765 DEBUG - Building LoadPlan...
+t2017-04-10 06:05:13,765 DEBUG - processing queryspace <gen:0>
+t2017-04-10 06:05:13,765 DEBUG - LoadPlan(entity=by.autobazar.entity.Car)
+    - Returns
+       - EntityReturnImpl(entity=by.autobazar.entity.Car, querySpaceUid=<gen:0>, path=by.autobazar.entity.Car)
+          - EntityAttributeFetchImpl(entity=by.autobazar.entity.User, querySpaceUid=<gen:1>, path=by.autobazar.entity.Car.user)
+    - QuerySpaces
+       - EntityQuerySpaceImpl(uid=<gen:0>, entity=by.autobazar.entity.Car)
+          - SQL table alias mapping - car0_
+          - alias suffix - 0_
+          - suffixed key columns - {F_ID1_0_0_}
+
+t2017-04-10 06:05:13,765 DEBUG - Static select for entity by.autobazar.entity.Car [OPTIMISTIC_FORCE_INCREMENT]: select car0_.F_ID as F_ID1_0_0_, car0_.F_BODY_TYPE as F_BODY_T2_0_0_, car0_.F_CAR_COLOR as F_CAR_CO3_0_0_, car0_.F_CONDITION as F_CONDIT4_0_0_, car0_.F_CITY as F_CITY5_0_0_, car0_.F_DESCRIPTION as F_DESCRI6_0_0_, car0_.F_DOORS_NUMBER as F_DOORS_7_0_0_, car0_.F_DRIVING as F_DRIVIN8_0_0_, car0_.F_ENGINE_CAPACITY as F_ENGINE9_0_0_, car0_.F_FUEL_TYPE as F_FUEL_10_0_0_, car0_.F_INTERIOR_COLOR as F_INTER11_0_0_, car0_.F_INTERIOR_MATERIAL as F_INTER12_0_0_, car0_.F_MARK as F_MARK13_0_0_, car0_.F_MILLEAGE as F_MILLE14_0_0_, car0_.F_MODEL as F_MODEL15_0_0_, car0_.F_PRICE as F_PRICE16_0_0_, car0_.F_REGION as F_REGIO17_0_0_, car0_.F_TRANSMISSION as F_TRANS18_0_0_, car0_.F_USER_ID as F_USER_21_0_0_, car0_.F_VERIFIED as F_VERIF19_0_0_, car0_.F_YEAR as F_YEAR20_0_0_ from T_CAR car0_ where car0_.F_ID=?
+t2017-04-10 06:05:13,766 DEBUG - Static select for action ACTION_MERGE on entity by.autobazar.entity.Car: select car0_.F_ID as F_ID1_0_1_, car0_.F_BODY_TYPE as F_BODY_T2_0_1_, car0_.F_CAR_COLOR as F_CAR_CO3_0_1_, car0_.F_CONDITION as F_CONDIT4_0_1_, car0_.F_CITY as F_CITY5_0_1_, car0_.F_DESCRIPTION as F_DESCRI6_0_1_, car0_.F_DOORS_NUMBER as F_DOORS_7_0_1_, car0_.F_DRIVING as F_DRIVIN8_0_1_, car0_.F_ENGINE_CAPACITY as F_ENGINE9_0_1_, car0_.F_FUEL_TYPE as F_FUEL_10_0_1_, car0_.F_INTERIOR_COLOR as F_INTER11_0_1_, car0_.F_INTERIOR_MATERIAL as F_INTER12_0_1_, car0_.F_MARK as F_MARK13_0_1_, car0_.F_MILLEAGE as F_MILLE14_0_1_, car0_.F_MODEL as F_MODEL15_0_1_, car0_.F_PRICE as F_PRICE16_0_1_, car0_.F_REGION as F_REGIO17_0_1_, car0_.F_TRANSMISSION as F_TRANS18_0_1_, car0_.F_USER_ID as F_USER_21_0_1_, car0_.F_VERIFIED as F_VERIF19_0_1_, car0_.F_YEAR as F_YEAR20_0_1_, commentlis1_.F_CAR_ID as F_CAR_ID4_0_3_, commentlis1_.F_ID as F_ID1_1_3_, commentlis1_.F_ID as F_ID1_1_0_, commentlis1_.F_CAR_ID as F_CAR_ID4_1_0_, commentlis1_.F_COMMENT as F_COMMEN2_1_0_, commentlis1_.F_CREATIONS_DATE as F_CREATI3_1_0_, commentlis1_.F_USER_ID as F_USER_I5_1_0_ from T_CAR car0_ left outer join T_COMMENT commentlis1_ on car0_.F_ID=commentlis1_.F_CAR_ID where car0_.F_ID=?
+t2017-04-10 06:05:13,767 DEBUG - Static select for action ACTION_REFRESH on entity by.autobazar.entity.Car: select car0_.F_ID as F_ID1_0_1_, car0_.F_BODY_TYPE as F_BODY_T2_0_1_, car0_.F_CAR_COLOR as F_CAR_CO3_0_1_, car0_.F_CONDITION as F_CONDIT4_0_1_, car0_.F_CITY as F_CITY5_0_1_, car0_.F_DESCRIPTION as F_DESCRI6_0_1_, car0_.F_DOORS_NUMBER as F_DOORS_7_0_1_, car0_.F_DRIVING as F_DRIVIN8_0_1_, car0_.F_ENGINE_CAPACITY as F_ENGINE9_0_1_, car0_.F_FUEL_TYPE as F_FUEL_10_0_1_, car0_.F_INTERIOR_COLOR as F_INTER11_0_1_, car0_.F_INTERIOR_MATERIAL as F_INTER12_0_1_, car0_.F_MARK as F_MARK13_0_1_, car0_.F_MILLEAGE as F_MILLE14_0_1_, car0_.F_MODEL as F_MODEL15_0_1_, car0_.F_PRICE as F_PRICE16_0_1_, car0_.F_REGION as F_REGIO17_0_1_, car0_.F_TRANSMISSION as F_TRANS18_0_1_, car0_.F_USER_ID as F_USER_21_0_1_, car0_.F_VERIFIED as F_VERIF19_0_1_, car0_.F_YEAR as F_YEAR20_0_1_, commentlis1_.F_CAR_ID as F_CAR_ID4_0_3_, commentlis1_.F_ID as F_ID1_1_3_, commentlis1_.F_ID as F_ID1_1_0_, commentlis1_.F_CAR_ID as F_CAR_ID4_1_0_, commentlis1_.F_COMMENT as F_COMMEN2_1_0_, commentlis1_.F_CREATIONS_DATE as F_CREATI3_1_0_, commentlis1_.F_USER_ID as F_USER_I5_1_0_ from T_CAR car0_ left outer join T_COMMENT commentlis1_ on car0_.F_ID=commentlis1_.F_CAR_ID where car0_.F_ID=?
+t2017-04-10 06:05:13,785 DEBUG - Adding QuerySpace : uid = <gen:0> -> org.hibernate.loader.plan.build.internal.spaces.CollectionQuerySpaceImpl@192d74fb]
+t2017-04-10 06:05:13,785 DEBUG - Adding QuerySpace : uid = <gen:1> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@4bef0fe3]
+t2017-04-10 06:05:13,788 DEBUG - Visiting attribute path : car
+t2017-04-10 06:05:13,788 DEBUG - Property path deemed to be circular : car
+t2017-04-10 06:05:13,788 DEBUG - Visiting attribute path : imagePath
+t2017-04-10 06:05:13,788 DEBUG - Visiting attribute path : status
+t2017-04-10 06:05:13,789 DEBUG - Building LoadPlan...
+t2017-04-10 06:05:13,794 DEBUG - processing queryspace <gen:0>
+t2017-04-10 06:05:13,794 DEBUG - LoadPlan(collection=by.autobazar.entity.Car.imageList)
+    - Returns
+       - CollectionReturnImpl(collection=by.autobazar.entity.Car.imageList, querySpaceUid=<gen:0>, path=[by.autobazar.entity.Car.imageList])
+          - (collection element) CollectionFetchableElementEntityGraph(entity=by.autobazar.entity.Image, querySpaceUid=<gen:1>, path=[by.autobazar.entity.Car.imageList].<elements>)
+    - QuerySpaces
+       - CollectionQuerySpaceImpl(uid=<gen:0>, collection=by.autobazar.entity.Car.imageList)
+          - SQL table alias mapping - imagelist0_
+          - alias suffix - 0_
+          - suffixed key columns - {F_CAR_ID4_0_0_}
+          - entity-element alias suffix - 1_
+          - 1_entity-element suffixed key columns - F_ID1_2_1_
+          - JOIN (JoinDefinedByMetadata(elements)) : <gen:0> -> <gen:1>
+             - EntityQuerySpaceImpl(uid=<gen:1>, entity=by.autobazar.entity.Image)
+                - SQL table alias mapping - imagelist0_
+                - alias suffix - 1_
+                - suffixed key columns - {F_ID1_2_1_}
+
+t2017-04-10 06:05:13,796 DEBUG - Static select for collection by.autobazar.entity.Car.imageList: select imagelist0_.F_CAR_ID as F_CAR_ID4_0_0_, imagelist0_.F_ID as F_ID1_2_0_, imagelist0_.F_ID as F_ID1_2_1_, imagelist0_.F_CAR_ID as F_CAR_ID4_2_1_, imagelist0_.F_IMAGE_PATH as F_IMAGE_2_2_1_, imagelist0_.F_STATUS as F_STATUS3_2_1_ from T_IMAGE imagelist0_ where imagelist0_.F_CAR_ID=?
+t2017-04-10 06:05:13,796 DEBUG - Adding QuerySpace : uid = <gen:0> -> org.hibernate.loader.plan.build.internal.spaces.CollectionQuerySpaceImpl@5316e95f]
+t2017-04-10 06:05:13,796 DEBUG - Adding QuerySpace : uid = <gen:1> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@3f053c80]
+t2017-04-10 06:05:13,796 DEBUG - Visiting attribute path : bodyType
+t2017-04-10 06:05:13,796 DEBUG - Visiting attribute path : carColor
+t2017-04-10 06:05:13,796 DEBUG - Visiting attribute path : carCondition
+t2017-04-10 06:05:13,796 DEBUG - Visiting attribute path : city
+t2017-04-10 06:05:13,796 DEBUG - Visiting attribute path : commentList
+t2017-04-10 06:05:13,796 DEBUG - Visiting attribute path : description
+t2017-04-10 06:05:13,796 DEBUG - Visiting attribute path : doorsNumber
+t2017-04-10 06:05:13,797 DEBUG - Visiting attribute path : driving
+t2017-04-10 06:05:13,797 DEBUG - Visiting attribute path : engineCapacity
+t2017-04-10 06:05:13,797 DEBUG - Visiting attribute path : fuelType
+t2017-04-10 06:05:13,797 DEBUG - Visiting attribute path : imageList
+t2017-04-10 06:05:13,797 DEBUG - Visiting attribute path : interiorColor
+t2017-04-10 06:05:13,797 DEBUG - Visiting attribute path : interiorMaterial
+t2017-04-10 06:05:13,797 DEBUG - Visiting attribute path : mark
+t2017-04-10 06:05:13,797 DEBUG - Visiting attribute path : milleage
+t2017-04-10 06:05:13,797 DEBUG - Visiting attribute path : model
+t2017-04-10 06:05:13,797 DEBUG - Visiting attribute path : price
+t2017-04-10 06:05:13,797 DEBUG - Visiting attribute path : region
+t2017-04-10 06:05:13,797 DEBUG - Visiting attribute path : transmission
+t2017-04-10 06:05:13,797 DEBUG - Visiting attribute path : user
+t2017-04-10 06:05:13,797 DEBUG - Property path deemed to be circular : user
+t2017-04-10 06:05:13,797 DEBUG - Visiting attribute path : verified
+t2017-04-10 06:05:13,797 DEBUG - Visiting attribute path : year
+t2017-04-10 06:05:13,797 DEBUG - Building LoadPlan...
+t2017-04-10 06:05:13,798 DEBUG - processing queryspace <gen:0>
+t2017-04-10 06:05:13,798 DEBUG - LoadPlan(collection=by.autobazar.entity.User.carList)
+    - Returns
+       - CollectionReturnImpl(collection=by.autobazar.entity.User.carList, querySpaceUid=<gen:0>, path=[by.autobazar.entity.User.carList])
+          - (collection element) CollectionFetchableElementEntityGraph(entity=by.autobazar.entity.Car, querySpaceUid=<gen:1>, path=[by.autobazar.entity.User.carList].<elements>)
+    - QuerySpaces
+       - CollectionQuerySpaceImpl(uid=<gen:0>, collection=by.autobazar.entity.User.carList)
+          - SQL table alias mapping - carlist0_
+          - alias suffix - 0_
+          - suffixed key columns - {F_USER_21_3_0_}
+          - entity-element alias suffix - 1_
+          - 1_entity-element suffixed key columns - F_ID1_0_1_
+          - JOIN (JoinDefinedByMetadata(elements)) : <gen:0> -> <gen:1>
+             - EntityQuerySpaceImpl(uid=<gen:1>, entity=by.autobazar.entity.Car)
+                - SQL table alias mapping - carlist0_
+                - alias suffix - 1_
+                - suffixed key columns - {F_ID1_0_1_}
+
+t2017-04-10 06:05:13,798 DEBUG - Static select for collection by.autobazar.entity.User.carList: select carlist0_.F_USER_ID as F_USER_21_3_0_, carlist0_.F_ID as F_ID1_0_0_, carlist0_.F_ID as F_ID1_0_1_, carlist0_.F_BODY_TYPE as F_BODY_T2_0_1_, carlist0_.F_CAR_COLOR as F_CAR_CO3_0_1_, carlist0_.F_CONDITION as F_CONDIT4_0_1_, carlist0_.F_CITY as F_CITY5_0_1_, carlist0_.F_DESCRIPTION as F_DESCRI6_0_1_, carlist0_.F_DOORS_NUMBER as F_DOORS_7_0_1_, carlist0_.F_DRIVING as F_DRIVIN8_0_1_, carlist0_.F_ENGINE_CAPACITY as F_ENGINE9_0_1_, carlist0_.F_FUEL_TYPE as F_FUEL_10_0_1_, carlist0_.F_INTERIOR_COLOR as F_INTER11_0_1_, carlist0_.F_INTERIOR_MATERIAL as F_INTER12_0_1_, carlist0_.F_MARK as F_MARK13_0_1_, carlist0_.F_MILLEAGE as F_MILLE14_0_1_, carlist0_.F_MODEL as F_MODEL15_0_1_, carlist0_.F_PRICE as F_PRICE16_0_1_, carlist0_.F_REGION as F_REGIO17_0_1_, carlist0_.F_TRANSMISSION as F_TRANS18_0_1_, carlist0_.F_USER_ID as F_USER_21_0_1_, carlist0_.F_VERIFIED as F_VERIF19_0_1_, carlist0_.F_YEAR as F_YEAR20_0_1_ from T_CAR carlist0_ where carlist0_.F_USER_ID=?
+t2017-04-10 06:05:13,799 DEBUG - Adding QuerySpace : uid = <gen:0> -> org.hibernate.loader.plan.build.internal.spaces.CollectionQuerySpaceImpl@5b40ceb]
+t2017-04-10 06:05:13,799 DEBUG - Adding QuerySpace : uid = <gen:1> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@13c3c1e1]
+t2017-04-10 06:05:13,799 DEBUG - Visiting attribute path : car
+t2017-04-10 06:05:13,799 DEBUG - Adding QuerySpace : uid = <gen:2> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@3b956878]
+t2017-04-10 06:05:13,799 DEBUG - Visiting attribute path : car.bodyType
+t2017-04-10 06:05:13,799 DEBUG - Visiting attribute path : car.carColor
+t2017-04-10 06:05:13,799 DEBUG - Visiting attribute path : car.carCondition
+t2017-04-10 06:05:13,799 DEBUG - Visiting attribute path : car.city
+t2017-04-10 06:05:13,799 DEBUG - Visiting attribute path : car.commentList
+t2017-04-10 06:05:13,799 DEBUG - Property path deemed to be circular : car.commentList
+t2017-04-10 06:05:13,799 DEBUG - Visiting attribute path : car.description
+t2017-04-10 06:05:13,799 DEBUG - Visiting attribute path : car.doorsNumber
+t2017-04-10 06:05:13,799 DEBUG - Visiting attribute path : car.driving
+t2017-04-10 06:05:13,799 DEBUG - Visiting attribute path : car.engineCapacity
+t2017-04-10 06:05:13,799 DEBUG - Visiting attribute path : car.fuelType
+t2017-04-10 06:05:13,799 DEBUG - Visiting attribute path : car.imageList
+t2017-04-10 06:05:13,800 DEBUG - Visiting attribute path : car.interiorColor
+t2017-04-10 06:05:13,800 DEBUG - Visiting attribute path : car.interiorMaterial
+t2017-04-10 06:05:13,800 DEBUG - Visiting attribute path : car.mark
+t2017-04-10 06:05:13,800 DEBUG - Visiting attribute path : car.milleage
+t2017-04-10 06:05:13,800 DEBUG - Visiting attribute path : car.model
+t2017-04-10 06:05:13,800 DEBUG - Visiting attribute path : car.price
+t2017-04-10 06:05:13,800 DEBUG - Visiting attribute path : car.region
+t2017-04-10 06:05:13,800 DEBUG - Visiting attribute path : car.transmission
+t2017-04-10 06:05:13,800 DEBUG - Visiting attribute path : car.user
+t2017-04-10 06:05:13,800 DEBUG - Adding QuerySpace : uid = <gen:3> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@285c08c8]
+t2017-04-10 06:05:13,800 DEBUG - Visiting attribute path : car.user.carList
+t2017-04-10 06:05:13,800 DEBUG - Property path deemed to be circular : car.user.carList
+t2017-04-10 06:05:13,800 DEBUG - Visiting attribute path : car.user.commentList
+t2017-04-10 06:05:13,800 DEBUG - Property path deemed to be circular : car.user.commentList
+t2017-04-10 06:05:13,800 DEBUG - Visiting attribute path : car.user.email
+t2017-04-10 06:05:13,800 DEBUG - Visiting attribute path : car.user.login
+t2017-04-10 06:05:13,800 DEBUG - Visiting attribute path : car.user.name
+t2017-04-10 06:05:13,800 DEBUG - Visiting attribute path : car.user.password
+t2017-04-10 06:05:13,800 DEBUG - Visiting attribute path : car.user.phone
+t2017-04-10 06:05:13,801 DEBUG - Visiting attribute path : car.user.role
+t2017-04-10 06:05:13,801 DEBUG - Visiting attribute path : car.verified
+t2017-04-10 06:05:13,801 DEBUG - Visiting attribute path : car.year
+t2017-04-10 06:05:13,801 DEBUG - Visiting attribute path : comment
+t2017-04-10 06:05:13,801 DEBUG - Visiting attribute path : creationsDate
+t2017-04-10 06:05:13,801 DEBUG - Visiting attribute path : user
+t2017-04-10 06:05:13,801 DEBUG - Property path deemed to be circular : user
+t2017-04-10 06:05:13,801 DEBUG - Building LoadPlan...
+t2017-04-10 06:05:13,801 DEBUG - processing queryspace <gen:0>
+t2017-04-10 06:05:13,802 DEBUG - LoadPlan(collection=by.autobazar.entity.User.commentList)
+    - Returns
+       - CollectionReturnImpl(collection=by.autobazar.entity.User.commentList, querySpaceUid=<gen:0>, path=[by.autobazar.entity.User.commentList])
+          - (collection element) CollectionFetchableElementEntityGraph(entity=by.autobazar.entity.Comment, querySpaceUid=<gen:1>, path=[by.autobazar.entity.User.commentList].<elements>)
+             - EntityAttributeFetchImpl(entity=by.autobazar.entity.Car, querySpaceUid=<gen:2>, path=[by.autobazar.entity.User.commentList].<elements>.car)
+                - EntityAttributeFetchImpl(entity=by.autobazar.entity.User, querySpaceUid=<gen:3>, path=[by.autobazar.entity.User.commentList].<elements>.car.user)
+    - QuerySpaces
+       - CollectionQuerySpaceImpl(uid=<gen:0>, collection=by.autobazar.entity.User.commentList)
+          - SQL table alias mapping - commentlis0_
+          - alias suffix - 0_
+          - suffixed key columns - {F_USER_I5_3_0_}
+          - entity-element alias suffix - 1_
+          - 1_entity-element suffixed key columns - F_ID1_1_1_
+          - JOIN (JoinDefinedByMetadata(elements)) : <gen:0> -> <gen:1>
+             - EntityQuerySpaceImpl(uid=<gen:1>, entity=by.autobazar.entity.Comment)
+                - SQL table alias mapping - commentlis0_
+                - alias suffix - 1_
+                - suffixed key columns - {F_ID1_1_1_}
+                - JOIN (JoinDefinedByMetadata(car)) : <gen:1> -> <gen:2>
+                   - EntityQuerySpaceImpl(uid=<gen:2>, entity=by.autobazar.entity.Car)
+                      - SQL table alias mapping - car1_
+                      - alias suffix - 2_
+                      - suffixed key columns - {F_ID1_0_2_}
+                      - JOIN (JoinDefinedByMetadata(user)) : <gen:2> -> <gen:3>
+                         - EntityQuerySpaceImpl(uid=<gen:3>, entity=by.autobazar.entity.User)
+                            - SQL table alias mapping - user2_
+                            - alias suffix - 3_
+                            - suffixed key columns - {F_ID1_3_3_}
+
+t2017-04-10 06:05:13,803 DEBUG - Static select for collection by.autobazar.entity.User.commentList: select commentlis0_.F_USER_ID as F_USER_I5_3_0_, commentlis0_.F_ID as F_ID1_1_0_, commentlis0_.F_ID as F_ID1_1_1_, commentlis0_.F_CAR_ID as F_CAR_ID4_1_1_, commentlis0_.F_COMMENT as F_COMMEN2_1_1_, commentlis0_.F_CREATIONS_DATE as F_CREATI3_1_1_, commentlis0_.F_USER_ID as F_USER_I5_1_1_, car1_.F_ID as F_ID1_0_2_, car1_.F_BODY_TYPE as F_BODY_T2_0_2_, car1_.F_CAR_COLOR as F_CAR_CO3_0_2_, car1_.F_CONDITION as F_CONDIT4_0_2_, car1_.F_CITY as F_CITY5_0_2_, car1_.F_DESCRIPTION as F_DESCRI6_0_2_, car1_.F_DOORS_NUMBER as F_DOORS_7_0_2_, car1_.F_DRIVING as F_DRIVIN8_0_2_, car1_.F_ENGINE_CAPACITY as F_ENGINE9_0_2_, car1_.F_FUEL_TYPE as F_FUEL_10_0_2_, car1_.F_INTERIOR_COLOR as F_INTER11_0_2_, car1_.F_INTERIOR_MATERIAL as F_INTER12_0_2_, car1_.F_MARK as F_MARK13_0_2_, car1_.F_MILLEAGE as F_MILLE14_0_2_, car1_.F_MODEL as F_MODEL15_0_2_, car1_.F_PRICE as F_PRICE16_0_2_, car1_.F_REGION as F_REGIO17_0_2_, car1_.F_TRANSMISSION as F_TRANS18_0_2_, car1_.F_USER_ID as F_USER_21_0_2_, car1_.F_VERIFIED as F_VERIF19_0_2_, car1_.F_YEAR as F_YEAR20_0_2_, user2_.F_ID as F_ID1_3_3_, user2_.F_EMAIL as F_EMAIL2_3_3_, user2_.F_LOGIN as F_LOGIN3_3_3_, user2_.F_NAME as F_NAME4_3_3_, user2_.F_PASSWORD as F_PASSWO5_3_3_, user2_.F_PHONE as F_PHONE6_3_3_, user2_.F_ROLE as F_ROLE7_3_3_ from T_COMMENT commentlis0_ left outer join T_CAR car1_ on commentlis0_.F_CAR_ID=car1_.F_ID left outer join T_USER user2_ on car1_.F_USER_ID=user2_.F_ID where commentlis0_.F_USER_ID=?
+t2017-04-10 06:05:13,803 DEBUG - Adding QuerySpace : uid = <gen:0> -> org.hibernate.loader.plan.build.internal.spaces.CollectionQuerySpaceImpl@3918c187]
+t2017-04-10 06:05:13,803 DEBUG - Adding QuerySpace : uid = <gen:1> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@2c88b9fc]
+t2017-04-10 06:05:13,803 DEBUG - Visiting attribute path : car
+t2017-04-10 06:05:13,803 DEBUG - Property path deemed to be circular : car
+t2017-04-10 06:05:13,803 DEBUG - Visiting attribute path : comment
+t2017-04-10 06:05:13,803 DEBUG - Visiting attribute path : creationsDate
+t2017-04-10 06:05:13,803 DEBUG - Visiting attribute path : user
+t2017-04-10 06:05:13,803 DEBUG - Adding QuerySpace : uid = <gen:2> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@47605f2f]
+t2017-04-10 06:05:13,804 DEBUG - Visiting attribute path : user.carList
+t2017-04-10 06:05:13,804 DEBUG - Visiting attribute path : user.commentList
+t2017-04-10 06:05:13,804 DEBUG - Property path deemed to be circular : user.commentList
+t2017-04-10 06:05:13,804 DEBUG - Visiting attribute path : user.email
+t2017-04-10 06:05:13,804 DEBUG - Visiting attribute path : user.login
+t2017-04-10 06:05:13,804 DEBUG - Visiting attribute path : user.name
+t2017-04-10 06:05:13,804 DEBUG - Visiting attribute path : user.password
+t2017-04-10 06:05:13,804 DEBUG - Visiting attribute path : user.phone
+t2017-04-10 06:05:13,804 DEBUG - Visiting attribute path : user.role
+t2017-04-10 06:05:13,804 DEBUG - Building LoadPlan...
+t2017-04-10 06:05:13,804 DEBUG - processing queryspace <gen:0>
+t2017-04-10 06:05:13,805 DEBUG - LoadPlan(collection=by.autobazar.entity.Car.commentList)
+    - Returns
+       - CollectionReturnImpl(collection=by.autobazar.entity.Car.commentList, querySpaceUid=<gen:0>, path=[by.autobazar.entity.Car.commentList])
+          - (collection element) CollectionFetchableElementEntityGraph(entity=by.autobazar.entity.Comment, querySpaceUid=<gen:1>, path=[by.autobazar.entity.Car.commentList].<elements>)
+             - EntityAttributeFetchImpl(entity=by.autobazar.entity.User, querySpaceUid=<gen:2>, path=[by.autobazar.entity.Car.commentList].<elements>.user)
+    - QuerySpaces
+       - CollectionQuerySpaceImpl(uid=<gen:0>, collection=by.autobazar.entity.Car.commentList)
+          - SQL table alias mapping - commentlis0_
+          - alias suffix - 0_
+          - suffixed key columns - {F_CAR_ID4_0_0_}
+          - entity-element alias suffix - 1_
+          - 1_entity-element suffixed key columns - F_ID1_1_1_
+          - JOIN (JoinDefinedByMetadata(elements)) : <gen:0> -> <gen:1>
+             - EntityQuerySpaceImpl(uid=<gen:1>, entity=by.autobazar.entity.Comment)
+                - SQL table alias mapping - commentlis0_
+                - alias suffix - 1_
+                - suffixed key columns - {F_ID1_1_1_}
+                - JOIN (JoinDefinedByMetadata(user)) : <gen:1> -> <gen:2>
+                   - EntityQuerySpaceImpl(uid=<gen:2>, entity=by.autobazar.entity.User)
+                      - SQL table alias mapping - user1_
+                      - alias suffix - 2_
+                      - suffixed key columns - {F_ID1_3_2_}
+
+t2017-04-10 06:05:13,805 DEBUG - Static select for collection by.autobazar.entity.Car.commentList: select commentlis0_.F_CAR_ID as F_CAR_ID4_0_0_, commentlis0_.F_ID as F_ID1_1_0_, commentlis0_.F_ID as F_ID1_1_1_, commentlis0_.F_CAR_ID as F_CAR_ID4_1_1_, commentlis0_.F_COMMENT as F_COMMEN2_1_1_, commentlis0_.F_CREATIONS_DATE as F_CREATI3_1_1_, commentlis0_.F_USER_ID as F_USER_I5_1_1_, user1_.F_ID as F_ID1_3_2_, user1_.F_EMAIL as F_EMAIL2_3_2_, user1_.F_LOGIN as F_LOGIN3_3_2_, user1_.F_NAME as F_NAME4_3_2_, user1_.F_PASSWORD as F_PASSWO5_3_2_, user1_.F_PHONE as F_PHONE6_3_2_, user1_.F_ROLE as F_ROLE7_3_2_ from T_COMMENT commentlis0_ left outer join T_USER user1_ on commentlis0_.F_USER_ID=user1_.F_ID where commentlis0_.F_CAR_ID=?
+t2017-04-10 06:05:14,110 DEBUG - Initializing SessionFactoryRegistry : org.hibernate.internal.SessionFactoryRegistry@650eab8
+t2017-04-10 06:05:14,119 DEBUG - Registering SessionFactory: 9d2ac48d-674a-46ae-8200-14010f950623 (<unnamed>)
+t2017-04-10 06:05:14,119 DEBUG - Not binding SessionFactory to JNDI, no JNDI name configured
+t2017-04-10 06:05:14,119 DEBUG - Instantiated session factory
+t2017-04-10 06:05:14,125 INFO  - HHH000229: Running schema validator
+t2017-04-10 06:05:14,125 INFO  - HHH000102: Fetching database metadata
+t2017-04-10 06:05:14,128 DEBUG - Processing hbm.xml files
+t2017-04-10 06:05:14,129 DEBUG - Process annotated classes
+t2017-04-10 06:05:14,129 DEBUG - Processing fk mappings (*ToOne and JoinedSubclass)
+t2017-04-10 06:05:14,129 DEBUG - Processing extends queue
+t2017-04-10 06:05:14,129 DEBUG - Processing extends queue
+t2017-04-10 06:05:14,129 DEBUG - Processing collection mappings
+t2017-04-10 06:05:14,129 DEBUG - Processing native query and ResultSetMapping mappings
+t2017-04-10 06:05:14,129 DEBUG - Processing association property references
+t2017-04-10 06:05:14,129 DEBUG - Creating tables' unique integer identifiers
+t2017-04-10 06:05:14,129 DEBUG - Processing foreign key constraints
+t2017-04-10 06:05:14,129 DEBUG - Resolving reference to class: by.autobazar.entity.User
+t2017-04-10 06:05:14,129 DEBUG - Resolving reference to class: by.autobazar.entity.Car
+t2017-04-10 06:05:14,129 DEBUG - Resolving reference to class: by.autobazar.entity.User
+t2017-04-10 06:05:14,129 DEBUG - Resolving reference to class: by.autobazar.entity.Car
+t2017-04-10 06:05:14,494 INFO  - HHH000261: Table found: auto.t_car
+t2017-04-10 06:05:14,494 INFO  - HHH000037: Columns: [f_driving, f_engine_capacity, f_interior_material, f_price, f_transmission, f_verified, f_condition, f_car_color, f_milleage, f_body_type, f_doors_number, f_city, f_description, f_fuel_type, f_interior_color, f_year, f_user_id, f_mark, f_id, f_model, f_region]
+t2017-04-10 06:05:14,542 INFO  - HHH000261: Table found: auto.t_comment
+t2017-04-10 06:05:14,543 INFO  - HHH000037: Columns: [f_creations_date, f_user_id, f_id, f_car_id, f_comment]
+t2017-04-10 06:05:14,585 INFO  - HHH000261: Table found: auto.t_image
+t2017-04-10 06:05:14,586 INFO  - HHH000037: Columns: [f_image_path, f_id, f_car_id, f_status]
+t2017-04-10 06:05:14,631 INFO  - HHH000261: Table found: auto.t_user
+t2017-04-10 06:05:14,631 INFO  - HHH000037: Columns: [f_role, f_password, f_phone, f_name, f_email, f_id, f_login]
+t2017-04-10 06:05:14,631 DEBUG - Setting dialect [org.hibernate.dialect.MySQLDialect]
+t2017-04-10 06:05:14,632 DEBUG - Setting dialect [org.hibernate.dialect.MySQLDialect]
+t2017-04-10 06:05:14,632 DEBUG - Setting dialect [org.hibernate.dialect.MySQLDialect]
+t2017-04-10 06:05:14,632 DEBUG - Setting dialect [org.hibernate.dialect.MySQLDialect]
+t2017-04-10 06:05:14,632 DEBUG - Checking 0 named HQL queries
+t2017-04-10 06:05:14,632 DEBUG - Checking 0 named SQL queries
+t2017-04-10 06:05:14,640 DEBUG - Statistics initialized [enabled=false]
+t2017-04-10 06:05:14,701 DEBUG - begin
+t2017-04-10 06:05:14,701 DEBUG - Obtaining JDBC connection
+t2017-04-10 06:05:14,701 DEBUG - Obtained JDBC connection
+t2017-04-10 06:05:14,702 DEBUG - initial autocommit status: true
+t2017-04-10 06:05:14,702 DEBUG - disabling autocommit
+t2017-04-10 06:05:14,702 INFO  - saveOrUpdate(t):Car(id=null, mark=Bmw, model=X5, price=10000, year=2017-04-10, transmission=AUTOMATIC, bodyType=SUV, description=good car, carCondition=USED, milleage=150000, doorsNumber=5, fuelType=PETROL, engineCapacity=5.5, driving=AWD, carColor=BLACK, interiorMaterial=ALCANTARA, interiorColor=BLACK, region=Minsk, city=Minsk, verified=false, commentList=[], imageList=[])
+t2017-04-10 06:05:14,794 DEBUG - Executing identity-insert immediately
+t2017-04-10 06:05:14,802 DEBUG - insert into T_CAR (F_BODY_TYPE, F_CAR_COLOR, F_CONDITION, F_CITY, F_DESCRIPTION, F_DOORS_NUMBER, F_DRIVING, F_ENGINE_CAPACITY, F_FUEL_TYPE, F_INTERIOR_COLOR, F_INTERIOR_MATERIAL, F_MARK, F_MILLEAGE, F_MODEL, F_PRICE, F_REGION, F_TRANSMISSION, F_USER_ID, F_VERIFIED, F_YEAR) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+t2017-04-10 06:05:14,833 DEBUG - Converted value on binding : 2017-04-10 -> 2017-04-10
+t2017-04-10 06:05:15,051 DEBUG - Natively generated identity: 51
+t2017-04-10 06:05:15,074 DEBUG - committing
+t2017-04-10 06:05:15,074 DEBUG - Processing flush-time cascades
+t2017-04-10 06:05:15,076 DEBUG - Dirty checking collections
+t2017-04-10 06:05:15,083 DEBUG - Collection found: [by.autobazar.entity.Car.commentList#51], was: [<unreferenced>] (initialized)
+t2017-04-10 06:05:15,083 DEBUG - Collection found: [by.autobazar.entity.Car.imageList#51], was: [<unreferenced>] (initialized)
+t2017-04-10 06:05:15,085 DEBUG - Flushed: 0 insertions, 0 updates, 0 deletions to 1 objects
+t2017-04-10 06:05:15,085 DEBUG - Flushed: 2 (re)creations, 0 updates, 0 removals to 2 collections
+t2017-04-10 06:05:15,087 DEBUG - Listing entities:
+t2017-04-10 06:05:15,088 DEBUG - by.autobazar.entity.Car{bodyType=SUV, commentList=[], interiorMaterial=ALCANTARA, doorsNumber=5, city=Minsk, year=2017-04-10, verified=false, description=good car, carCondition=USED, milleage=150000, engineCapacity=5.5, driving=AWD, interiorColor=BLACK, carColor=BLACK, transmission=AUTOMATIC, fuelType=PETROL, price=10000, model=X5, id=51, region=Minsk, imageList=[], user=null, mark=Bmw}
+t2017-04-10 06:05:15,138 DEBUG - committed JDBC Connection
+t2017-04-10 06:05:15,138 DEBUG - re-enabling autocommit
+t2017-04-10 06:05:15,141 DEBUG - begin
+t2017-04-10 06:05:15,141 DEBUG - initial autocommit status: true
+t2017-04-10 06:05:15,141 DEBUG - disabling autocommit
+t2017-04-10 06:05:15,142 INFO  - Load class by id:51
+t2017-04-10 06:05:15,149 INFO  - load() class:Car(id=51, mark=Bmw, model=X5, price=10000, year=2017-04-10, transmission=AUTOMATIC, bodyType=SUV, description=good car, carCondition=USED, milleage=150000, doorsNumber=5, fuelType=PETROL, engineCapacity=5.5, driving=AWD, carColor=BLACK, interiorMaterial=ALCANTARA, interiorColor=BLACK, region=Minsk, city=Minsk, verified=false, commentList=[], imageList=[])
+t2017-04-10 06:05:15,149 DEBUG - Checking session dirtiness
+t2017-04-10 06:05:15,149 DEBUG - Processing flush-time cascades
+t2017-04-10 06:05:15,149 DEBUG - Dirty checking collections
+t2017-04-10 06:05:15,151 DEBUG - Collection found: [by.autobazar.entity.Car.commentList#51], was: [by.autobazar.entity.Car.commentList#51] (initialized)
+t2017-04-10 06:05:15,151 DEBUG - Collection found: [by.autobazar.entity.Car.imageList#51], was: [by.autobazar.entity.Car.imageList#51] (initialized)
+t2017-04-10 06:05:15,151 DEBUG - Flushed: 0 insertions, 0 updates, 0 deletions to 1 objects
+t2017-04-10 06:05:15,151 DEBUG - Flushed: 0 (re)creations, 0 updates, 0 removals to 2 collections
+t2017-04-10 06:05:15,151 DEBUG - Listing entities:
+t2017-04-10 06:05:15,152 DEBUG - by.autobazar.entity.Car{bodyType=SUV, commentList=[], interiorMaterial=ALCANTARA, doorsNumber=5, city=Minsk, year=2017-04-10, verified=false, description=good car, carCondition=USED, milleage=150000, engineCapacity=5.5, driving=AWD, interiorColor=BLACK, carColor=BLACK, transmission=AUTOMATIC, fuelType=PETROL, price=10000, model=X5, id=51, region=Minsk, imageList=[], user=null, mark=Bmw}
+t2017-04-10 06:05:15,152 DEBUG - Session not dirty
+t2017-04-10 06:05:15,152 DEBUG - committing
+t2017-04-10 06:05:15,152 DEBUG - Processing flush-time cascades
+t2017-04-10 06:05:15,152 DEBUG - Dirty checking collections
+t2017-04-10 06:05:15,154 DEBUG - Collection found: [by.autobazar.entity.Car.commentList#51], was: [by.autobazar.entity.Car.commentList#51] (initialized)
+t2017-04-10 06:05:15,154 DEBUG - Collection found: [by.autobazar.entity.Car.imageList#51], was: [by.autobazar.entity.Car.imageList#51] (initialized)
+t2017-04-10 06:05:15,154 DEBUG - Flushed: 0 insertions, 0 updates, 0 deletions to 1 objects
+t2017-04-10 06:05:15,154 DEBUG - Flushed: 0 (re)creations, 0 updates, 0 removals to 2 collections
+t2017-04-10 06:05:15,154 DEBUG - Listing entities:
+t2017-04-10 06:05:15,155 DEBUG - by.autobazar.entity.Car{bodyType=SUV, commentList=[], interiorMaterial=ALCANTARA, doorsNumber=5, city=Minsk, year=2017-04-10, verified=false, description=good car, carCondition=USED, milleage=150000, engineCapacity=5.5, driving=AWD, interiorColor=BLACK, carColor=BLACK, transmission=AUTOMATIC, fuelType=PETROL, price=10000, model=X5, id=51, region=Minsk, imageList=[], user=null, mark=Bmw}
+t2017-04-10 06:05:15,156 DEBUG - committed JDBC Connection
+t2017-04-10 06:05:15,156 DEBUG - re-enabling autocommit
+t2017-04-10 06:05:15,157 DEBUG - begin
+t2017-04-10 06:05:15,157 DEBUG - initial autocommit status: true
+t2017-04-10 06:05:15,157 DEBUG - disabling autocommit
+t2017-04-10 06:05:15,158 INFO  - Get class by id:51
+t2017-04-10 06:05:15,158 INFO  - get class:Car(id=51, mark=Bmw, model=X5, price=10000, year=2017-04-10, transmission=AUTOMATIC, bodyType=SUV, description=good car, carCondition=USED, milleage=150000, doorsNumber=5, fuelType=PETROL, engineCapacity=5.5, driving=AWD, carColor=BLACK, interiorMaterial=ALCANTARA, interiorColor=BLACK, region=Minsk, city=Minsk, verified=false, commentList=[], imageList=[])
+t2017-04-10 06:05:15,159 DEBUG - committing
+t2017-04-10 06:05:15,159 DEBUG - Processing flush-time cascades
+t2017-04-10 06:05:15,159 DEBUG - Dirty checking collections
+t2017-04-10 06:05:15,159 DEBUG - Collection found: [by.autobazar.entity.Car.commentList#51], was: [by.autobazar.entity.Car.commentList#51] (initialized)
+t2017-04-10 06:05:15,159 DEBUG - Collection found: [by.autobazar.entity.Car.imageList#51], was: [by.autobazar.entity.Car.imageList#51] (initialized)
+t2017-04-10 06:05:15,159 DEBUG - Flushed: 0 insertions, 0 updates, 0 deletions to 1 objects
+t2017-04-10 06:05:15,159 DEBUG - Flushed: 0 (re)creations, 0 updates, 0 removals to 2 collections
+t2017-04-10 06:05:15,159 DEBUG - Listing entities:
+t2017-04-10 06:05:15,160 DEBUG - by.autobazar.entity.Car{bodyType=SUV, commentList=[], interiorMaterial=ALCANTARA, doorsNumber=5, city=Minsk, year=2017-04-10, verified=false, description=good car, carCondition=USED, milleage=150000, engineCapacity=5.5, driving=AWD, interiorColor=BLACK, carColor=BLACK, transmission=AUTOMATIC, fuelType=PETROL, price=10000, model=X5, id=51, region=Minsk, imageList=[], user=null, mark=Bmw}
+t2017-04-10 06:05:15,161 DEBUG - committed JDBC Connection
+t2017-04-10 06:05:15,161 DEBUG - re-enabling autocommit
+t2017-04-10 06:05:15,162 DEBUG - begin
+t2017-04-10 06:05:15,162 DEBUG - initial autocommit status: true
+t2017-04-10 06:05:15,162 DEBUG - disabling autocommit
+t2017-04-10 06:05:15,169 INFO  - Delete:Car(id=51, mark=Bmw, model=X5, price=10000, year=2017-04-10, transmission=AUTOMATIC, bodyType=SUV, description=good car, carCondition=USED, milleage=150000, doorsNumber=5, fuelType=PETROL, engineCapacity=5.5, driving=AWD, carColor=BLACK, interiorMaterial=ALCANTARA, interiorColor=BLACK, region=Minsk, city=Minsk, verified=false, commentList=[], imageList=[])
+t2017-04-10 06:05:15,169 DEBUG - committing
+t2017-04-10 06:05:15,169 DEBUG - Processing flush-time cascades
+t2017-04-10 06:05:15,169 DEBUG - Dirty checking collections
+t2017-04-10 06:05:15,170 DEBUG - Collection dereferenced: [by.autobazar.entity.Car.commentList#51]
+t2017-04-10 06:05:15,170 DEBUG - Collection dereferenced: [by.autobazar.entity.Car.imageList#51]
+t2017-04-10 06:05:15,172 DEBUG - Flushed: 0 insertions, 0 updates, 1 deletions to 1 objects
+t2017-04-10 06:05:15,172 DEBUG - Flushed: 0 (re)creations, 0 updates, 2 removals to 2 collections
+t2017-04-10 06:05:15,172 DEBUG - Listing entities:
+t2017-04-10 06:05:15,172 DEBUG - by.autobazar.entity.Car{bodyType=SUV, commentList=[], interiorMaterial=ALCANTARA, doorsNumber=5, city=Minsk, year=2017-04-10, verified=false, description=good car, carCondition=USED, milleage=150000, engineCapacity=5.5, driving=AWD, interiorColor=BLACK, carColor=BLACK, transmission=AUTOMATIC, fuelType=PETROL, price=10000, model=X5, id=51, region=Minsk, imageList=[], user=null, mark=Bmw}
+t2017-04-10 06:05:15,191 DEBUG - delete from T_CAR where F_ID=?
+t2017-04-10 06:05:15,787 DEBUG - committed JDBC Connection
+t2017-04-10 06:05:15,787 DEBUG - re-enabling autocommit
+t2017-04-10 06:05:15,787 DEBUG - HHH000420: Closing un-released batch
+t2017-04-10 06:05:15,787 DEBUG - Releasing JDBC connection
+t2017-04-10 06:05:15,788 DEBUG - Released JDBC connection
+t

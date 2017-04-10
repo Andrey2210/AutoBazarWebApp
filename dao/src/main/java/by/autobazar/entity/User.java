@@ -1,92 +1,69 @@
 package by.autobazar.entity;
 
+import by.autobazar.entity.carEnum.Role;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.extern.log4j.Log4j;
+
+import javax.persistence.*;
+import javax.persistence.Entity;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
- * Created by Andrey on 21.02.2017.
+ * Created by Andrey
+ * Date: 29.03.2017.
+ * Time: 2:30
  */
-public class User implements Entity{
-    private long id;
+@Entity
+@Table(name="T_USER")
+@Data
+@Log4j
+@AllArgsConstructor
+@NoArgsConstructor
+public class User implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
+    @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @Column
+    private Long id;
+
+    @Column
     private String login;
+
+    @Column
     private String email;
+
+    @Column
     private String password;
+
+    @Column
     private String name;
+
+    @Column
     private String phone;
-    private String role;
 
-    public User() {
-    }
+    @Enumerated(EnumType.STRING)
+    @Column(name="F_ROLE")
+    private Role role;
 
-    public User(long id, String login, String email, String password, String name, String phone, String role) {
-        this.id = id;
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY, mappedBy="user")
+    private List<Comment> commentList = new ArrayList<>();
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY, mappedBy="user")
+    private List<Car> carList = new ArrayList<>();
+
+    public User(String login, String email, String password, String name, String phone, Role role) {
         this.login = login;
         this.email = email;
         this.password = password;
         this.name = name;
         this.phone = phone;
-        this.role = role;
-    }
-
-    public User(String login, String email, String password, String name, String phone) {
-        this.login = login;
-        this.email = email;
-        this.password = password;
-        this.name = name;
-        this.phone = phone;
-    }
-
-    @Override
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
         this.role = role;
     }
 }

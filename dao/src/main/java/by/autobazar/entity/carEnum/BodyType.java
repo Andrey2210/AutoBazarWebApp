@@ -1,9 +1,9 @@
-package by.autobazar.entity.car_enum;
+package by.autobazar.entity.carEnum;
 
 /**
  * Created by Andrey on 26.02.2017.
  */
-public enum BodyType {
+public enum  BodyType {
     PICKUP,
     SUV,
     COUPE,

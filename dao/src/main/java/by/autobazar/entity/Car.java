@@ -1,33 +1,123 @@
 package by.autobazar.entity;
 
+import by.autobazar.entity.carEnum.*;
+import by.autobazar.util.LocalDateAttributeConverter;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+import lombok.extern.log4j.Log4j;
 
+import javax.persistence.*;
+import javax.persistence.Entity;
+import java.io.Serializable;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
- * Created by Andrey on 21.02.2017.
+ * Created by Andrey
+ * Date: 29.03.2017.
+ * Time: 2:31
  */
-public class Car implements Entity {
-    private long id;
+@Entity
+@Table(name="T_CAR")
+@Data
+@ToString(exclude="user")
+@Log4j
+@AllArgsConstructor
+@NoArgsConstructor
+public class Car implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Column
+    private Long id;
+
+    @Column
     private String mark;
+
+    @Column
     private String model;
+
+    @Column
     private int price;
+
+    @Column
+    @Convert(converter = LocalDateAttributeConverter.class)
     private LocalDate year;
-    private String transmission;
-    private String bodyType;
+
+    @Enumerated(EnumType.STRING)
+    @Column
+    private Transmission transmission;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name="F_BODY_TYPE")
+    private BodyType bodyType;
+
+    @Column
+    @Lob
     private String description;
-    private String image;
-    private Additions additions;
-    private Characteristics characteristics;
-    private Conditions conditions;
-    private Locations locations;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name="F_CONDITION")
+    private CarCondition carCondition;
+
+    @Column
+    private  int milleage;
+
+    @Column(name="F_DOORS_NUMBER")
+    private int doorsNumber;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name="F_FUEL_TYPE")
+    private FuelType fuelType;
+
+    @Column(name="F_ENGINE_CAPACITY")
+    private double engineCapacity;
+
+    @Enumerated(EnumType.STRING)
+    @Column
+    private WheelDriving driving;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name="F_CAR_COLOR")
+    private CarColor carColor;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name="F_INTERIOR_MATERIAL")
+    private InteriorMaterial interiorMaterial;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name="F_INTERIOR_COLOR")
+    private InteriorColor interiorColor;
+
+    @Column
+    private String region;
+
+    @Column
+    private String city;
+
+    @Column
+    private Boolean verified;
+
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name="F_USER_ID")
     private User user;
 
-    public Car() {
-    }
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY, mappedBy="car")
+    private List<Comment> commentList = new LinkedList<>();
 
-    public Car(long id, String mark, String model, int price, LocalDate year, String transmission, String bodyType, String description, String image) {
-        this.id = id;
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY, mappedBy="car")
+    private List<Image> imageList = new ArrayList<>();
+
+    public Car(String mark, String model, int price, LocalDate year, Transmission transmission, BodyType bodyType,
+               String description, CarCondition carCondition, int milleage, int doorsNumber,FuelType fuelType,
+               double engineCapacity, WheelDriving driving, CarColor carColor, InteriorMaterial interiorMaterial,
+               InteriorColor interiorColor, String region, String city, boolean verified) {
         this.mark = mark;
         this.model = model;
         this.price = price;
@@ -35,119 +125,17 @@ public class Car implements Entity {
         this.transmission = transmission;
         this.bodyType = bodyType;
         this.description = description;
-        this.image = image;
-    }
-
-    @Override
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getMark() {
-        return mark;
-    }
-
-    public void setMark(String mark) {
-        this.mark = mark;
-    }
-
-    public String getModel() {
-        return model;
-    }
-
-    public void setModel(String model) {
-        this.model = model;
-    }
-
-    public int getPrice() {
-        return price;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
-    }
-
-    public LocalDate getYear() {
-        return year;
-    }
-
-    public void setYear(LocalDate year) {
-        this.year = year;
-    }
-
-    public String getTransmission() {
-        return transmission;
-    }
-
-    public void setTransmission(String transmission) {
-        this.transmission = transmission;
-    }
-
-    public String getBodyType() {
-        return bodyType;
-    }
-
-    public void setBodyType(String bodyType) {
-        this.bodyType = bodyType;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
-
-    public Additions getAdditions() {
-        return additions;
-    }
-
-    public void setAdditions(Additions additions) {
-        this.additions = additions;
-    }
-
-    public Characteristics getCharacteristics() {
-        return characteristics;
-    }
-
-    public void setCharacteristics(Characteristics characteristics) {
-        this.characteristics = characteristics;
-    }
-
-    public Conditions getConditions() {
-        return conditions;
-    }
-
-    public void setConditions(Conditions conditions) {
-        this.conditions = conditions;
-    }
-
-    public Locations getLocations() {
-        return locations;
-    }
-
-    public void setLocations(Locations locations) {
-        this.locations = locations;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
+        this.carCondition = carCondition;
+        this.milleage = milleage;
+        this.doorsNumber = doorsNumber;
+        this.fuelType = fuelType;
+        this.engineCapacity = engineCapacity;
+        this.driving = driving;
+        this.carColor = carColor;
+        this.interiorMaterial = interiorMaterial;
+        this.interiorColor = interiorColor;
+        this.region = region;
+        this.city = city;
+        this.verified = verified;
     }
 }

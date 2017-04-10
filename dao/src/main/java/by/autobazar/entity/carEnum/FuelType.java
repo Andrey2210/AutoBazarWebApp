@@ -1,4 +1,4 @@
-package by.autobazar.entity.car_enum;
+package by.autobazar.entity.carEnum;
 
 /**
  * Created by Andrey on 21.02.2017.
