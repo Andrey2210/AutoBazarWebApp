@@ -1,7 +1,9 @@
-package by.autobazar.dao;
+package by.autobazar.dao.exceptions;
 
 /**
- * Created by Andrey on 19.03.2017.
+ * Created by Andrey
+ * Date: 29.03.2017.
+ * Time: 1:57
  */
 public class DaoException extends Exception {
 
