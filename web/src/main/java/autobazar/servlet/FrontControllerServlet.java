@@ -1,8 +1,10 @@
 package autobazar.servlet;
 
 import autobazar.command.FrontCommand;
-import autobazar.command.SearchCommand;
 import autobazar.command.UnknownCommand;
+import by.autobazar.services.AbstractService;
+import by.autobazar.util.HibernateUtil;
+import org.hibernate.Session;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,24 +16,16 @@ import java.io.IOException;
 /**
  * Created by Andrey on 15.03.2017.
  */
-@WebServlet(urlPatterns = {"/controller", "/registration", "/login", "/submit"})
+@WebServlet(urlPatterns = {"/controller", "/registration", "/login", "/submit", "/dashboard"})
 public class FrontControllerServlet extends HttpServlet {
-    @Override
-    protected void doGet(HttpServletRequest request,
-                         HttpServletResponse response) throws ServletException, IOException {
-
-        FrontCommand command = getCommand(request);
-        command.init(getServletContext(), request, response);
-        command.process();
-    }
 
     @Override
-    protected void doPost(HttpServletRequest request,
-                         HttpServletResponse response) throws ServletException, IOException {
-
-        FrontCommand command = getCommand(request);
-        command.init(getServletContext(), request, response);
+    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        AbstractService.session = HibernateUtil.getHibernateUtil().getSession();
+        FrontCommand command = getCommand(req);
+        command.init(getServletContext(), req, resp);
         command.process();
+        HibernateUtil.getHibernateUtil().closeSession(AbstractService.session);
     }
 
     private FrontCommand getCommand(HttpServletRequest request) {

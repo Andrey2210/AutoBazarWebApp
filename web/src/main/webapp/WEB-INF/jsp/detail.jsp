@@ -26,110 +26,8 @@
 </head>
 <body class=m-contacts" data-scrolling-animations="true">
 
+<jsp:include page="header.jsp"></jsp:include>
 
-<header class="b-topBar">
-    <div class="container wow slideInDown" data-wow-delay="0.7s">
-        <div class="row">
-            <div class="col-md-7 col-xs-6">
-                <div class="b-topBar__tel">
-                    <span class="fa fa-phone"></span>
-                    +375 (44) 557-52-21
-                </div>
-            </div>
-
-            <c:choose>
-                <c:when test="${empty sessionScope.user}">
-                    <div class="col-md-2 col-xs-6">
-                        <nav class="b-topBar__nav">
-                            <ul>
-                                <li><a class="main-item" href="/autobazar/registration">Register</a></li>
-                            </ul>
-                        </nav>
-                    </div>
-                    <div class="col-md-1 col-xs-6">
-                        <div class="b-topBar__lang">
-                            <div class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle='dropdown'>SIGN IN</a>
-                                <ul class="dropdown-menu dropdown-menu-log">
-                                    <form id="login-form" method="post" action="/autobazar/controller">
-                                        <input type="hidden" name="command" value="Login"/>
-                                        <li><input type="text" name="login" placeholder="LOGIN/EMAIL" required=""/></li>
-                                        <li><input type="password" name="password" placeholder="PASSWORD" required=""/>
-                                        </li>
-                                    </form>
-                                    <li><a href="#" onclick="userLogin()">SIGN IN</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </c:when>
-                <c:otherwise>
-                    <div class="col-md-3 col-xs-6">
-                        <nav class="b-topBar__nav">
-                            <ul>
-                                <form id="logout-form" method="post" action="/autobazar/controller" style="display: none">
-                                    <input type="hidden" name="command" value="Logout"/>
-                                </form>
-                                <li><a class="main-item" href="#" onclick="userLogout()">Sign Out</a></li>
-                            </ul>
-                        </nav>
-                    </div>
-                </c:otherwise>
-            </c:choose>
-
-
-            <div class="col-md-2 col-xs-6">
-                <div class="b-topBar__lang">
-                    <div class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle='dropdown'>Language</a>
-                        <a class="m-langLink dropdown-toggle" data-toggle='dropdown' href="#"><span
-                                class="b-topBar__lang-flag m-en"></span><span class="fa fa-caret-down"></span></a>
-                        <ul class="dropdown-menu h-lang">
-                            <li><a class="m-langLink dropdown-toggle" data-toggle='dropdown' href="#"><span
-                                    class="b-topBar__lang-flag m-en"></span>EN</a></li>
-                            <li><a class="m-langLink dropdown-toggle" data-toggle='dropdown' href="#"><span
-                                    class="b-topBar__lang-flag m-es"></span>RU</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</header><!--b-topBar-->
-
-<nav class="b-nav">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-3 col-xs-4">
-                <div class="b-nav__logo wow slideInLeft" data-wow-delay="0.3s">
-                    <h3><a href="/autobazar/controller">Auto<span>BAZAR</span></a></h3>
-                    <h2><a href="/autobazar/controller">sell your car with us</a></h2>
-                </div>
-            </div>
-            <div class="col-sm-9 col-xs-8">
-                <div class="b-nav__list wow slideInRight" data-wow-delay="0.3s">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                    </div>
-                    <div class="collapse navbar-collapse navbar-main-slide" id="nav">
-                        <ul class="navbar-nav-menu">
-                            <li>
-                            <li><a href="/autobazar/controller">Home</a></li>
-                            <li><a href="about.html">About</a></li>
-                            <li><a href="/autobazar/carsList">Shop</a></li>
-                            <li><a href="contacts.html">Contact</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</nav><!--b-nav-->
 
 <section class="b-pageHeader">
     <div class="container">
@@ -168,7 +66,7 @@
                                             data-pager-custom="#bx-pager" data-mode="horizontal" data-pager-slide="true"
                                             data-mode-pager="vertical" data-pager-qty="5">
                                             <li class="s-relative">
-                                                <img class="img-responsive center-block" src="${requestScope.car.image}"
+                                                <img class="img-responsive center-block" src="${requestScope.car.imageList.get(0).imagePath}"
                                                      alt="nissan"/>
                                             </li>
 
@@ -241,7 +139,7 @@
                                     <h4 class="b-detail__main-aside-desc-title">Kilometres</h4>
                                 </div>
                                 <div class="col-xs-6">
-                                    <p class="b-detail__main-aside-desc-value">${requestScope.car.conditions.milleage}
+                                    <p class="b-detail__main-aside-desc-value">${requestScope.car.milleage}
                                         km</p>
                                 </div>
                             </div>
@@ -259,15 +157,15 @@
                                     <h4 class="b-detail__main-aside-desc-title">Engine</h4>
                                 </div>
                                 <div class="col-xs-6">
-                                    <p class="b-detail__main-aside-desc-value">${requestScope.car.characteristics.engineCapacity} </p>
+                                    <p class="b-detail__main-aside-desc-value">${requestScope.car.engineCapacity} </p>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-xs-6">
-                                    <h4 class="b-detail__main-aside-desc-title">Drivetrain</h4>
+                                    <h4 class="b-detail__main-aside-desc-title">Drive Type</h4>
                                 </div>
                                 <div class="col-xs-6">
-                                    <p class="b-detail__main-aside-desc-value">${requestScope.car.characteristics.driving}</p>
+                                    <p class="b-detail__main-aside-desc-value">${requestScope.car.driving}</p>
                                 </div>
                             </div>
                             <div class="row">
@@ -283,7 +181,7 @@
                                     <h4 class="b-detail__main-aside-desc-title">Exterior Color</h4>
                                 </div>
                                 <div class="col-xs-6">
-                                    <p class="b-detail__main-aside-desc-value">${requestScope.car.additions.carColor}</p>
+                                    <p class="b-detail__main-aside-desc-value">${requestScope.car.carColor}</p>
                                 </div>
                             </div>
                             <div class="row">
@@ -291,7 +189,7 @@
                                     <h4 class="b-detail__main-aside-desc-title">Interior color</h4>
                                 </div>
                                 <div class="col-xs-6">
-                                    <p class="b-detail__main-aside-desc-value">${requestScope.car.additions.interiorColor}</p>
+                                    <p class="b-detail__main-aside-desc-value">${requestScope.car.interiorColor}</p>
                                 </div>
                             </div>
                             <div class="row">
@@ -299,7 +197,7 @@
                                     <h4 class="b-detail__main-aside-desc-title">Interior material</h4>
                                 </div>
                                 <div class="col-xs-6">
-                                    <p class="b-detail__main-aside-desc-value">${requestScope.car.additions.interiorMaterial}</p>
+                                    <p class="b-detail__main-aside-desc-value">${requestScope.car.interiorMaterial}</p>
                                 </div>
                             </div>
                             <div class="row">
@@ -307,7 +205,7 @@
                                     <h4 class="b-detail__main-aside-desc-title">Doors</h4>
                                 </div>
                                 <div class="col-xs-6">
-                                    <p class="b-detail__main-aside-desc-value">${requestScope.car.characteristics.doorsNumber}
+                                    <p class="b-detail__main-aside-desc-value">${requestScope.car.doorsNumber}
                                         Doors</p>
                                 </div>
                             </div>
@@ -316,7 +214,7 @@
                                     <h4 class="b-detail__main-aside-desc-title">Fuel Type</h4>
                                 </div>
                                 <div class="col-xs-6">
-                                    <p class="b-detail__main-aside-desc-value">${requestScope.car.characteristics.fuelType}</p>
+                                    <p class="b-detail__main-aside-desc-value">${requestScope.car.fuelType}</p>
                                 </div>
                             </div>
                             <div class="row">
@@ -324,7 +222,7 @@
                                     <h4 class="b-detail__main-aside-desc-title">Condition </h4>
                                 </div>
                                 <div class="col-xs-6">
-                                    <p class="b-detail__main-aside-desc-value">${requestScope.car.conditions.carCondition}</p>
+                                    <p class="b-detail__main-aside-desc-value">${requestScope.car.carCondition}</p>
                                 </div>
                             </div>
                         </div>
@@ -337,7 +235,7 @@
                             </div>
                             <div class="b-detail__main-aside-about-seller">
                                 <p>Seller Info:
-                                    <span>${requestScope.car.user.name}, ${requestScope.car.locations.city}</span></p>
+                                    <span>${requestScope.car.user.name}, ${requestScope.car.city}</span></p>
                             </div>
                         </div>
 
@@ -358,7 +256,7 @@
             <c:forEach var="car" items="${requestScope.list}">
                 <div class="col-md-3 col-sm-12">
                     <div class="b-auto__main-item wow zoomInUp" data-wow-delay="0.3s">
-                        <img class="img-responsive center-block" src="${car.image}"/>
+                        <img class="img-responsive center-block" src="${car.imageList.get(0).imagePath}"/>
                         <div class="b-world__item-val">
                             <span class="b-world__item-val-title">REGISTERED <span>${car.year.getYear()}</span></span>
                         </div>
@@ -368,15 +266,15 @@
 													$${car.price}
 												</span>
                             <span class="m-number">
-													<span class="fa fa-tachometer"></span>35,000 KM
+													<span class="fa fa-tachometer"></span>${car.milleage} KM
 												</span>
                         </div>
                         <div class="b-featured__item-links m-auto">
-                            <a href="#">Used</a>
+                            <a href="#">${car.carCondition}</a>
                             <a href="#">${car.year.getYear()}</a>
                             <a href="#">${car.transmission}</a>
-                            <a href="#">Black</a>
-                            <a href="#">Petrol</a>
+                            <a href="#">${car.carColor}</a>
+                            <a href="#">${car.fuelType}</a>
                         </div>
                     </div>
                 </div>

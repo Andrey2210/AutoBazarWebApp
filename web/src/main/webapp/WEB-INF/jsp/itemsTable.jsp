@@ -17,12 +17,12 @@
     <link href="css/master.css" rel="stylesheet">
 </head>
 <body>
-<div class="row m-border">
+<div class="row m-border m-listTableTwo">
     <c:forEach var="car" items="${requestScope.list}">
         <div class="col-lg-4 col-md-6 col-xs-12 wow zoomInUp" data-wow-delay="0.5s">
             <div class="b-items__cell">
                 <div class="b-items__cars-one-img">
-                    <img class='img-responsive' src="${car.image}"/>
+                    <img class='img-responsive' src="${car.imageList.get(0).imagePath}"/>
                 </div>
                 <div class="b-items__cell-info">
                     <div class="s-lineDownLeft b-items__cell-info-title">
@@ -40,8 +40,8 @@
                             <div class="col-xs-7">
                                 <span class="b-items__cars-one-info-value">${car.bodyType}</span>
                                 <span class="b-items__cars-one-info-value">${car.conditions.milleage} KM</span>
-                                <span class="b-items__cars-one-info-value">6-Speed Auto</span>
-                                <span class="b-items__cars-one-info-value">${car.transmission}, ${car.characteristics.doorsNumber}-Door</span>
+                                <span class="b-items__cars-one-info-value">${car.transmission}</span>
+                                <span class="b-items__cars-one-info-value">${car.fuelType}, ${car.doorsNumber}-Doors</span>
                             </div>
                         </div>
                     </div>

@@ -432,26 +432,8 @@ label.s-submitCheck{
 	border: 3px solid transparent;
 	border-top-color: #f76d2b;
 }
-@-webkit-keyframes spin {
-	0% {
-	-webkit-transform: rotate(0);
-	transform: rotate(0);
-}
-100% {
-	-webkit-transform: rotate(360deg);
-	transform: rotate(360deg);
-}
-}
-@keyframes spin {
-	0% {
-	-webkit-transform: rotate(0);
-	transform: rotate(0);
-}
-100% {
-	-webkit-transform: rotate(360deg);
-	transform: rotate(360deg);
-}
-}
+
+
 
 /* Pager Slider */
 .pagerSlider .bx-wrapper .bx-controls-direction a{
@@ -484,4 +466,13 @@ label.s-submitCheck{
 	margin: 0;
 	top: auto;
 	width: 92%;
+}
+
+.s-title {
+    border-left: none !important;
+    border-right: none!important;
+    
+}
+.s-title a{
+    color: #000 !important;
 }

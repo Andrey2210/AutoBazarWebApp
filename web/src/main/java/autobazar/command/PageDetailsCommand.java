@@ -28,6 +28,6 @@ public class PageDetailsCommand extends FrontCommand {
             pageDetails.setPageType(request.getParameter("pageType"));
         }
         request.getSession().setAttribute("pageDetails", pageDetails);
-        forward("/controller?command=Search");
+        forward("/controller?command=CurrentSearch");
     }
 }

@@ -1,23 +1,25 @@
 package by.autobazar.services;
 
-import by.autobazar.connection.DbConnection;
-import by.autobazar.dao.DaoException;
-import by.autobazar.dao.UserDAO;
+import by.autobazar.dao.UserDao;
+import by.autobazar.dao.exceptions.DaoException;
+import by.autobazar.entity.Car;
 import by.autobazar.entity.User;
+import by.autobazar.util.HibernateUtil;
 import org.apache.log4j.Logger;
+import org.hibernate.HibernateException;
+import org.hibernate.Transaction;
 
-import java.sql.Connection;
-import java.sql.SQLException;
+import javax.jws.soap.SOAPBinding;
+import java.util.List;
 
 /**
  * Created by Andrey on 19.03.2017.
  */
-public class UserService {
+public class UserService extends AbstractService {
 
     private static final Logger log = Logger.getLogger(UserService.class);
-
     private static UserService INSTANCE = null;
-
+    private UserDao userDao = UserDao.getInstance();
     private UserService() {
     }
 
@@ -32,112 +34,98 @@ public class UserService {
         return INSTANCE;
     }
 
-    public User createUser(User user) {
+    public List<User> getAll() {
+        log.info("Service getAll : ");
+        userDao.session = session;
+        Transaction transaction = getTransaction();
+
+        List<User> userList = null;
+        try {
+            userList =  userDao.getAll();
+            transaction.commit();
+        } catch (DaoException | HibernateException e) {
+            log.info("Error in service getAll(): " + e);
+            transaction.rollback();
+        }
+            return userList;
+    }
+
+    public User createUser(User user) throws ServiceException {
 
         log.info("Service createUser : ");
 
-        if (user == null) {
-            log.info("Not valid parameters, user wasn't created : ");
-            return null;
-        }
-
-        Connection connection = DbConnection.getConnection();
-        User loggedUser = null;
+        userDao.session = session;
+        Transaction transaction = getTransaction();
         try {
-            assert connection != null;
-            connection.setAutoCommit(false);
-            UserDAO userDAO = new UserDAO(connection);
-            userDAO.create(user);
-            loggedUser = userDAO.getLoggedUser(user.getLogin(), user.getPassword());
-            connection.commit();
-        } catch (SQLException e) {
-            log.error("Service createUser wasn't executed: not connection" + e);
-        } catch (DaoException e) {
-            log.error("Service createUser wasn't executed: " + e);
-        } finally {
-            try {
-                connection.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            userDao.saveOrUpdate(user);
+            transaction.commit();
+        } catch (DaoException | HibernateException e) {
+            log.info("Error in service createUser(): " + e);
+            transaction.rollback();
+            throw new ServiceException("Sorry, Registration failed, please try again later" + e);
         }
-        return loggedUser;
+        return user;
     }
 
     public User getLoggedUser(String login, String password) {
 
-
         log.info("Service getLoggedUser : ");
-        if (login == null || password == null) {
-            log.info("Not valid parameters : ");
-            return null;
-        }
 
-        Connection connection = DbConnection.getConnection();
-        UserDAO userDAO = new UserDAO(connection);
-        User user = null;
+        userDao.session = session;
+        Transaction transaction = getTransaction();
+        User loggedUser = null;
         try {
-            user = userDAO.getLoggedUser(login, password);
-        } catch (DaoException e) {
-            log.error("Service getLoggedUser wasn't executed: " + e);
-        } finally {
-            try {
-                connection.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            loggedUser = userDao.getLoggedUser(login, password);
+            transaction.commit();
+        } catch (DaoException | HibernateException e) {
+            log.info("Error in service getLoggedUser(): " + e);
+            transaction.rollback();
         }
-        return user;
+        return loggedUser;
     }
 
-    public boolean deleteUser(User user) {
+    public List<Car> getCarsByUserId(Long id) {
+    User user = getUserById(id);
 
-        log.info("Service deleteUser : ");
+        List<Car> carList = user.getCarList();
 
-        if (user == null) {
-            log.info("Not valid parameters, user wasn't created : ");
-            return false;
-        }
-
-        Connection connection = DbConnection.getConnection();
-        UserDAO userDAO = new UserDAO(connection);
-        boolean flag = false;
-        try {
-            flag = userDAO.delete(user);
-        } catch (DaoException e) {
-            log.error("Service deleteUser wasn't executed, User wasn't deleted : " + e);
-        } finally {
-            try {
-                connection.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-
-        return flag;
+        return  carList;
     }
 
     public User getUserById(Long id) {
-
-
         log.info("Service getUserById : ");
 
-
-
-        Connection connection = DbConnection.getConnection();
-        UserDAO userDAO = new UserDAO(connection);
-        User user = null;
+        userDao.session = session;
+        Transaction transaction = getTransaction();
+        User loggedUser = null;
         try {
-            user = userDAO.getById(id);
-        } catch (DaoException e) {
-            log.error("Service getUserById wasn't executed: " + e);
-        } finally {
-            try {
-                connection.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            loggedUser = userDao.get(id);
+            transaction.commit();
+        } catch (DaoException | HibernateException e) {
+            log.info("Error in service getUserById(): " + e);
+            transaction.rollback();
         }
-        return user;
+        return loggedUser;
+    }
+
+    public void deleteUser(Long id) {
+
+        log.info("Service deleteUser(): ");
+
+        userDao.session = session;
+        Transaction transaction = getTransaction();
+        User user= null;
+        try {
+            user = userDao.get(id);
+            transaction.commit();
+            if(user != null) {
+                transaction = getTransaction();
+                userDao.delete(user);
+                transaction.commit();
+            }
+        } catch (DaoException | HibernateException e) {
+            log.info("Error in service deleteUser(): " + e);
+            transaction.rollback();
+        }
     }
 }

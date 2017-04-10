@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@page isELIgnored="false"%>
+<%@page isELIgnored="false" %>
 <html>
 <head>
     <meta charset="utf-8"/>
@@ -22,113 +22,12 @@
     <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
 </head>
 <body class=m-contacts" data-scrolling-animations="true">
 
 
-<header class="b-topBar">
-    <div class="container wow slideInDown" data-wow-delay="0.7s">
-        <div class="row">
-            <div class="col-md-7 col-xs-6">
-                <div class="b-topBar__tel">
-                    <span class="fa fa-phone"></span>
-                    +375 (44) 557-52-21
-                </div>
-            </div>
+<jsp:include page="header.jsp"></jsp:include>
 
-            <c:choose>
-                <c:when test="${empty sessionScope.user}">
-                    <div class="col-md-2 col-xs-6">
-                        <nav class="b-topBar__nav">
-                            <ul>
-                                <li><a class="main-item" href="/autobazar/registration">Register</a></li>
-                            </ul>
-                        </nav>
-                    </div>
-                    <div class="col-md-1 col-xs-6">
-                        <div class="b-topBar__lang">
-                            <div class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle='dropdown'>SIGN IN</a>
-                                <ul class="dropdown-menu dropdown-menu-log">
-                                    <form id="login-form" method="post" action="/autobazar/controller" >
-                                        <input  type="hidden" name="command" value="Login"/>
-                                        <li><input  type="text" name="login" placeholder="LOGIN/EMAIL" required=""/></li>
-                                        <li><input  type="password" name="password" placeholder="PASSWORD" required=""/></li>
-                                    </form>
-                                    <li><a href="#" onclick="userLogin()">SIGN IN</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </c:when>
-                <c:otherwise>
-                    <div class="col-md-3 col-xs-6">
-                        <nav class="b-topBar__nav">
-                            <ul>
-                                <form id="logout-form" method="post" action="/autobazar/controller" style="display: none" >
-                                    <input  type="hidden" name="command" value="Logout"/>
-                                </form>
-                                <li><a class="main-item" href="#" onclick="userLogout()">Sign Out</a></li>
-                            </ul>
-                        </nav>
-                    </div>
-                </c:otherwise>
-            </c:choose>
-
-
-            <div class="col-md-2 col-xs-6">
-                <div class="b-topBar__lang">
-                    <div class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle='dropdown'>Language</a>
-                        <a class="m-langLink dropdown-toggle" data-toggle='dropdown' href="#"><span
-                                class="b-topBar__lang-flag m-en"></span><span class="fa fa-caret-down"></span></a>
-                        <ul class="dropdown-menu h-lang">
-                            <li><a class="m-langLink dropdown-toggle" data-toggle='dropdown' href="#"><span
-                                    class="b-topBar__lang-flag m-en"></span>EN</a></li>
-                            <li><a class="m-langLink dropdown-toggle" data-toggle='dropdown' href="#"><span
-                                    class="b-topBar__lang-flag m-es"></span>RU</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</header><!--b-topBar-->
-
-<nav class="b-nav">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-3 col-xs-4">
-                <div class="b-nav__logo wow slideInLeft" data-wow-delay="0.3s">
-                    <h3><a href="/autobazar/controller">Auto<span>BAZAR</span></a></h3>
-                    <h2><a href="/autobazar/controller">sell your car with us</a></h2>
-                </div>
-            </div>
-            <div class="col-sm-9 col-xs-8">
-                <div class="b-nav__list wow slideInRight" data-wow-delay="0.3s">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                    </div>
-                    <div class="collapse navbar-collapse navbar-main-slide" id="nav">
-                        <ul class="navbar-nav-menu">
-                            <li>
-                            <li><a href="/autobazar/controller">Home</a></li>
-                            <li><a href="about.html">About</a></li>
-                            <li><a href="/autobazar/carsList">Shop</a></li>
-                            <li><a href="contacts.html">Contact</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</nav><!--b-nav-->
 
 <section class="b-pageHeader">
     <div class="container">
@@ -142,31 +41,34 @@
     <div class="container">
         <div class="row">
 
-            <div class="col-xs-7">
+            <div class="col-xs-7 col-md-6">
                 <div class="b-contacts__form">
                     <header class="b-contacts__form-header s-lineDownLeft wow zoomInUp" data-wow-delay="0.5s">
                         <h2 class="s-titleDet">Registering</h2>
                     </header>
                     <div></div>
-                    <form action="/autobazar/controller" method="post" class="s-form wow zoomInUp" data-wow-delay="0.5s">
-                        <input type="hidden" value="Registration" name="command" />
+                    <form action="/autobazar/controller" method="post" class="s-form wow zoomInUp"
+                          data-wow-delay="0.5s">
+                        <input type="hidden" value="Registration" name="command"/>
                         <label>Enter login <span>*</span></label>
-                        <input type="text" placeholder="YOUR LOGIN" value="" name="login" id="login" />
+                        <input type="text" placeholder="YOUR LOGIN" value="" name="login" id="login" required/>
                         <label>Enter email <span>*</span></label>
-                        <input type="text" placeholder="EMAIL ADDRESS" value="" name="email" id="email" />
+                        <input type="text" placeholder="EMAIL ADDRESS" value="" name="email" id="email" required/>
                         <label>Enter password <span>*</span></label>
-                        <input type="password" placeholder="PASSWORD" value="" name="password" id="password" />
+                        <input type="password" placeholder="PASSWORD" value="" name="password" id="password" required/>
                         <label>Confirm password <span>*</span></label>
-                        <input type="password" placeholder="PASSWORD" value="" name="confirm-password" id="confirm-password" />
+                        <input type="password" placeholder="PASSWORD" value="" name="confirmPassword"
+                               id="confirm-password" required/>
                         <label>Enter your name <span>*</span></label>
-                        <input type="text" placeholder="YOUR NAME." value="" name="name" id="name" />
+                        <input type="text" placeholder="YOUR NAME." value="" name="name" id="name" required/>
                         <label>Enter phone <span>*</span></label>
-                        <input type="text" placeholder="YOUR PHONE." value="" name="phone" id="phone" />
-                        <button type="submit" class="btn m-btn">SUBMIT NOW<span class="fa fa-angle-right"></span></button>
+                        <input type="text" pattern="\+375\([0-9]{2}\)[0-9]{3}-[0-9]{2}-[0-9]{2}"
+                               placeholder="+375(**)***-**-**" value="" name="phone" id="phone" required/>
+                        <button type="button" onclick="validate(this.form)" class="btn m-btn">SUBMIT NOW<span
+                                class="fa fa-angle-right"></span></button>
                     </form>
                 </div>
             </div>
-
         </div>
     </div>
 </section>
@@ -221,10 +123,12 @@
 
 <!--Theme-->
 <script src="js/jquery.smooth-scroll.js"></script>
+<script src="js/jquery.maskedinput.min.js"></script>
 <script src="js/wow.min.js"></script>
 <script src="js/jquery.placeholder.min.js"></script>
 <script src="js/theme.js"></script>
 <script src="js/search.js"></script>
+<script src="js/registration.js"></script>
 
 </body>
 </html>

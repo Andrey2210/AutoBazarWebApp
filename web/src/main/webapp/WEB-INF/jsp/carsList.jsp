@@ -19,111 +19,7 @@
 
 </head>
 <body class="m-listingsTwo" data-scrolling-animations="true">
-
-
-<header class="b-topBar">
-    <div class="container wow slideInDown" data-wow-delay="0.7s">
-        <div class="row">
-            <div class="col-md-7 col-xs-6">
-                <div class="b-topBar__tel">
-                    <span class="fa fa-phone"></span>
-                    +375 (44) 557-52-21
-                </div>
-            </div>
-
-            <c:choose>
-                <c:when test="${empty sessionScope.user}">
-                    <div class="col-md-2 col-xs-6">
-                        <nav class="b-topBar__nav">
-                            <ul>
-                                <li><a class="main-item" href="/autobazar/registration">Register</a></li>
-                            </ul>
-                        </nav>
-                    </div>
-                    <div class="col-md-1 col-xs-6">
-                        <div class="b-topBar__lang">
-                            <div class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle='dropdown'>SIGN IN</a>
-                                <ul class="dropdown-menu dropdown-menu-log">
-                                    <form id="login-form" method="post" action="/autobazar/controller" >
-                                        <input  type="hidden" name="command" value="Login"/>
-                                        <li><input  type="text" name="login" placeholder="LOGIN/EMAIL" required=""/></li>
-                                        <li><input  type="password" name="password" placeholder="PASSWORD" required=""/></li>
-                                    </form>
-                                    <li><a href="#" onclick="userLogin()">SIGN IN</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </c:when>
-                <c:otherwise>
-                    <div class="col-md-3 col-xs-6">
-                        <nav class="b-topBar__nav">
-                            <ul>
-                                <form id="logout-form" method="post" action="/autobazar/controller" style="display: none" >
-                                    <input  type="hidden" name="command" value="Logout"/>
-                                </form>
-                                <li><a class="main-item" href="#" onclick="userLogout()">Sign Out</a></li>
-                            </ul>
-                        </nav>
-                    </div>
-                </c:otherwise>
-            </c:choose>
-
-
-            <div class="col-md-2 col-xs-6">
-                <div class="b-topBar__lang">
-                    <div class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle='dropdown'>Language</a>
-                        <a class="m-langLink dropdown-toggle" data-toggle='dropdown' href="#"><span
-                                class="b-topBar__lang-flag m-en"></span><span class="fa fa-caret-down"></span></a>
-                        <ul class="dropdown-menu h-lang">
-                            <li><a class="m-langLink dropdown-toggle" data-toggle='dropdown' href="#"><span
-                                    class="b-topBar__lang-flag m-en"></span>EN</a></li>
-                            <li><a class="m-langLink dropdown-toggle" data-toggle='dropdown' href="#"><span
-                                    class="b-topBar__lang-flag m-es"></span>RU</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</header><!--b-topBar-->
-
-<nav class="b-nav">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-3 col-xs-4">
-                <div class="b-nav__logo wow slideInLeft" data-wow-delay="0.3s">
-                    <h3><a href="/autobazar/controller">Auto<span>BAZAR</span></a></h3>
-                    <h2><a href="/autobazar/controller">sell your car with us</a></h2>
-                </div>
-            </div>
-            <div class="col-sm-9 col-xs-8">
-                <div class="b-nav__list wow slideInRight" data-wow-delay="0.3s">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                    </div>
-                    <div class="collapse navbar-collapse navbar-main-slide" id="nav">
-                        <ul class="navbar-nav-menu">
-                            <li>
-                            <li><a href="/autobazar/controller">Home</a></li>
-                            <li><a href="about.html">About</a></li>
-                            <li><a href="/autobazar/carsList">Shop</a></li>
-                            <li><a href="contacts.html">Contact</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</nav><!--b-nav-->
-
+<jsp:include page="header.jsp"></jsp:include>
 <section class="b-pageHeader">
     <div class="container">
         <h1 class=" wow zoomInLeft" data-wow-delay="0.5s">Auto Listings</h1>
@@ -132,7 +28,6 @@
         </div>
     </div>
 </section><!--b-pageHeader-->
-
 
 <div class="b-infoBar">
     <div class="container">
@@ -159,8 +54,8 @@
                         <div class="b-infoBar__select-one">
                             <span class="b-infoBar__select-one-title">SORT BY</span>
                             <select name="sort" class="m-select" onchange="onChangeSort(this)">
-                                <option value="cars.id" selected="selected">By Date &uarr;</option>
-                                <option value="cars.id desc">By Date &darr;</option>
+                                <option value="id" selected="selected">By Date &uarr;</option>
+                                <option value="id desc">By Date &darr;</option>
                                 <option value="price">By Price &uarr;</option>
                                 <option value="price desc">By Price &darr;</option>
                                 <option value="year">By Year &uarr;</option>
@@ -215,8 +110,8 @@
                                         <ul class="dropdown-menu dropdown-select-menu dropdown-menu-search">
                                             <li>
                                                 <div class="b-search__main-form-range">
-                                                    <input type="hidden" name="minYear" class="j-min" value=""/>
-                                                    <input type="hidden" name="maxYear" class="j-max" value=""/>
+                                                    <input type="hidden" name="minYear" class="j-min" value="1960"/>
+                                                    <input type="hidden" name="maxYear" class="j-max" value="2017"/>
                                                     <div data-min="1960" data-max="2017" class="slider slider-search">
                                                     </div>
                                                 </div>
@@ -227,9 +122,9 @@
 
                                 <div class="b-items__aside-main-body-item">
                                     <label>PRICE</label>
-                                    <input type="number" min="0" name="minPrice" class="j-min" value=""
+                                    <input type="number" min="0"  max="10000000" name="minPrice" class="j-min" value="0"
                                            placeholder="FROM"/> -
-                                    <input type="number" min="0" name="maxPrice" class="j-max" value=""
+                                    <input type="number" min="0"  max="10000000" name="maxPrice" class="j-max" value="10000000"
                                            placeholder="TO"/>
                                 </div>
 
@@ -243,9 +138,9 @@
                                             <li>
                                                 <div class="b-search__main-form-range">
                                                     <input type="hidden" name="minEngineCapacity" class="j-min"
-                                                           value=""/>
+                                                           value="0"/>
                                                     <input type="hidden" name="maxEngineCapacity" class="j-max"
-                                                           value=""/>
+                                                           value="10"/>
                                                     <div data-min="0" data-max="10" class="slider slider-search">
                                                     </div>
                                                 </div>
@@ -259,9 +154,9 @@
                                     <div>
                                         <select name="transmission" class="m-select">
                                             <option value="" selected="selected">Transmission</option>
-                                            <option value="Automatic">Automatic</option>
-                                            <option value="Mechanics">Mechanics</option>
-                                            <option value="Robot">Robot</option>
+                                            <option value="AUTOMATIC">AUTOMATIC</option>
+                                            <option value="MANUAL">MANUAL</option>
+                                            <option value="CVT">CVT</option>
                                         </select>
                                         <span class="fa fa-caret-down"></span>
                                     </div>
@@ -269,11 +164,11 @@
                                 <div class="b-items__aside-main-body-item">
                                     <label>FUEL TYPE</label>
                                     <div>
-                                        <select name="fuel_type" class="m-select">
+                                        <select name="fuelType" class="m-select">
                                             <option value="" selected="selected">Fuel Type</option>
-                                            <option value="Petrol">Petrol</option>
-                                            <option value="Disel">Disel</option>
-                                            <option value="Electro">Electro</option>
+                                            <option value="PETROL">Petrol</option>
+                                            <option value="DIESEL">Diesel</option>
+                                            <option value="ELECTRO">Electro</option>
                                         </select>
                                         <span class="fa fa-caret-down"></span>
                                     </div>
@@ -281,13 +176,13 @@
                                 <div class="b-items__aside-main-body-item">
                                     <label>BODY TYPE</label>
                                     <div>
-                                        <select name="body_type" class="m-select">
+                                        <select name="bodyType" class="m-select">
                                             <option value="" selected="selected">Body Types</option>
-                                            <option value="Pickup">Pickup</option>
-                                            <option value="Suv">Suv</option>
-                                            <option value="Coupe">Coupe</option>
-                                            <option value="Convertible">Convertible</option>
-                                            <option value="Hatchback">Hatchback</option>
+                                            <option value="PICKUP">Pickup</option>
+                                            <option value="SUV">Suv</option>
+                                            <option value="COUPE">Coupe</option>
+                                            <option value="CONVERTIBLE">Convertible</option>
+                                            <option value="HATCHBACK">Hatchback</option>
                                         </select>
                                         <span class="fa fa-caret-down"></span>
                                     </div>

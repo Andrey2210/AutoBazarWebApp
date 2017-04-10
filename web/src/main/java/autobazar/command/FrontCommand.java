@@ -15,10 +15,7 @@ public abstract class FrontCommand {
     protected HttpServletRequest request;
     protected HttpServletResponse response;
 
-    public void init(
-            ServletContext servletContext,
-            HttpServletRequest servletRequest,
-            HttpServletResponse servletResponse) {
+    public void init(ServletContext servletContext, HttpServletRequest servletRequest, HttpServletResponse servletResponse) {
         this.context = servletContext;
         this.request = servletRequest;
         this.response = servletResponse;

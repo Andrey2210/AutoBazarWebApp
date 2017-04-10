@@ -19,7 +19,7 @@ public class UnknownCommand extends FrontCommand {
     public void process() throws ServletException, IOException {
 
         String uri = request.getRequestURI();
-
+        FrontCommand command;
         switch (uri) {
             case "/autobazar/registration":
                 forward(ConfigurationManager.getInstance().getProperty("path.page.registration"));
@@ -28,20 +28,19 @@ public class UnknownCommand extends FrontCommand {
                 forward(ConfigurationManager.getInstance().getProperty("path.page.login"));
                 break;
             case "/autobazar/submit":
-                FrontCommand command = new SubmitCommand();
+                 command = new SubmitCommand();
+                command.init(context, request, response);
+                command.process();
+                return;
+            case "/autobazar/dashboard":
+                 command = new DashboardCommand();
                 command.init(context, request, response);
                 command.process();
                 return;
             default:
                 request.getSession().removeAttribute("pageDetails");
                 List<Car> carsList = CarService.getInstance().getLimitAmount();
-                List<CarDto> carDtoList = new LinkedList<>();
-                for (Car car : carsList) {
-                    carDtoList.add(new CarDto(car.getId(), car.getMark(), car.getModel(), car.getImage(), car.getPrice(), car.getYear(),
-                            car.getTransmission()));
-                }
-
-                request.setAttribute("list", carDtoList);
+                request.setAttribute("list", carsList);
                 request.setAttribute("allMakes", CarService.getInstance().getCarsMakes());
                 String page = ConfigurationManager.getInstance().getProperty("path.page.index");
                 forward(page);

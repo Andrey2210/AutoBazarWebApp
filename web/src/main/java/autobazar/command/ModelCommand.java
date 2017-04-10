@@ -19,15 +19,15 @@ public class ModelCommand extends FrontCommand {
             modelList = CarService.getInstance().getCarsModels(make);
         } else {
             make = request.getParameter("allMake");
-           modelList = CarService.getInstance().getAllCarModels(make);
+            modelList = CarService.getInstance().getAllCarsModels(make);
 
         }
-            response.setContentType("text/xml");
-            StringBuilder result = new StringBuilder("<?xml version=\"1.0\" ?><models>");
-            for (String model : modelList) {
-                result.append("<model>" + model + "</model>");
-            }
-            result.append("</models>");
-            response.getWriter().println(result);
+        response.setContentType("text/xml");
+        StringBuilder result = new StringBuilder("<?xml version=\"1.0\" ?><models>");
+        for (String model : modelList) {
+            result.append("<model>" + model + "</model>");
+        }
+        result.append("</models>");
+        response.getWriter().println(result);
     }
 }

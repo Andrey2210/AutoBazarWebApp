@@ -1,27 +1,26 @@
 package by.autobazar.services;
 
-import by.autobazar.connection.DbConnection;
-import by.autobazar.dao.*;
+import by.autobazar.dao.CarDao;
+import by.autobazar.dao.exceptions.DaoException;
 import by.autobazar.entity.*;
+import by.autobazar.entity.carEnum.*;
+import by.autobazar.util.HibernateUtil;
 import org.apache.log4j.Logger;
+import org.hibernate.HibernateException;
+import org.hibernate.Transaction;
 
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.sql.Savepoint;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 
 /**
  * Created by Andrey on 13.03.2017.
  */
-public class CarService {
+public class CarService extends AbstractService{
 
     private static final Logger log = Logger.getLogger(CarService.class);
-
     private static CarService INSTANCE = null;
+    private CarDao carDao = CarDao.getInstance();
 
     private CarService() {
     }
@@ -37,407 +36,277 @@ public class CarService {
         return INSTANCE;
     }
 
+    public long createCar(HashMap<String, String> parameters, long id) throws ServiceException {
+        log.info("Service createCar(): ");
+
+        carDao.session = session;
+        User user = UserService.getInstance().getUserById(id);
+
+        Car car = new Car();
+        car.setMark(parameters.get("mark"));
+        car.setModel(parameters.get("model"));
+        car.setPrice(Integer.parseInt(parameters.get("price")));
+        car.setYear(LocalDate.of(Integer.parseInt(parameters.get("year")), 1, 1));
+        car.setTransmission(Transmission.valueOf(parameters.get("transmission")));
+        car.setBodyType(BodyType.valueOf(parameters.get("bodyType")));
+        car.setDescription(parameters.get("description"));
+        car.setCarCondition(CarCondition.valueOf(parameters.get("carCondition")));
+        car.setMilleage(Integer.parseInt(parameters.get("milleage")));
+        car.setDoorsNumber(Integer.parseInt(parameters.get("doorsNumber")));
+        car.setFuelType(FuelType.valueOf(parameters.get("fuelType")));
+        car.setEngineCapacity(Double.parseDouble(parameters.get("engineCapacity")));
+        car.setDriving(WheelDriving.valueOf(parameters.get("driving")));
+        car.setCarColor(CarColor.valueOf(parameters.get("carColor")));
+        car.setInteriorMaterial(InteriorMaterial.valueOf(parameters.get("interiorMaterial")));
+        car.setInteriorColor(InteriorColor.valueOf(parameters.get("interiorColor")));
+        car.setRegion(parameters.get("region"));
+        car.setCity(parameters.get("city"));
+        car.setVerified(false);
+
+        Image image = new Image(parameters.get("image"), "main");
+        image.setCar(car);
+        car.getImageList().add(image);
+        car.setUser(user);
+        Transaction transaction = getTransaction();
+        try {
+            carDao.saveOrUpdate(car);
+            transaction.commit();
+        } catch (DaoException | HibernateException e) {
+            log.info("Error in service createCar(): " + e);
+            transaction.rollback();
+            throw new ServiceException("Sorry, ad wasn't created, please try again later" + e);
+        }
+        return car.getId();
+    }
+
     public List<Car> getLimitAmount() {
-
         log.info("Service getLimitAmount(): ");
-
-        Connection connection = DbConnection.getConnection();
-        CarDAO carDAO = new CarDAO(connection);
+        carDao.session = session;
+        Transaction transaction = getTransaction();
         List<Car> carsList = null;
         try {
-            carsList = carDAO.getLimitAmount();
-        } catch (DaoException e) {
-            log.error("Service getLimitAmount wasn't executed: " + e);
-        } finally {
-            try {
-                connection.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            carsList = carDao.getLimitAmount();
+            transaction.commit();
+        } catch (DaoException | HibernateException e) {
+            log.info("Error in service getLimitAmount(): " + e);
+            transaction.rollback();
         }
-
         return carsList;
     }
 
     public List<String> getCarsMakes() {
         log.info("Service getCarsMakes(): ");
 
-        Connection connection = DbConnection.getConnection();
-        CarDAO carDAO = new CarDAO(connection);
+        carDao.session = session;
+        Transaction transaction = getTransaction();
         List<String> makesList = null;
         try {
-            makesList = carDAO.getCarsMakes();
-        } catch (DaoException e) {
-            log.error("Service getCarsMakes wasn't executed: " + e);
-        } finally {
-            try {
-                connection.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            makesList = carDao.getCarsMakes();
+            transaction.commit();
+        } catch (DaoException | HibernateException e) {
+            log.info("Error in service getCarsMakes(): " + e);
+            transaction.rollback();
         }
         return makesList;
+    }
+
+    public List<String> getAllCarsMakes() {
+        log.info("Service getCarsMakes(): ");
+
+        carDao.session = session;
+        Transaction transaction = getTransaction();
+        List<String> makesList = null;
+        try {
+            makesList = carDao.getAllCarsMakes();
+            transaction.commit();
+        } catch (DaoException | HibernateException e) {
+            log.info("Error in service getAllCarsMakes(): " + e);
+            transaction.rollback();
+        }
+        return makesList;
+    }
+
+    public List<String> getAllCarsModels(String make) {
+        log.info("Service getAllCarsModels(): ");
+
+        carDao.session = session;
+        Transaction transaction = getTransaction();
+        List<String> modelsList = null;
+        try {
+            modelsList = carDao.getAllCarsModels(make);
+            transaction.commit();
+        } catch (DaoException | HibernateException e) {
+            log.info("Error in service getAllCarsModels(): " + e);
+            transaction.rollback();
+        }
+        return modelsList;
     }
 
     public List<String> getCarsModels(String make) {
         log.info("Service getCarsModels(): ");
 
-        Connection connection = DbConnection.getConnection();
-        CarDAO carDAO = new CarDAO(connection);
-        List<String> modelList = null;
+        carDao.session = session;
+        Transaction transaction = getTransaction();
+        List<String> modelsList = null;
         try {
-            modelList = carDAO.getCarModels(make);
-        } catch (DaoException e) {
-            log.error("Service getCarsModels wasn't executed: " + e);
-        } finally {
-            try {
-                connection.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            modelsList = carDao.getCarsModels(make);
+            transaction.commit();
+        } catch (DaoException | HibernateException e) {
+            log.info("Error in service getCarsModels(): " + e);
+            transaction.rollback();
         }
-        return modelList;
+        return modelsList;
     }
 
-    public List<String> getAllCarsMakes() {
-
-        log.info("Service getAllCarsMakes(): ");
-
-        Connection connection = DbConnection.getConnection();
-        CarDAO carDAO = new CarDAO(connection);
-        List<String> makesList = null;
-        try {
-            makesList = carDAO.getAllCarsMakes();
-        } catch (DaoException e) {
-            log.error("Service getAllCarsMakes wasn't executed: " + e);
-        } finally {
-            try {
-                connection.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-        return makesList;
-    }
-
-    public List<String> getAllCarModels(String make) {
-
-        log.info("Service getAllCarModels(): ");
-
-        Connection connection = DbConnection.getConnection();
-        CarDAO carDAO = new CarDAO(connection);
-        List<String> modelList = null;
-        try {
-            modelList = carDAO.getAllCarModels(make);
-        } catch (DaoException e) {
-            log.error("Service getAllCarModels wasn't executed: " + e);
-        } finally {
-            try {
-                connection.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-        return modelList;
-    }
-
-    public int getAmountOfCars(HashMap<String, String> searchMap) {
+    public long getAmountOfCars(HashMap<String, String> searchMap) {
 
         log.info("Service getAmountOfCars(): ");
 
-        Connection connection = DbConnection.getConnection();
-        CarDAO carDAO = new CarDAO(connection);
-        String searchOption = searchQuery(searchMap);
-        int amount = 0;
+        carDao.session = session;
+        Transaction transaction = getTransaction();
+        long result = 0;
+        verificationsParameters(searchMap);
         try {
-            amount = carDAO.getAmountOfCars(searchOption);
-        } catch (DaoException e) {
-            log.error("Service getAmountOfCars wasn't executed: " + e);
-        } finally {
-            try {
-                connection.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            result = carDao.getAmountOfCars(searchMap);
+            transaction.commit();
+        } catch (DaoException | HibernateException e) {
+            log.info("Error in service getAmountOfCars(): " + e);
+            transaction.rollback();
         }
-        return amount;
+        return result;
     }
 
     public List<Car> searchCars(HashMap<String, String> searchMap, String order, int start, int amount) {
 
         log.info("Service searchCars : ");
 
-        Connection connection = DbConnection.getConnection();
-        CarDAO carDAO = new CarDAO(connection);
-        String searchOption = searchQuery(searchMap);
+        carDao.session = session;
+        Transaction transaction = getTransaction();
         List<Car> carList = null;
-        AdditionsDAO additionsDAO = new AdditionsDAO(connection);
-        CharacteristicsDAO characteristicsDAO = new CharacteristicsDAO(connection);
-        ConditionsDAO conditionsDAO = new ConditionsDAO(connection);
-        LocationsDAO locationsDAO = new LocationsDAO(connection);
+        verificationsParameters(searchMap);
         try {
-            carList = carDAO.searchCars(searchOption, order, start, amount);
-            for (Car car : carList) {
-                car.setAdditions(additionsDAO.getById(car.getAdditions().getId()));
-                car.setCharacteristics(characteristicsDAO.getById(car.getCharacteristics().getId()));
-                car.setConditions(conditionsDAO.getById(car.getConditions().getId()));
-                car.setLocations(locationsDAO.getById(car.getLocations().getId()));
-            }
-        } catch (DaoException e) {
-            log.error("Service searchCars wasn't executed: " + e);
-        } finally {
-            try {
-                connection.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            carList = carDao.searchCars(searchMap, order, start, amount);
+            transaction.commit();
+        } catch (DaoException | HibernateException e) {
+            log.info("Error in service searchCars(): " + e);
+            transaction.rollback();
         }
         return carList;
     }
 
-    private String searchQuery(HashMap<String, String> search) {
+    private void verificationsParameters(HashMap<String, String> searchParameters) {
 
-        log.info("searchQuery : ");
+        int minPrice = Integer.parseInt(searchParameters.get("minPrice"));
+        int maxPrice = Integer.parseInt(searchParameters.get("maxPrice"));
 
-        StringBuilder query = new StringBuilder();
-        for (String type : search.keySet()) {
-            switch (type) {
-                case "minYear":
-                    query.append(" AND year>=").append(search.get("minYear"));
-                    break;
-                case "maxYear":
-                    query.append(" AND year<").append(search.get("maxYear"));
-                    break;
-                case "minPrice":
-                    query.append(" AND price>").append(search.get("minPrice"));
-                    break;
-                case "maxPrice":
-                    query.append(" AND price<").append(search.get("maxPrice"));
-                    break;
-                case "minEngineCapacity":
-                    query.append(" AND engine_capacity>").append(search.get("minEngineCapacity"));
-                    break;
-                case "maxEngineCapacity":
-                    query.append(" AND engine_capacity<").append(search.get("maxEngineCapacity"));
-                    break;
-                case "command":
-                    break;
-                default:
-                    query.append(" AND ").append(type).append("='").append(search.get(type)).append("'");
-            }
-        }
-        return query.toString();
-    }
+        searchParameters.replace("minPrice", String.valueOf(minPrice), String.valueOf(Math.min(minPrice, maxPrice)));
+        searchParameters.replace("maxPrice", String.valueOf(maxPrice), String.valueOf(Math.max(minPrice, maxPrice)));
 
-    public boolean createCar(HashMap<String, String> parametersMap, Long userId) {
-
-        log.info("Service createCar : ");
-
-        Additions additions = new Additions();
-        additions.setCarColor(parametersMap.get("car_color"));
-        additions.setInteriorMaterial(parametersMap.get("interior_material"));
-        additions.setInteriorColor(parametersMap.get("interior_color"));
-
-        Characteristics characteristics = new Characteristics();
-        characteristics.setDoorsNumber(Integer.parseInt(parametersMap.get("doors_number")));
-        characteristics.setFuelType(parametersMap.get("fuel_type"));
-        characteristics.setEngineCapacity(Double.parseDouble(parametersMap.get("engine_capacity")));
-        characteristics.setDriving(parametersMap.get("driving"));
-
-        Conditions conditions = new Conditions();
-        conditions.setCarCondition(parametersMap.get("car_condition"));
-        conditions.setMilleage(Integer.parseInt(parametersMap.get("mileage")));
-
-
-        Locations locations = new Locations();
-        locations.setRegion(parametersMap.get("region"));
-        locations.setCity(parametersMap.get("city"));
-
-        Car car = new Car();
-        car.setMark(parametersMap.get("mark"));
-        car.setModel(parametersMap.get("model"));
-        car.setPrice(Integer.parseInt(parametersMap.get("price")));
-        car.setYear(LocalDate.of(Integer.parseInt(parametersMap.get("year")), 1, 1));
-        car.setTransmission(parametersMap.get("transmission"));
-        car.setBodyType(parametersMap.get("body_type"));
-        car.setDescription(parametersMap.get("description"));
-        car.setImage(parametersMap.get("image_path"));
-
-        Connection connection = DbConnection.getConnection();
-        Savepoint savepoint = null;
-        try {
-            connection.setAutoCommit(false);
-            savepoint = connection.setSavepoint();
-            CarDAO carDAO = new CarDAO(connection);
-            AdditionsDAO additionsDAO = new AdditionsDAO(connection);
-            CharacteristicsDAO characteristicsDAO = new CharacteristicsDAO(connection);
-            ConditionsDAO conditionsDAO = new ConditionsDAO(connection);
-            LocationsDAO locationsDAO = new LocationsDAO(connection);
-            UserDAO userDAO = new UserDAO(connection);
-
-            if (additionsDAO.create(additions) && characteristicsDAO.create(characteristics) &&
-                    conditionsDAO.create(conditions) && locationsDAO.create(locations)) {
-                connection.commit();
-                car.setAdditions(additions);
-                car.setCharacteristics(characteristics);
-                car.setConditions(conditions);
-                car.setLocations(locations);
-
-                User user = userDAO.getById(userId);
-                car.setUser(user);
-            }
-
-            carDAO.create(car);
-            connection.commit();
-
-            carDAO.insertImage(car);
-            connection.commit();
-
-        } catch (SQLException | DaoException e) {
-            log.error("Service createCar wasn't executed: " + e);
-            try {
-                connection.rollback(savepoint);
-                return false;
-            } catch (SQLException e1) {
-                log.error("Service createCar wasn't executed: " + e);
-                return false;
-            }
-        } finally {
-            try {
-                connection.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-        return true;
     }
 
     public Car getCarById(Long id) {
 
         log.info("Service getCarById(): ");
 
-        Connection connection = DbConnection.getConnection();
-        CarDAO carDAO = new CarDAO(connection);
-        AdditionsDAO additionsDAO = new AdditionsDAO(connection);
-        CharacteristicsDAO characteristicsDAO = new CharacteristicsDAO(connection);
-        ConditionsDAO conditionsDAO = new ConditionsDAO(connection);
-        LocationsDAO locationsDAO = new LocationsDAO(connection);
-        UserDAO userDAO = new UserDAO(connection);
+        carDao.session = session;
+        Transaction transaction = getTransaction();
         Car car = null;
         try {
-            car = carDAO.getById(id);
-            car.setUser(userDAO.getById(car.getUser().getId()));
-            car.setAdditions(additionsDAO.getById(car.getAdditions().getId()));
-            car.setCharacteristics(characteristicsDAO.getById(car.getCharacteristics().getId()));
-            car.setConditions(conditionsDAO.getById(car.getConditions().getId()));
-            car.setLocations(locationsDAO.getById(car.getLocations().getId()));
-        } catch (DaoException e) {
-            log.error("Service getCarById wasn't executed: " + e);
-        } finally {
-            try {
-                connection.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            car = carDao.get(id);
+            session.refresh(car);
+            transaction.commit();
+        } catch (DaoException | HibernateException e) {
+            log.info("Error in service getCarById(): " + e);
+            transaction.rollback();
         }
         return car;
     }
 
+    public void deleteCar(Long id) {
 
-    public boolean createComment(String comment, long carId, long userId) {
+        log.info("Service getCarById(): ");
 
-        log.info("Service createComment : ");
-
-        Connection connection = DbConnection.getConnection();
-        Comments comments = new Comments();
-        comments.setCarId(carId);
-        comments.setComment(comment);
-        comments.setUserId(userId);
+        carDao.session = session;
+        Transaction transaction = getTransaction();
+        Car car = null;
         try {
-            CommentsDAO commentsDAO = new CommentsDAO(connection);
-
-            commentsDAO.create(comments);
-
-        } catch (DaoException e) {
-            log.error("Service createComment wasn't executed: " + e);
-            return false;
-        } finally {
-            try {
-                connection.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
+            car = carDao.get(id);
+            transaction.commit();
+            if(car != null) {
+                transaction = getTransaction();
+                carDao.delete(car);
+                transaction.commit();
             }
+        } catch (DaoException | HibernateException e) {
+            log.info("Error in service deleteCar(): " + e);
+            transaction.rollback();
         }
-        return true;
     }
 
-    public List<Comments> getAllCommentsByCar(Long carId) {
+    public long updateCar(HashMap<String, String> parameters) throws ServiceException {
+        log.info("Service updateCar(): ");
 
-        log.info("Service getAllCommentsByCar(): ");
+        carDao.session = session;
+        Car car = getCarById(Long.parseLong(parameters.get("carId")));
+        car.setPrice(Integer.parseInt(parameters.get("price")));
+        car.setYear(LocalDate.of(Integer.parseInt(parameters.get("year")), 1, 1));
+        car.setTransmission(Transmission.valueOf(parameters.get("transmission")));
+        car.setBodyType(BodyType.valueOf(parameters.get("bodyType")));
+        car.setDescription(parameters.get("description"));
+        car.setCarCondition(CarCondition.valueOf(parameters.get("carCondition")));
+        car.setMilleage(Integer.parseInt(parameters.get("milleage")));
+        car.setDoorsNumber(Integer.parseInt(parameters.get("doorsNumber")));
+        car.setFuelType(FuelType.valueOf(parameters.get("fuelType")));
+        car.setEngineCapacity(Double.parseDouble(parameters.get("engineCapacity")));
+        car.setDriving(WheelDriving.valueOf(parameters.get("driving")));
+        car.setCarColor(CarColor.valueOf(parameters.get("carColor")));
+        car.setInteriorMaterial(InteriorMaterial.valueOf(parameters.get("interiorMaterial")));
+        car.setInteriorColor(InteriorColor.valueOf(parameters.get("interiorColor")));
+        car.setRegion(parameters.get("region"));
+        car.setCity(parameters.get("city"));
 
-        Connection connection = DbConnection.getConnection();
-        CommentsDAO commentsDAO = new CommentsDAO(connection);
-        List<Comments> commentsList = null;
+        Transaction transaction = getTransaction();
         try {
-            commentsList = commentsDAO.getAllByCar(carId);
-
-            for (Comments comment : commentsList) {
-                comment.setUser(UserService.getInstance().getUserById(comment.getUserId()));
-            }
-        } catch (DaoException e) {
-            log.error("Service getAllCommentsByCar wasn't executed: " + e);
-        } finally {
-            try {
-                connection.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            carDao.saveOrUpdate(car);
+            transaction.commit();
+        } catch (DaoException | HibernateException e) {
+            log.info("Error in service updateCar(): " + e);
+            transaction.rollback();
+            throw new ServiceException("Sorry, update failed, please try again later" + e);
         }
-
-        return commentsList;
+        return car.getId();
     }
 
-    public boolean deleteCar(Long carId) {
+    public void verifiedCar(long id, String verified) {
+        log.info("Service verifiedCar(): ");
 
-        log.info("Service deleteCar : ");
-
-        Connection connection = DbConnection.getConnection();
-        Savepoint savepoint = null;
+        carDao.session = session;
+        Car car = getCarById(id);
+        car.setVerified(Boolean.parseBoolean(verified));
+        Transaction transaction = getTransaction();
         try {
-            connection.setAutoCommit(false);
-            savepoint = connection.setSavepoint();
-            CarDAO carDAO = new CarDAO(connection);
-            AdditionsDAO additionsDAO = new AdditionsDAO(connection);
-            CharacteristicsDAO characteristicsDAO = new CharacteristicsDAO(connection);
-            ConditionsDAO conditionsDAO = new ConditionsDAO(connection);
-            LocationsDAO locationsDAO = new LocationsDAO(connection);
-            UserDAO userDAO = new UserDAO(connection);
-
-            Car car = carDAO.getById(carId);
-
-            carDAO.delete(car);
-            additionsDAO.delete(car.getAdditions());
-            characteristicsDAO.delete(car.getCharacteristics());
-            conditionsDAO.delete(car.getConditions());
-            locationsDAO.delete(car.getLocations());
-            connection.commit();
-
-        } catch (SQLException | DaoException e) {
-            log.error("Service deleteCar wasn't executed: " + e);
-            try {
-                connection.rollback(savepoint);
-                return false;
-            } catch (SQLException e1) {
-                log.error("Service deleteCar wasn't executed: " + e);
-                return false;
-            }
-        } finally {
-            try {
-                connection.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            carDao.saveOrUpdate(car);
+            transaction.commit();
+        } catch (DaoException | HibernateException e) {
+            log.info("Error in service updateCar(): " + e);
+            transaction.rollback();
         }
-        return true;
+    }
+
+    public List<Car> getAllCars( String order, int start, int amount) {
+
+        log.info("Service getAllCars : ");
+
+        carDao.session = session;
+        Transaction transaction = getTransaction();
+        List<Car> carList = null;
+        try {
+            carList = carDao.getAll(order, start, amount);
+            transaction.commit();
+        } catch (DaoException | HibernateException e) {
+            log.info("Error in service getAllCars(): " + e);
+            transaction.rollback();
+        }
+        return carList;
     }
 }

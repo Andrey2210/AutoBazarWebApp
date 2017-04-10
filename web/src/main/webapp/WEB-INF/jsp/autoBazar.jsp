@@ -19,6 +19,11 @@
 
     <link href="css/master.css" rel="stylesheet">
 
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
 </head>
 <body class="m-home" data-scrolling-animations="true" data-equal-height=".b-auto__main-item">
 
@@ -26,7 +31,7 @@
 <header class="b-topBar">
     <div class="container wow slideInDown" data-wow-delay="0.7s">
         <div class="row">
-            <div class="col-md-7 col-xs-6">
+            <div class="col-md-6 col-xs-6">
                 <div class="b-topBar__tel">
                     <span class="fa fa-phone"></span>
                     +375 (44) 557-52-21
@@ -35,7 +40,7 @@
 
             <c:choose>
                 <c:when test="${empty sessionScope.user}">
-                    <div class="col-md-2 col-xs-6">
+                    <div class="col-md-3 col-xs-6">
                         <nav class="b-topBar__nav">
                             <ul>
                                 <li><a class="main-item" href="/autobazar/registration">Register</a></li>
@@ -62,11 +67,17 @@
                     <div class="col-md-3 col-xs-6">
                         <nav class="b-topBar__nav">
                             <ul>
-                                <form id="logout-form" method="post" action="/autobazar/controller" style="display: none" >
-                                    <input  type="hidden" name="command" value="Logout"/>
-                                </form>
-                                <li><a class="main-item" href="#" onclick="userLogout()">Sign Out</a></li>
+                                <li><a class="fa fa-user main-item" aria-hidden="true" href="/autobazar/controller?command=Profile"> ${sessionScope.user.login}</a></li>
                             </ul>
+                        </nav>
+                    </div>
+                    <div class="col-md-1 col-xs-6">
+                        <nav class="b-topBar__lang">
+                            <a class="main-item" href="#" onclick="userLogout()">Sign Out</a>
+                            <form id="logout-form" method="post" action="/autobazar/controller" style="display: none" >
+                                <input  type="hidden" name="command" value="Logout"/>
+                            </form>
+
                         </nav>
                     </div>
                 </c:otherwise>
@@ -115,9 +126,10 @@
                         <ul class="navbar-nav-menu">
                             <li>
                             <li><a href="/autobazar/controller">Home</a></li>
-                            <li><a href="about.html">About</a></li>
-                            <li><a href="/autobazar/carsList">Shop</a></li>
-                            <li><a href="contacts.html">Contact</a></li>
+                            <li><a href="/autobazar/controller?command=Search">Shop</a></li>
+                            <c:if test="${sessionScope.user.role eq 'ADMIN'}">
+                                <li><a href="/autobazar/dashboard">Dashboard</a></li>
+                            </c:if>
                         </ul>
                     </div>
                 </div>
@@ -182,7 +194,7 @@
             <form action="/autobazar/controller" method="POST" class="b-search__main-form">
                 <div class="row">
                     <div class="col-xs-2">
-                        <input id="type1" type="radio" name="body_type" value="Pickup"/>
+                        <input id="type1" type="radio" name="bodyType" value="PICKUP"/>
                         <label for="type1" class="b-search__main-type-svg">
                             <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
                                  xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -225,7 +237,7 @@
                         <h5>Pickup</h5>
                     </div>
                     <div class="col-xs-2">
-                        <input id="type2" type="radio" name="body_type" value="Suv"/>
+                        <input id="type2" type="radio" name="bodyType" value="SUV"/>
                         <label for="type2" class="b-search__main-type-svg">
                             <svg version="1.1" id="Layer_2" xmlns="http://www.w3.org/2000/svg"
                                  xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -271,7 +283,7 @@
                         <h5>Suv</h5>
                     </div>
                     <div class="col-xs-2">
-                        <input id="type3" type="radio" name="body_type" value="Coupe"/>
+                        <input id="type3" type="radio" name="bodyType" value="COUPE"/>
                         <label for="type3" class="b-search__main-type-svg">
                             <svg version="1.1" id="Layer_3" xmlns="http://www.w3.org/2000/svg"
                                  xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -315,7 +327,7 @@
                         <h5>Coupe</h5>
                     </div>
                     <div class="col-xs-2">
-                        <input id="type4" type="radio" name="body_type" value="Convertible"/>
+                        <input id="type4" type="radio" name="bodyType" value="CONVERTIBLE"/>
                         <label for="type4" class="b-search__main-type-svg">
                             <svg version="1.1" id="Layer_4" xmlns="http://www.w3.org/2000/svg"
                                  xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -366,7 +378,7 @@
                         <h5>Convertible</h5>
                     </div>
                     <div class="col-xs-2">
-                        <input id="type5" type="radio" name="body_type" value="Sedan"/>
+                        <input id="type5" type="radio" name="bodyType" value="SEDAN"/>
                         <label for="type5" class="b-search__main-type-svg">
                             <svg version="1.1" id="Layer_5" xmlns="http://www.w3.org/2000/svg"
                                  xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -419,7 +431,7 @@
                         <h5>Sedan</h5>
                     </div>
                     <div class="col-xs-2">
-                        <input id="type6" type="radio" name="body_type" value="Hatchback"/>
+                        <input id="type6" type="radio" name="bodyType" value="HATCHBACK"/>
                         <label for="type6" class="b-search__main-type-svg">
                             <svg version="1.1" id="Layer_6" xmlns="http://www.w3.org/2000/svg"
                                  xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -480,26 +492,26 @@
                                 <p>MISSING MODEL?</p>
                             </div>
                             <div class="col-xs-4">
-                                <select name="fuel_type">
+                                <select name="fuelType">
                                     <option value="" selected="selected">Fuel Type</option>
-                                    <option value="Petrol">Petrol</option>
-                                    <option value="Disel">Disel</option>
-                                    <option value="Electro">Electro</option>
+                                    <option value="PETROL">Petrol</option>
+                                    <option value="DIESEL">Diesel</option>
+                                    <option value="ELECTRO">Electro</option>
                                 </select>
                                 <span class="fa fa-caret-down"></span>
-                                <p>E.G: PETROL, DISEL, ELECTRO</p>
+                                <p>E.G: PETROL, DIESEL, ELECTRO</p>
                             </div>
                         </div>
                         <div class="m-secondSelects">
                             <div class="col-xs-4">
                                 <select name="transmission">
                                     <option value="" selected="selected">Transmission</option>
-                                    <option value="Automatic">Automatic</option>
-                                    <option value="Mechanics">Mechanics</option>
-                                    <option value="Robot">Robot</option>
+                                    <option value="AUTOMATIC">Automatic</option>
+                                    <option value="MANUAL">Manual</option>
+                                    <option value="CVT">CVT</option>
                                 </select>
                                 <span class="fa fa-caret-down"></span>
-                                <p>E.G: AUTOMATIC, MECHANICS, ROBOT</p>
+                                <p>E.G: AUTOMATIC, MANUAL, CVT</p>
                             </div>
 
                             <div class="col-xs-4">
@@ -509,8 +521,8 @@
                                     <ul class="dropdown-menu dropdown-select-menu">
                                         <li>
                                             <div class="b-search__main-form-range">
-                                                <input type="hidden" name="minYear" class="j-min" value=""/>
-                                                <input type="hidden" name="maxYear" class="j-max" value=""/>
+                                                <input type="hidden" name="minYear" class="j-min" value="1960"/>
+                                                <input type="hidden" name="maxYear" class="j-max" value="2017"/>
                                                 <div data-min="1960" data-max="2017" class="slider">
                                                 </div>
 
@@ -528,8 +540,8 @@
                                     <ul class="dropdown-menu dropdown-select-menu">
                                         <li>
                                             <div class="b-search__main-form-range">
-                                                <input type="hidden" name="minEngineCapacity" class="j-min" value=""/>
-                                                <input type="hidden" name="maxEngineCapacity" class="j-max" value=""/>
+                                                <input type="hidden" name="minEngineCapacity" class="j-min" value="0"/>
+                                                <input type="hidden" name="maxEngineCapacity" class="j-max" value="10"/>
                                                 <div data-min="0" data-max="10" class="slider">
                                                 </div>
 
@@ -545,8 +557,8 @@
 
                         <div id="b-search-price" class="b-search__main-form-range">
                             <label>PRICE</label>
-                            <input type="number" min="0" name="minPrice" class="j-min" value="" placeholder="FROM"/> -
-                            <input type="number" min="0" name="maxPrice" class="j-max" value="" placeholder="TO"/>
+                            <input type="number" min="0" max="10000000" name="minPrice" class="j-min" value="0" placeholder="FROM"/> -
+                            <input type="number" min="0" max="10000000" name="maxPrice" class="j-max" value="10000000" placeholder="TO"/>
                         </div>
                         <div class="b-search__main-form-submit">
                             <input type="hidden" name="command" value="Search" />
@@ -574,7 +586,7 @@
                             <c:forEach var="car" items="${requestScope.list}">
                                 <div class="col-md-3 col-sm-12">
                                     <div class="b-auto__main-item wow zoomInUp" data-wow-delay="0.3s">
-                                        <img class="img-responsive center-block" src="${car.image}"/>
+                                        <img class="img-responsive center-block" src="${car.imageList.get(0).imagePath}"/>
                                         <div class="b-world__item-val">
                                             <span class="b-world__item-val-title">REGISTERED <span>${car.year.getYear()}</span></span>
                                         </div>
@@ -584,15 +596,15 @@
 													$${car.price}
 												</span>
                                             <span class="m-number">
-													<span class="fa fa-tachometer"></span>35,000 KM
+													<span class="fa fa-tachometer"></span>${car.milleage} KM
 												</span>
                                         </div>
                                         <div class="b-featured__item-links m-auto">
-                                            <a href="#">Used</a>
+                                            <a href="#">${car.carCondition}</a>
                                             <a href="#">${car.year.getYear()}</a>
                                             <a href="#">${car.transmission}</a>
-                                            <a href="#">Black</a>
-                                            <a href="#">Petrol</a>
+                                            <a href="#">${car.carColor}</a>
+                                            <a href="#">${car.fuelType}</a>
                                         </div>
                                     </div>
                                 </div>

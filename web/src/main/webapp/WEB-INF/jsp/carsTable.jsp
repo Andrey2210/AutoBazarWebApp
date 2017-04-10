@@ -28,115 +28,14 @@
 <body class="m-listTableTwo" data-scrolling-animations="true" data-equal-height=".b-items__cell">
 
 
-<header class="b-topBar">
-    <div class="container wow slideInDown" data-wow-delay="0.7s">
-        <div class="row">
-            <div class="col-md-7 col-xs-6">
-                <div class="b-topBar__tel">
-                    <span class="fa fa-phone"></span>
-                    +375 (44) 557-52-21
-                </div>
-            </div>
-
-            <c:choose>
-                <c:when test="${empty sessionScope.user}">
-                    <div class="col-md-2 col-xs-6">
-                        <nav class="b-topBar__nav">
-                            <ul>
-                                <li><a class="main-item" href="/autobazar/registration">Register</a></li>
-                            </ul>
-                        </nav>
-                    </div>
-                    <div class="col-md-1 col-xs-6">
-                        <div class="b-topBar__lang">
-                            <div class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle='dropdown'>SIGN IN</a>
-                                <ul class="dropdown-menu dropdown-menu-log">
-                                    <form id="login-form" method="post" action="/autobazar/controller" >
-                                        <input  type="hidden" name="command" value="Login"/>
-                                        <li><input  type="text" name="login" placeholder="LOGIN/EMAIL" required=""/></li>
-                                        <li><input  type="password" name="password" placeholder="PASSWORD" required=""/></li>
-                                    </form>
-                                    <li><a href="#" onclick="userLogin()">SIGN IN</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </c:when>
-                <c:otherwise>
-                    <div class="col-md-3 col-xs-6">
-                        <nav class="b-topBar__nav">
-                            <ul>
-                                <form id="logout-form" method="post" action="/autobazar/controller" style="display: none" >
-                                    <input  type="hidden" name="command" value="Logout"/>
-                                </form>
-                                <li><a class="main-item" href="#" onclick="userLogout()">Sign Out</a></li>
-                            </ul>
-                        </nav>
-                    </div>
-                </c:otherwise>
-            </c:choose>
-
-
-            <div class="col-md-2 col-xs-6">
-                <div class="b-topBar__lang">
-                    <div class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle='dropdown'>Language</a>
-                        <a class="m-langLink dropdown-toggle" data-toggle='dropdown' href="#"><span
-                                class="b-topBar__lang-flag m-en"></span><span class="fa fa-caret-down"></span></a>
-                        <ul class="dropdown-menu h-lang">
-                            <li><a class="m-langLink dropdown-toggle" data-toggle='dropdown' href="#"><span
-                                    class="b-topBar__lang-flag m-en"></span>EN</a></li>
-                            <li><a class="m-langLink dropdown-toggle" data-toggle='dropdown' href="#"><span
-                                    class="b-topBar__lang-flag m-es"></span>RU</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</header><!--b-topBar-->
-
-<nav class="b-nav">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-3 col-xs-4">
-                <div class="b-nav__logo wow slideInLeft" data-wow-delay="0.3s">
-                    <h3><a href="/autobazar/controller">Auto<span>BAZAR</span></a></h3>
-                    <h2><a href="/autobazar/controller">sell your car with us</a></h2>
-                </div>
-            </div>
-            <div class="col-sm-9 col-xs-8">
-                <div class="b-nav__list wow slideInRight" data-wow-delay="0.3s">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                    </div>
-                    <div class="collapse navbar-collapse navbar-main-slide" id="nav">
-                        <ul class="navbar-nav-menu">
-                            <li>
-                            <li><a href="/autobazar/controller">Home</a></li>
-                            <li><a href="about.html">About</a></li>
-                            <li><a href="/autobazar/carsTable">Shop</a></li>
-                            <li><a href="contacts.html">Contact</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</nav><!--b-nav-->
+<jsp:include page="header.jsp"></jsp:include>
 
 
 <section class="b-pageHeader">
     <div class="container">
-        <h1 class="wow zoomInLeft" data-wow-delay="0.5s">Auto Listings</h1>
+        <h1 class=" wow zoomInLeft" data-wow-delay="0.5s">Auto Listings</h1>
         <div class="b-pageHeader__search wow zoomInRight" data-wow-delay="0.5s">
-            <h3>Your search returned 28 results</h3>
+            <h3>Your search returned ${sessionScope.pageDetails.amountOfItems} results</h3>
         </div>
     </div>
 </section><!--b-pageHeader-->

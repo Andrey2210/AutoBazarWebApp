@@ -38,25 +38,17 @@ public class SubmitCommand extends FrontCommand {
         }
 
         DiskFileItemFactory factory = new DiskFileItemFactory();
-
-
         factory.setSizeThreshold(1024 * 1024);
-
         File tempDir = (File) request.getSession().getServletContext().getAttribute("javax.servlet.context.tempdir");
         factory.setRepository(tempDir);
-
         ServletFileUpload upload = new ServletFileUpload(factory);
-
-
         upload.setSizeMax(1024 * 1024 * 10);
 
         try {
             List items = upload.parseRequest(request);
             Iterator iter = items.iterator();
-
             while (iter.hasNext()) {
                 FileItem item = (FileItem) iter.next();
-
                 if (item.isFormField()) {
                     processFormField(item);
                 } else {
@@ -64,7 +56,7 @@ public class SubmitCommand extends FrontCommand {
                 }
             }
             UserAuthenticationDto userAuthenticationDto = (UserAuthenticationDto) request.getSession().getAttribute("user");
-            boolean flag = CarService.getInstance().createCar(parametersMap, userAuthenticationDto.getId());
+            long flag = CarService.getInstance().createCar(parametersMap, userAuthenticationDto.getId());
             response.sendRedirect("/autobazar/controller");
             return;
         } catch (Exception e) {
@@ -74,14 +66,13 @@ public class SubmitCommand extends FrontCommand {
         }
     }
 
-
     private void processUploadedFile(FileItem item) throws Exception {
         File uploadetFile = null;
         Random random = new Random();
         do {
             int randomValue = random.nextInt();
             String path = context.getRealPath(File.separator + "media" + File.separator + "237x202" + File.separator + randomValue + item.getName());
-            parametersMap.put("image_path", "media/237x202/" + randomValue + item.getName());
+            parametersMap.put("image", "media/237x202/" + randomValue + item.getName());
             uploadetFile = new File(path);
         } while (uploadetFile.exists());
 
@@ -90,9 +81,7 @@ public class SubmitCommand extends FrontCommand {
         item.write(uploadetFile);
     }
 
-
     private void processFormField(FileItem item) {
         parametersMap.put(item.getFieldName(), item.getString());
     }
-
 }

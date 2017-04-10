@@ -1,10 +1,15 @@
 package by.autobazar.services;
 
 import by.autobazar.entity.Car;
-import by.autobazar.entity.Comments;
+import by.autobazar.entity.Image;
+import by.autobazar.entity.carEnum.*;
+import by.autobazar.util.HibernateUtil;
+import org.junit.AfterClass;
 import org.junit.Assert;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 
@@ -12,19 +17,45 @@ import java.util.List;
  * Created by Andrey on 19.03.2017.
  */
 public class CarServiceTest {
+    private static long id;
+    private static HashMap<String, String> hashMap;
+    private static CarService carService = CarService.getInstance();
 
-    @Test
+    @BeforeClass
+    public static void setCar() {
+        hashMap = new HashMap<>();
+        hashMap.put("mark", "Bmw");
+        hashMap.put("model", "X5");
+        hashMap.put("price", "10000");
+        hashMap.put("year", "2010");
+        hashMap.put("transmission", "AUTOMATIC");
+        hashMap.put("bodyType", "SUV");
+        hashMap.put("description", "FFFFF");
+        hashMap.put("carCondition", "USED");
+        hashMap.put("milleage", "1200000");
+        hashMap.put("doorsNumber", "5");
+        hashMap.put("fuelType", "PETROL");
+        hashMap.put("engineCapacity", "3.5");
+        hashMap.put("driving", "AWD");
+        hashMap.put("carColor", "BLACK");
+        hashMap.put("interiorMaterial", "LEATHER");
+        hashMap.put("interiorColor", "BLACK");
+        hashMap.put("region", "Minsk");
+        hashMap.put("city", "Minsk");
+        hashMap.put("image", "image/20000.jpeg");
+        AbstractService.session = HibernateUtil.getHibernateUtil().getSession();
+    }
+
+    @AfterClass
+    public static void deleteCar() {
+        carService.deleteCar(id);
+        AbstractService.session.close();
+    }
+
+        @Test
     public void getLimitAmountTest() {
 
         List<Car> carsList = CarService.getInstance().getLimitAmount();
-        Assert.assertNotNull(carsList);
-        Assert.assertTrue(carsList.size() > 0);
-    }
-
-    @Test
-    public void searchCarsTest() {
-        HashMap<String,String> hashMap = new HashMap<>();
-        List<Car> carsList = CarService.getInstance().searchCars(hashMap, "price", 0, 10);
         Assert.assertNotNull(carsList);
         Assert.assertTrue(carsList.size() > 0);
     }
@@ -38,62 +69,81 @@ public class CarServiceTest {
     }
 
     @Test
-    public void createCar() {
 
-        HashMap<String,String> hashMap = new HashMap<>();
+    public void getCarModelTest() {
 
-        hashMap.put("mark", "Bmw");
-        hashMap.put("model", "X6");
-        hashMap.put("body_type", "Suv");
-        hashMap.put("fuel_type", "Petrol");
-        hashMap.put("doors_number", "5");
-        hashMap.put("year", "2010");
-        hashMap.put("driving", "AWD");
-        hashMap.put("transmission", "Automatic");
-        hashMap.put("engine_capacity", "4.4");
-        hashMap.put("price", "20000");
-        hashMap.put("mileage", "90000");
-        hashMap.put("car_color", "Black");
-        hashMap.put("interior_material", "Leather");
-        hashMap.put("interior_color", "Black");
-        hashMap.put("name", "Andrey");
-        hashMap.put("region", "Minsk");
-        hashMap.put("city", "Minsk");
-        hashMap.put("phone", "+375(44)557-52-21");
-        hashMap.put("description", "Very good condition");
-        hashMap.put("car_condition", "Used");
-        hashMap.put("image_path", "......");
+        List<String> makesList = CarService.getInstance().getCarsModels("Bmw");
+        Assert.assertNotNull(makesList);
+        Assert.assertTrue(makesList.size() > 0);
+    }
 
-        Assert.assertTrue(CarService.getInstance().createCar(hashMap, 1L));
+    @Test
+    public void getAllCarsMakesTest() {
 
+        List<String> makesList = CarService.getInstance().getAllCarsMakes();
+        Assert.assertNotNull(makesList);
+        Assert.assertTrue(makesList.size() > 0);
+    }
+
+    @Test
+    public void getAllCarModelTest() {
+
+        List<String> makesList = CarService.getInstance().getAllCarsModels("Bmw");
+        Assert.assertNotNull(makesList);
+        Assert.assertTrue(makesList.size() > 0);
+    }
+    @Test
+    public void createCar() throws ServiceException {
+
+        id = carService.createCar(hashMap, 4L);
+        Assert.assertNotNull(id);
+    }
+
+    @Test
+    public void getAmountOfCarsTest() {
+        HashMap<String, String> searchParam = new HashMap<>();
+        searchParam.put("minPrice", "0");
+        searchParam.put("minYear", "2000");
+        searchParam.put("minEngineCapacity", "0");
+        searchParam.put("maxPrice", "1000000");
+        searchParam.put("maxYear", "2017");
+        searchParam.put("maxEngineCapacity", "5.5");
+        Assert.assertNotNull(carService.getAmountOfCars(searchParam));
+    }
+
+    @Test
+    public void searchCarsTest() {
+        HashMap<String, String> searchParam = new HashMap<>();
+        searchParam.put("minPrice", "0");
+        searchParam.put("minYear", "2000");
+        searchParam.put("minEngineCapacity", "0.0");
+        searchParam.put("maxPrice", "1000000");
+        searchParam.put("maxYear", "2017");
+        searchParam.put("maxEngineCapacity", "5.5");
+
+        List<Car> carsList = CarService.getInstance().searchCars(searchParam, "id", 0, 10);
+        Assert.assertNotNull(carsList);
+        Assert.assertTrue(carsList.size() > 0);
     }
 
     @Test
     public void getCarByIdTest() {
-
-        Car car = CarService.getInstance().getCarById(1L);
+        Car car = CarService.getInstance().getCarById(50L);
         Assert.assertNotNull(car);
     }
 
-    @Test
-    public void createCommentTest() {
-
-        Assert.assertTrue(CarService.getInstance().createComment("Hello", 2, 1));
-    }
-
-    @Test
-    public void getAllCommentsByCarTest() {
-
-        List<Comments> commentsList = CarService.getInstance().getAllCommentsByCar(1L);
-        Assert.assertNotNull(commentsList);
-        Assert.assertTrue(commentsList.size() > 0);
-
-    }
-
 //    @Test
-//    public void deleteCarTest() {
+//    public void createCommentTest() {
 //
-//        Assert.assertTrue(CarService.getInstance().deleteCar(46L));
+//        Assert.assertTrue(CarService.getInstance().createComment("Hello", 2, 1));
+//    }
+//
+//    @Test
+//    public void getAllCommentsByCarTest() {
+//
+//        List<Comments> commentsList = CarService.getInstance().getAllCommentsByCar(1L);
+//        Assert.assertNotNull(commentsList);
+//        Assert.assertTrue(commentsList.size() > 0);
 //
 //    }
 }

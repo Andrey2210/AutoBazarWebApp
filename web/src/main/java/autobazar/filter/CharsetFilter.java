@@ -24,6 +24,7 @@ public class CharsetFilter implements Filter {
             servletRequest.setCharacterEncoding(encoding);
         }
 
+        servletRequest.setCharacterEncoding("UTF-8");
         servletResponse.setContentType("text/html; charset=UTF-8");
         servletResponse.setCharacterEncoding("UTF-8");
 

@@ -1,6 +1,5 @@
 package autobazar.command;
 
-import autobazar.ConfigurationManager;
 import autobazar.dto.UserAuthenticationDto;
 import by.autobazar.entity.User;
 import by.autobazar.services.UserService;
@@ -25,7 +24,7 @@ public class LoginCommand extends FrontCommand {
             userAuthenticationDto.setId(user.getId());
             userAuthenticationDto.setLogin(user.getLogin());
             userAuthenticationDto.setPassword(user.getPassword());
-            userAuthenticationDto.setRole(user.getRole());
+            userAuthenticationDto.setRole(user.getRole().toString());
             request.getSession().setAttribute("user", userAuthenticationDto);
         }
 

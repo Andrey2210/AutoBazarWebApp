@@ -10,15 +10,15 @@ public class PageDetailsDto {
     private int itemsOnPage;
     private int pageNumber;
     private int amountOfPage;
-    private int amountOfItems;
+    private long amountOfItems;
     private String pageType;
     private HashMap<String,String> searchParameters;
 
-    public PageDetailsDto(int amountOfItems) {
-        this.sort = "cars.id";
-        this.itemsOnPage = 5;
+    public PageDetailsDto(long amountOfItems) {
+        this.sort = "id";
+        this.itemsOnPage = 10;
         this.pageNumber = 1;
-        this.amountOfPage = (int)Math.ceil(amountOfItems/5.);
+        this.amountOfPage = (int)Math.ceil(amountOfItems/10.);
         this.amountOfItems = amountOfItems;
         pageType = "items";
     }
@@ -57,12 +57,14 @@ public class PageDetailsDto {
         this.amountOfPage = (int)Math.ceil((double)amountOfItems/amountOfPage);
 }
 
-    public int getAmountOfItems() {
+    public long getAmountOfItems() {
         return amountOfItems;
     }
 
-    public void setAmountOfItems(int amountOfItems) {
+    public void setAmountOfItems(long amountOfItems) {
         this.amountOfItems = amountOfItems;
+        pageNumber = 1;
+        setAmountOfPage(itemsOnPage);
     }
 
     public HashMap<String, String> getSearchParameters() {

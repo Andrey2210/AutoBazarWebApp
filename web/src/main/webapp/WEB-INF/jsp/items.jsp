@@ -21,11 +21,11 @@
     <c:forEach var="car" items="${requestScope.list}">
         <div class="b-items__cars-one wow zoomInUp" data-wow-delay="0.5s">
             <div class="b-items__cars-one-img">
-                <img src="${car.image}" class="img-responsive"/>
+                <img src="${car.imageList.get(0).imagePath}" class="img-responsive"/>
             </div>
             <div class="b-items__cars-one-info">
                 <form class="b-items__cars-one-info-header s-lineDownLeft">
-                    <h2>${car.mark} ${car.model} ${car.characteristics.engineCapacity}L</h2>
+                    <h2>${car.mark} ${car.model} ${car.engineCapacity}L</h2>
                 </form>
                 <div class="row s-noRightMargin">
                     <div class="col-md-9 col-xs-12">
@@ -40,7 +40,7 @@
                                     </div>
                                     <div class="col-xs-6">
                                         <span class="b-items__cars-one-info-value">${car.year.getYear()}</span>
-                                        <span class="b-items__cars-one-info-value">${car.conditions.milleage} KM</span>
+                                        <span class="b-items__cars-one-info-value">${car.milleage} KM</span>
                                         <span class="b-items__cars-one-info-value">${car.transmission}</span>
                                     </div>
                                 </div>
@@ -53,9 +53,9 @@
                                         <span class="b-items__cars-one-info-title">Doors:</span>
                                     </div>
                                     <div class="col-xs-8">
-                                        <span class="b-items__cars-one-info-value">${car.characteristics.fuelType}</span>
-                                        <span class="b-items__cars-one-info-value">${car.additions.carColor}</span>
-                                        <span class="b-items__cars-one-info-value">${car.characteristics.doorsNumber}-Door</span>
+                                        <span class="b-items__cars-one-info-value">${car.fuelType}</span>
+                                        <span class="b-items__cars-one-info-value">${car.carColor}</span>
+                                        <span class="b-items__cars-one-info-value">${car.doorsNumber}-Doors</span>
                                     </div>
                                 </div>
                             </div>

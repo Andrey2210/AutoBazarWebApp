@@ -1,0 +1,251 @@
+2017-04-10 06:05:31,935 DEBUG - throwQueryException() : no errors
+t2017-04-10 06:05:31,935 DEBUG - select car0_.F_ID as F_ID1_0_, car0_.F_BODY_TYPE as F_BODY_T2_0_, car0_.F_CAR_COLOR as F_CAR_CO3_0_, car0_.F_CONDITION as F_CONDIT4_0_, car0_.F_CITY as F_CITY5_0_, car0_.F_DESCRIPTION as F_DESCRI6_0_, car0_.F_DOORS_NUMBER as F_DOORS_7_0_, car0_.F_DRIVING as F_DRIVIN8_0_, car0_.F_ENGINE_CAPACITY as F_ENGINE9_0_, car0_.F_FUEL_TYPE as F_FUEL_10_0_, car0_.F_INTERIOR_COLOR as F_INTER11_0_, car0_.F_INTERIOR_MATERIAL as F_INTER12_0_, car0_.F_MARK as F_MARK13_0_, car0_.F_MILLEAGE as F_MILLE14_0_, car0_.F_MODEL as F_MODEL15_0_, car0_.F_PRICE as F_PRICE16_0_, car0_.F_REGION as F_REGIO17_0_, car0_.F_TRANSMISSION as F_TRANS18_0_, car0_.F_USER_ID as F_USER_21_0_, car0_.F_VERIFIED as F_VERIF19_0_, car0_.F_YEAR as F_YEAR20_0_ from T_CAR car0_ where car0_.F_VERIFIED=1 order by car0_.F_ID desc limit ?
+t2017-04-10 06:05:31,937 DEBUG - Result set row: 0
+t2017-04-10 06:05:31,941 DEBUG - Result row: EntityKey[by.autobazar.entity.Car#49]
+t2017-04-10 06:05:31,976 DEBUG - Converted value on extraction: 2012-01-01 -> 2012-01-01
+t2017-04-10 06:05:31,979 DEBUG - Result set row: 1
+t2017-04-10 06:05:31,979 DEBUG - Result row: EntityKey[by.autobazar.entity.Car#48]
+t2017-04-10 06:05:31,980 DEBUG - Converted value on extraction: 2012-01-01 -> 2012-01-01
+t2017-04-10 06:05:31,980 DEBUG - Resolving associations for [by.autobazar.entity.Car#49]
+t2017-04-10 06:05:32,002 DEBUG - select user0_.F_ID as F_ID1_3_0_, user0_.F_EMAIL as F_EMAIL2_3_0_, user0_.F_LOGIN as F_LOGIN3_3_0_, user0_.F_NAME as F_NAME4_3_0_, user0_.F_PASSWORD as F_PASSWO5_3_0_, user0_.F_PHONE as F_PHONE6_3_0_, user0_.F_ROLE as F_ROLE7_3_0_ from T_USER user0_ where user0_.F_ID=?
+t2017-04-10 06:05:32,047 DEBUG - Starting ResultSet row #0
+t2017-04-10 06:05:32,051 DEBUG - On call to EntityIdentifierReaderImpl#resolve, EntityKey was already known; should only happen on root returns with an optional identifier specified
+t2017-04-10 06:05:32,054 DEBUG - Resolving associations for [by.autobazar.entity.User#3]
+t2017-04-10 06:05:32,057 DEBUG - Done materializing entity [by.autobazar.entity.User#3]
+t2017-04-10 06:05:32,060 DEBUG - Done entity load : by.autobazar.entity.User#3
+t2017-04-10 06:05:32,086 DEBUG - Done materializing entity [by.autobazar.entity.Car#49]
+t2017-04-10 06:05:32,087 DEBUG - Resolving associations for [by.autobazar.entity.Car#48]
+t2017-04-10 06:05:32,088 DEBUG - Done materializing entity [by.autobazar.entity.Car#48]
+t2017-04-10 06:05:32,094 DEBUG - Loading collection: [by.autobazar.entity.Car.commentList#49]
+t2017-04-10 06:05:32,095 DEBUG - select commentlis0_.F_CAR_ID as F_CAR_ID4_0_0_, commentlis0_.F_ID as F_ID1_1_0_, commentlis0_.F_ID as F_ID1_1_1_, commentlis0_.F_CAR_ID as F_CAR_ID4_1_1_, commentlis0_.F_COMMENT as F_COMMEN2_1_1_, commentlis0_.F_CREATIONS_DATE as F_CREATI3_1_1_, commentlis0_.F_USER_ID as F_USER_I5_1_1_, user1_.F_ID as F_ID1_3_2_, user1_.F_EMAIL as F_EMAIL2_3_2_, user1_.F_LOGIN as F_LOGIN3_3_2_, user1_.F_NAME as F_NAME4_3_2_, user1_.F_PASSWORD as F_PASSWO5_3_2_, user1_.F_PHONE as F_PHONE6_3_2_, user1_.F_ROLE as F_ROLE7_3_2_ from T_COMMENT commentlis0_ left outer join T_USER user1_ on commentlis0_.F_USER_ID=user1_.F_ID where commentlis0_.F_CAR_ID=?
+t2017-04-10 06:05:32,110 DEBUG - Preparing collection intializer : [by.autobazar.entity.Car.commentList#49]
+t2017-04-10 06:05:32,131 DEBUG - 1 collections were found in result set for role: by.autobazar.entity.Car.commentList
+t2017-04-10 06:05:32,131 DEBUG - Collection fully initialized: [by.autobazar.entity.Car.commentList#49]
+t2017-04-10 06:05:32,131 DEBUG - 1 collections initialized for role: by.autobazar.entity.Car.commentList
+t2017-04-10 06:05:32,132 DEBUG - Done loading collection
+t2017-04-10 06:05:32,132 DEBUG - Loading collection: [by.autobazar.entity.Car.imageList#49]
+t2017-04-10 06:05:32,132 DEBUG - select imagelist0_.F_CAR_ID as F_CAR_ID4_0_0_, imagelist0_.F_ID as F_ID1_2_0_, imagelist0_.F_ID as F_ID1_2_1_, imagelist0_.F_CAR_ID as F_CAR_ID4_2_1_, imagelist0_.F_IMAGE_PATH as F_IMAGE_2_2_1_, imagelist0_.F_STATUS as F_STATUS3_2_1_ from T_IMAGE imagelist0_ where imagelist0_.F_CAR_ID=?
+t2017-04-10 06:05:32,142 DEBUG - Preparing collection intializer : [by.autobazar.entity.Car.imageList#49]
+t2017-04-10 06:05:32,142 DEBUG - Starting ResultSet row #0
+t2017-04-10 06:05:32,143 DEBUG - Found row of collection: [by.autobazar.entity.Car.imageList#49]
+t2017-04-10 06:05:32,143 DEBUG - Resolving associations for [by.autobazar.entity.Image#29]
+t2017-04-10 06:05:32,145 DEBUG - Done materializing entity [by.autobazar.entity.Image#29]
+t2017-04-10 06:05:32,145 DEBUG - 1 collections were found in result set for role: by.autobazar.entity.Car.imageList
+t2017-04-10 06:05:32,145 DEBUG - Collection fully initialized: [by.autobazar.entity.Car.imageList#49]
+t2017-04-10 06:05:32,145 DEBUG - 1 collections initialized for role: by.autobazar.entity.Car.imageList
+t2017-04-10 06:05:32,146 DEBUG - Done loading collection
+t2017-04-10 06:05:32,147 DEBUG - Loading collection: [by.autobazar.entity.Car.commentList#48]
+t2017-04-10 06:05:32,147 DEBUG - select commentlis0_.F_CAR_ID as F_CAR_ID4_0_0_, commentlis0_.F_ID as F_ID1_1_0_, commentlis0_.F_ID as F_ID1_1_1_, commentlis0_.F_CAR_ID as F_CAR_ID4_1_1_, commentlis0_.F_COMMENT as F_COMMEN2_1_1_, commentlis0_.F_CREATIONS_DATE as F_CREATI3_1_1_, commentlis0_.F_USER_ID as F_USER_I5_1_1_, user1_.F_ID as F_ID1_3_2_, user1_.F_EMAIL as F_EMAIL2_3_2_, user1_.F_LOGIN as F_LOGIN3_3_2_, user1_.F_NAME as F_NAME4_3_2_, user1_.F_PASSWORD as F_PASSWO5_3_2_, user1_.F_PHONE as F_PHONE6_3_2_, user1_.F_ROLE as F_ROLE7_3_2_ from T_COMMENT commentlis0_ left outer join T_USER user1_ on commentlis0_.F_USER_ID=user1_.F_ID where commentlis0_.F_CAR_ID=?
+t2017-04-10 06:05:32,148 DEBUG - Preparing collection intializer : [by.autobazar.entity.Car.commentList#48]
+t2017-04-10 06:05:32,148 DEBUG - 1 collections were found in result set for role: by.autobazar.entity.Car.commentList
+t2017-04-10 06:05:32,149 DEBUG - Collection fully initialized: [by.autobazar.entity.Car.commentList#48]
+t2017-04-10 06:05:32,149 DEBUG - 1 collections initialized for role: by.autobazar.entity.Car.commentList
+t2017-04-10 06:05:32,150 DEBUG - Done loading collection
+t2017-04-10 06:05:32,150 DEBUG - Loading collection: [by.autobazar.entity.Car.imageList#48]
+t2017-04-10 06:05:32,150 DEBUG - select imagelist0_.F_CAR_ID as F_CAR_ID4_0_0_, imagelist0_.F_ID as F_ID1_2_0_, imagelist0_.F_ID as F_ID1_2_1_, imagelist0_.F_CAR_ID as F_CAR_ID4_2_1_, imagelist0_.F_IMAGE_PATH as F_IMAGE_2_2_1_, imagelist0_.F_STATUS as F_STATUS3_2_1_ from T_IMAGE imagelist0_ where imagelist0_.F_CAR_ID=?
+t2017-04-10 06:05:32,151 DEBUG - Preparing collection intializer : [by.autobazar.entity.Car.imageList#48]
+t2017-04-10 06:05:32,151 DEBUG - Starting ResultSet row #0
+t2017-04-10 06:05:32,152 DEBUG - Found row of collection: [by.autobazar.entity.Car.imageList#48]
+t2017-04-10 06:05:32,152 DEBUG - Resolving associations for [by.autobazar.entity.Image#28]
+t2017-04-10 06:05:32,153 DEBUG - Done materializing entity [by.autobazar.entity.Image#28]
+t2017-04-10 06:05:32,153 DEBUG - 1 collections were found in result set for role: by.autobazar.entity.Car.imageList
+t2017-04-10 06:05:32,153 DEBUG - Collection fully initialized: [by.autobazar.entity.Car.imageList#48]
+t2017-04-10 06:05:32,153 DEBUG - 1 collections initialized for role: by.autobazar.entity.Car.imageList
+t2017-04-10 06:05:32,153 DEBUG - Done loading collection
+t2017-04-10 06:05:32,153 INFO  - getLimitAmount result list: [Car(id=49, mark=Bmw, model=M5, price=68000, year=2012-01-01, transmission=AUTOMATIC, bodyType=SEDAN, description=Perfect Car, carCondition=USED, milleage=35000, doorsNumber=5, fuelType=PETROL, engineCapacity=4.4, driving=AWD, carColor=BLACK, interiorMaterial=LEATHER, interiorColor=BLACK, region=Minsk, city=Minsk, verified=true, commentList=[], imageList=[Image(id=29, imagePath=media/237x202/-34876384m5ff10.jpg, status=main)]), Car(id=48, mark=Audi, model=A5, price=18500, year=2012-01-01, transmission=AUTOMATIC, bodyType=COUPE, description=GoodCar, carCondition=USED, milleage=65000, doorsNumber=3, fuelType=PETROL, engineCapacity=3.5, driving=AWD, carColor=BLACK, interiorMaterial=LEATHER, interiorColor=BLACK, region=Minsk, city=Minsk, verified=true, commentList=[], imageList=[Image(id=28, imagePath=media/237x202/1653291697$_86.JPG, status=main)])]
+t2017-04-10 06:05:32,154 DEBUG - committing
+t2017-04-10 06:05:32,155 DEBUG - Processing flush-time cascades
+t2017-04-10 06:05:32,169 DEBUG - Dirty checking collections
+t2017-04-10 06:05:32,181 DEBUG - Collection found: [by.autobazar.entity.Car.commentList#49], was: [by.autobazar.entity.Car.commentList#49] (initialized)
+t2017-04-10 06:05:32,181 DEBUG - Collection found: [by.autobazar.entity.Car.imageList#49], was: [by.autobazar.entity.Car.imageList#49] (initialized)
+t2017-04-10 06:05:32,182 DEBUG - Collection found: [by.autobazar.entity.Car.commentList#48], was: [by.autobazar.entity.Car.commentList#48] (initialized)
+t2017-04-10 06:05:32,182 DEBUG - Collection found: [by.autobazar.entity.Car.imageList#48], was: [by.autobazar.entity.Car.imageList#48] (initialized)
+t2017-04-10 06:05:32,182 DEBUG - Collection found: [by.autobazar.entity.User.carList#3], was: [by.autobazar.entity.User.carList#3] (uninitialized)
+t2017-04-10 06:05:32,182 DEBUG - Collection found: [by.autobazar.entity.User.commentList#3], was: [by.autobazar.entity.User.commentList#3] (uninitialized)
+t2017-04-10 06:05:32,183 DEBUG - Flushed: 0 insertions, 0 updates, 0 deletions to 5 objects
+t2017-04-10 06:05:32,183 DEBUG - Flushed: 0 (re)creations, 0 updates, 0 removals to 6 collections
+t2017-04-10 06:05:32,185 DEBUG - Listing entities:
+t2017-04-10 06:05:32,186 DEBUG - by.autobazar.entity.User{commentList=<uninitialized>, password=12345, role=ADMIN, phone=988-25-32, name=Ivan, id=3, carList=<uninitialized>, login=ivan123, email=ivan123@mail.ru}
+t2017-04-10 06:05:32,186 DEBUG - by.autobazar.entity.Image{car=by.autobazar.entity.Car#48, imagePath=media/237x202/1653291697$_86.JPG, id=28, status=main}
+t2017-04-10 06:05:32,186 DEBUG - by.autobazar.entity.Image{car=by.autobazar.entity.Car#49, imagePath=media/237x202/-34876384m5ff10.jpg, id=29, status=main}
+t2017-04-10 06:05:32,186 DEBUG - by.autobazar.entity.Car{bodyType=COUPE, commentList=[], interiorMaterial=LEATHER, doorsNumber=3, city=Minsk, year=2012-01-01, verified=true, description=GoodCar, carCondition=USED, milleage=65000, engineCapacity=3.5, driving=AWD, interiorColor=BLACK, carColor=BLACK, transmission=AUTOMATIC, fuelType=PETROL, price=18500, model=A5, id=48, region=Minsk, imageList=[by.autobazar.entity.Image#28], user=by.autobazar.entity.User#3, mark=Audi}
+t2017-04-10 06:05:32,186 DEBUG - by.autobazar.entity.Car{bodyType=SEDAN, commentList=[], interiorMaterial=LEATHER, doorsNumber=5, city=Minsk, year=2012-01-01, verified=true, description=Perfect Car, carCondition=USED, milleage=35000, engineCapacity=4.4, driving=AWD, interiorColor=BLACK, carColor=BLACK, transmission=AUTOMATIC, fuelType=PETROL, price=68000, model=M5, id=49, region=Minsk, imageList=[by.autobazar.entity.Image#29], user=by.autobazar.entity.User#3, mark=Bmw}
+t2017-04-10 06:05:32,187 DEBUG - committed JDBC Connection
+t2017-04-10 06:05:32,187 DEBUG - re-enabling autocommit
+t2017-04-10 06:05:32,187 INFO  - Service getAllCarsModels(): 
+t2017-04-10 06:05:32,188 DEBUG - begin
+t2017-04-10 06:05:32,188 DEBUG - initial autocommit status: true
+t2017-04-10 06:05:32,188 DEBUG - disabling autocommit
+t2017-04-10 06:05:32,188 INFO  - getAllCarsModels : 
+t2017-04-10 06:05:32,221 DEBUG - Processing flush-time cascades
+t2017-04-10 06:05:32,221 DEBUG - Dirty checking collections
+t2017-04-10 06:05:32,222 DEBUG - Collection found: [by.autobazar.entity.Car.commentList#49], was: [by.autobazar.entity.Car.commentList#49] (initialized)
+t2017-04-10 06:05:32,222 DEBUG - Collection found: [by.autobazar.entity.Car.imageList#49], was: [by.autobazar.entity.Car.imageList#49] (initialized)
+t2017-04-10 06:05:32,222 DEBUG - Collection found: [by.autobazar.entity.Car.commentList#48], was: [by.autobazar.entity.Car.commentList#48] (initialized)
+t2017-04-10 06:05:32,222 DEBUG - Collection found: [by.autobazar.entity.Car.imageList#48], was: [by.autobazar.entity.Car.imageList#48] (initialized)
+t2017-04-10 06:05:32,222 DEBUG - Collection found: [by.autobazar.entity.User.carList#3], was: [by.autobazar.entity.User.carList#3] (uninitialized)
+t2017-04-10 06:05:32,222 DEBUG - Collection found: [by.autobazar.entity.User.commentList#3], was: [by.autobazar.entity.User.commentList#3] (uninitialized)
+t2017-04-10 06:05:32,223 DEBUG - Flushed: 0 insertions, 0 updates, 0 deletions to 5 objects
+t2017-04-10 06:05:32,223 DEBUG - Flushed: 0 (re)creations, 0 updates, 0 removals to 6 collections
+t2017-04-10 06:05:32,223 DEBUG - Listing entities:
+t2017-04-10 06:05:32,223 DEBUG - by.autobazar.entity.User{commentList=<uninitialized>, password=12345, role=ADMIN, phone=988-25-32, name=Ivan, id=3, carList=<uninitialized>, login=ivan123, email=ivan123@mail.ru}
+t2017-04-10 06:05:32,223 DEBUG - by.autobazar.entity.Image{car=by.autobazar.entity.Car#48, imagePath=media/237x202/1653291697$_86.JPG, id=28, status=main}
+t2017-04-10 06:05:32,223 DEBUG - by.autobazar.entity.Image{car=by.autobazar.entity.Car#49, imagePath=media/237x202/-34876384m5ff10.jpg, id=29, status=main}
+t2017-04-10 06:05:32,223 DEBUG - by.autobazar.entity.Car{bodyType=COUPE, commentList=[], interiorMaterial=LEATHER, doorsNumber=3, city=Minsk, year=2012-01-01, verified=true, description=GoodCar, carCondition=USED, milleage=65000, engineCapacity=3.5, driving=AWD, interiorColor=BLACK, carColor=BLACK, transmission=AUTOMATIC, fuelType=PETROL, price=18500, model=A5, id=48, region=Minsk, imageList=[by.autobazar.entity.Image#28], user=by.autobazar.entity.User#3, mark=Audi}
+t2017-04-10 06:05:32,223 DEBUG - by.autobazar.entity.Car{bodyType=SEDAN, commentList=[], interiorMaterial=LEATHER, doorsNumber=5, city=Minsk, year=2012-01-01, verified=true, description=Perfect Car, carCondition=USED, milleage=35000, engineCapacity=4.4, driving=AWD, interiorColor=BLACK, carColor=BLACK, transmission=AUTOMATIC, fuelType=PETROL, price=68000, model=M5, id=49, region=Minsk, imageList=[by.autobazar.entity.Image#29], user=by.autobazar.entity.User#3, mark=Bmw}
+t2017-04-10 06:05:32,224 DEBUG - SELECT M.model FROM T_MODELS M INNER JOIN T_MAKES T ON M.make_id=T.id WHERE T.make=? ORDER BY M.model
+t2017-04-10 06:05:32,394 DEBUG - Result set row: 0
+t2017-04-10 06:05:32,395 DEBUG - Result row: 
+t2017-04-10 06:05:32,395 DEBUG - Result set row: 1
+t2017-04-10 06:05:32,395 DEBUG - Result row: 
+t2017-04-10 06:05:32,395 DEBUG - Result set row: 2
+t2017-04-10 06:05:32,395 DEBUG - Result row: 
+t2017-04-10 06:05:32,395 DEBUG - Result set row: 3
+t2017-04-10 06:05:32,395 DEBUG - Result row: 
+t2017-04-10 06:05:32,395 DEBUG - Result set row: 4
+t2017-04-10 06:05:32,395 DEBUG - Result row: 
+t2017-04-10 06:05:32,395 DEBUG - Result set row: 5
+t2017-04-10 06:05:32,395 DEBUG - Result row: 
+t2017-04-10 06:05:32,396 DEBUG - Result set row: 6
+t2017-04-10 06:05:32,396 DEBUG - Result row: 
+t2017-04-10 06:05:32,396 DEBUG - Result set row: 7
+t2017-04-10 06:05:32,396 DEBUG - Result row: 
+t2017-04-10 06:05:32,396 DEBUG - Result set row: 8
+t2017-04-10 06:05:32,396 DEBUG - Result row: 
+t2017-04-10 06:05:32,396 DEBUG - Result set row: 9
+t2017-04-10 06:05:32,396 DEBUG - Result row: 
+t2017-04-10 06:05:32,396 DEBUG - Result set row: 10
+t2017-04-10 06:05:32,396 DEBUG - Result row: 
+t2017-04-10 06:05:32,396 DEBUG - Result set row: 11
+t2017-04-10 06:05:32,396 DEBUG - Result row: 
+t2017-04-10 06:05:32,397 DEBUG - Result set row: 12
+t2017-04-10 06:05:32,397 DEBUG - Result row: 
+t2017-04-10 06:05:32,397 DEBUG - Result set row: 13
+t2017-04-10 06:05:32,397 DEBUG - Result row: 
+t2017-04-10 06:05:32,397 DEBUG - Result set row: 14
+t2017-04-10 06:05:32,397 DEBUG - Result row: 
+t2017-04-10 06:05:32,397 DEBUG - Result set row: 15
+t2017-04-10 06:05:32,397 DEBUG - Result row: 
+t2017-04-10 06:05:32,397 DEBUG - Result set row: 16
+t2017-04-10 06:05:32,397 DEBUG - Result row: 
+t2017-04-10 06:05:32,397 DEBUG - Result set row: 17
+t2017-04-10 06:05:32,397 DEBUG - Result row: 
+t2017-04-10 06:05:32,397 DEBUG - Result set row: 18
+t2017-04-10 06:05:32,398 DEBUG - Result row: 
+t2017-04-10 06:05:32,398 DEBUG - Result set row: 19
+t2017-04-10 06:05:32,398 DEBUG - Result row: 
+t2017-04-10 06:05:32,398 DEBUG - Result set row: 20
+t2017-04-10 06:05:32,398 DEBUG - Result row: 
+t2017-04-10 06:05:32,398 DEBUG - Result set row: 21
+t2017-04-10 06:05:32,398 DEBUG - Result row: 
+t2017-04-10 06:05:32,398 DEBUG - Result set row: 22
+t2017-04-10 06:05:32,398 DEBUG - Result row: 
+t2017-04-10 06:05:32,398 DEBUG - Result set row: 23
+t2017-04-10 06:05:32,398 DEBUG - Result row: 
+t2017-04-10 06:05:32,398 DEBUG - Result set row: 24
+t2017-04-10 06:05:32,399 DEBUG - Result row: 
+t2017-04-10 06:05:32,399 DEBUG - Result set row: 25
+t2017-04-10 06:05:32,399 DEBUG - Result row: 
+t2017-04-10 06:05:32,399 DEBUG - Result set row: 26
+t2017-04-10 06:05:32,399 DEBUG - Result row: 
+t2017-04-10 06:05:32,399 DEBUG - Result set row: 27
+t2017-04-10 06:05:32,399 DEBUG - Result row: 
+t2017-04-10 06:05:32,399 DEBUG - Result set row: 28
+t2017-04-10 06:05:32,399 DEBUG - Result row: 
+t2017-04-10 06:05:32,399 DEBUG - Result set row: 29
+t2017-04-10 06:05:32,399 DEBUG - Result row: 
+t2017-04-10 06:05:32,399 DEBUG - Result set row: 30
+t2017-04-10 06:05:32,400 DEBUG - Result row: 
+t2017-04-10 06:05:32,401 INFO  - getAllCarsModels result list: [3-reihe, 3-reihe (E36), 3-reihe (E46), 3-reihe (E90), 3-reihe (E92), 3-reihe (F30), 4-reihe, 5-reihe, 5-reihe (E34), 5-reihe (E39), 5-reihe (E60), 5-reihe (F10), 6-reihe, 7-reihe, 7-reihe (E38), 7-reihe (E65), 7-reihe (E67), 7-reihe (F01), 7-reihe (G11), i8, M3, M4, M5, M6, X1, X3, X4, X5 (E53), X5 (E70), X5 (F15), X6]
+t2017-04-10 06:05:32,401 DEBUG - committing
+t2017-04-10 06:05:32,401 DEBUG - Processing flush-time cascades
+t2017-04-10 06:05:32,402 DEBUG - Dirty checking collections
+t2017-04-10 06:05:32,403 DEBUG - Collection found: [by.autobazar.entity.Car.commentList#49], was: [by.autobazar.entity.Car.commentList#49] (initialized)
+t2017-04-10 06:05:32,403 DEBUG - Collection found: [by.autobazar.entity.Car.imageList#49], was: [by.autobazar.entity.Car.imageList#49] (initialized)
+t2017-04-10 06:05:32,403 DEBUG - Collection found: [by.autobazar.entity.Car.commentList#48], was: [by.autobazar.entity.Car.commentList#48] (initialized)
+t2017-04-10 06:05:32,403 DEBUG - Collection found: [by.autobazar.entity.Car.imageList#48], was: [by.autobazar.entity.Car.imageList#48] (initialized)
+t2017-04-10 06:05:32,403 DEBUG - Collection found: [by.autobazar.entity.User.carList#3], was: [by.autobazar.entity.User.carList#3] (uninitialized)
+t2017-04-10 06:05:32,404 DEBUG - Collection found: [by.autobazar.entity.User.commentList#3], was: [by.autobazar.entity.User.commentList#3] (uninitialized)
+t2017-04-10 06:05:32,404 DEBUG - Flushed: 0 insertions, 0 updates, 0 deletions to 5 objects
+t2017-04-10 06:05:32,404 DEBUG - Flushed: 0 (re)creations, 0 updates, 0 removals to 6 collections
+t2017-04-10 06:05:32,404 DEBUG - Listing entities:
+t2017-04-10 06:05:32,404 DEBUG - by.autobazar.entity.User{commentList=<uninitialized>, password=12345, role=ADMIN, phone=988-25-32, name=Ivan, id=3, carList=<uninitialized>, login=ivan123, email=ivan123@mail.ru}
+t2017-04-10 06:05:32,404 DEBUG - by.autobazar.entity.Image{car=by.autobazar.entity.Car#48, imagePath=media/237x202/1653291697$_86.JPG, id=28, status=main}
+t2017-04-10 06:05:32,404 DEBUG - by.autobazar.entity.Image{car=by.autobazar.entity.Car#49, imagePath=media/237x202/-34876384m5ff10.jpg, id=29, status=main}
+t2017-04-10 06:05:32,404 DEBUG - by.autobazar.entity.Car{bodyType=COUPE, commentList=[], interiorMaterial=LEATHER, doorsNumber=3, city=Minsk, year=2012-01-01, verified=true, description=GoodCar, carCondition=USED, milleage=65000, engineCapacity=3.5, driving=AWD, interiorColor=BLACK, carColor=BLACK, transmission=AUTOMATIC, fuelType=PETROL, price=18500, model=A5, id=48, region=Minsk, imageList=[by.autobazar.entity.Image#28], user=by.autobazar.entity.User#3, mark=Audi}
+t2017-04-10 06:05:32,405 DEBUG - by.autobazar.entity.Car{bodyType=SEDAN, commentList=[], interiorMaterial=LEATHER, doorsNumber=5, city=Minsk, year=2012-01-01, verified=true, description=Perfect Car, carCondition=USED, milleage=35000, engineCapacity=4.4, driving=AWD, interiorColor=BLACK, carColor=BLACK, transmission=AUTOMATIC, fuelType=PETROL, price=68000, model=M5, id=49, region=Minsk, imageList=[by.autobazar.entity.Image#29], user=by.autobazar.entity.User#3, mark=Bmw}
+t2017-04-10 06:05:32,405 DEBUG - committed JDBC Connection
+t2017-04-10 06:05:32,406 DEBUG - re-enabling autocommit
+t2017-04-10 06:05:32,406 INFO  - Service createCar(): 
+t2017-04-10 06:05:32,423 INFO  - Service getUserById : 
+t2017-04-10 06:05:32,423 DEBUG - begin
+t2017-04-10 06:05:32,423 DEBUG - initial autocommit status: true
+t2017-04-10 06:05:32,423 DEBUG - disabling autocommit
+t2017-04-10 06:05:32,424 INFO  - Get class by id:4
+t2017-04-10 06:05:32,427 DEBUG - select user0_.F_ID as F_ID1_3_0_, user0_.F_EMAIL as F_EMAIL2_3_0_, user0_.F_LOGIN as F_LOGIN3_3_0_, user0_.F_NAME as F_NAME4_3_0_, user0_.F_PASSWORD as F_PASSWO5_3_0_, user0_.F_PHONE as F_PHONE6_3_0_, user0_.F_ROLE as F_ROLE7_3_0_ from T_USER user0_ where user0_.F_ID=?
+t2017-04-10 06:05:32,429 DEBUG - Done entity load : by.autobazar.entity.User#4
+t2017-04-10 06:05:32,429 INFO  - get class:null
+t2017-04-10 06:05:32,429 DEBUG - committing
+t2017-04-10 06:05:32,429 DEBUG - Processing flush-time cascades
+t2017-04-10 06:05:32,430 DEBUG - Dirty checking collections
+t2017-04-10 06:05:32,430 DEBUG - Collection found: [by.autobazar.entity.Car.commentList#49], was: [by.autobazar.entity.Car.commentList#49] (initialized)
+t2017-04-10 06:05:32,430 DEBUG - Collection found: [by.autobazar.entity.Car.imageList#49], was: [by.autobazar.entity.Car.imageList#49] (initialized)
+t2017-04-10 06:05:32,430 DEBUG - Collection found: [by.autobazar.entity.Car.commentList#48], was: [by.autobazar.entity.Car.commentList#48] (initialized)
+t2017-04-10 06:05:32,431 DEBUG - Collection found: [by.autobazar.entity.Car.imageList#48], was: [by.autobazar.entity.Car.imageList#48] (initialized)
+t2017-04-10 06:05:32,431 DEBUG - Collection found: [by.autobazar.entity.User.carList#3], was: [by.autobazar.entity.User.carList#3] (uninitialized)
+t2017-04-10 06:05:32,431 DEBUG - Collection found: [by.autobazar.entity.User.commentList#3], was: [by.autobazar.entity.User.commentList#3] (uninitialized)
+t2017-04-10 06:05:32,431 DEBUG - Flushed: 0 insertions, 0 updates, 0 deletions to 5 objects
+t2017-04-10 06:05:32,431 DEBUG - Flushed: 0 (re)creations, 0 updates, 0 removals to 6 collections
+t2017-04-10 06:05:32,431 DEBUG - Listing entities:
+t2017-04-10 06:05:32,431 DEBUG - by.autobazar.entity.User{commentList=<uninitialized>, password=12345, role=ADMIN, phone=988-25-32, name=Ivan, id=3, carList=<uninitialized>, login=ivan123, email=ivan123@mail.ru}
+t2017-04-10 06:05:32,431 DEBUG - by.autobazar.entity.Image{car=by.autobazar.entity.Car#48, imagePath=media/237x202/1653291697$_86.JPG, id=28, status=main}
+t2017-04-10 06:05:32,431 DEBUG - by.autobazar.entity.Image{car=by.autobazar.entity.Car#49, imagePath=media/237x202/-34876384m5ff10.jpg, id=29, status=main}
+t2017-04-10 06:05:32,431 DEBUG - by.autobazar.entity.Car{bodyType=COUPE, commentList=[], interiorMaterial=LEATHER, doorsNumber=3, city=Minsk, year=2012-01-01, verified=true, description=GoodCar, carCondition=USED, milleage=65000, engineCapacity=3.5, driving=AWD, interiorColor=BLACK, carColor=BLACK, transmission=AUTOMATIC, fuelType=PETROL, price=18500, model=A5, id=48, region=Minsk, imageList=[by.autobazar.entity.Image#28], user=by.autobazar.entity.User#3, mark=Audi}
+t2017-04-10 06:05:32,431 DEBUG - by.autobazar.entity.Car{bodyType=SEDAN, commentList=[], interiorMaterial=LEATHER, doorsNumber=5, city=Minsk, year=2012-01-01, verified=true, description=Perfect Car, carCondition=USED, milleage=35000, engineCapacity=4.4, driving=AWD, interiorColor=BLACK, carColor=BLACK, transmission=AUTOMATIC, fuelType=PETROL, price=68000, model=M5, id=49, region=Minsk, imageList=[by.autobazar.entity.Image#29], user=by.autobazar.entity.User#3, mark=Bmw}
+t2017-04-10 06:05:32,432 DEBUG - committed JDBC Connection
+t2017-04-10 06:05:32,432 DEBUG - re-enabling autocommit
+t2017-04-10 06:05:32,432 DEBUG - begin
+t2017-04-10 06:05:32,433 DEBUG - initial autocommit status: true
+t2017-04-10 06:05:32,433 DEBUG - disabling autocommit
+t2017-04-10 06:05:32,433 INFO  - saveOrUpdate(t):Car(id=null, mark=Bmw, model=X5, price=10000, year=2010-01-01, transmission=AUTOMATIC, bodyType=SUV, description=FFFFF, carCondition=USED, milleage=1200000, doorsNumber=5, fuelType=PETROL, engineCapacity=3.5, driving=AWD, carColor=BLACK, interiorMaterial=LEATHER, interiorColor=BLACK, region=Minsk, city=Minsk, verified=false, commentList=[], imageList=[Image(id=null, imagePath=image/20000.jpeg, status=main)])
+t2017-04-10 06:05:32,440 DEBUG - Executing identity-insert immediately
+t2017-04-10 06:05:32,443 DEBUG - insert into T_CAR (F_BODY_TYPE, F_CAR_COLOR, F_CONDITION, F_CITY, F_DESCRIPTION, F_DOORS_NUMBER, F_DRIVING, F_ENGINE_CAPACITY, F_FUEL_TYPE, F_INTERIOR_COLOR, F_INTERIOR_MATERIAL, F_MARK, F_MILLEAGE, F_MODEL, F_PRICE, F_REGION, F_TRANSMISSION, F_USER_ID, F_VERIFIED, F_YEAR) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+t2017-04-10 06:05:32,448 DEBUG - Converted value on binding : 2010-01-01 -> 2010-01-01
+t2017-04-10 06:05:32,503 DEBUG - Natively generated identity: 52
+t2017-04-10 06:05:32,505 DEBUG - Executing identity-insert immediately
+t2017-04-10 06:05:32,506 DEBUG - insert into T_IMAGE (F_CAR_ID, F_IMAGE_PATH, F_STATUS) values (?, ?, ?)
+t2017-04-10 06:05:32,705 DEBUG - Natively generated identity: 31
+t2017-04-10 06:05:32,707 DEBUG - committing
+t2017-04-10 06:05:32,707 DEBUG - Processing flush-time cascades
+t2017-04-10 06:05:32,708 DEBUG - Dirty checking collections
+t2017-04-10 06:05:32,709 DEBUG - Collection found: [by.autobazar.entity.Car.commentList#49], was: [by.autobazar.entity.Car.commentList#49] (initialized)
+t2017-04-10 06:05:32,709 DEBUG - Collection found: [by.autobazar.entity.Car.imageList#49], was: [by.autobazar.entity.Car.imageList#49] (initialized)
+t2017-04-10 06:05:32,710 DEBUG - Collection found: [by.autobazar.entity.Car.commentList#48], was: [by.autobazar.entity.Car.commentList#48] (initialized)
+t2017-04-10 06:05:32,711 DEBUG - Collection found: [by.autobazar.entity.Car.imageList#48], was: [by.autobazar.entity.Car.imageList#48] (initialized)
+t2017-04-10 06:05:32,711 DEBUG - Collection found: [by.autobazar.entity.User.carList#3], was: [by.autobazar.entity.User.carList#3] (uninitialized)
+t2017-04-10 06:05:32,711 DEBUG - Collection found: [by.autobazar.entity.User.commentList#3], was: [by.autobazar.entity.User.commentList#3] (uninitialized)
+t2017-04-10 06:05:32,712 DEBUG - Collection found: [by.autobazar.entity.Car.commentList#52], was: [<unreferenced>] (initialized)
+t2017-04-10 06:05:32,713 DEBUG - Collection found: [by.autobazar.entity.Car.imageList#52], was: [<unreferenced>] (initialized)
+t2017-04-10 06:05:32,715 DEBUG - Flushed: 0 insertions, 0 updates, 0 deletions to 7 objects
+t2017-04-10 06:05:32,715 DEBUG - Flushed: 2 (re)creations, 0 updates, 0 removals to 8 collections
+t2017-04-10 06:05:32,715 DEBUG - Listing entities:
+t2017-04-10 06:05:32,715 DEBUG - by.autobazar.entity.Image{car=by.autobazar.entity.Car#48, imagePath=media/237x202/1653291697$_86.JPG, id=28, status=main}
+t2017-04-10 06:05:32,715 DEBUG - by.autobazar.entity.Image{car=by.autobazar.entity.Car#49, imagePath=media/237x202/-34876384m5ff10.jpg, id=29, status=main}
+t2017-04-10 06:05:32,715 DEBUG - by.autobazar.entity.Image{car=by.autobazar.entity.Car#52, imagePath=image/20000.jpeg, id=31, status=main}
+t2017-04-10 06:05:32,716 DEBUG - by.autobazar.entity.Car{bodyType=COUPE, commentList=[], interiorMaterial=LEATHER, doorsNumber=3, city=Minsk, year=2012-01-01, verified=true, description=GoodCar, carCondition=USED, milleage=65000, engineCapacity=3.5, driving=AWD, interiorColor=BLACK, carColor=BLACK, transmission=AUTOMATIC, fuelType=PETROL, price=18500, model=A5, id=48, region=Minsk, imageList=[by.autobazar.entity.Image#28], user=by.autobazar.entity.User#3, mark=Audi}
+t2017-04-10 06:05:32,716 DEBUG - by.autobazar.entity.Car{bodyType=SEDAN, commentList=[], interiorMaterial=LEATHER, doorsNumber=5, city=Minsk, year=2012-01-01, verified=true, description=Perfect Car, carCondition=USED, milleage=35000, engineCapacity=4.4, driving=AWD, interiorColor=BLACK, carColor=BLACK, transmission=AUTOMATIC, fuelType=PETROL, price=68000, model=M5, id=49, region=Minsk, imageList=[by.autobazar.entity.Image#29], user=by.autobazar.entity.User#3, mark=Bmw}
+t2017-04-10 06:05:32,716 DEBUG - by.autobazar.entity.User{commentList=<uninitialized>, password=12345, role=ADMIN, phone=988-25-32, name=Ivan, id=3, carList=<uninitialized>, login=ivan123, email=ivan123@mail.ru}
+t2017-04-10 06:05:32,716 DEBUG - by.autobazar.entity.Car{bodyType=SUV, commentList=[], interiorMaterial=LEATHER, doorsNumber=5, city=Minsk, year=2010-01-01, verified=false, description=FFFFF, carCondition=USED, milleage=1200000, engineCapacity=3.5, driving=AWD, interiorColor=BLACK, carColor=BLACK, transmission=AUTOMATIC, fuelType=PETROL, price=10000, model=X5, id=52, region=Minsk, imageList=[by.autobazar.entity.Image#31], user=null, mark=Bmw}
+t2017-04-10 06:05:32,747 DEBUG - committed JDBC Connection
+t2017-04-10 06:05:32,747 DEBUG - re-enabling autocommit
+t2017-04-10 06:05:32,748 INFO  - Service getCarById(): 
+t2017-04-10 06:05:32,748 DEBUG - begin
+t2017-04-10 06:05:32,749 DEBUG - initial autocommit status: true
+t2017-04-10 06:05:32,749 DEBUG - disabling autocommit
+t2017-04-10 06:05:32,749 INFO  - Get class by id:5
+t2017-04-10 06:05:32,750 DEBUG - select car0_.F_ID as F_ID1_0_0_, car0_.F_BODY_TYPE as F_BODY_T2_0_0_, car0_.F_CAR_COLOR as F_CAR_CO3_0_0_, car0_.F_CONDITION as F_CONDIT4_0_0_, car0_.F_CITY as F_CITY5_0_0_, car0_.F_DESCRIPTION as F_DESCRI6_0_0_, car0_.F_DOORS_NUMBER as F_DOORS_7_0_0_, car0_.F_DRIVING as F_DRIVIN8_0_0_, car0_.F_ENGINE_CAPACITY as F_ENGINE9_0_0_, car0_.F_FUEL_TYPE as F_FUEL_10_0_0_, car0_.F_INTERIOR_COLOR as F_INTER11_0_0_, car0_.F_INTERIOR_MATERIAL as F_INTER12_0_0_, car0_.F_MARK as F_MARK13_0_0_, car0_.F_MILLEAGE as F_MILLE14_0_0_, car0_.F_MODEL as F_MODEL15_0_0_, car0_.F_PRICE as F_PRICE16_0_0_, car0_.F_REGION as F_REGIO17_0_0_, car0_.F_TRANSMISSION as F_TRANS18_0_0_, car0_.F_USER_ID as F_USER_21_0_0_, car0_.F_VERIFIED as F_VERIF19_0_0_, car0_.F_YEAR as F_YEAR20_0_0_, user1_.F_ID as F_ID1_3_1_, user1_.F_EMAIL as F_EMAIL2_3_1_, user1_.F_LOGIN as F_LOGIN3_3_1_, user1_.F_NAME as F_NAME4_3_1_, user1_.F_PASSWORD as F_PASSWO5_3_1_, user1_.F_PHONE as F_PHONE6_3_1_, user1_.F_ROLE as F_ROLE7_3_1_ from T_CAR car0_ left outer join T_USER user1_ on car0_.F_USER_ID=user1_.F_ID where car0_.F_ID=?
+t2017-04-10 06:05:32,770 DEBUG - Done entity load : by.autobazar.entity.Car#5
+t2017-04-10 06:05:32,770 INFO  - get class:null
+t2017-04-10 06:05:32,836 INFO  - Service getCarsMakes(): 
+t2017-04-10 06:05:32,838 INFO  - Service getCarById(): 
+t
