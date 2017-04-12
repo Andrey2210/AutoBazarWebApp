@@ -24,7 +24,7 @@
     </thead>
     <c:forEach var="car" items="${requestScope.cars}">
         <tr>
-            <td>${car.id}</td>
+            <td><a href="/autobazar/controller?command=Detail&id=${car.id}">${car.id}</a></td>
             <td>${car.mark}</td>
             <td>${car.model}</td>
             <td>${car.user.id}</td>

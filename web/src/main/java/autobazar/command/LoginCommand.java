@@ -1,11 +1,15 @@
 package autobazar.command;
 
+import autobazar.ConfigurationManager;
 import autobazar.dto.UserAuthenticationDto;
+import by.autobazar.entity.Car;
 import by.autobazar.entity.User;
+import by.autobazar.services.CarService;
 import by.autobazar.services.UserService;
 
 import javax.servlet.ServletException;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * Created by Andrey on 19.03.2017.
@@ -17,7 +21,6 @@ public class LoginCommand extends FrontCommand {
 
         String login = request.getParameter("login");
         String password = request.getParameter("password");
-        String page;
         User user = UserService.getInstance().getLoggedUser(login, password);
         if (user != null) {
             UserAuthenticationDto userAuthenticationDto = new UserAuthenticationDto();
@@ -27,7 +30,11 @@ public class LoginCommand extends FrontCommand {
             userAuthenticationDto.setRole(user.getRole().toString());
             request.getSession().setAttribute("user", userAuthenticationDto);
         }
-
-        response.sendRedirect("/autobazar/controller");
+        request.getSession().removeAttribute("pageDetails");
+        List<Car> carsList = CarService.getInstance().getLimitAmount();
+        request.setAttribute("list", carsList);
+        request.setAttribute("allMakes", CarService.getInstance().getCarsMakes());
+        String page = ConfigurationManager.getInstance().getProperty("path.page.index");
+        forward(page);
     }
 }

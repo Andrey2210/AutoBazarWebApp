@@ -49,8 +49,10 @@ public class HibernateUtil {
     }
 
     public void closeSession (Session session) {
-        session.close();
-        sessions.remove();
+        sessions.set(null);
+        if (session != null) {
+            session.close();
+        }
     }
 
     public static synchronized HibernateUtil getHibernateUtil(){

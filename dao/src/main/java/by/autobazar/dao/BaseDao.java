@@ -10,11 +10,10 @@ import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 
 /**
- * Created by Andrey
- * Date: 29.03.2017.
- * Time: 1:40
+ * This class is responsible for realizing common methods for all DAO (CRUID methods)
+ *
+ * @param <T> Class should be Entity
  */
-
 public abstract class BaseDao<T> implements Dao<T> {
 
     private static Logger log = Logger.getLogger(BaseDao.class);

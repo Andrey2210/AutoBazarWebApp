@@ -5,9 +5,8 @@ import org.apache.log4j.Logger;
 import org.hibernate.Session;
 
 /**
- * Created by Andrey
- * Date: 31.03.2017.
- * Time: 0:14
+ * This class contains special methods for working with the entity Image
+ *
  */
 public class ImageDao extends BaseDao<Image> {
 

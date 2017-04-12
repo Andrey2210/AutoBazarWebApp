@@ -7,9 +7,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import lombok.extern.log4j.Log4j;
+import org.hibernate.annotations.*;
+import org.hibernate.annotations.Cache;
 
 import javax.persistence.*;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -25,9 +29,9 @@ import java.util.List;
 @Table(name="T_CAR")
 @Data
 @ToString(exclude="user")
-@Log4j
 @AllArgsConstructor
 @NoArgsConstructor
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Car implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -138,4 +142,7 @@ public class Car implements Serializable {
         this.city = city;
         this.verified = verified;
     }
+
+
+
 }

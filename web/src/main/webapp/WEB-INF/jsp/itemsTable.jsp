@@ -39,7 +39,7 @@
                             </div>
                             <div class="col-xs-7">
                                 <span class="b-items__cars-one-info-value">${car.bodyType}</span>
-                                <span class="b-items__cars-one-info-value">${car.conditions.milleage} KM</span>
+                                <span class="b-items__cars-one-info-value">${car.milleage} KM</span>
                                 <span class="b-items__cars-one-info-value">${car.transmission}</span>
                                 <span class="b-items__cars-one-info-value">${car.fuelType}, ${car.doorsNumber}-Doors</span>
                             </div>

@@ -9,6 +9,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@page isELIgnored="false"%>
+
+<fmt:setLocale value="${sessionScope.language}"/>
+<fmt:setBundle basename="translater"/>
 <html>
 <head>
     <meta charset="utf-8"/>
@@ -43,21 +46,21 @@
                     <div class="col-md-3 col-xs-6">
                         <nav class="b-topBar__nav">
                             <ul>
-                                <li><a class="main-item" href="/autobazar/registration">Register</a></li>
+                                <li><a class="main-item" href="/autobazar/registration"><fmt:message key="header.register"/></a></li>
                             </ul>
                         </nav>
                     </div>
                     <div class="col-md-1 col-xs-6">
                         <div class="b-topBar__lang">
                             <div class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle='dropdown'>SIGN IN</a>
+                                <a href="#" class="dropdown-toggle" data-toggle='dropdown'><fmt:message key="header.signIn"/></a>
                                 <ul class="dropdown-menu dropdown-menu-log">
                                     <form id="login-form" method="post" action="/autobazar/controller" >
                                     <input  type="hidden" name="command" value="Login"/>
                                     <li><input  type="text" name="login" placeholder="LOGIN/EMAIL" required=""/></li>
                                     <li><input  type="password" name="password" placeholder="PASSWORD" required=""/></li>
                                     </form>
-                                    <li><a href="#" onclick="userLogin()">SIGN IN</a></li>
+                                    <li><a href="#" onclick="userLogin()"><fmt:message key="header.signIn"/></a></li>
                                 </ul>
                             </div>
                         </div>
@@ -73,7 +76,7 @@
                     </div>
                     <div class="col-md-1 col-xs-6">
                         <nav class="b-topBar__lang">
-                            <a class="main-item" href="#" onclick="userLogout()">Sign Out</a>
+                            <a class="main-item" href="#" onclick="userLogout()"><fmt:message key="header.signOut"/></a>
                             <form id="logout-form" method="post" action="/autobazar/controller" style="display: none" >
                                 <input  type="hidden" name="command" value="Logout"/>
                             </form>
@@ -87,13 +90,13 @@
             <div class="col-md-2 col-xs-6">
                 <div class="b-topBar__lang">
                     <div class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle='dropdown'>Language</a>
+                        <a href="#" class="dropdown-toggle" data-toggle='dropdown'><fmt:message key="header.language"/></a>
                         <a class="m-langLink dropdown-toggle" data-toggle='dropdown' href="#"><span
                                 class="b-topBar__lang-flag m-en"></span><span class="fa fa-caret-down"></span></a>
                         <ul class="dropdown-menu h-lang">
-                            <li><a class="m-langLink dropdown-toggle" data-toggle='dropdown' href="#"><span
+                            <li><a class="m-langLink dropdown-toggle" data-toggle='dropdown' href="/autobazar/controller?language=en_US"><span
                                     class="b-topBar__lang-flag m-en"></span>EN</a></li>
-                            <li><a class="m-langLink dropdown-toggle" data-toggle='dropdown' href="#"><span
+                            <li><a class="m-langLink dropdown-toggle" data-toggle='dropdown' href="/autobazar/controller?language=ru_RU"><span
                                     class="b-topBar__lang-flag m-es"></span>RU</a></li>
                         </ul>
                     </div>
@@ -109,7 +112,7 @@
             <div class="col-sm-3 col-xs-4">
                 <div class="b-nav__logo wow slideInLeft" data-wow-delay="0.3s">
                     <h3><a href="/autobazar/controller">Auto<span>BAZAR</span></a></h3>
-                    <h2><a href="/autobazar/controller">sell your car with us</a></h2>
+                    <h2><a href="/autobazar/controller"><fmt:message key="header.logo"/></a></h2>
                 </div>
             </div>
             <div class="col-sm-9 col-xs-8">
@@ -125,8 +128,8 @@
                     <div class="collapse navbar-collapse navbar-main-slide" id="nav">
                         <ul class="navbar-nav-menu">
                             <li>
-                            <li><a href="/autobazar/controller">Home</a></li>
-                            <li><a href="/autobazar/controller?command=Search">Shop</a></li>
+                            <li><a href="/autobazar/controller"><fmt:message key="header.home"/></a></li>
+                            <li><a href="/autobazar/controller?command=Search"><fmt:message key="header.catalog"/></a></li>
                             <c:if test="${sessionScope.user.role eq 'ADMIN'}">
                                 <li><a href="/autobazar/dashboard">Dashboard</a></li>
                             </c:if>
@@ -146,7 +149,7 @@
                 <img src="media/main-slider/4.jpg" alt="sliderImg"/>
                 <div class="container">
                     <div class="carousel-caption b-slider__info">
-                        <h3>Find your dream car</h3>
+                        <h3><fmt:message key="header.sidebar"/></h3>
                         <h2>MercedesBenz <br/>CLS63 AMG</h2>
                         <p>Model 2015 <span>$72,000</span></p>
                         <a class="btn m-btn" href="/autobazar/controller?command=Search&mark=Mercedes-Benz&model=CLS">see details<span class="fa fa-angle-right"></span></a>
@@ -157,7 +160,7 @@
                 <img src="media/main-slider/2.jpg" alt="sliderImg"/>
                 <div class="container">
                     <div class="carousel-caption b-slider__info">
-                        <h3>Find your dream car</h3>
+                        <h3><fmt:message key="header.sidebar"/></h3>
                         <h2>BMW <br/>M5 F10</h2>
                         <p>Model 2012 <span>$65,000</span></p>
                         <a class="btn m-btn" href="/autobazar/controller?command=Search&mark=Bmw&model=M5">see details<span class="fa fa-angle-right"></span></a>
@@ -168,7 +171,7 @@
                 <img src="media/main-slider/1.jpg" alt="sliderImg"/>
                 <div class="container">
                     <div class="carousel-caption b-slider__info">
-                        <h3>Find your dream car</h3>
+                        <h3><fmt:message key="header.sidebar"/></h3>
                         <h2>PORSCHE <br/>PANAMERA TURBO S</h2>
                         <p>Model 2013 <span>$70,000</span></p>
                         <a class="btn m-btn" href="/autobazar/controller?command=Search&mark=Porsche&model=Panamera">see details<span class="fa fa-angle-right"></span></a>
@@ -188,9 +191,9 @@
 
 <section class="b-search">
     <div class="container">
-        <h1 class="wow zoomInUp" data-wow-delay="0.3s">UNSURE WHICH VEHICLE YOU ARE LOOKING FOR? FIND IT HERE</h1>
+        <h1 class="wow zoomInUp" data-wow-delay="0.3s"><fmt:message key="autobazar.header"/></h1>
         <div class="b-search__main wow zoomInUp" data-wow-delay="0.3s">
-            <h4>SELECT VEHICLE BODY TYPE</h4>
+            <h4><fmt:message key="autobazar.selectCar"/></h4>
             <form action="/autobazar/controller" method="POST" class="b-search__main-form">
                 <div class="row">
                     <div class="col-xs-2">
@@ -476,7 +479,7 @@
                         <div class="m-firstSelects">
                             <div class="col-xs-4">
                                 <select name="mark" onchange="onChange(this)">
-                                    <option value="" selected="selected">All Makes</option>
+                                    <option value="" selected="selected"><fmt:message key="car.makes"/></option>
                                     <c:forEach var="make" items="${requestScope.allMakes}">
                                         <option value="${make}">${make}</option>
                                     </c:forEach>
@@ -486,14 +489,14 @@
                             </div>
                             <div class="col-xs-4">
                                 <select id="model" name="model">
-                                    <option value="" selected="selected">Model</option>
+                                    <option value="" selected="selected"><fmt:message key="car.models"/></option>
                                 </select>
                                 <span class="fa fa-caret-down"></span>
                                 <p>MISSING MODEL?</p>
                             </div>
                             <div class="col-xs-4">
                                 <select name="fuelType">
-                                    <option value="" selected="selected">Fuel Type</option>
+                                    <option value="" selected="selected"><fmt:message key="car.fuelType"/></option>
                                     <option value="PETROL">Petrol</option>
                                     <option value="DIESEL">Diesel</option>
                                     <option value="ELECTRO">Electro</option>
@@ -505,7 +508,7 @@
                         <div class="m-secondSelects">
                             <div class="col-xs-4">
                                 <select name="transmission">
-                                    <option value="" selected="selected">Transmission</option>
+                                    <option value="" selected="selected"><fmt:message key="car.transmission"/></option>
                                     <option value="AUTOMATIC">Automatic</option>
                                     <option value="MANUAL">Manual</option>
                                     <option value="CVT">CVT</option>
@@ -516,7 +519,7 @@
 
                             <div class="col-xs-4">
                                 <div class="dropdown dropdown-select">
-                                    <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">Year Range
+                                    <button class="btn dropdown-toggle" type="button" data-toggle="dropdown"><fmt:message key="car.year"/>
                                         <span class="caret"></span></button>
                                     <ul class="dropdown-menu dropdown-select-menu">
                                         <li>
@@ -534,8 +537,7 @@
                             </div>
                             <div class="col-xs-4">
                                 <div class="dropdown dropdown-select">
-                                    <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">Engine
-                                        Capacity
+                                    <button class="btn dropdown-toggle" type="button" data-toggle="dropdown"><fmt:message key="car.engineCapacity"/>
                                         <span class="caret"></span></button>
                                     <ul class="dropdown-menu dropdown-select-menu">
                                         <li>
@@ -556,7 +558,7 @@
                     <div class="col-md-4 col-xs-12 text-left s-noPadding">
 
                         <div id="b-search-price" class="b-search__main-form-range">
-                            <label>PRICE</label>
+                            <label><fmt:message key="car.price"/></label>
                             <input type="number" min="0" max="10000000" name="minPrice" class="j-min" value="0" placeholder="FROM"/> -
                             <input type="number" min="0" max="10000000" name="maxPrice" class="j-max" value="10000000" placeholder="TO"/>
                         </div>
@@ -578,8 +580,8 @@
         <div class="row">
             <div class="col-xs-12">
                 <div class="b-homeAuto__latest">
-                    <h5 class="s-titleBg wow zoomInLeft" data-wow-delay="0.3s">FIND OUT MORE</h5><br/>
-                    <h2 class="s-title wow zoomInLeft" data-wow-delay="0.3s">LATEST VEHICLES ON SALE</h2>
+                    <h5 class="s-titleBg wow zoomInLeft" data-wow-delay="0.3s"><fmt:message key="autobazar.more"/></h5><br/>
+                    <h2 class="s-title wow zoomInLeft" data-wow-delay="0.3s"><fmt:message key="autobazar.lastAdded"/></h2>
                     <div class="b-auto__main">
                         <div class="row">
 
@@ -629,9 +631,8 @@
                         <span class="fa fa-search"></span>
                     </div>
                     <div class="b-asks__first-info">
-                        <h2>ARE YOU LOOKING FOR A CAR?</h2>
-                        <p>Search Our Inventory With Thousands Of Cars And More
-                            Cars Are Adding On Daily Basis</p>
+                        <h2><fmt:message key="autobazar.looking"/></h2>
+                        <p><fmt:message key="autobazar.looking.description"/></p>
                     </div>
                     <div class="b-asks__first-arrow">
                         <a href="/autobazar/controller?command=Search"><span class="fa fa-angle-right"></span></a>
@@ -644,9 +645,8 @@
                         <span class="fa fa-usd"></span>
                     </div>
                     <div class="b-asks__first-info">
-                        <h2>DO YOU WANT TO SELL A CAR?</h2>
-                        <p>Search Our Inventory With Thousands Of Cars And More
-                            Cars Are Adding On Daily Basis</p>
+                        <h2><fmt:message key="autobazar.add"/></h2>
+                        <p><fmt:message key="autobazar.description"/></p>
                     </div>
                     <div class="b-asks__first-arrow">
                         <a href="/autobazar/submit"><span class="fa fa-angle-right"></span></a>

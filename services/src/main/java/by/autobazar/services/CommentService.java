@@ -56,4 +56,24 @@ public class CommentService extends AbstractService{
         }
         return car.getId();
     }
+
+    public void deleteComment(Long id) {
+        log.info("Service deleteComment(): ");
+
+        commentDao.session = session;
+        Transaction transaction = getTransaction();
+        Comment comment= null;
+        try {
+            comment = commentDao.get(id);
+            transaction.commit();
+            if(comment != null) {
+                transaction = getTransaction();
+                commentDao.delete(comment);
+                transaction.commit();
+            }
+        } catch (DaoException | HibernateException e) {
+            log.info("Error in service deleteComment(): " + e);
+            transaction.rollback();
+        }
+    }
 }

@@ -12,7 +12,7 @@ import java.io.IOException;
 public class CarsDashboardCommand extends FrontCommand {
     @Override
     public void process() throws ServletException, IOException {
-        request.setAttribute("cars", CarService.getInstance().getAllCars("id", 0, 10));
+        request.setAttribute("cars", CarService.getInstance().getAllCars("id", 0, 100));
         forward(ConfigurationManager.getInstance().getProperty("path.page.carsDashboard"));
     }
 }

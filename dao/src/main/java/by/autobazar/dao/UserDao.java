@@ -8,6 +8,10 @@ import org.hibernate.Query;
 
 import java.util.List;
 
+/**
+ * This class contains special methods for working with the entity User
+ *
+ */
 public class UserDao extends BaseDao<User> {
     private static Logger log = Logger.getLogger(UserDao.class);
     private static UserDao INSTANCE = null;
@@ -28,6 +32,14 @@ public class UserDao extends BaseDao<User> {
         return INSTANCE;
     }
 
+    /**
+     * This method load User by his login and password
+     *
+     * @param login    Users login in String
+     * @param password  Users password
+     * @return Object of User appropriate
+     * @throws DaoException
+     */
     public User getLoggedUser(String login, String password) throws DaoException {
         log.info("getLoggedUser : ");
 
@@ -44,6 +56,12 @@ public class UserDao extends BaseDao<User> {
         }
     }
 
+    /**
+     * This method loads all Users from the database
+     *
+     * @return List of object-typed User
+     * @throws DaoException
+     */
     public List<User> getAll() throws DaoException {
         log.info("getAll : ");
 

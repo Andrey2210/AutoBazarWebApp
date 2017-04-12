@@ -2,10 +2,12 @@ package autobazar.command;
 
 import autobazar.ConfigurationManager;
 import autobazar.dto.PageDetailsDto;
+import by.autobazar.entity.carEnum.*;
 import by.autobazar.services.CarService;
 
 import javax.servlet.ServletException;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.Enumeration;
 import java.util.HashMap;
 
@@ -31,8 +33,7 @@ public class SearchCommand extends FrontCommand {
             pageDetails.setSearchParameters(getSearchOptions());
             request.setAttribute("list", CarService.getInstance()
                     .searchCars(getSearchOptions(), pageDetails.getSort(),
-                            (pageDetails.getPageNumber()-1)*pageDetails.getItemsOnPage(), pageDetails.getItemsOnPage()));
-
+                            (pageDetails.getPageNumber() - 1) * pageDetails.getItemsOnPage(), pageDetails.getItemsOnPage()));
             request.setAttribute("allMakes", CarService.getInstance().getCarsMakes());
             page = ConfigurationManager.getInstance().getProperty("path.page.carsList");
         }

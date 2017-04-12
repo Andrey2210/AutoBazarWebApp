@@ -2,6 +2,7 @@ package autobazar.command;
 
 import autobazar.ConfigurationManager;
 import autobazar.dto.UserAuthenticationDto;
+import by.autobazar.entity.Car;
 import by.autobazar.entity.User;
 import by.autobazar.services.CarService;
 import by.autobazar.services.UserService;
@@ -57,12 +58,15 @@ public class SubmitCommand extends FrontCommand {
             }
             UserAuthenticationDto userAuthenticationDto = (UserAuthenticationDto) request.getSession().getAttribute("user");
             long flag = CarService.getInstance().createCar(parametersMap, userAuthenticationDto.getId());
-            response.sendRedirect("/autobazar/controller");
-            return;
+            request.getSession().removeAttribute("pageDetails");
+            List<Car> carsList = CarService.getInstance().getLimitAmount();
+            request.setAttribute("list", carsList);
+            request.setAttribute("allMakes", CarService.getInstance().getCarsMakes());
+            String page = ConfigurationManager.getInstance().getProperty("path.page.index");
+            forward(page);
         } catch (Exception e) {
             e.printStackTrace();
             response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-            return;
         }
     }
 
@@ -75,9 +79,7 @@ public class SubmitCommand extends FrontCommand {
             parametersMap.put("image", "media/237x202/" + randomValue + item.getName());
             uploadetFile = new File(path);
         } while (uploadetFile.exists());
-
         uploadetFile.createNewFile();
-
         item.write(uploadetFile);
     }
 

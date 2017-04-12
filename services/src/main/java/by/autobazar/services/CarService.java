@@ -11,12 +11,13 @@ import org.hibernate.Transaction;
 
 import java.time.LocalDate;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 
 /**
  * Created by Andrey on 13.03.2017.
  */
-public class CarService extends AbstractService{
+public class CarService extends AbstractService {
 
     private static final Logger log = Logger.getLogger(CarService.class);
     private static CarService INSTANCE = null;
@@ -167,7 +168,7 @@ public class CarService extends AbstractService{
         long result = 0;
         verificationsParameters(searchMap);
         try {
-            result = carDao.getAmountOfCars(searchMap);
+            result = carDao.getAmountOfCars(parseParameters(searchMap));
             transaction.commit();
         } catch (DaoException | HibernateException e) {
             log.info("Error in service getAmountOfCars(): " + e);
@@ -185,7 +186,7 @@ public class CarService extends AbstractService{
         List<Car> carList = null;
         verificationsParameters(searchMap);
         try {
-            carList = carDao.searchCars(searchMap, order, start, amount);
+            carList = carDao.searchCars(parseParameters(searchMap), order, start, amount);
             transaction.commit();
         } catch (DaoException | HibernateException e) {
             log.info("Error in service searchCars(): " + e);
@@ -202,6 +203,34 @@ public class CarService extends AbstractService{
         searchParameters.replace("minPrice", String.valueOf(minPrice), String.valueOf(Math.min(minPrice, maxPrice)));
         searchParameters.replace("maxPrice", String.valueOf(maxPrice), String.valueOf(Math.max(minPrice, maxPrice)));
 
+    }
+
+    private HashMap<String, Object> parseParameters(HashMap<String, String> params) {
+        Iterator iterator = params.keySet().iterator();
+        HashMap<String, Object> hashMap = new HashMap<>();
+        while (iterator.hasNext()) {
+            String param = (String) iterator.next();
+            switch (param) {
+                case "transmission":
+                    hashMap.put(param, Transmission.valueOf(params.get(param)));
+                    break;
+                case "carCondition":
+                    hashMap.put(param, CarCondition.valueOf(params.get(param)));
+                    break;
+                case "bodyType":
+                    hashMap.put(param, BodyType.valueOf(params.get(param)));
+                    break;
+                case "fuelType":
+                    hashMap.put(param, FuelType.valueOf(params.get(param)));
+                    break;
+                case "driving":
+                    hashMap.put(param, WheelDriving.valueOf(params.get(param)));
+                    break;
+                default:
+                    hashMap.put(param, params.get(param));
+            }
+        }
+        return hashMap;
     }
 
     public Car getCarById(Long id) {
@@ -232,7 +261,7 @@ public class CarService extends AbstractService{
         try {
             car = carDao.get(id);
             transaction.commit();
-            if(car != null) {
+            if (car != null) {
                 transaction = getTransaction();
                 carDao.delete(car);
                 transaction.commit();
@@ -293,7 +322,7 @@ public class CarService extends AbstractService{
         }
     }
 
-    public List<Car> getAllCars( String order, int start, int amount) {
+    public List<Car> getAllCars(String order, int start, int amount) {
 
         log.info("Service getAllCars : ");
 

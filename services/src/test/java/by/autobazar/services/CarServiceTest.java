@@ -132,18 +132,10 @@ public class CarServiceTest {
         Assert.assertNotNull(car);
     }
 
-//    @Test
-//    public void createCommentTest() {
-//
-//        Assert.assertTrue(CarService.getInstance().createComment("Hello", 2, 1));
-//    }
-//
-//    @Test
-//    public void getAllCommentsByCarTest() {
-//
-//        List<Comments> commentsList = CarService.getInstance().getAllCommentsByCar(1L);
-//        Assert.assertNotNull(commentsList);
-//        Assert.assertTrue(commentsList.size() > 0);
-//
-//    }
+    @Test
+    public void getAllCarsTest() {
+        List<Car> carsList = carService.getAllCars("id", 0, 10);
+        Assert.assertNotNull(carsList);
+        Assert.assertTrue(carsList.size() > 0);
+    }
 }
