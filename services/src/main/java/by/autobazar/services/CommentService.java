@@ -54,7 +54,7 @@ public class CommentService extends AbstractService{
             log.info("Error in service createComment(): " + e);
             transaction.rollback();
         }
-        return car.getId();
+        return comment.getId();
     }
 
     public void deleteComment(Long id) {

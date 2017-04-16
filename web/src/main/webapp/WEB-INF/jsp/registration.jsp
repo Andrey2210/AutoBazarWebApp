@@ -86,18 +86,6 @@
                     <p>&copy; 2017 Designed by Andrei Berezovski</p>
                 </div>
             </div>
-            <div class="col-xs-8">
-                <div class="b-footer__content wow zoomInRight" data-wow-delay="0.5s">
-                    <nav class="b-footer__content-nav">
-                        <ul>
-                            <li><a href="home.html">Home</a></li>
-                            <li><a href="about.html">About</a></li>
-                            <li><a href="listTable.html">Shop</a></li>
-                            <li><a href="contacts.html">Contact</a></li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
         </div>
     </div>
 </footer><!--b-footer-->

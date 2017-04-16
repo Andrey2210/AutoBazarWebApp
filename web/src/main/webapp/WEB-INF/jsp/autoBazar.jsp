@@ -131,7 +131,7 @@
                             <li><a href="/autobazar/controller"><fmt:message key="header.home"/></a></li>
                             <li><a href="/autobazar/controller?command=Search"><fmt:message key="header.catalog"/></a></li>
                             <c:if test="${sessionScope.user.role eq 'ADMIN'}">
-                                <li><a href="/autobazar/dashboard">Dashboard</a></li>
+                                <li><a href="/autobazar/dashboard"><fmt:message key="header.dashboard"/></a></li>
                             </c:if>
                         </ul>
                     </div>
@@ -670,18 +670,7 @@
                     <p>&copy; 2017 Designed by Andrey Berezovskiy</p>
                 </div>
             </div>
-            <div class="col-xs-8">
-                <div class="b-footer__content wow slideInRight" data-wow-delay="0.3s">
-                    <nav class="b-footer__content-nav">
-                        <ul>
-                            <li><a href="home.html">Home</a></li>
-                            <li><a href="about.html">About</a></li>
-                            <li><a href="listTable.html">Shop</a></li>
-                            <li><a href="contacts.html">Contact</a></li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
+
         </div>
     </div>
 </footer><!--b-footer-->

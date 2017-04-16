@@ -400,26 +400,6 @@
                     <p>&copy; 2017 Designed by Andrey Berezovskiy</p>
                 </div>
             </div>
-            <div class="col-xs-8">
-                <div class="b-footer__content wow slideInRight" data-wow-delay="0.3s">
-                    <div class="b-footer__content-social">
-                        <a href="#"><span class="fa fa-facebook-square"></span></a>
-                        <a href="#"><span class="fa fa-twitter-square"></span></a>
-                        <a href="#"><span class="fa fa-google-plus-square"></span></a>
-                        <a href="#"><span class="fa fa-instagram"></span></a>
-                        <a href="#"><span class="fa fa-youtube-square"></span></a>
-                        <a href="#"><span class="fa fa-skype"></span></a>
-                    </div>
-                    <nav class="b-footer__content-nav">
-                        <ul>
-                            <li><a href="home.html">Home</a></li>
-                            <li><a href="about.html">About</a></li>
-                            <li><a href="listTable.html">Shop</a></li>
-                            <li><a href="contacts.html">Contact</a></li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
         </div>
     </div>
 </footer><!--b-footer-->

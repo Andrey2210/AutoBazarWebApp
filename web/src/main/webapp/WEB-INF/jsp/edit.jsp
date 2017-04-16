@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@page isELIgnored="false"%>
+<%@page isELIgnored="false" %>
 <html>
 <head>
     <meta charset="utf-8"/>
@@ -39,7 +39,7 @@
 <div id="b-submit" class="b-submit">
     <div class="container">
         <div class="row">
-            <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6" >
+            <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
 
             </div>
 
@@ -55,8 +55,9 @@
                                 <div class="b-submit__main-element wow zoomInUp" data-wow-delay="0.5s">
                                     <label>Enter Make <span>*</span></label>
                                     <div class='s-relative'>
-                                        <select class="m-select" name="mark" disabled >
-                                            <option value="${requestScope.car.mark}" selected="selected">${requestScope.car.mark}</option>
+                                        <select class="m-select" name="mark" disabled>
+                                            <option value="${requestScope.car.mark}"
+                                                    selected="selected">${requestScope.car.mark}</option>
                                         </select>
                                         <span class="fa fa-caret-down"></span>
                                     </div>
@@ -66,7 +67,8 @@
                                     <label>Select Body Type <span>*</span></label>
                                     <div class='s-relative'>
                                         <select class="m-select" name="bodyType">
-                                            <option value="${requestScope.car.bodyType}" selected="selected">${requestScope.car.bodyType}</option>
+                                            <option value="${requestScope.car.bodyType}"
+                                                    selected="selected">${requestScope.car.bodyType}</option>
                                             <option>PICKUP</option>
                                             <option>SUV</option>
                                             <option>COUPE</option>
@@ -82,7 +84,8 @@
                                     <label>Select Fuel Type <span>*</span></label>
                                     <div class='s-relative'>
                                         <select class="m-select" name="fuelType">
-                                            <option value="${requestScope.car.fuelType}" selected="selected">${requestScope.car.fuelType}</option>
+                                            <option value="${requestScope.car.fuelType}"
+                                                    selected="selected">${requestScope.car.fuelType}</option>
                                             <option>PETROL</option>
                                             <option>DIESEL</option>
                                             <option>ELECTRO</option>
@@ -94,7 +97,8 @@
 
                                 <div class="b-submit__main-element wow zoomInUp" data-wow-delay="0.5s">
                                     <label>No. of Doors <span>*</span></label>
-                                    <input placeholder="Enter No. of Doors" value="${requestScope.car.doorsNumber}" type="text" name="doorsNumber"/>
+                                    <input placeholder="Enter No. of Doors" value="${requestScope.car.doorsNumber}"
+                                           type="text" name="doorsNumber"/>
                                 </div>
 
                                 <div class="b-submit__main-element wow zoomInUp" data-wow-delay="0.5s">
@@ -112,7 +116,8 @@
                                     <label>Enter Vehicle Model <span>*</span></label>
                                     <div class='s-relative'>
                                         <select id="model" class="m-select" name="model" disabled>
-                                            <option value="${requestScope.car.model}" selected="selected">${requestScope.car.model}</option>
+                                            <option value="${requestScope.car.model}"
+                                                    selected="selected">${requestScope.car.model}</option>
                                         </select>
                                         <span class="fa fa-caret-down"></span>
                                     </div>
@@ -122,7 +127,8 @@
                                     <label>Select Drive Type <span>*</span></label>
                                     <div class='s-relative'>
                                         <select class="m-select" name="driving">
-                                            <option value="${requestScope.car.driving}" selected="selected">${requestScope.car.driving}</option>
+                                            <option value="${requestScope.car.driving}"
+                                                    selected="selected">${requestScope.car.driving}</option>
                                             <option>AWD</option>
                                             <option>FWD</option>
                                             <option>RWD</option>
@@ -135,7 +141,8 @@
                                     <label>Vehicle Transmission Type <span>*</span></label>
                                     <div class='s-relative'>
                                         <select class="m-select" name="transmission">
-                                            <option value="${requestScope.car.transmission}" selected="selected">${requestScope.car.transmission}</option>
+                                            <option value="${requestScope.car.transmission}"
+                                                    selected="selected">${requestScope.car.transmission}</option>
                                             <option>MANUAL</option>
                                             <option>AUTOMATIC</option>
                                             <option>CVT</option>
@@ -148,7 +155,8 @@
                                     <label>Select Car Condition <span>*</span></label>
                                     <div class='s-relative'>
                                         <select class="m-select" name="carCondition">
-                                            <option value="${requestScope.car.carCondition}" selected="selected">${requestScope.car.carCondition}</option>
+                                            <option value="${requestScope.car.carCondition}"
+                                                    selected="selected">${requestScope.car.carCondition}</option>
                                             <option>USED</option>
                                             <option>NEW</option>
                                             <option>CRASH</option>
@@ -159,14 +167,15 @@
 
                                 <div class="b-submit__main-element wow zoomInUp" data-wow-delay="0.5s">
                                     <label>Enter Engine Capacity <span>*</span></label>
-                                    <input placeholder="Enter Capacity" value="${requestScope.car.engineCapacity}" type="text" name="engineCapacity"/>
+                                    <input placeholder="Enter Capacity" value="${requestScope.car.engineCapacity}"
+                                           type="text" name="engineCapacity"/>
                                 </div>
 
                             </div>
                         </div>
 
 
-                        <div id="step2" >
+                        <div id="step2">
                             <div class="b-submit__main-contacts wow zoomInUp" data-wow-delay="0.3s">
                                 <header class="s-headerSubmit s-lineDownLeft">
                                     <h2>SELECT PRICE</h2>
@@ -195,7 +204,8 @@
                                         <div class="b-submit__main-element">
                                             <label>Enter Mileage <span>*</span></label>
                                             <div class="b-submit__main-contacts-inputSelect">
-                                                <input type="text" value="${requestScope.car.milleage}" name="milleage"/>
+                                                <input type="text" value="${requestScope.car.milleage}"
+                                                       name="milleage"/>
                                                 <div class="b-submit__main-contacts-select">
                                                     <select name="km" class="m-select">
                                                         <option>IN KMS</option>
@@ -209,7 +219,8 @@
                                             <label>Select Exterior Color <span>*</span></label>
                                             <div class="s-relative">
                                                 <select class="m-select" name="carColor">
-                                                    <option value="${requestScope.car.carColor}" selected="selected">${requestScope.car.carColor}</option>
+                                                    <option value="${requestScope.car.carColor}"
+                                                            selected="selected">${requestScope.car.carColor}</option>
                                                     <option>BLACK</option>
                                                     <option>BLUE</option>
                                                     <option>WHITE</option>
@@ -232,7 +243,8 @@
                                             <label>Select Interior Material <span>*</span></label>
                                             <div class="s-relative">
                                                 <select class="m-select" name="interiorMaterial">
-                                                    <option value="${requestScope.car.interiorMaterial}" selected="selected">${requestScope.car.interiorMaterial}</option>
+                                                    <option value="${requestScope.car.interiorMaterial}"
+                                                            selected="selected">${requestScope.car.interiorMaterial}</option>
                                                     <option>LEATHER</option>
                                                     <option>TISSUE</option>
                                                     <option>VELOURS</option>
@@ -246,7 +258,8 @@
                                             <label>Select Interior Color <span>*</span></label>
                                             <div class="s-relative">
                                                 <select class="m-select" name="interiorColor">
-                                                    <option value="${requestScope.car.interiorColor}" selected="selected">${requestScope.car.interiorColor}</option>
+                                                    <option value="${requestScope.car.interiorColor}"
+                                                            selected="selected">${requestScope.car.interiorColor}</option>
                                                     <option>BLACK</option>
                                                     <option>WHITE</option>
                                                     <option>GRAY</option>
@@ -263,7 +276,7 @@
                             </div>
                         </div>
 
-                        <div id="step3" class="b-submit__main-contacts wow zoomInUp" data-wow-delay="0.3s" >
+                        <div id="step3" class="b-submit__main-contacts wow zoomInUp" data-wow-delay="0.3s">
                             <header class="s-headerSubmit s-lineDownLeft">
                                 <h2>Tell Us How Buyers Contact You</h2>
                             </header>
@@ -292,7 +305,8 @@
                                     data-pager-custom="#bx-pager" data-mode="horizontal" data-pager-slide="true"
                                     data-mode-pager="vertical" data-pager-qty="5">
                                     <li class="s-relative">
-                                        <img class="img-responsive center-block" src="${requestScope.car.imageList.get(0).imagePath}"
+                                        <img class="img-responsive center-block"
+                                             src="${requestScope.car.imageList.get(0).imagePath}"
                                              alt="nissan"/>
                                     </li>
 
@@ -303,12 +317,13 @@
                                     <h2>Write Some Additional Comments About Your Vehicle</h2>
                                 </header>
                                 <p></p>
-                                <textarea name="description" placeholder="write additional comments">${requestScope.car.description}</textarea>
+                                <textarea name="description"
+                                          placeholder="write additional comments">${requestScope.car.description}</textarea>
                             </div>
-                            <input type="hidden" name="command" value="Update" />
-                            <input type="hidden" name="carId" value="${requestScope.car.id}" />
-                            <button  type="submit" class="btn m-btn pull-right wow zoomInUp"
-                                     data-wow-delay="0.3s">Save changes<span class="fa fa-angle-right"></span>
+                            <input type="hidden" name="command" value="Update"/>
+                            <input type="hidden" name="carId" value="${requestScope.car.id}"/>
+                            <button type="submit" class="btn m-btn pull-right wow zoomInUp"
+                                    data-wow-delay="0.3s">Save changes<span class="fa fa-angle-right"></span>
                             </button>
                         </div>
 
@@ -332,26 +347,7 @@
                     <p>&copy; 2017 Designed by Andrey Berezovskiy</p>
                 </div>
             </div>
-            <div class="col-xs-8">
-                <div class="b-footer__content wow slideInRight" data-wow-delay="0.3s">
-                    <div class="b-footer__content-social">
-                        <a href="#"><span class="fa fa-facebook-square"></span></a>
-                        <a href="#"><span class="fa fa-twitter-square"></span></a>
-                        <a href="#"><span class="fa fa-google-plus-square"></span></a>
-                        <a href="#"><span class="fa fa-instagram"></span></a>
-                        <a href="#"><span class="fa fa-youtube-square"></span></a>
-                        <a href="#"><span class="fa fa-skype"></span></a>
-                    </div>
-                    <nav class="b-footer__content-nav">
-                        <ul>
-                            <li><a href="home.html">Home</a></li>
-                            <li><a href="about.html">About</a></li>
-                            <li><a href="listTable.html">Shop</a></li>
-                            <li><a href="contacts.html">Contact</a></li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
+
         </div>
     </div>
 </footer><!--b-footer-->

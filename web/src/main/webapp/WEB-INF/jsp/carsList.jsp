@@ -22,9 +22,9 @@
 <jsp:include page="header.jsp"></jsp:include>
 <section class="b-pageHeader">
     <div class="container">
-        <h1 class=" wow zoomInLeft" data-wow-delay="0.5s">Auto Listings</h1>
+        <h1 class=" wow zoomInLeft" data-wow-delay="0.5s"><fmt:message key="list.autos"/></h1>
         <div class="b-pageHeader__search wow zoomInRight" data-wow-delay="0.5s">
-            <h3>Your search returned ${sessionScope.pageDetails.amountOfItems} results</h3>
+            <h3><fmt:message key="list.header"/> ${sessionScope.pageDetails.amountOfItems} <fmt:message key="list.header.end"/></h3>
         </div>
     </div>
 </section><!--b-pageHeader-->
@@ -38,12 +38,12 @@
                 <div class="b-infoBar__select wow zoomInUp" data-wow-delay="0.5s">
                     <form id="form-page" method="post" action="">
                         <div class="b-infoBar__select-one">
-                            <span class="b-infoBar__select-one-title">SELECT VIEW</span>
+                            <span class="b-infoBar__select-one-title"><fmt:message key="list.view"/></span>
                             <a href="#" onclick="changePageType(this)" class="m-list m-active"><span class="fa fa-list"></span></a>
                             <a href="#" onclick="changePageType(this)" class="m-table"><span class="fa fa-table"></span></a>
                         </div>
                         <div class="b-infoBar__select-one">
-                            <span class="b-infoBar__select-one-title">SHOW ON PAGE</span>
+                            <span class="b-infoBar__select-one-title"><fmt:message key="list.onPage"/></span>
                             <select name="itemsOnPage" class="m-select" onchange="onChangeSort(this)">
                                 <option value="10" selected="selected">10 items</option>
                                 <option value="15">15 items</option>
@@ -52,7 +52,7 @@
                             <span class="fa fa-caret-down"></span>
                         </div>
                         <div class="b-infoBar__select-one">
-                            <span class="b-infoBar__select-one-title">SORT BY</span>
+                            <span class="b-infoBar__select-one-title"><fmt:message key="list.sort"/></span>
                             <select name="sort" class="m-select" onchange="onChangeSort(this)">
                                 <option value="id" selected="selected">By Date &uarr;</option>
                                 <option value="id desc">By Date &darr;</option>
@@ -75,7 +75,7 @@
         <div class="row">
             <div class="col-lg-3 col-sm-4 col-xs-12">
                 <aside class="b-items__aside">
-                    <h2 class="s-title wow zoomInUp" data-wow-delay="0.5s">REFINE YOUR SEARCH</h2>
+                    <h2 class="s-title wow zoomInUp" data-wow-delay="0.5s"><fmt:message key="list.refineSearch"/></h2>
                     <div class="b-items__aside-main wow zoomInUp" data-wow-delay="0.5s">
                         <form action="/autobazar/controller" method="POST">
                             <div class="b-items__aside-main-body">
@@ -222,18 +222,7 @@
                     <p>&copy; 2017 Designed by Andrei Berezovski</p>
                 </div>
             </div>
-            <div class="col-xs-8">
-                <div class="b-footer__content wow zoomInRight" data-wow-delay="0.5s">
-                    <nav class="b-footer__content-nav">
-                        <ul>
-                            <li><a href="home.html">Home</a></li>
-                            <li><a href="about.html">About</a></li>
-                            <li><a href="listTable.html">Shop</a></li>
-                            <li><a href="contacts.html">Contact</a></li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
+
         </div>
     </div>
 </footer><!--b-footer-->
