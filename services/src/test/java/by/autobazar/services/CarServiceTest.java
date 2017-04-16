@@ -128,7 +128,7 @@ public class CarServiceTest {
 
     @Test
     public void getCarByIdTest() {
-        Car car = CarService.getInstance().getCarById(50L);
+        Car car = CarService.getInstance().getCarById(48L);
         Assert.assertNotNull(car);
     }
 
