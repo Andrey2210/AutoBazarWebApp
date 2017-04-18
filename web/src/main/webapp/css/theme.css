@@ -161,7 +161,7 @@ body{
     right:25px!important;
 }
 
-.s-form input[type='text'], .s-form input[type='password'], .s-form textarea{
+.s-form input[type='text'], .s-form input[type='password'], .s-form input[type='number'], .s-form textarea{
     display: inline-block;
     width: 60%;
     margin-bottom: 15px;
@@ -257,7 +257,7 @@ body{
     right:25px!important;
 }
 
-.s-submit input[type='text']{
+.s-submit input[type='text'], .s-submit input[type='number']{
     display: block;
     width: 100%;
     padding: 15px 20px;
@@ -272,23 +272,23 @@ body{
     height:46px;
 }
 
-.s-submit input[type='text']:focus{
+.s-submit input[type='text'], .s-submit input[type='number']:focus{
     outline:none;
 }
 
-.s-submit input[type='text']::-webkit-input-placeholder{
+.s-submit input[type='text'], .s-submit input[type='number']::-webkit-input-placeholder{
     color:#444;
 }
 
-.s-submit input[type='text']::-moz-placeholder{
+.s-submit input[type='text'], .s-submit input[type='number']::-moz-placeholder{
     color:#444;
 }
 
-.s-submit input[type='text']:-moz-placeholder{
+.s-submit input[type='text'], .s-submit input[type='number']:-moz-placeholder{
     color:#444;
 }
 
-.s-submit input[type='text']:-ms-input-placeholder{
+.s-submit input[type='text'], .s-submit input[type='number']:-ms-input-placeholder{
     color:#444;
 }
 

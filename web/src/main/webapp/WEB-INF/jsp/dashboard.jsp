@@ -9,6 +9,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@page isELIgnored="false" %>
+<fmt:setLocale value="${sessionScope.language}"/>
+<fmt:setBundle basename="translater"/>
 <html>
 <head>
     <meta charset="utf-8"/>
@@ -52,9 +54,9 @@
                 </div>
             </div>
 
-
             <div class="col-lg-10 col-md-9 col-sm-8 col-xs-7">
                 <div class="b-submit__main">
+                    <p style="color: red">${errorUsersMessage}</p>
                     <jsp:include page="usersDashboard.jsp"></jsp:include>
                 </div>
 

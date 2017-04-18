@@ -9,6 +9,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@page isELIgnored="false" %>
+<fmt:setLocale value="${sessionScope.language}"/>
+<fmt:setBundle basename="translater"/>
 <html>
 <head>
     <meta charset="utf-8"/>
@@ -105,6 +107,7 @@
                     <form class="s-submit clearfix" action="/autobazar/submit" name="submit1" method="POST"
                           enctype="multipart/form-data" accept-charset="UTF-8">
                         <div id="step1" class="row">
+                            <p style="color: red">${errorMessage}</p>
                             <div class="col-md-6 col-xs-12">
                                 <div class="b-submit__main-element wow zoomInUp" data-wow-delay="0.5s">
                                     <label>Enter Make <span id="markError">*</span></label>
@@ -238,8 +241,7 @@
                                         </div>
                                         <div class="col-lg-8 col-xs-12">
                                             <div class="b-submit__main-contacts-price-input">
-                                                <span class="fa fa-car"></span>
-                                                <input id="price" type='text' name="price"/>
+                                                <input id="price" type='number' name="price"/>
                                                 <span class="b-submit__main-contacts-price-input-usd">
 														IN USD $
 													</span>
@@ -255,7 +257,7 @@
                                         <div class="b-submit__main-element">
                                             <label>Enter Mileage <span id="milleageError">*</span></label>
                                             <div class="b-submit__main-contacts-inputSelect">
-                                                <input id="milleage" type="text" name="milleage"/>
+                                                <input id="milleage" type="number" name="milleage"/>
                                                 <div class="b-submit__main-contacts-select">
                                                     <select name="km" class="m-select">
                                                         <option>IN KMS</option>
@@ -426,11 +428,22 @@
 
 <!--Theme-->
 <script src="js/jquery.smooth-scroll.js"></script>
+<script src="js/jquery.maskedinput.min.js"></script>
 <script src="js/wow.min.js"></script>
 <script src="js/jquery.placeholder.min.js"></script>
 <script src="js/theme.js"></script>
 <script src="js/search.js"></script>
 <script type="text/javascript">
+
+    $(function($){
+        $("#doorsNumber").mask("9");
+    });
+    $(function($){
+        $("#year").mask("9999");
+    });
+    $(function($){
+        $("#engineCapacity").mask("9.9");
+    });
 
     document.getElementById("mark").addEventListener("change", function () {
         if ( this.selectedIndex == 0 ) {

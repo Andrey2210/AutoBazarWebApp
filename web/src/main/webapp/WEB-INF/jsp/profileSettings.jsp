@@ -9,6 +9,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@page isELIgnored="false"%><html>
+<fmt:setLocale value="${sessionScope.language}"/>
+<fmt:setBundle basename="translater"/>
 <head>
     <title>Title</title>
 </head>
@@ -18,7 +20,8 @@
         <h2 class="s-titleDet">Profile Settings</h2>
     </header>
     <div></div>
-    <form action="/autobazar/controller" method="post" class="s-form wow zoomInUp" data-wow-delay="0.5s">
+    <form action="/autobazar/controller" method="post" class="s-form wow zoomInUp"
+          data-wow-delay="0.5s">
         <input type="hidden" value="ProfileSettings" name="command" />
         <label>Login <span>*</span></label>
         <input type="text"  value="${requestScope.user.login}" disabled name="login" id="login" /> <br/>
@@ -33,9 +36,14 @@
         <label>Your name <span>*</span></label>
         <input type="text" placeholder="YOUR NAME." value="${requestScope.user.name}" name="name" id="name" /> <br/>
         <label>Enter phone <span>*</span></label>
-        <input type="text" placeholder="YOUR PHONE." value="${requestScope.user.phone}" name="phone" id="phone" /> <br/>
-        <button type="submit" class="btn m-btn">SAVE<span class="fa fa-angle-right"></span></button>
+        <input type="text" pattern="\+375\([0-9]{2}\)[0-9]{3}-[0-9]{2}-[0-9]{2}"
+               placeholder="YOUR PHONE." value="${requestScope.user.phone}" name="phone" id="phone" /> <br/>
+
+        <p style="color: red">${errorEmptyMessage}</p>
+        <p style="color: red">${errorRegistrationMessage}</p>
+        <button type="submit" onclick="validate(this.form)"  class="btn m-btn">SAVE<span class="fa fa-angle-right"></span></button>
     </form>
 </div>
+<script src="js/registration.js"></script>
 </body>
 </html>

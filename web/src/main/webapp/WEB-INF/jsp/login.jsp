@@ -9,6 +9,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@page isELIgnored="false" %>
+<fmt:setLocale value="${sessionScope.language}"/>
+<fmt:setBundle basename="translater"/>
 <html>
 <head>
     <meta charset="utf-8"/>
@@ -52,7 +54,9 @@
                         <input type="text" placeholder="LOGIN/EMAIL" value="" name="login" id="login" />
                         <label>Enter password <span>*</span></label>
                         <input type="password" placeholder="PASSWORD" value="" name="password" id="password" />
-
+                        <br/>
+                        <p style="color: red">${errorLoginPassMessage}</p>
+                        <br/>
                         <button type="submit" class="btn m-btn">SUBMIT NOW<span class="fa fa-angle-right"></span></button>
                     </form>
                 </div>

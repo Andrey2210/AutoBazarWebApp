@@ -200,36 +200,37 @@ public class CarService extends AbstractService {
         int minPrice = Integer.parseInt(searchParameters.get("minPrice"));
         int maxPrice = Integer.parseInt(searchParameters.get("maxPrice"));
 
-        searchParameters.replace("minPrice", String.valueOf(minPrice), String.valueOf(Math.min(minPrice, maxPrice)));
-        searchParameters.replace("maxPrice", String.valueOf(maxPrice), String.valueOf(Math.max(minPrice, maxPrice)));
-
+        if(minPrice != 0 && maxPrice != 0) {
+            searchParameters.replace("minPrice", String.valueOf(minPrice), String.valueOf(Math.min(minPrice, maxPrice)));
+            searchParameters.replace("maxPrice", String.valueOf(maxPrice), String.valueOf(Math.max(minPrice, maxPrice)));
+        }
     }
 
     private HashMap<String, Object> parseParameters(HashMap<String, String> params) {
         Iterator iterator = params.keySet().iterator();
         HashMap<String, Object> hashMap = new HashMap<>();
-        while (iterator.hasNext()) {
-            String param = (String) iterator.next();
-            switch (param) {
-                case "transmission":
-                    hashMap.put(param, Transmission.valueOf(params.get(param)));
-                    break;
-                case "carCondition":
-                    hashMap.put(param, CarCondition.valueOf(params.get(param)));
-                    break;
-                case "bodyType":
-                    hashMap.put(param, BodyType.valueOf(params.get(param)));
-                    break;
-                case "fuelType":
-                    hashMap.put(param, FuelType.valueOf(params.get(param)));
-                    break;
-                case "driving":
-                    hashMap.put(param, WheelDriving.valueOf(params.get(param)));
-                    break;
-                default:
-                    hashMap.put(param, params.get(param));
+            while (iterator.hasNext()) {
+                String param = (String) iterator.next();
+                switch (param) {
+                    case "transmission":
+                        hashMap.put(param, Transmission.valueOf(params.get(param)));
+                        break;
+                    case "carCondition":
+                        hashMap.put(param, CarCondition.valueOf(params.get(param)));
+                        break;
+                    case "bodyType":
+                        hashMap.put(param, BodyType.valueOf(params.get(param)));
+                        break;
+                    case "fuelType":
+                        hashMap.put(param, FuelType.valueOf(params.get(param)));
+                        break;
+                    case "driving":
+                        hashMap.put(param, WheelDriving.valueOf(params.get(param)));
+                        break;
+                    default:
+                        hashMap.put(param, params.get(param));
+                }
             }
-        }
         return hashMap;
     }
 

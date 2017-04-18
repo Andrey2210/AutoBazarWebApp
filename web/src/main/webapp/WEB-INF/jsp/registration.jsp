@@ -9,6 +9,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@page isELIgnored="false" %>
+<fmt:setLocale value="${sessionScope.language}"/>
+<fmt:setBundle basename="translater"/>
 <html>
 <head>
     <meta charset="utf-8"/>
@@ -64,6 +66,10 @@
                         <label>Enter phone <span>*</span></label>
                         <input type="text" pattern="\+375\([0-9]{2}\)[0-9]{3}-[0-9]{2}-[0-9]{2}"
                                placeholder="+375(**)***-**-**" value="" name="phone" id="phone" required/>
+
+                        <p style="color: red">${errorEmptyMessage}</p>
+                        <p style="color: red">${errorRegistrationMessage}</p>
+
                         <button type="button" onclick="validate(this.form)" class="btn m-btn">SUBMIT NOW<span
                                 class="fa fa-angle-right"></span></button>
                     </form>

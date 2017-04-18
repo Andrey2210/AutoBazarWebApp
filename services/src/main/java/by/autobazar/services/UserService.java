@@ -34,7 +34,7 @@ public class UserService extends AbstractService {
         return INSTANCE;
     }
 
-    public List<User> getAll() {
+    public List<User> getAll() throws ServiceException {
         log.info("Service getAll : ");
         userDao.session = session;
         Transaction transaction = getTransaction();
@@ -46,6 +46,7 @@ public class UserService extends AbstractService {
         } catch (DaoException | HibernateException e) {
             log.info("Error in service getAll(): " + e);
             transaction.rollback();
+            throw new ServiceException("Error getting the list of users, try again later");
         }
             return userList;
     }
@@ -86,9 +87,7 @@ public class UserService extends AbstractService {
 
     public List<Car> getCarsByUserId(Long id) {
     User user = getUserById(id);
-
         List<Car> carList = user.getCarList();
-
         return  carList;
     }
 
@@ -108,7 +107,7 @@ public class UserService extends AbstractService {
         return loggedUser;
     }
 
-    public void deleteUser(Long id) {
+    public void deleteUser(Long id) throws ServiceException {
 
         log.info("Service deleteUser(): ");
 
@@ -126,6 +125,24 @@ public class UserService extends AbstractService {
         } catch (DaoException | HibernateException e) {
             log.info("Error in service deleteUser(): " + e);
             transaction.rollback();
+            throw new ServiceException("User wasn't deleted, try again later");
         }
+    }
+
+    public User updateUser(User user) throws ServiceException {
+
+        log.info("Service updateUser : ");
+
+        userDao.session = session;
+        Transaction transaction = getTransaction();
+        try {
+            userDao.saveOrUpdate(user);
+            transaction.commit();
+        } catch (DaoException | HibernateException e) {
+            log.info("Error in service updateUser(): " + e);
+            transaction.rollback();
+            throw new ServiceException("Sorry, Updated failed, please try again later" + e);
+        }
+        return user;
     }
 }
