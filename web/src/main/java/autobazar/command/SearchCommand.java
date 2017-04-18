@@ -20,16 +20,24 @@ public class SearchCommand extends FrontCommand {
     public void process() throws ServletException, IOException {
         String page;
         if (request.getSession().getAttribute("pageDetails") == null) {
-            PageDetailsDto pageDetails = new PageDetailsDto(CarService.getInstance().getAmountOfCars(getSearchOptions()));
+            long amountOfCars = CarService.getInstance().getAmountOfCars(getSearchOptions());
+            if( amountOfCars == 0) {
+                request.setAttribute("errorMessage", "Unfortunately, there are no ads in this category yet");
+            }
+            PageDetailsDto pageDetails = new PageDetailsDto(amountOfCars);
             pageDetails.setSearchParameters(getSearchOptions());
             request.getSession().setAttribute("pageDetails", pageDetails);
             request.setAttribute("list", CarService.getInstance()
                     .searchCars(getSearchOptions(), pageDetails.getSort(), 0, pageDetails.getItemsOnPage()));
             request.setAttribute("allMakes", CarService.getInstance().getCarsMakes());
-            page = ConfigurationManager.getInstance().getProperty("path.page.carsList");
+                page = ConfigurationManager.getInstance().getProperty("path.page.carsList");
         } else {
             PageDetailsDto pageDetails = (PageDetailsDto) request.getSession().getAttribute("pageDetails");
-            pageDetails.setAmountOfItems(CarService.getInstance().getAmountOfCars(getSearchOptions()));
+            long amountOfCars = CarService.getInstance().getAmountOfCars(getSearchOptions());
+            if( amountOfCars == 0) {
+                request.setAttribute("errorMessage", "Unfortunately, there are no ads in this category yet");
+            }
+            pageDetails.setAmountOfItems(amountOfCars);
             pageDetails.setSearchParameters(getSearchOptions());
             request.setAttribute("list", CarService.getInstance()
                     .searchCars(getSearchOptions(), pageDetails.getSort(),

@@ -22,6 +22,7 @@ public class LoginCommand extends FrontCommand {
         String login = request.getParameter("login");
         String password = request.getParameter("password");
         User user = UserService.getInstance().getLoggedUser(login, password);
+        String page;
         if (user != null) {
             UserAuthenticationDto userAuthenticationDto = new UserAuthenticationDto();
             userAuthenticationDto.setId(user.getId());
@@ -29,12 +30,15 @@ public class LoginCommand extends FrontCommand {
             userAuthenticationDto.setPassword(user.getPassword());
             userAuthenticationDto.setRole(user.getRole().toString());
             request.getSession().setAttribute("user", userAuthenticationDto);
+            request.getSession().removeAttribute("pageDetails");
+            List<Car> carsList = CarService.getInstance().getLimitAmount();
+            request.setAttribute("list", carsList);
+            request.setAttribute("allMakes", CarService.getInstance().getCarsMakes());
+             page = ConfigurationManager.getInstance().getProperty("path.page.index");
+        } else {
+            request.setAttribute("errorLoginPassMessage", "Incorrect login or password");
+             page = ConfigurationManager.getInstance().getProperty("path.page.login");
         }
-        request.getSession().removeAttribute("pageDetails");
-        List<Car> carsList = CarService.getInstance().getLimitAmount();
-        request.setAttribute("list", carsList);
-        request.setAttribute("allMakes", CarService.getInstance().getCarsMakes());
-        String page = ConfigurationManager.getInstance().getProperty("path.page.index");
         forward(page);
     }
 }

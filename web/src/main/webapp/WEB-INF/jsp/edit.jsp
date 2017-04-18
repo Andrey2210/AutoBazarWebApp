@@ -9,6 +9,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@page isELIgnored="false" %>
+<fmt:setLocale value="${sessionScope.language}"/>
+<fmt:setBundle basename="translater"/>
 <html>
 <head>
     <meta charset="utf-8"/>
@@ -51,9 +53,10 @@
                     </header>
                     <form class="s-submit clearfix" action="/autobazar/controller" name="submit1" method="POST">
                         <div id="step1" class="row">
+                            <p style="color: red">${errorMessage}</p>
                             <div class="col-md-6 col-xs-12">
                                 <div class="b-submit__main-element wow zoomInUp" data-wow-delay="0.5s">
-                                    <label>Enter Make <span>*</span></label>
+                                    <label>Enter Make <span id="markError">*</span></label>
                                     <div class='s-relative'>
                                         <select class="m-select" name="mark" disabled>
                                             <option value="${requestScope.car.mark}"
@@ -64,9 +67,9 @@
                                 </div>
 
                                 <div class="b-submit__main-element wow zoomInUp" data-wow-delay="0.5s">
-                                    <label>Select Body Type <span>*</span></label>
+                                    <label>Select Body Type <span id="bodyTypeError">*</span></label>
                                     <div class='s-relative'>
-                                        <select class="m-select" name="bodyType">
+                                        <select class="m-select" id="bodyType" name="bodyType">
                                             <option value="${requestScope.car.bodyType}"
                                                     selected="selected">${requestScope.car.bodyType}</option>
                                             <option>PICKUP</option>
@@ -81,9 +84,9 @@
                                 </div>
 
                                 <div class="b-submit__main-element wow zoomInUp" data-wow-delay="0.5s">
-                                    <label>Select Fuel Type <span>*</span></label>
+                                    <label>Select Fuel Type <span id="fuelTypeError">*</span></label>
                                     <div class='s-relative'>
-                                        <select class="m-select" name="fuelType">
+                                        <select class="m-select" id="fuelType" name="fuelType">
                                             <option value="${requestScope.car.fuelType}"
                                                     selected="selected">${requestScope.car.fuelType}</option>
                                             <option>PETROL</option>
@@ -96,26 +99,24 @@
 
 
                                 <div class="b-submit__main-element wow zoomInUp" data-wow-delay="0.5s">
-                                    <label>No. of Doors <span>*</span></label>
+                                    <label>No. of Doors <span id="doorsNumberError">*</span></label>
                                     <input placeholder="Enter No. of Doors" value="${requestScope.car.doorsNumber}"
-                                           type="text" name="doorsNumber"/>
+                                           id="doorsNumber" type="text" name="doorsNumber"/>
                                 </div>
 
                                 <div class="b-submit__main-element wow zoomInUp" data-wow-delay="0.5s">
-                                    <label>Vehicle Manufacturer Year<span>*</span></label>
+                                    <label>Vehicle Manufacturer Year<span id="yearError">*</span></label>
                                     <div class="b-submit__main-element">
-                                        <input type="text" value="${requestScope.car.year.getYear()}" name="year"/>
+                                        <input id="year" type="text" name="year" value="${requestScope.car.year.getYear()}"/>
                                     </div>
                                 </div>
-
                             </div>
 
                             <div class="col-md-6 col-xs-12">
-
                                 <div class="b-submit__main-element wow zoomInUp" data-wow-delay="0.5s">
-                                    <label>Enter Vehicle Model <span>*</span></label>
+                                    <label>Enter Vehicle Model <span id="modelError">*</span></label>
                                     <div class='s-relative'>
-                                        <select id="model" class="m-select" name="model" disabled>
+                                        <select id="model" class="m-select" name="model">
                                             <option value="${requestScope.car.model}"
                                                     selected="selected">${requestScope.car.model}</option>
                                         </select>
@@ -124,9 +125,9 @@
                                 </div>
 
                                 <div class="b-submit__main-element wow zoomInUp" data-wow-delay="0.5s">
-                                    <label>Select Drive Type <span>*</span></label>
+                                    <label>Select Drive Type <span id="drivingError">*</span></label>
                                     <div class='s-relative'>
-                                        <select class="m-select" name="driving">
+                                        <select id="driving" class="m-select" name="driving">
                                             <option value="${requestScope.car.driving}"
                                                     selected="selected">${requestScope.car.driving}</option>
                                             <option>AWD</option>
@@ -138,9 +139,9 @@
                                 </div>
 
                                 <div class="b-submit__main-element wow zoomInUp" data-wow-delay="0.5s">
-                                    <label>Vehicle Transmission Type <span>*</span></label>
+                                    <label>Vehicle Transmission Type <span id="transmissionError">*</span></label>
                                     <div class='s-relative'>
-                                        <select class="m-select" name="transmission">
+                                        <select id="transmission" class="m-select" name="transmission">
                                             <option value="${requestScope.car.transmission}"
                                                     selected="selected">${requestScope.car.transmission}</option>
                                             <option>MANUAL</option>
@@ -152,9 +153,9 @@
                                 </div>
 
                                 <div class="b-submit__main-element wow zoomInUp" data-wow-delay="0.5s">
-                                    <label>Select Car Condition <span>*</span></label>
+                                    <label>Select Car Condition <span id="carConditionError">*</span></label>
                                     <div class='s-relative'>
-                                        <select class="m-select" name="carCondition">
+                                        <select id="carCondition" class="m-select" name="carCondition">
                                             <option value="${requestScope.car.carCondition}"
                                                     selected="selected">${requestScope.car.carCondition}</option>
                                             <option>USED</option>
@@ -166,14 +167,12 @@
                                 </div>
 
                                 <div class="b-submit__main-element wow zoomInUp" data-wow-delay="0.5s">
-                                    <label>Enter Engine Capacity <span>*</span></label>
-                                    <input placeholder="Enter Capacity" value="${requestScope.car.engineCapacity}"
+                                    <label>Enter Engine Capacity <span id="engineCapacityError">*</span></label>
+                                    <input id="engineCapacity" placeholder="Enter Capacity" value="${requestScope.car.engineCapacity}"
                                            type="text" name="engineCapacity"/>
                                 </div>
-
                             </div>
                         </div>
-
 
                         <div id="step2">
                             <div class="b-submit__main-contacts wow zoomInUp" data-wow-delay="0.3s">
@@ -187,8 +186,7 @@
                                         </div>
                                         <div class="col-lg-8 col-xs-12">
                                             <div class="b-submit__main-contacts-price-input">
-                                                <span class="fa fa-car"></span>
-                                                <input type='text' value="${requestScope.car.price}" name="price"/>
+                                                <input id="price" type='number' value="${requestScope.car.price}" name="price"/>
                                                 <span class="b-submit__main-contacts-price-input-usd">
 														IN USD $
 													</span>
@@ -202,9 +200,9 @@
                                 <div class="row">
                                     <div class="col-md-6 col-xs-12">
                                         <div class="b-submit__main-element">
-                                            <label>Enter Mileage <span>*</span></label>
+                                            <label>Enter Mileage <span id="milleageError">*</span></label>
                                             <div class="b-submit__main-contacts-inputSelect">
-                                                <input type="text" value="${requestScope.car.milleage}"
+                                                <input id="milleage" type="number" value="${requestScope.car.milleage}"
                                                        name="milleage"/>
                                                 <div class="b-submit__main-contacts-select">
                                                     <select name="km" class="m-select">
@@ -216,9 +214,9 @@
                                         </div>
 
                                         <div class="b-submit__main-element">
-                                            <label>Select Exterior Color <span>*</span></label>
+                                            <label>Select Exterior Color <span id="carColorError">*</span></label>
                                             <div class="s-relative">
-                                                <select class="m-select" name="carColor">
+                                                <select id="carColor" class="m-select" name="carColor">
                                                     <option value="${requestScope.car.carColor}"
                                                             selected="selected">${requestScope.car.carColor}</option>
                                                     <option>BLACK</option>
@@ -240,9 +238,9 @@
                                     </div>
                                     <div class="col-md-6 col-xs-12">
                                         <div class="b-submit__main-element">
-                                            <label>Select Interior Material <span>*</span></label>
+                                            <label>Select Interior Material <span id="interiorMaterialError">*</span></label>
                                             <div class="s-relative">
-                                                <select class="m-select" name="interiorMaterial">
+                                                <select id="interiorMaterial" class="m-select" name="interiorMaterial">
                                                     <option value="${requestScope.car.interiorMaterial}"
                                                             selected="selected">${requestScope.car.interiorMaterial}</option>
                                                     <option>LEATHER</option>
@@ -255,9 +253,9 @@
                                         </div>
 
                                         <div class="b-submit__main-element">
-                                            <label>Select Interior Color <span>*</span></label>
+                                            <label>Select Interior Color <span id="interiorColorError">*</span></label>
                                             <div class="s-relative">
-                                                <select class="m-select" name="interiorColor">
+                                                <select id="interiorColor" class="m-select" name="interiorColor">
                                                     <option value="${requestScope.car.interiorColor}"
                                                             selected="selected">${requestScope.car.interiorColor}</option>
                                                     <option>BLACK</option>
@@ -283,14 +281,14 @@
                             <div class="row">
                                 <div class="col-md-6 col-xs-12">
                                     <div class="b-submit__main-element">
-                                        <label>Region <span>*</span></label>
-                                        <input type="text" name="region" value="${requestScope.car.region}"/>
+                                        <label>Region <span id="regionError">*</span></label>
+                                        <input id="region"  type="text" name="region" value="${requestScope.car.region}"/>
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-xs-12">
                                     <div class="b-submit__main-element">
-                                        <label>City <span>*</span></label>
-                                        <input type="text" name="city" value="${requestScope.car.city}"/>
+                                        <label>City <span id="cityError">*</span></label>
+                                        <input id="city" type="text" name="city" value="${requestScope.car.city}"/>
                                     </div>
                                 </div>
                             </div>
@@ -317,12 +315,12 @@
                                     <h2>Write Some Additional Comments About Your Vehicle</h2>
                                 </header>
                                 <p></p>
-                                <textarea name="description"
+                                <textarea id="description" name="description"
                                           placeholder="write additional comments">${requestScope.car.description}</textarea>
                             </div>
                             <input type="hidden" name="command" value="Update"/>
                             <input type="hidden" name="carId" value="${requestScope.car.id}"/>
-                            <button type="submit" class="btn m-btn pull-right wow zoomInUp"
+                            <button type="submit" onclick="return validate(this.form)" class="btn m-btn pull-right wow zoomInUp"
                                     data-wow-delay="0.3s">Save changes<span class="fa fa-angle-right"></span>
                             </button>
                         </div>
@@ -374,10 +372,170 @@
 
 <!--Theme-->
 <script src="js/jquery.smooth-scroll.js"></script>
+<script src="js/jquery.maskedinput.min.js"></script>
 <script src="js/wow.min.js"></script>
 <script src="js/jquery.placeholder.min.js"></script>
 <script src="js/theme.js"></script>
 <script src="js/search.js"></script>
+<script type="text/javascript">
+
+    $(function($){
+        $("#doorsNumber").mask("9");
+    });
+    $(function($){
+        $("#year").mask("9999");
+    });
+    $(function($){
+        $("#engineCapacity").mask("9.9");
+    });
+
+
+    document.getElementById("doorsNumber").addEventListener("change", function () {
+        if ( this.value == "" ) {
+            this.style.borderColor = 'red';
+            document.getElementById("doorsNumberError").innerHTML = "* Enter a doors number";
+        } else {
+            this.style.borderColor = '#eee';
+            document.getElementById("doorsNumberError").innerHTML = "*";
+
+        }
+    });
+
+    document.getElementById("year").addEventListener("change", function () {
+        if ( this.value == "" ) {
+            this.style.borderColor = 'red';
+            document.getElementById("yearError").innerHTML = "* Enter a year";
+        } else {
+            this.style.borderColor = '#eee';
+            document.getElementById("yearError").innerHTML = "*";
+
+        }
+    });
+
+    document.getElementById("engineCapacity").addEventListener("change", function () {
+        if ( this.value == "" ) {
+            this.style.borderColor = 'red';
+            document.getElementById("engineCapacityError").innerHTML = "* Enter a engine capacity";
+        } else {
+            this.style.borderColor = '#eee';
+            document.getElementById("engineCapacityError").innerHTML = "*";
+
+        }
+    });
+
+    document.getElementById("price").addEventListener("change", function () {
+        if ( this.value == "" ) {
+            this.style.borderColor = 'red';
+            document.getElementById("priceError").innerHTML = "* Enter a price";
+        } else {
+            this.style.borderColor = '#eee';
+            document.getElementById("priceError").innerHTML = "*";
+
+        }
+    });
+
+    document.getElementById("milleage").addEventListener("change", function () {
+        if ( this.value == "" ) {
+            this.style.borderColor = 'red';
+            document.getElementById("milleageError").innerHTML = "* Enter a milleage";
+        } else {
+            this.style.borderColor = '#eee';
+            document.getElementById("milleageError").innerHTML = "*";
+
+        }
+    });
+
+    document.getElementById("region").addEventListener("change", function () {
+        if ( this.value == "" ) {
+            this.style.borderColor = 'red';
+            document.getElementById("regionError").innerHTML = "* Enter a region";
+        } else {
+            this.style.borderColor = '#eee';
+            document.getElementById("regionError").innerHTML = "*";
+
+        }
+    });
+
+    document.getElementById("city").addEventListener("change", function () {
+        if ( this.value == "" ) {
+            this.style.borderColor = 'red';
+            document.getElementById("cityError").innerHTML = "* Enter a city";
+        } else {
+            this.style.borderColor = '#eee';
+            document.getElementById("cityError").innerHTML = "*";
+
+        }
+    });
+
+
+    function validate(form) {
+        var elems = form.elements;
+        var valid = true;
+
+        if ( elems.doorsNumber.value == "" ) {
+            elems.doorsNumber.style.borderColor = 'red';
+            document.getElementById("doorsNumberError").innerHTML = "* Enter a doors number";
+            valid = false;
+        } else {
+            elems.doorsNumber.style.borderColor = '#eee';
+            document.getElementById("doorsNumberError").innerHTML = "*";
+        }
+
+        if ( elems.year.value == "" ) {
+            elems.year.style.borderColor = 'red';
+            document.getElementById("yearError").innerHTML = "* Enter a year";
+            valid = false;
+        } else {
+            elems.year.style.borderColor = '#eee';
+            document.getElementById("yearError").innerHTML = "*";
+        }
+
+        if ( elems.engineCapacity.value == "" ) {
+            elems.engineCapacity.style.borderColor = 'red';
+            document.getElementById("engineCapacityError").innerHTML = "* Enter a engine capacity";
+            valid = false;
+        } else {
+            elems.engineCapacity.style.borderColor = '#eee';
+            document.getElementById("engineCapacityError").innerHTML = "*";
+        }
+
+        if ( elems.price.value == "" ) {
+            elems.price.style.borderColor = 'red';
+            valid = false;
+        } else {
+            elems.price.style.borderColor = '#eee';
+        }
+
+        if ( elems.milleage.value == "" ) {
+            elems.milleage.style.borderColor = 'red';
+            document.getElementById("milleageError").innerHTML = "* Enter a milleage";
+            valid = false;
+        } else {
+            elems.milleage.style.borderColor = '#eee';
+            document.getElementById("milleageError").innerHTML = "*";
+        }
+
+        if ( elems.region.value == "" ) {
+            elems.region.style.borderColor = 'red';
+            document.getElementById("regionError").innerHTML = "* Enter a region";
+            valid = false;
+        } else {
+            elems.region.style.borderColor = '#eee';
+            document.getElementById("regionError").innerHTML = "*";
+        }
+
+        if ( elems.city.value == "" ) {
+            elems.city.style.borderColor = 'red';
+            document.getElementById("cityError").innerHTML = "* Enter a city";
+            valid = false;
+        } else {
+            elems.city.style.borderColor = '#eee';
+            document.getElementById("cityError").innerHTML = "*";
+        }
+
+        return valid;
+    }
+</script>
 
 </body>
 </html>

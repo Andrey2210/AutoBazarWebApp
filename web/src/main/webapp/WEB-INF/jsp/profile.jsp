@@ -9,6 +9,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@page isELIgnored="false" %>
+<fmt:setLocale value="${sessionScope.language}"/>
+<fmt:setBundle basename="translater"/>
 <html>
 <head>
     <meta charset="utf-8"/>
@@ -54,6 +56,8 @@
 
 
             <div class="col-lg-10 col-md-9 col-sm-8 col-xs-7">
+                <p style="color: red">${errorMessage}</p>
+
                 <div class="b-items">
                     <div class="b-submit__main b-items-cars">
                         <jsp:include page="myAd.jsp"></jsp:include>
@@ -115,7 +119,7 @@
             $.ajax({
                 method: "POST",
                 url: "/autobazar/controller",
-                data: {"command": "ProfileSettings"},
+                data: {"command": "ProfileSettings", "type": "get"},
                 success: function (result) {
                     $(".b-submit__main").html(result);
                 }

@@ -9,6 +9,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@page isELIgnored="false"%><html>
+<fmt:setLocale value="${sessionScope.language}"/>
+<fmt:setBundle basename="translater"/>
 <body>
 <div class="b-items__cars">
     <c:forEach var="car" items="${requestScope.list}">
@@ -21,7 +23,7 @@
                     <h2>${car.mark} ${car.model} ${car.engineCapacity}L</h2>
                     <a class="btn btn-success" href="/autobazar/controller?command=Edit&id=${car.id}">
                         <i class="fa fa-pencil-square-o" aria-hidden="true"> Edit</i></a>
-                    <a class="btn btn-danger" href="/autobazar/controller?command=DeleteCar&id=${car.id}" aria-label="Delete">
+                    <a class="btn btn-danger" href="/autobazar/controller?command=DeleteCar&id=${car.id}&type=profile" aria-label="Delete">
                         <i class="fa fa-times" aria-hidden="true"></i>
                     </a> <br/>
                 </form>

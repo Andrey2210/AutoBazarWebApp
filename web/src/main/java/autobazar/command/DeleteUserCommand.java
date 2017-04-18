@@ -1,5 +1,7 @@
 package autobazar.command;
 
+import autobazar.ConfigurationManager;
+import by.autobazar.services.ServiceException;
 import by.autobazar.services.UserService;
 
 import javax.servlet.ServletException;
@@ -15,8 +17,17 @@ public class DeleteUserCommand extends FrontCommand {
     public void process() throws ServletException, IOException {
         long id = Long.parseLong(request.getParameter("id"));
         if(id != 0) {
-            UserService.getInstance().deleteUser(id);
+            try {
+                UserService.getInstance().deleteUser(id);
+            } catch (ServiceException e) {
+                request.setAttribute("errorUsersMessage", e.getMessage());
+            }
         }
-        forward("/autobazar/dashboard");
+        try {
+            request.setAttribute("users", UserService.getInstance().getAll());
+        } catch (ServiceException e) {
+            request.setAttribute("errorUsersMessage", e.getMessage());
+        }
+        forward(ConfigurationManager.getInstance().getProperty("path.page.dashboard"));
     }
 }

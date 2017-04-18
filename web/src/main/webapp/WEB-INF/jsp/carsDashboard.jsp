@@ -38,7 +38,7 @@
                     <td><input onclick="checkVerified(this)" data-id="${car.id}" type="checkbox" name="verified" /></td>
                 </c:otherwise>
             </c:choose>
-            <td><a href="/autobazar/controller?command=DeleteCar&id=${car.id}" class="fa fa-times" aria-hidden="true" style="color: darkred"></a></td>
+            <td><a href="/autobazar/controller?command=DeleteCar&id=${car.id}&type=dashboard" class="fa fa-times" aria-hidden="true" style="color: darkred"></a></td>
         </tr>
     </c:forEach>
 </table>

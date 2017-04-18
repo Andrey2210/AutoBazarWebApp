@@ -26,13 +26,13 @@ public class UserServiceTest {
     }
 
     @AfterClass
-    public static void deleteCar() {
+    public static void deleteCar() throws ServiceException {
         userService.deleteUser(user.getId());
         AbstractService.session.close();
     }
 
     @Test
-    public void getAllTest() {
+    public void getAllTest() throws ServiceException {
         List<User> userList = userService.getAll();
         Assert.assertNotNull(userList);
         Assert.assertTrue(userList.size() > 0);

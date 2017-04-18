@@ -28,7 +28,7 @@ public class UnknownCommand extends FrontCommand {
                 forward(ConfigurationManager.getInstance().getProperty("path.page.login"));
                 break;
             case "/autobazar/submit":
-                 command = new SubmitCommand();
+                command = new SubmitCommand();
                 command.init(context, request, response);
                 command.process();
                 return;

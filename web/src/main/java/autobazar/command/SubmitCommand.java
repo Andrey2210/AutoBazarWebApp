@@ -31,7 +31,6 @@ public class SubmitCommand extends FrontCommand {
         if (!isMultipart) {
             UserAuthenticationDto userAuthenticationDto = (UserAuthenticationDto) request.getSession().getAttribute("user");
             User userData = UserService.getInstance().getLoggedUser(userAuthenticationDto.getLogin(), userAuthenticationDto.getPassword());
-
             request.setAttribute("allMakes", CarService.getInstance().getAllCarsMakes());
             request.setAttribute("userData", userData);
             forward(ConfigurationManager.getInstance().getProperty("path.page.submit"));
@@ -66,7 +65,8 @@ public class SubmitCommand extends FrontCommand {
             forward(page);
         } catch (Exception e) {
             e.printStackTrace();
-            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            request.setAttribute("errorMessage", "Sorry, an error occurred while adding the ad. Please try again late");
+            forward(ConfigurationManager.getInstance().getProperty("path.page.submit"));
         }
     }
 

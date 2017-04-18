@@ -1,7 +1,10 @@
 package autobazar.command;
 
+import autobazar.ConfigurationManager;
+import autobazar.dto.UserAuthenticationDto;
 import by.autobazar.services.CarService;
 import by.autobazar.services.ServiceException;
+import by.autobazar.services.UserService;
 
 import javax.servlet.ServletException;
 import java.io.IOException;
@@ -31,9 +34,11 @@ public class UpdateCommand extends FrontCommand {
 
         try {
             long flag = CarService.getInstance().updateCar(parametersMap);
-            forward("/autobazar/controller?command=Profile");
         } catch (ServiceException e1) {
-            forward("/autobazar/controller?command=Profile");
+            request.setAttribute("errorMessage", e1.getMessage());
         }
+        UserAuthenticationDto userADto = (UserAuthenticationDto) request.getSession().getAttribute("user");
+        request.setAttribute("list", UserService.getInstance().getCarsByUserId(userADto.getId()));
+        forward(ConfigurationManager.getInstance().getProperty("path.page.profile"));
     }
 }

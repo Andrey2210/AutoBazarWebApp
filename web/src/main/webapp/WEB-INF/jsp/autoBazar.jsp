@@ -129,7 +129,7 @@
                         <ul class="navbar-nav-menu">
                             <li>
                             <li><a href="/autobazar/controller"><fmt:message key="header.home"/></a></li>
-                            <li><a href="/autobazar/controller?command=Search"><fmt:message key="header.catalog"/></a></li>
+                            <li><a id="submitLink1" href="#"><fmt:message key="header.catalog"/></a></li>
                             <c:if test="${sessionScope.user.role eq 'ADMIN'}">
                                 <li><a href="/autobazar/dashboard"><fmt:message key="header.dashboard"/></a></li>
                             </c:if>
@@ -194,7 +194,7 @@
         <h1 class="wow zoomInUp" data-wow-delay="0.3s"><fmt:message key="autobazar.header"/></h1>
         <div class="b-search__main wow zoomInUp" data-wow-delay="0.3s">
             <h4><fmt:message key="autobazar.selectCar"/></h4>
-            <form action="/autobazar/controller" method="POST" class="b-search__main-form">
+            <form id="searchForm" action="/autobazar/controller" method="POST" class="b-search__main-form">
                 <div class="row">
                     <div class="col-xs-2">
                         <input id="type1" type="radio" name="bodyType" value="PICKUP"/>
@@ -635,7 +635,7 @@
                         <p><fmt:message key="autobazar.looking.description"/></p>
                     </div>
                     <div class="b-asks__first-arrow">
-                        <a href="/autobazar/controller?command=Search"><span class="fa fa-angle-right"></span></a>
+                        <a id="submitLink2" href="#"><span class="fa fa-angle-right"></span></a>
                     </div>
                 </div>
             </div>
@@ -665,7 +665,7 @@
             <div class="col-xs-4">
                 <div class="b-footer__company wow slideInLeft" data-wow-delay="0.3s">
                     <div class="b-nav__logo">
-                        <h3><a href="home.html">Auto<span>BAZAR</span></a></h3>
+                        <h3><a href="/autobazar/controller">Auto<span>BAZAR</span></a></h3>
                     </div>
                     <p>&copy; 2017 Designed by Andrey Berezovskiy</p>
                 </div>
@@ -702,6 +702,15 @@
 <script src="js/jquery.placeholder.min.js"></script>
 <script src="js/theme.js"></script>
 <script src="js/search.js"></script>
+
+<script type="text/javascript">
+    function submitForm(){
+        document.getElementById("searchForm").submit();
+    }
+    document.getElementById("submitLink1").addEventListener("click", submitForm);
+    document.getElementById("submitLink2").addEventListener("click", submitForm);
+</script>
+
 
 </body>
 </html>
