@@ -46,13 +46,13 @@ public class CommentService extends AbstractService{
         Comment comment = new Comment(text, LocalDateTime.now());
         comment.setUser(user);
         comment.setCar(car);
-        Transaction transaction = getTransaction();
         try {
+            session.beginTransaction();
             commentDao.saveOrUpdate(comment);
-            transaction.commit();
+            session.getTransaction().commit();
         } catch (DaoException | HibernateException e) {
             log.info("Error in service createComment(): " + e);
-            transaction.rollback();
+            session.getTransaction().rollback();
         }
         return comment.getId();
     }
@@ -61,19 +61,19 @@ public class CommentService extends AbstractService{
         log.info("Service deleteComment(): ");
 
         commentDao.session = session;
-        Transaction transaction = getTransaction();
         Comment comment= null;
         try {
+            session.beginTransaction();
             comment = commentDao.get(id);
-            transaction.commit();
+            session.getTransaction().commit();
             if(comment != null) {
-                transaction = getTransaction();
+                session.beginTransaction();
                 commentDao.delete(comment);
-                transaction.commit();
+                session.getTransaction().commit();
             }
         } catch (DaoException | HibernateException e) {
             log.info("Error in service deleteComment(): " + e);
-            transaction.rollback();
+            session.getTransaction().rollback();
         }
     }
 }

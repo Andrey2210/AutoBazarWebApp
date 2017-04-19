@@ -1,6 +1,7 @@
 package by.autobazar.dao;
 
 import by.autobazar.dao.exceptions.DaoException;
+import by.autobazar.util.HibernateUtil;
 import org.apache.log4j.Logger;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;

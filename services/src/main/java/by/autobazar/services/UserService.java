@@ -37,15 +37,15 @@ public class UserService extends AbstractService {
     public List<User> getAll() throws ServiceException {
         log.info("Service getAll : ");
         userDao.session = session;
-        Transaction transaction = getTransaction();
 
         List<User> userList = null;
         try {
+            session.beginTransaction();
             userList =  userDao.getAll();
-            transaction.commit();
+            session.getTransaction().commit();
         } catch (DaoException | HibernateException e) {
             log.info("Error in service getAll(): " + e);
-            transaction.rollback();
+            session.getTransaction().rollback();
             throw new ServiceException("Error getting the list of users, try again later");
         }
             return userList;
@@ -56,13 +56,13 @@ public class UserService extends AbstractService {
         log.info("Service createUser : ");
 
         userDao.session = session;
-        Transaction transaction = getTransaction();
         try {
+            session.beginTransaction();
             userDao.saveOrUpdate(user);
-            transaction.commit();
+            session.getTransaction().commit();
         } catch (DaoException | HibernateException e) {
             log.info("Error in service createUser(): " + e);
-            transaction.rollback();
+            session.getTransaction().rollback();
             throw new ServiceException("Sorry, Registration failed, please try again later" + e);
         }
         return user;
@@ -73,14 +73,14 @@ public class UserService extends AbstractService {
         log.info("Service getLoggedUser : ");
 
         userDao.session = session;
-        Transaction transaction = getTransaction();
         User loggedUser = null;
         try {
+            session.beginTransaction();
             loggedUser = userDao.getLoggedUser(login, password);
-            transaction.commit();
+            session.getTransaction().commit();
         } catch (DaoException | HibernateException e) {
             log.info("Error in service getLoggedUser(): " + e);
-            transaction.rollback();
+            session.getTransaction().rollback();
         }
         return loggedUser;
     }
@@ -95,14 +95,14 @@ public class UserService extends AbstractService {
         log.info("Service getUserById : ");
 
         userDao.session = session;
-        Transaction transaction = getTransaction();
         User loggedUser = null;
         try {
+            session.beginTransaction();
             loggedUser = userDao.get(id);
-            transaction.commit();
+            session.getTransaction().commit();
         } catch (DaoException | HibernateException e) {
             log.info("Error in service getUserById(): " + e);
-            transaction.rollback();
+            session.getTransaction().rollback();
         }
         return loggedUser;
     }
@@ -112,19 +112,19 @@ public class UserService extends AbstractService {
         log.info("Service deleteUser(): ");
 
         userDao.session = session;
-        Transaction transaction = getTransaction();
         User user= null;
         try {
+            session.beginTransaction();
             user = userDao.get(id);
-            transaction.commit();
+            session.getTransaction().commit();
             if(user != null) {
-                transaction = getTransaction();
+                session.beginTransaction();
                 userDao.delete(user);
-                transaction.commit();
+                session.getTransaction().commit();
             }
         } catch (DaoException | HibernateException e) {
             log.info("Error in service deleteUser(): " + e);
-            transaction.rollback();
+            session.getTransaction().rollback();
             throw new ServiceException("User wasn't deleted, try again later");
         }
     }
@@ -134,13 +134,13 @@ public class UserService extends AbstractService {
         log.info("Service updateUser : ");
 
         userDao.session = session;
-        Transaction transaction = getTransaction();
         try {
+            session.beginTransaction();
             userDao.saveOrUpdate(user);
-            transaction.commit();
+            session.getTransaction().commit();
         } catch (DaoException | HibernateException e) {
             log.info("Error in service updateUser(): " + e);
-            transaction.rollback();
+            session.getTransaction().rollback();
             throw new ServiceException("Sorry, Updated failed, please try again later" + e);
         }
         return user;

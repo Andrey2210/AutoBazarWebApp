@@ -68,13 +68,13 @@ public class CarService extends AbstractService {
         image.setCar(car);
         car.getImageList().add(image);
         car.setUser(user);
-        Transaction transaction = getTransaction();
         try {
+            session.beginTransaction();
             carDao.saveOrUpdate(car);
-            transaction.commit();
+            session.getTransaction().commit();
         } catch (DaoException | HibernateException e) {
             log.info("Error in service createCar(): " + e);
-            transaction.rollback();
+            session.getTransaction().rollback();
             throw new ServiceException("Sorry, ad wasn't created, please try again later" + e);
         }
         return car.getId();
@@ -83,14 +83,14 @@ public class CarService extends AbstractService {
     public List<Car> getLimitAmount() {
         log.info("Service getLimitAmount(): ");
         carDao.session = session;
-        Transaction transaction = getTransaction();
         List<Car> carsList = null;
         try {
+            session.beginTransaction();
             carsList = carDao.getLimitAmount();
-            transaction.commit();
+            session.getTransaction().commit();
         } catch (DaoException | HibernateException e) {
             log.info("Error in service getLimitAmount(): " + e);
-            transaction.rollback();
+            session.getTransaction().rollback();
         }
         return carsList;
     }
@@ -99,14 +99,14 @@ public class CarService extends AbstractService {
         log.info("Service getCarsMakes(): ");
 
         carDao.session = session;
-        Transaction transaction = getTransaction();
         List<String> makesList = null;
         try {
+            session.beginTransaction();
             makesList = carDao.getCarsMakes();
-            transaction.commit();
+            session.getTransaction().commit();
         } catch (DaoException | HibernateException e) {
             log.info("Error in service getCarsMakes(): " + e);
-            transaction.rollback();
+            session.getTransaction().rollback();
         }
         return makesList;
     }
@@ -115,14 +115,14 @@ public class CarService extends AbstractService {
         log.info("Service getCarsMakes(): ");
 
         carDao.session = session;
-        Transaction transaction = getTransaction();
         List<String> makesList = null;
         try {
+            session.beginTransaction();
             makesList = carDao.getAllCarsMakes();
-            transaction.commit();
+            session.getTransaction().commit();
         } catch (DaoException | HibernateException e) {
             log.info("Error in service getAllCarsMakes(): " + e);
-            transaction.rollback();
+            session.getTransaction().rollback();
         }
         return makesList;
     }
@@ -131,14 +131,14 @@ public class CarService extends AbstractService {
         log.info("Service getAllCarsModels(): ");
 
         carDao.session = session;
-        Transaction transaction = getTransaction();
         List<String> modelsList = null;
         try {
+            session.beginTransaction();
             modelsList = carDao.getAllCarsModels(make);
-            transaction.commit();
+            session.getTransaction().commit();
         } catch (DaoException | HibernateException e) {
             log.info("Error in service getAllCarsModels(): " + e);
-            transaction.rollback();
+            session.getTransaction().rollback();
         }
         return modelsList;
     }
@@ -147,14 +147,14 @@ public class CarService extends AbstractService {
         log.info("Service getCarsModels(): ");
 
         carDao.session = session;
-        Transaction transaction = getTransaction();
         List<String> modelsList = null;
         try {
+            session.beginTransaction();
             modelsList = carDao.getCarsModels(make);
-            transaction.commit();
+            session.getTransaction().commit();
         } catch (DaoException | HibernateException e) {
             log.info("Error in service getCarsModels(): " + e);
-            transaction.rollback();
+            session.getTransaction().rollback();
         }
         return modelsList;
     }
@@ -164,15 +164,15 @@ public class CarService extends AbstractService {
         log.info("Service getAmountOfCars(): ");
 
         carDao.session = session;
-        Transaction transaction = getTransaction();
         long result = 0;
         verificationsParameters(searchMap);
         try {
+            session.beginTransaction();
             result = carDao.getAmountOfCars(parseParameters(searchMap));
-            transaction.commit();
+            session.getTransaction().commit();
         } catch (DaoException | HibernateException e) {
             log.info("Error in service getAmountOfCars(): " + e);
-            transaction.rollback();
+            session.getTransaction().rollback();
         }
         return result;
     }
@@ -182,15 +182,15 @@ public class CarService extends AbstractService {
         log.info("Service searchCars : ");
 
         carDao.session = session;
-        Transaction transaction = getTransaction();
         List<Car> carList = null;
         verificationsParameters(searchMap);
         try {
+            session.beginTransaction();
             carList = carDao.searchCars(parseParameters(searchMap), order, start, amount);
-            transaction.commit();
+            session.getTransaction().commit();
         } catch (DaoException | HibernateException e) {
             log.info("Error in service searchCars(): " + e);
-            transaction.rollback();
+            session.getTransaction().rollback();
         }
         return carList;
     }
@@ -200,7 +200,7 @@ public class CarService extends AbstractService {
         int minPrice = Integer.parseInt(searchParameters.get("minPrice"));
         int maxPrice = Integer.parseInt(searchParameters.get("maxPrice"));
 
-        if(minPrice != 0 && maxPrice != 0) {
+        if (minPrice != 0 && maxPrice != 0) {
             searchParameters.replace("minPrice", String.valueOf(minPrice), String.valueOf(Math.min(minPrice, maxPrice)));
             searchParameters.replace("maxPrice", String.valueOf(maxPrice), String.valueOf(Math.max(minPrice, maxPrice)));
         }
@@ -209,28 +209,28 @@ public class CarService extends AbstractService {
     private HashMap<String, Object> parseParameters(HashMap<String, String> params) {
         Iterator iterator = params.keySet().iterator();
         HashMap<String, Object> hashMap = new HashMap<>();
-            while (iterator.hasNext()) {
-                String param = (String) iterator.next();
-                switch (param) {
-                    case "transmission":
-                        hashMap.put(param, Transmission.valueOf(params.get(param)));
-                        break;
-                    case "carCondition":
-                        hashMap.put(param, CarCondition.valueOf(params.get(param)));
-                        break;
-                    case "bodyType":
-                        hashMap.put(param, BodyType.valueOf(params.get(param)));
-                        break;
-                    case "fuelType":
-                        hashMap.put(param, FuelType.valueOf(params.get(param)));
-                        break;
-                    case "driving":
-                        hashMap.put(param, WheelDriving.valueOf(params.get(param)));
-                        break;
-                    default:
-                        hashMap.put(param, params.get(param));
-                }
+        while (iterator.hasNext()) {
+            String param = (String) iterator.next();
+            switch (param) {
+                case "transmission":
+                    hashMap.put(param, Transmission.valueOf(params.get(param)));
+                    break;
+                case "carCondition":
+                    hashMap.put(param, CarCondition.valueOf(params.get(param)));
+                    break;
+                case "bodyType":
+                    hashMap.put(param, BodyType.valueOf(params.get(param)));
+                    break;
+                case "fuelType":
+                    hashMap.put(param, FuelType.valueOf(params.get(param)));
+                    break;
+                case "driving":
+                    hashMap.put(param, WheelDriving.valueOf(params.get(param)));
+                    break;
+                default:
+                    hashMap.put(param, params.get(param));
             }
+        }
         return hashMap;
     }
 
@@ -239,15 +239,15 @@ public class CarService extends AbstractService {
         log.info("Service getCarById(): ");
 
         carDao.session = session;
-        Transaction transaction = getTransaction();
         Car car = null;
         try {
+            session.beginTransaction();
             car = carDao.get(id);
             session.refresh(car);
-            transaction.commit();
+            session.getTransaction().commit();
         } catch (DaoException | HibernateException e) {
             log.info("Error in service getCarById(): " + e);
-            transaction.rollback();
+            session.getTransaction().rollback();
         }
         return car;
     }
@@ -257,19 +257,19 @@ public class CarService extends AbstractService {
         log.info("Service getCarById(): ");
 
         carDao.session = session;
-        Transaction transaction = getTransaction();
         Car car = null;
         try {
+            session.beginTransaction();
             car = carDao.get(id);
-            transaction.commit();
+            session.getTransaction().commit();
             if (car != null) {
-                transaction = getTransaction();
+                session.beginTransaction();
                 carDao.delete(car);
-                transaction.commit();
+                session.getTransaction().commit();
             }
         } catch (DaoException | HibernateException e) {
             log.info("Error in service deleteCar(): " + e);
-            transaction.rollback();
+            session.getTransaction().rollback();
         }
     }
 
@@ -295,13 +295,13 @@ public class CarService extends AbstractService {
         car.setRegion(parameters.get("region"));
         car.setCity(parameters.get("city"));
 
-        Transaction transaction = getTransaction();
         try {
+            session.beginTransaction();
             carDao.saveOrUpdate(car);
-            transaction.commit();
+            session.getTransaction().commit();
         } catch (DaoException | HibernateException e) {
             log.info("Error in service updateCar(): " + e);
-            transaction.rollback();
+            session.getTransaction().rollback();
             throw new ServiceException("Sorry, update failed, please try again later" + e);
         }
         return car.getId();
@@ -313,13 +313,13 @@ public class CarService extends AbstractService {
         carDao.session = session;
         Car car = getCarById(id);
         car.setVerified(Boolean.parseBoolean(verified));
-        Transaction transaction = getTransaction();
         try {
+            session.beginTransaction();
             carDao.saveOrUpdate(car);
-            transaction.commit();
+            session.getTransaction().commit();
         } catch (DaoException | HibernateException e) {
             log.info("Error in service updateCar(): " + e);
-            transaction.rollback();
+            session.getTransaction().rollback();
         }
     }
 
@@ -328,14 +328,14 @@ public class CarService extends AbstractService {
         log.info("Service getAllCars : ");
 
         carDao.session = session;
-        Transaction transaction = getTransaction();
         List<Car> carList = null;
         try {
+            session.beginTransaction();
             carList = carDao.getAll(order, start, amount);
-            transaction.commit();
+            session.getTransaction().commit();
         } catch (DaoException | HibernateException e) {
             log.info("Error in service getAllCars(): " + e);
-            transaction.rollback();
+            session.getTransaction().rollback();
         }
         return carList;
     }

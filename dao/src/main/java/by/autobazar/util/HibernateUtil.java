@@ -60,4 +60,5 @@ public class HibernateUtil {
         }
         return util;
     }
+
 }

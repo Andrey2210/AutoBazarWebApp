@@ -11,10 +11,4 @@ import org.hibernate.Transaction;
 public abstract class AbstractService {
     public static Session session;
 
-    public Transaction getTransaction() {
-        Transaction transaction = null;
-        transaction = session.beginTransaction();
-        return transaction;
-    }
-
 }
