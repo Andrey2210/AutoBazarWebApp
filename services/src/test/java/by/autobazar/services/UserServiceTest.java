@@ -28,7 +28,7 @@ public class UserServiceTest {
     @AfterClass
     public static void deleteCar() throws ServiceException {
         userService.deleteUser(user.getId());
-        AbstractService.session.close();
+        HibernateUtil.getHibernateUtil().closeSession(AbstractService.session);
     }
 
     @Test
