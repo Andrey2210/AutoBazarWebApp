@@ -27,7 +27,6 @@ public class HibernateUtil {
         try {
             Configuration configuration = new Configuration().configure()
                     .setNamingStrategy(new CustomNamingStrategy());
-            /*.configure(HibernateUtil.class.getResource("/hibernate.cfg.xml"));*/
             StandardServiceRegistryBuilder serviceRegistryBuilder = new StandardServiceRegistryBuilder();
             serviceRegistryBuilder.applySettings(configuration.getProperties());
             ServiceRegistry serviceRegistry = serviceRegistryBuilder.build();

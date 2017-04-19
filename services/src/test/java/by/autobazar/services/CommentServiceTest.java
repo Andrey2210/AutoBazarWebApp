@@ -24,12 +24,12 @@ public class CommentServiceTest {
     @AfterClass
     public static void deleteComment() {
         commentService.deleteComment(id);
-        AbstractService.session.close();
+        HibernateUtil.getHibernateUtil().closeSession(AbstractService.session);
     }
 
     @Test
     public void createTest() {
-        id = commentService.createComment("HI", 48L, 3L);
+        id = commentService.createComment("HI", 68L, 3L);
         Assert.assertNotNull(id);
         Assert.assertTrue(id > 0);
     }

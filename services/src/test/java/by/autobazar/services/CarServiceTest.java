@@ -49,7 +49,7 @@ public class CarServiceTest {
     @AfterClass
     public static void deleteCar() {
         carService.deleteCar(id);
-        AbstractService.session.close();
+        HibernateUtil.getHibernateUtil().closeSession(AbstractService.session);
     }
 
         @Test
@@ -95,7 +95,7 @@ public class CarServiceTest {
     @Test
     public void createCar() throws ServiceException {
 
-        id = carService.createCar(hashMap, 4L);
+        id = carService.createCar(hashMap, 3L);
         Assert.assertNotNull(id);
     }
 
@@ -128,7 +128,7 @@ public class CarServiceTest {
 
     @Test
     public void getCarByIdTest() {
-        Car car = CarService.getInstance().getCarById(48L);
+        Car car = CarService.getInstance().getCarById(68L);
         Assert.assertNotNull(car);
     }
 
