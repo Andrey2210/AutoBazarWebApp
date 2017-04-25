@@ -2,9 +2,7 @@ package autobazar.servlet;
 
 import autobazar.command.FrontCommand;
 import autobazar.command.UnknownCommand;
-import by.autobazar.services.AbstractService;
 import by.autobazar.util.HibernateUtil;
-import org.hibernate.Session;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

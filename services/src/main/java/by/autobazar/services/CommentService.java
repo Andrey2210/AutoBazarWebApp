@@ -1,5 +1,6 @@
 package by.autobazar.services;
 
+import by.autobazar.dao.CarDao;
 import by.autobazar.dao.CommentDao;
 import by.autobazar.dao.exceptions.DaoException;
 import by.autobazar.entity.Car;
@@ -8,6 +9,8 @@ import by.autobazar.entity.User;
 import org.apache.log4j.Logger;
 import org.hibernate.HibernateException;
 import org.hibernate.Transaction;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 
@@ -16,64 +19,38 @@ import java.time.LocalDateTime;
  * Date: 09.04.2017.
  * Time: 22:50
  */
-public class CommentService extends AbstractService{
+@Service
+public class CommentService extends BaseService<Comment> {
 
     private static final Logger log = Logger.getLogger(CommentService.class);
-    private static CommentService INSTANCE = null;
-    private CommentDao commentDao = CommentDao.getInstance();
+    private CarService carService;
 
-    private CommentService() {
+    @Autowired
+    private CommentService(CommentDao commentDao, CarService carService) {
+        super(commentDao);
+        this.carService = carService;
     }
 
-    public static CommentService getInstance() {
-        if (INSTANCE == null) {
-            synchronized (CommentService.class) {
-                if (INSTANCE == null) {
-                    INSTANCE = new CommentService();
-                }
-            }
-        }
-        return INSTANCE;
-    }
-
-    public long createComment(String text, long carId, long userId)  {
+    public long createComment(String text, long carId, long userId) {
         log.info("Service createComment(): ");
 
-        commentDao.session = session;
         User user = UserService.getInstance().getUserById(userId);
-        Car car = CarService.getInstance().getCarById(carId);
+        Car car = carService.getCarById(carId);
 
         Comment comment = new Comment(text, LocalDateTime.now());
         comment.setUser(user);
         comment.setCar(car);
-        try {
-            session.beginTransaction();
-            commentDao.saveOrUpdate(comment);
-            session.getTransaction().commit();
-        } catch (DaoException | HibernateException e) {
-            log.info("Error in service createComment(): " + e);
-            session.getTransaction().rollback();
-        }
+        baseDao.saveOrUpdate(comment);
         return comment.getId();
     }
 
     public void deleteComment(Long id) {
         log.info("Service deleteComment(): ");
-
-        commentDao.session = session;
-        Comment comment= null;
-        try {
-            session.beginTransaction();
-            comment = commentDao.get(id);
-            session.getTransaction().commit();
-            if(comment != null) {
-                session.beginTransaction();
-                commentDao.delete(comment);
-                session.getTransaction().commit();
-            }
-        } catch (DaoException | HibernateException e) {
-            log.info("Error in service deleteComment(): " + e);
-            session.getTransaction().rollback();
+        Comment comment = null;
+        comment = get(id);
+        if (comment != null) {
+            baseDao.delete(comment);
         }
+
     }
 }

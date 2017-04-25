@@ -1,80 +1,50 @@
 package by.autobazar.dao;
 
-import by.autobazar.dao.exceptions.DaoException;
-import by.autobazar.util.HibernateUtil;
+
 import org.apache.log4j.Logger;
-import org.hibernate.HibernateException;
 import org.hibernate.Session;
-import org.hibernate.Transaction;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import java.io.Serializable;
-import java.lang.reflect.ParameterizedType;
 
 /**
  * This class is responsible for realizing common methods for all DAO (CRUID methods)
  *
  * @param <T> Class should be Entity
  */
+@Repository
 public abstract class BaseDao<T> implements Dao<T> {
 
     private static Logger log = Logger.getLogger(BaseDao.class);
-    public Session session = null;
+    private SessionFactory sessionFactory;
 
-    public BaseDao() {}
+    @Autowired
+    protected BaseDao(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
 
-    @Override
-    public void saveOrUpdate(T t) throws DaoException {
-        try {
-            log.info("saveOrUpdate(t):" + t);
-            session.saveOrUpdate(t);
-        } catch (HibernateException e) {
-            log.error("Error save or update" + getPersistentClass() + " in Dao" + e);
-            throw new DaoException(e);
-        }
-
+    protected Session getSession() {
+        return sessionFactory.getCurrentSession();
     }
 
     @Override
-    public T get(Serializable id) throws DaoException {
-        log.info("Get class by id:" + id);
-        T t = null;
-        try {
-            t = (T) session.get(getPersistentClass(), id);
-            log.info("get class:" + t);
-        } catch (HibernateException e) {
-            log.error("Error get " + getPersistentClass() + " in Dao" + e);
-            throw new DaoException(e);
-        }
-        return t;
+    public void saveOrUpdate(T t) {
+        log.info("saveOrUpdate(t):" + t);
+        getSession().saveOrUpdate(t);
     }
 
     @Override
-    public T load(Serializable id) throws DaoException {
+    public T load(Class<T> clazz, Serializable id) {
         log.info("Load class by id:" + id);
-        T t = null;
-        try {
-            t = (T) session.load(getPersistentClass(), id);
-            log.info("load() class:" + t);
-            session.isDirty();
-        } catch (HibernateException e) {
-            log.error("Error load() " + getPersistentClass() + " in Dao" + e);
-            throw new DaoException(e);
-        }
-        return t;
+        return (T) getSession().load(clazz, id);
     }
 
     @Override
-    public void delete(T t) throws DaoException {
-        try {
-            session.delete(t);
-            log.info("Delete:" + t);
-        } catch (HibernateException e) {
-            log.error("Error delete in Dao" + e);
-            throw new DaoException(e);
-        }
-    }
+    public void delete(T t) {
+        log.info("saveOrUpdate(t):" + t);
+        getSession().delete(t);
 
-    private Class getPersistentClass() {
-        return (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
     }
 }
