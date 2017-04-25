@@ -20,15 +20,17 @@ import java.util.List;
 public class CarService extends BaseService<Car> {
 
     private static final Logger log = Logger.getLogger(CarService.class);
+    private UserService userService;
 
     @Autowired
-    private CarService(CarDao carDao) {
+    private CarService(CarDao carDao, UserService userService) {
         super(carDao);
+        this.userService = userService;
     }
 
     public long createCar(HashMap<String, String> parameters, long id) throws ServiceException {
         log.info("Service createCar(): ");
-        User user = UserService.getInstance().getUserById(id);
+        User user = userService.getUserById(id);
 
         Car car = new Car();
         car.setMark(parameters.get("mark"));

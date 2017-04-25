@@ -150,7 +150,7 @@
       <dependency>
           <groupId>org.aspectj</groupId>
           <artifactId>aspectjweaver</artifactId>
-          <version>${spring.version}</version>
+          <version>1.8.10</version>
       </dependency>
   </dependencies>
     </dependencyManagement>
