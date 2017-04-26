@@ -1,13 +1,10 @@
 package by.autobazar.services;
 
 import by.autobazar.dao.CarDao;
-import by.autobazar.dao.exceptions.DaoException;
+import by.autobazar.dao.ICarDao;
 import by.autobazar.entity.*;
 import by.autobazar.entity.carEnum.*;
-import by.autobazar.util.HibernateUtil;
 import org.apache.log4j.Logger;
-import org.hibernate.HibernateException;
-import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,20 +14,20 @@ import java.util.Iterator;
 import java.util.List;
 
 @Service
-public class CarService extends BaseService<Car> {
+public class CarService extends BaseService<Car> implements ICarService {
 
     private static final Logger log = Logger.getLogger(CarService.class);
-    private UserService userService;
+    private IUserService userService;
 
     @Autowired
-    private CarService(CarDao carDao, UserService userService) {
+    private CarService(ICarDao carDao, IUserService userService) {
         super(carDao);
         this.userService = userService;
     }
 
-    public long createCar(HashMap<String, String> parameters, long id) throws ServiceException {
+    public long createCar(HashMap<String, String> parameters, long id) {
         log.info("Service createCar(): ");
-        User user = userService.getUserById(id);
+        User user = ((UserService)userService).getUserById(id);
 
         Car car = new Car();
         car.setMark(parameters.get("mark"));
@@ -64,35 +61,35 @@ public class CarService extends BaseService<Car> {
     public List<Car> getLimitAmount() {
         log.info("Service getLimitAmount(): ");
         List<Car> carsList = null;
-        carsList = ((CarDao) baseDao).getLimitAmount();
+        carsList = ((ICarDao) baseDao).getLimitAmount();
         return carsList;
     }
 
     public List<String> getCarsMakes() {
         log.info("Service getCarsMakes(): ");
         List<String> makesList = null;
-        makesList = ((CarDao) baseDao).getCarsMakes();
+        makesList = ((ICarDao) baseDao).getCarsMakes();
         return makesList;
     }
 
     public List<String> getAllCarsMakes() {
         log.info("Service getCarsMakes(): ");
         List<String> makesList = null;
-        makesList = ((CarDao) baseDao).getAllCarsMakes();
+        makesList = ((ICarDao) baseDao).getAllCarsMakes();
         return makesList;
     }
 
     public List<String> getAllCarsModels(String make) {
         log.info("Service getAllCarsModels(): ");
         List<String> modelsList = null;
-        modelsList = ((CarDao) baseDao).getAllCarsModels(make);
+        modelsList = ((ICarDao) baseDao).getAllCarsModels(make);
         return modelsList;
     }
 
     public List<String> getCarsModels(String make) {
         log.info("Service getCarsModels(): ");
         List<String> modelsList = null;
-        modelsList = ((CarDao) baseDao).getCarsModels(make);
+        modelsList = ((ICarDao) baseDao).getCarsModels(make);
         return modelsList;
     }
 
@@ -100,7 +97,7 @@ public class CarService extends BaseService<Car> {
         log.info("Service getAmountOfCars(): ");
         long result = 0;
         verificationsParameters(searchMap);
-        result = ((CarDao) baseDao).getAmountOfCars(parseParameters(searchMap));
+        result = ((ICarDao) baseDao).getAmountOfCars(parseParameters(searchMap));
         return result;
     }
 
@@ -108,7 +105,7 @@ public class CarService extends BaseService<Car> {
         log.info("Service searchCars : ");
         List<Car> carList = null;
         verificationsParameters(searchMap);
-        carList = ((CarDao) baseDao).searchCars(parseParameters(searchMap), order, start, amount);
+        carList = ((ICarDao) baseDao).searchCars(parseParameters(searchMap), order, start, amount);
         return carList;
     }
 
@@ -165,7 +162,7 @@ public class CarService extends BaseService<Car> {
         }
     }
 
-    public long updateCar(HashMap<String, String> parameters) throws ServiceException {
+    public long updateCar(HashMap<String, String> parameters) {
         log.info("Service updateCar(): ");
 
         Car car = getCarById(Long.parseLong(parameters.get("carId")));

@@ -16,8 +16,8 @@ public class VerifiedCarCommand extends FrontCommand {
     public void process() throws ServletException, IOException {
         String flag = request.getParameter("verified");
         long id = Long.parseLong(request.getParameter("id"));
-        CarService.getInstance().verifiedCar(id, flag);
-        request.setAttribute("cars", CarService.getInstance().getAllCars("id", 0, 10));
+//        CarService.getInstance().verifiedCar(id, flag);
+//        request.setAttribute("cars", CarService.getInstance().getAllCars("id", 0, 10));
         forward(ConfigurationManager.getInstance().getProperty("path.page.carsDashboard"));
     }
 }

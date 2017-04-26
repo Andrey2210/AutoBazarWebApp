@@ -13,24 +13,24 @@ import org.junit.Test;
  * Time: 16:00
  */
 public class CommentServiceTest {
-    private static long id;
-    private static CommentService commentService = CommentService.getInstance();
-
-    @BeforeClass
-    public static void set() {
-        AbstractService.session = HibernateUtil.getHibernateUtil().getSession();
-    }
-
-    @AfterClass
-    public static void deleteComment() {
-        commentService.deleteComment(id);
-        HibernateUtil.getHibernateUtil().closeSession(AbstractService.session);
-    }
-
-    @Test
-    public void createTest() {
-        id = commentService.createComment("HI", 68L, 3L);
-        Assert.assertNotNull(id);
-        Assert.assertTrue(id > 0);
-    }
+//    private static long id;
+//    private static CommentService commentService = CommentService.getInstance();
+//
+//    @BeforeClass
+//    public static void set() {
+//        AbstractService.session = HibernateUtil.getHibernateUtil().getSession();
+//    }
+//
+//    @AfterClass
+//    public static void deleteComment() {
+//        commentService.deleteComment(id);
+//        HibernateUtil.getHibernateUtil().closeSession(AbstractService.session);
+//    }
+//
+//    @Test
+//    public void createTest() {
+//        id = commentService.createComment("HI", 68L, 3L);
+//        Assert.assertNotNull(id);
+//        Assert.assertTrue(id > 0);
+//    }
 }

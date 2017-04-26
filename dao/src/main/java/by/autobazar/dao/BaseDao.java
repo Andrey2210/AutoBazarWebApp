@@ -15,7 +15,7 @@ import java.io.Serializable;
  * @param <T> Class should be Entity
  */
 @Repository
-public abstract class BaseDao<T> implements Dao<T> {
+public class BaseDao<T> implements Dao<T> {
 
     private static Logger log = Logger.getLogger(BaseDao.class);
     private SessionFactory sessionFactory;

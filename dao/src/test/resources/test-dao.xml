@@ -61,7 +61,11 @@
                 <prop key="net.sf.ehcache.configurationResourceName">ehcache.xml</prop>
             </props>
         </property>
+        <property name="namingStrategy" ref="nStrategy"/>
+
     </bean>
+
+    <bean id="nStrategy" class="by.autobazar.util.CustomNamingStrategy"/>
 
     <bean id="carDao" class="by.autobazar.dao.CarDao">
         <constructor-arg ref="sessionFactory"/>

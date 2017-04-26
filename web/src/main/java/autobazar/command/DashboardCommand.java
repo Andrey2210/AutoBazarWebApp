@@ -13,11 +13,11 @@ import java.io.IOException;
 public class DashboardCommand extends FrontCommand {
     @Override
     public void process() throws ServletException, IOException {
-        try {
-            request.setAttribute("users", UserService.getInstance().getAll());
-        } catch (ServiceException e) {
-            request.setAttribute("errorUsersMessage", e.getMessage());
-        }
-        forward(ConfigurationManager.getInstance().getProperty("path.page.dashboard"));
+//        try {
+//            request.setAttribute("users", UserService.getInstance().getAll());
+//        } catch (ServiceException e) {
+//            request.setAttribute("errorUsersMessage", e.getMessage());
+//        }
+//        forward(ConfigurationManager.getInstance().getProperty("path.page.dashboard"));
     }
 }

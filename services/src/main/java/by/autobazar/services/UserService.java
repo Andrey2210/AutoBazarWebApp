@@ -1,5 +1,6 @@
 package by.autobazar.services;
 
+import by.autobazar.dao.IUserDao;
 import by.autobazar.dao.UserDao;
 import by.autobazar.dao.exceptions.DaoException;
 import by.autobazar.entity.Car;
@@ -10,18 +11,19 @@ import org.hibernate.HibernateException;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import javax.jws.soap.SOAPBinding;
 import java.util.List;
 
 
-@Repository
-public class UserService extends BaseService<User> {
+@Service
+public class UserService extends BaseService<User> implements IUserService {
 
     private static final Logger log = Logger.getLogger(UserService.class);
 
     @Autowired
-    private UserService(UserDao userDao) {
+    private UserService(IUserDao userDao) {
         super(userDao);
     }
 

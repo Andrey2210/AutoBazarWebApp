@@ -19,7 +19,7 @@ import java.time.LocalDate;
 public class CarDaoTest {
 
     @Autowired
-    private ICarDao<Car> carDao;
+    private ICarDao carDao;
 
     @Test
     public void get() {

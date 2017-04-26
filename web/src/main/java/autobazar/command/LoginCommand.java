@@ -18,27 +18,27 @@ public class LoginCommand extends FrontCommand {
 
     @Override
     public void process() throws ServletException, IOException {
-
-        String login = request.getParameter("login");
-        String password = request.getParameter("password");
-        User user = UserService.getInstance().getLoggedUser(login, password);
-        String page;
-        if (user != null) {
-            UserAuthenticationDto userAuthenticationDto = new UserAuthenticationDto();
-            userAuthenticationDto.setId(user.getId());
-            userAuthenticationDto.setLogin(user.getLogin());
-            userAuthenticationDto.setPassword(user.getPassword());
-            userAuthenticationDto.setRole(user.getRole().toString());
-            request.getSession().setAttribute("user", userAuthenticationDto);
-            request.getSession().removeAttribute("pageDetails");
-            List<Car> carsList = CarService.getInstance().getLimitAmount();
-            request.setAttribute("list", carsList);
-            request.setAttribute("allMakes", CarService.getInstance().getCarsMakes());
-             page = ConfigurationManager.getInstance().getProperty("path.page.index");
-        } else {
-            request.setAttribute("errorLoginPassMessage", "Incorrect login or password");
-             page = ConfigurationManager.getInstance().getProperty("path.page.login");
-        }
-        forward(page);
+//
+//        String login = request.getParameter("login");
+//        String password = request.getParameter("password");
+//        User user = UserService.getInstance().getLoggedUser(login, password);
+//        String page;
+//        if (user != null) {
+//            UserAuthenticationDto userAuthenticationDto = new UserAuthenticationDto();
+//            userAuthenticationDto.setId(user.getId());
+//            userAuthenticationDto.setLogin(user.getLogin());
+//            userAuthenticationDto.setPassword(user.getPassword());
+//            userAuthenticationDto.setRole(user.getRole().toString());
+//            request.getSession().setAttribute("user", userAuthenticationDto);
+//            request.getSession().removeAttribute("pageDetails");
+//            List<Car> carsList = CarService.getInstance().getLimitAmount();
+//            request.setAttribute("list", carsList);
+//            request.setAttribute("allMakes", CarService.getInstance().getCarsMakes());
+//             page = ConfigurationManager.getInstance().getProperty("path.page.index");
+//        } else {
+//            request.setAttribute("errorLoginPassMessage", "Incorrect login or password");
+//             page = ConfigurationManager.getInstance().getProperty("path.page.login");
+//        }
+//        forward(page);
     }
 }

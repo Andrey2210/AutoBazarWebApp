@@ -16,10 +16,10 @@ import java.io.IOException;
 public class DeleteCommentCommand extends FrontCommand {
     @Override
     public void process() throws ServletException, IOException {
-        CommentService.getInstance().deleteComment(Long.parseLong(request.getParameter("id")));
-        Car car = CarService.getInstance().getCarById(Long.parseLong(request.getParameter("carId")));
-        request.setAttribute("car", car);
-        request.setAttribute("commentsList", car.getCommentList());
-        forward(ConfigurationManager.getInstance().getProperty("path.page.comments"));
+//        CommentService.getInstance().deleteComment(Long.parseLong(request.getParameter("id")));
+//        Car car = CarService.getInstance().getCarById(Long.parseLong(request.getParameter("carId")));
+//        request.setAttribute("car", car);
+//        request.setAttribute("commentsList", car.getCommentList());
+//        forward(ConfigurationManager.getInstance().getProperty("path.page.comments"));
     }
 }

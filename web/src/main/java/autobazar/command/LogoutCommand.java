@@ -15,11 +15,11 @@ public class LogoutCommand extends FrontCommand {
 
     @Override
     public void process() throws ServletException, IOException {
-        request.getSession().invalidate();
-        request.getSession().removeAttribute("pageDetails");
-        List<Car> carsList = CarService.getInstance().getLimitAmount();
-        request.setAttribute("list", carsList);
-        request.setAttribute("allMakes", CarService.getInstance().getCarsMakes());
-        forward(ConfigurationManager.getInstance().getProperty("path.page.index"));
+//        request.getSession().invalidate();
+//        request.getSession().removeAttribute("pageDetails");
+//        List<Car> carsList = CarService.getInstance().getLimitAmount();
+//        request.setAttribute("list", carsList);
+//        request.setAttribute("allMakes", CarService.getInstance().getCarsMakes());
+//        forward(ConfigurationManager.getInstance().getProperty("path.page.index"));
     }
 }

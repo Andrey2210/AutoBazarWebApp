@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
  *
  */
 @Repository
-public class ImageDao extends BaseDao<Image> {
+public class ImageDao extends BaseDao<Image> implements IImageDao{
 
     private static Logger log = Logger.getLogger(ImageDao.class);
 

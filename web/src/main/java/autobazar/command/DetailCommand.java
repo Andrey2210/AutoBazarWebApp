@@ -17,16 +17,16 @@ public class DetailCommand extends FrontCommand {
 
     @Override
     public void process() throws ServletException, IOException {
-
-        List<Car> carsList = CarService.getInstance().getLimitAmount();
-        request.setAttribute("list", carsList);
-
-        long id = Long.parseLong(request.getParameter("id"));
-
-        Car car = CarService.getInstance().getCarById(id);
-        request.setAttribute("car", car);
-        request.setAttribute("commentsList", car.getCommentList());
-        forward(ConfigurationManager.getInstance().getProperty("path.page.detail"));
+//
+//        List<Car> carsList = CarService.getInstance().getLimitAmount();
+//        request.setAttribute("list", carsList);
+//
+//        long id = Long.parseLong(request.getParameter("id"));
+//
+//        Car car = CarService.getInstance().getCarById(id);
+//        request.setAttribute("car", car);
+//        request.setAttribute("commentsList", car.getCommentList());
+//        forward(ConfigurationManager.getInstance().getProperty("path.page.detail"));
 
     }
 }

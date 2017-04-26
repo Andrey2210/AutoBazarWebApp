@@ -17,7 +17,7 @@
     <context:component-scan base-package="by.autobazar.services"/>
     <tx:annotation-driven transaction-manager="txManager"/>
 
-    <import resource="classpath*:test-dao.xml"/>
+    <!--<import resource="classpath*:test-dao.xml"/>-->
 
     <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>
 

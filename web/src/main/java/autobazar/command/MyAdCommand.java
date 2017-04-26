@@ -14,8 +14,8 @@ import java.io.IOException;
 public class MyAdCommand extends FrontCommand {
     @Override
     public void process() throws ServletException, IOException {
-        UserAuthenticationDto userADto = (UserAuthenticationDto) request.getSession().getAttribute("user");
-        request.setAttribute("list", UserService.getInstance().getCarsByUserId(userADto.getId()));
-        forward(ConfigurationManager.getInstance().getProperty("path.page.myAd"));
+//        UserAuthenticationDto userADto = (UserAuthenticationDto) request.getSession().getAttribute("user");
+//        request.setAttribute("list", UserService.getInstance().getCarsByUserId(userADto.getId()));
+//        forward(ConfigurationManager.getInstance().getProperty("path.page.myAd"));
     }
 }

@@ -2,6 +2,7 @@ package by.autobazar.services;
 
 import by.autobazar.dao.CarDao;
 import by.autobazar.dao.CommentDao;
+import by.autobazar.dao.ICommentDao;
 import by.autobazar.dao.exceptions.DaoException;
 import by.autobazar.entity.Car;
 import by.autobazar.entity.Comment;
@@ -20,14 +21,14 @@ import java.time.LocalDateTime;
  * Time: 22:50
  */
 @Service
-public class CommentService extends BaseService<Comment> {
+public class CommentService extends BaseService<Comment> implements ICommentService {
 
     private static final Logger log = Logger.getLogger(CommentService.class);
-    private CarService carService;
-    private UserService userService;
+    private ICarService carService;
+    private IUserService userService;
 
     @Autowired
-    private CommentService(CommentDao commentDao, CarService carService, UserService userService) {
+    private CommentService(ICommentDao commentDao, ICarService carService, IUserService userService) {
         super(commentDao);
         this.carService = carService;
         this.userService = userService;
@@ -36,8 +37,8 @@ public class CommentService extends BaseService<Comment> {
     public long createComment(String text, long carId, long userId) {
         log.info("Service createComment(): ");
 
-        User user = userService.getUserById(userId);
-        Car car = carService.getCarById(carId);
+        User user = ((UserService)userService).getUserById(userId);
+        Car car = ((CarService)carService).getCarById(carId);
 
         Comment comment = new Comment(text, LocalDateTime.now());
         comment.setUser(user);

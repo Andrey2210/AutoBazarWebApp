@@ -32,13 +32,13 @@ public class UpdateCommand extends FrontCommand {
         }
         parametersMap.remove("command");
 
-        try {
-            long flag = CarService.getInstance().updateCar(parametersMap);
-        } catch (ServiceException e1) {
-            request.setAttribute("errorMessage", e1.getMessage());
-        }
-        UserAuthenticationDto userADto = (UserAuthenticationDto) request.getSession().getAttribute("user");
-        request.setAttribute("list", UserService.getInstance().getCarsByUserId(userADto.getId()));
-        forward(ConfigurationManager.getInstance().getProperty("path.page.profile"));
+//        try {
+//            long flag = CarService.getInstance().updateCar(parametersMap);
+//        } catch (ServiceException e1) {
+//            request.setAttribute("errorMessage", e1.getMessage());
+//        }
+//        UserAuthenticationDto userADto = (UserAuthenticationDto) request.getSession().getAttribute("user");
+//        request.setAttribute("list", UserService.getInstance().getCarsByUserId(userADto.getId()));
+//        forward(ConfigurationManager.getInstance().getProperty("path.page.profile"));
     }
 }

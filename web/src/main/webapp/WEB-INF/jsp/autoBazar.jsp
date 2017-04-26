@@ -18,9 +18,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <title>AUTO BAZAR</title>
 
-    <link rel="shortcut icon" type="image/x-icon" href="images/favicon.png"/>
+    <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/images/favicon.png"/>
 
-    <link href="css/master.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/css/master.css" rel="stylesheet">
 
     <!--[if lt IE 9]>
     <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -480,7 +480,7 @@
                             <div class="col-xs-4">
                                 <select name="mark" onchange="onChange(this)">
                                     <option value="" selected="selected"><fmt:message key="car.makes"/></option>
-                                    <c:forEach var="make" items="${requestScope.allMakes}">
+                                    <c:forEach var="make" items="${allMakes}">
                                         <option value="${make}">${make}</option>
                                     </c:forEach>
                                 </select>
@@ -585,7 +585,7 @@
                     <div class="b-auto__main">
                         <div class="row">
 
-                            <c:forEach var="car" items="${requestScope.list}">
+                            <c:forEach var="car" items="${list}">
                                 <div class="col-md-3 col-sm-12">
                                     <div class="b-auto__main-item wow zoomInUp" data-wow-delay="0.3s">
                                         <img class="img-responsive center-block" src="${car.imageList.get(0).imagePath}"/>
@@ -677,31 +677,31 @@
 
 
 <!--Main-->
-<script src="js/jquery-1.11.3.min.js"></script>
-<script src="js/jquery-ui.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/modernizr.custom.js"></script>
+<script src="${pageContext.request.contextPath}/js/jquery-1.11.3.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/jquery-ui.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/modernizr.custom.js"></script>
 
-<script src="assets/rendro-easy-pie-chart/dist/jquery.easypiechart.min.js"></script>
-<script src="js/waypoints.min.js"></script>
-<script src="js/jquery.easypiechart.min.js"></script>
-<script src="js/classie.js"></script>
+<script src="${pageContext.request.contextPath}/assets/rendro-easy-pie-chart/dist/jquery.easypiechart.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/waypoints.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/jquery.easypiechart.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/classie.js"></script>
 
 <!--Switcher-->
-<script src="assets/switcher/js/switcher.js"></script>
+<script src="${pageContext.request.contextPath}/assets/switcher/js/switcher.js"></script>
 <!--Owl Carousel-->
-<script src="assets/owl-carousel/owl.carousel.min.js"></script>
+<script src="${pageContext.request.contextPath}/assets/owl-carousel/owl.carousel.min.js"></script>
 <!--bxSlider-->
-<script src="assets/bxslider/jquery.bxslider.js"></script>
+<script src="${pageContext.request.contextPath}/assets/bxslider/jquery.bxslider.js"></script>
 <!-- jQuery UI Slider -->
-<script src="assets/slider/jquery.ui-slider.js"></script>
+<script src="${pageContext.request.contextPath}/assets/slider/jquery.ui-slider.js"></script>
 
 <!--Theme-->
-<script src="js/jquery.smooth-scroll.js"></script>
-<script src="js/wow.min.js"></script>
-<script src="js/jquery.placeholder.min.js"></script>
-<script src="js/theme.js"></script>
-<script src="js/search.js"></script>
+<script src="${pageContext.request.contextPath}/js/jquery.smooth-scroll.js"></script>
+<script src="${pageContext.request.contextPath}/js/wow.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/jquery.placeholder.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/theme.js"></script>
+<script src="${pageContext.request.contextPath}/js/search.js"></script>
 
 <script type="text/javascript">
     function submitForm(){

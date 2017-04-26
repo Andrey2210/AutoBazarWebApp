@@ -15,19 +15,19 @@ import java.io.IOException;
 public class DeleteUserCommand extends FrontCommand {
     @Override
     public void process() throws ServletException, IOException {
-        long id = Long.parseLong(request.getParameter("id"));
-        if(id != 0) {
-            try {
-                UserService.getInstance().deleteUser(id);
-            } catch (ServiceException e) {
-                request.setAttribute("errorUsersMessage", e.getMessage());
-            }
-        }
-        try {
-            request.setAttribute("users", UserService.getInstance().getAll());
-        } catch (ServiceException e) {
-            request.setAttribute("errorUsersMessage", e.getMessage());
-        }
-        forward(ConfigurationManager.getInstance().getProperty("path.page.dashboard"));
+//        long id = Long.parseLong(request.getParameter("id"));
+//        if(id != 0) {
+//            try {
+//                UserService.getInstance().deleteUser(id);
+//            } catch (ServiceException e) {
+//                request.setAttribute("errorUsersMessage", e.getMessage());
+//            }
+//        }
+//        try {
+//            request.setAttribute("users", UserService.getInstance().getAll());
+//        } catch (ServiceException e) {
+//            request.setAttribute("errorUsersMessage", e.getMessage());
+//        }
+//        forward(ConfigurationManager.getInstance().getProperty("path.page.dashboard"));
     }
 }

@@ -39,9 +39,9 @@ public class UnknownCommand extends FrontCommand {
                 return;
             default:
                 request.getSession().removeAttribute("pageDetails");
-                List<Car> carsList = CarService.getInstance().getLimitAmount();
-                request.setAttribute("list", carsList);
-                request.setAttribute("allMakes", CarService.getInstance().getCarsMakes());
+//                List<Car> carsList = CarService.getInstance().getLimitAmount();
+//                request.setAttribute("list", carsList);
+//                request.setAttribute("allMakes", CarService.getInstance().getCarsMakes());
                 String page = ConfigurationManager.getInstance().getProperty("path.page.index");
                 forward(page);
         }

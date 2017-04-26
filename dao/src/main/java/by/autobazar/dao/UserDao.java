@@ -14,7 +14,7 @@ import java.util.List;
  *
  */
 @Repository
-public class UserDao extends BaseDao<User> {
+public class UserDao extends BaseDao<User> implements IUserDao {
     private static Logger log = Logger.getLogger(UserDao.class);
 
     @Autowired

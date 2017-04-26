@@ -31,7 +31,7 @@ import java.util.List;
 @ToString(exclude="user")
 @AllArgsConstructor
 @NoArgsConstructor
-@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+//@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Car implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -115,7 +115,7 @@ public class Car implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY, mappedBy="car")
     private List<Comment> commentList = new LinkedList<>();
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY, mappedBy="car")
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER, mappedBy="car")
     private List<Image> imageList = new ArrayList<>();
 
     public Car(String mark, String model, int price, LocalDate year, Transmission transmission, BodyType bodyType,

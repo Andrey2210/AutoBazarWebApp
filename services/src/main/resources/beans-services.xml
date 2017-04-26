@@ -13,12 +13,12 @@
        http://www.springframework.org/schema/tx
        http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
 
+    <import resource="classpath*:beans-dao.xml"/>
     <context:annotation-config/>
-    <aop:aspectj-autoproxy proxy-target-class="true"/>
+    <aop:aspectj-autoproxy/>
     <context:component-scan base-package="by.autobazar.services"/>
     <tx:annotation-driven transaction-manager="txManager"/>
 
-    <import resource="classpath*:beans-dao.xml"/>
 
     <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>
 

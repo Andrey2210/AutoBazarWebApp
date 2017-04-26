@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
  *
  */
 @Repository
-public class CommentDao extends BaseDao<Comment> {
+public class CommentDao extends BaseDao<Comment> implements ICommentDao {
 
     private static Logger log = Logger.getLogger(CommentDao.class);
 

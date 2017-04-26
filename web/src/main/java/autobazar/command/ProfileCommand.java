@@ -14,9 +14,9 @@ import java.io.IOException;
 public class ProfileCommand extends FrontCommand {
     @Override
     public void process() throws ServletException, IOException {
-        UserAuthenticationDto userADto = (UserAuthenticationDto) request.getSession().getAttribute("user");
-        request.setAttribute("user", UserService.getInstance().getUserById(userADto.getId()));
-        request.setAttribute("list", UserService.getInstance().getCarsByUserId(userADto.getId()));
-        forward(ConfigurationManager.getInstance().getProperty("path.page.profile"));
+//        UserAuthenticationDto userADto = (UserAuthenticationDto) request.getSession().getAttribute("user");
+//        request.setAttribute("user", UserService.getInstance().getUserById(userADto.getId()));
+//        request.setAttribute("list", UserService.getInstance().getCarsByUserId(userADto.getId()));
+//        forward(ConfigurationManager.getInstance().getProperty("path.page.profile"));
     }
 }

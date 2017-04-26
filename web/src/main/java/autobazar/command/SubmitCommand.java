@@ -30,9 +30,9 @@ public class SubmitCommand extends FrontCommand {
         boolean isMultipart = ServletFileUpload.isMultipartContent(request);
         if (!isMultipart) {
             UserAuthenticationDto userAuthenticationDto = (UserAuthenticationDto) request.getSession().getAttribute("user");
-            User userData = UserService.getInstance().getLoggedUser(userAuthenticationDto.getLogin(), userAuthenticationDto.getPassword());
-            request.setAttribute("allMakes", CarService.getInstance().getAllCarsMakes());
-            request.setAttribute("userData", userData);
+//            User userData = UserService.getInstance().getLoggedUser(userAuthenticationDto.getLogin(), userAuthenticationDto.getPassword());
+//            request.setAttribute("allMakes", CarService.getInstance().getAllCarsMakes());
+//            request.setAttribute("userData", userData);
             forward(ConfigurationManager.getInstance().getProperty("path.page.submit"));
             return;
         }
@@ -56,11 +56,11 @@ public class SubmitCommand extends FrontCommand {
                 }
             }
             UserAuthenticationDto userAuthenticationDto = (UserAuthenticationDto) request.getSession().getAttribute("user");
-            long flag = CarService.getInstance().createCar(parametersMap, userAuthenticationDto.getId());
-            request.getSession().removeAttribute("pageDetails");
-            List<Car> carsList = CarService.getInstance().getLimitAmount();
-            request.setAttribute("list", carsList);
-            request.setAttribute("allMakes", CarService.getInstance().getCarsMakes());
+//            long flag = CarService.getInstance().createCar(parametersMap, userAuthenticationDto.getId());
+//            request.getSession().removeAttribute("pageDetails");
+//            List<Car> carsList = CarService.getInstance().getLimitAmount();
+//            request.setAttribute("list", carsList);
+//            request.setAttribute("allMakes", CarService.getInstance().getCarsMakes());
             String page = ConfigurationManager.getInstance().getProperty("path.page.index");
             forward(page);
         } catch (Exception e) {

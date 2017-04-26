@@ -20,7 +20,7 @@ import java.util.List;
  * This class contains special methods for working with the entity Car
  */
 @Repository
-public class CarDao extends BaseDao<Car> implements ICarDao<Car> {
+public class CarDao extends BaseDao<Car> implements ICarDao {
 
     private static Logger log = Logger.getLogger(CarDao.class);
 
