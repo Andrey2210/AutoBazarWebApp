@@ -1,0 +1,122 @@
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page"
+          xmlns="http://www.w3.org/1999/xhtml"
+          xmlns:c="http://java.sun.com/jsp/jstl/core"
+          xmlns:s="http://www.springframework.org/tags"
+          xmlns:sec="http://www.springframework.org/security/tags"
+          version="2.0">
+    <header class="b-topBar">
+        <div class="container wow slideInDown" data-wow-delay="0.7s">
+            <div class="row">
+                <div class="col-md-6 col-xs-6">
+                    <div class="b-topBar__tel">
+                        <span class="fa fa-phone"/>
+                        +375 (44) 557-52-21
+                    </div>
+                </div>
+
+                <sec:authorize access="isAnonymous()">
+                    <div class="col-md-3 col-xs-6">
+                        <nav class="b-topBar__nav">
+                            <ul>
+                                <li><a class="main-item"
+                                       href="${pageContext.request.contextPath}/registration"><s:message
+                                        code="header.register"/></a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="col-md-1 col-xs-6">
+                        <div class="b-topBar__lang">
+                            <div class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle='dropdown'><s:message
+                                        code="header.signIn"/></a>
+                                <ul class="dropdown-menu dropdown-menu-log">
+                                    <li>
+                                        <form id="login-form" method="post"
+                                              action="${pageContext.request.contextPath}/login">
+                                            <input type="text" name="login" placeholder="LOGIN/EMAIL" required="required"/>
+                                            <input type="password" name="password" placeholder="PASSWORD" required="required"/>
+                                        </form>
+                                    </li>
+                                    <li><button type="submit" class="btn-link"><s:message code="header.signIn"/>
+                                    </button></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </sec:authorize>
+                <sec:authorize access="isAuthenticated()">
+                    <div class="col-md-3 col-xs-6">
+                        <nav class="b-topBar__nav">
+                            <ul>
+                                <li><a class="fa fa-user main-item" aria-hidden="true"
+                                       href="${pageContext.request.contextPath}/profile"></a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="col-md-1 col-xs-6">
+                        <nav class="b-topBar__lang">
+                            <s:url value="${pageContext.request.contextPath}/logout" var="logoutHref"/>
+                            <a class="main-item" href="${logoutHref}" ><s:message code="header.signOut"/></a>
+                        </nav>
+                    </div>
+                </sec:authorize>
+
+
+                <div class="col-md-2 col-xs-6">
+                    <div class="b-topBar__lang">
+                        <div class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle='dropdown'><s:message
+                                    code="header.language"/></a>
+                            <a class="m-langLink dropdown-toggle" data-toggle='dropdown' href="#"><span
+                                    class="b-topBar__lang-flag m-en"/><span class="fa fa-caret-down"/></a>
+                            <ul class="dropdown-menu h-lang">
+                                <li><a class="m-langLink dropdown-toggle" data-toggle='dropdown' href="?locale=ru"><span
+                                        class="b-topBar__lang-flag m-en"/>EN</a></li>
+                                <li><a class="m-langLink dropdown-toggle" data-toggle='dropdown' href="?locale=en"><span
+                                        class="b-topBar__lang-flag m-es"/>RU</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header><!--b-topBar-->
+
+    <nav class="b-nav">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3 col-xs-4">
+                    <div class="b-nav__logo wow slideInLeft" data-wow-delay="0.3s">
+                        <h3><a href="${pageContext.request.contextPath}/home">Auto<span>BAZAR</span></a></h3>
+                        <h2><a href="${pageContext.request.contextPath}/home"><s:message code="header.logo"/></a></h2>
+                    </div>
+                </div>
+                <div class="col-sm-9 col-xs-8">
+                    <div class="b-nav__list wow slideInRight" data-wow-delay="0.3s">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"/>
+                                <span class="icon-bar"/>
+                                <span class="icon-bar"/>
+                            </button>
+                        </div>
+                        <div class="collapse navbar-collapse navbar-main-slide" id="nav">
+                            <ul class="navbar-nav-menu">
+                                <li><a href="${pageContext.request.contextPath}/home"><s:message
+                                        code="header.home"/></a></li>
+                                <li><a href="${pageContext.request.contextPath}/cars"><s:message code="header.catalog"/></a>
+                                </li>
+                                <sec:authorize access="hasRole('ROLE_ADMIN')">
+                                    <li><a href="${pageContext.request.contextPath}/dashboard"><s:message
+                                            code="header.dashboard"/></a></li>
+                                </sec:authorize>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+</jsp:root>

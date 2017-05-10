@@ -1,0 +1,48 @@
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page"
+          xmlns="http://www.w3.org/1999/xhtml"
+          xmlns:c="http://java.sun.com/jsp/jstl/core"
+          xmlns:s="http://www.springframework.org/tags"
+          xmlns:sf="http://www.springframework.org/tags/form"
+          version="2.0">
+
+    <div class="m-contacts" data-scrolling-animations="true">
+
+        <section class="b-pageHeader">
+            <div class="container">
+                <h1 class=" wow zoomInLeft" data-wow-delay="0.5s">Authorization page</h1>
+            </div>
+        </section><!--b-pageHeader-->
+
+
+        <section class="b-contacts s-shadow">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-xs-7">
+                        <div class="b-contacts__form">
+                            <header class="b-contacts__form-header s-lineDownLeft wow zoomInUp" data-wow-delay="0.5s">
+                                <h2 class="s-titleDet">Authorization</h2>
+                            </header>
+                            <div></div>
+                            <form action="${pageContext.request.contextPath}/login" method="post"
+                                  class="s-form wow zoomInUp" data-wow-delay="0.5s">
+                                <label>Enter login/email <span>*</span></label>
+                                <input type="text" placeholder="LOGIN/EMAIL" value="" name="login" id="login"/>
+                                <label>Enter password <span>*</span></label>
+                                <input type="password" placeholder="PASSWORD" value="" name="password" id="password"/>
+                                <br/>
+                                <p style="color: red">${errorLoginPassMessage}</p>
+                                <br/>
+                                <button type="submit" class="btn m-btn">SUBMIT NOW<span class="fa fa-angle-right"/>
+                                </button>
+                                <button type="reset" class="btn m-btn">RESET<span class="fa fa-angle-right"/>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </div>
+</jsp:root>

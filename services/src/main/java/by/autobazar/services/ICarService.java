@@ -11,7 +11,10 @@ import java.util.List;
  * Time: 21:43
  */
 public interface ICarService extends IService<Car> {
+
     long createCar(HashMap<String, String> parameters, long id);
+
+    List<Car> getAll();
 
     List<Car> getLimitAmount();
 

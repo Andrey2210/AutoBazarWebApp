@@ -1,5 +1,6 @@
 package by.autobazar.dao;
 
+import by.autobazar.dao.daoImp.BaseDao;
 import by.autobazar.entity.Image;
 import org.apache.log4j.Logger;
 import org.hibernate.SessionFactory;

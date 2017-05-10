@@ -1,6 +1,7 @@
 package by.autobazar.entity;
 
 import by.autobazar.entity.carEnum.Role;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,7 +19,7 @@ import java.util.List;
  * Time: 2:30
  */
 @Entity
-@Table(name="T_USER")
+@Table(name = "T_USER")
 @Data
 @Log4j
 @AllArgsConstructor
@@ -28,7 +29,7 @@ public class User implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     private Long id;
 
@@ -48,14 +49,16 @@ public class User implements Serializable {
     private String phone;
 
     @Enumerated(EnumType.STRING)
-    @Column(name="F_ROLE")
+    @Column(name = "F_ROLE")
     private Role role;
 
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY, mappedBy="user")
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY, mappedBy = "user")
+    @JsonIgnore
     private List<Comment> commentList = new ArrayList<>();
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY, mappedBy="user")
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY, mappedBy = "user")
+    @JsonIgnore
     private List<Car> carList = new ArrayList<>();
 
     public User(String login, String email, String password, String name, String phone, Role role) {

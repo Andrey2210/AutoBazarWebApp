@@ -67,7 +67,7 @@
 
     <bean id="nStrategy" class="by.autobazar.util.CustomNamingStrategy"/>
 
-    <bean id="carDao" class="by.autobazar.dao.CarDao">
+    <bean id="carDao" class="by.autobazar.dao.daoImp.CarDao">
         <constructor-arg ref="sessionFactory"/>
     </bean>
 

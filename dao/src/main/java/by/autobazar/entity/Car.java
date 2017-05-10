@@ -2,6 +2,7 @@ package by.autobazar.entity;
 
 import by.autobazar.entity.carEnum.*;
 import by.autobazar.util.LocalDateAttributeConverter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,6 +10,7 @@ import lombok.ToString;
 import lombok.extern.log4j.Log4j;
 import org.hibernate.annotations.*;
 import org.hibernate.annotations.Cache;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.persistence.CascadeType;
@@ -20,15 +22,11 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-/**
- * Created by Andrey
- * Date: 29.03.2017.
- * Time: 2:31
- */
+
 @Entity
-@Table(name="T_CAR")
+@Table(name = "T_CAR")
 @Data
-@ToString(exclude="user")
+@ToString(exclude = {"user", "commentList"})
 @AllArgsConstructor
 @NoArgsConstructor
 //@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
@@ -37,7 +35,7 @@ public class Car implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     private Long id;
 
@@ -59,7 +57,7 @@ public class Car implements Serializable {
     private Transmission transmission;
 
     @Enumerated(EnumType.STRING)
-    @Column(name="F_BODY_TYPE")
+    @Column(name = "F_BODY_TYPE")
     private BodyType bodyType;
 
     @Column
@@ -67,20 +65,20 @@ public class Car implements Serializable {
     private String description;
 
     @Enumerated(EnumType.STRING)
-    @Column(name="F_CONDITION")
+    @Column(name = "F_CONDITION")
     private CarCondition carCondition;
 
     @Column
-    private  int milleage;
+    private int milleage;
 
-    @Column(name="F_DOORS_NUMBER")
+    @Column(name = "F_DOORS_NUMBER")
     private int doorsNumber;
 
     @Enumerated(EnumType.STRING)
-    @Column(name="F_FUEL_TYPE")
+    @Column(name = "F_FUEL_TYPE")
     private FuelType fuelType;
 
-    @Column(name="F_ENGINE_CAPACITY")
+    @Column(name = "F_ENGINE_CAPACITY")
     private double engineCapacity;
 
     @Enumerated(EnumType.STRING)
@@ -88,15 +86,15 @@ public class Car implements Serializable {
     private WheelDriving driving;
 
     @Enumerated(EnumType.STRING)
-    @Column(name="F_CAR_COLOR")
+    @Column(name = "F_CAR_COLOR")
     private CarColor carColor;
 
     @Enumerated(EnumType.STRING)
-    @Column(name="F_INTERIOR_MATERIAL")
+    @Column(name = "F_INTERIOR_MATERIAL")
     private InteriorMaterial interiorMaterial;
 
     @Enumerated(EnumType.STRING)
-    @Column(name="F_INTERIOR_COLOR")
+    @Column(name = "F_INTERIOR_COLOR")
     private InteriorColor interiorColor;
 
     @Column
@@ -109,17 +107,18 @@ public class Car implements Serializable {
     private Boolean verified;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name="F_USER_ID")
+    @JoinColumn(name = "F_USER_ID")
     private User user;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY, mappedBy="car")
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY, mappedBy = "car")
+    @JsonIgnore
     private List<Comment> commentList = new LinkedList<>();
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER, mappedBy="car")
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER, mappedBy = "car")
     private List<Image> imageList = new ArrayList<>();
 
     public Car(String mark, String model, int price, LocalDate year, Transmission transmission, BodyType bodyType,
-               String description, CarCondition carCondition, int milleage, int doorsNumber,FuelType fuelType,
+               String description, CarCondition carCondition, int milleage, int doorsNumber, FuelType fuelType,
                double engineCapacity, WheelDriving driving, CarColor carColor, InteriorMaterial interiorMaterial,
                InteriorColor interiorColor, String region, String city, boolean verified) {
         this.mark = mark;
@@ -143,6 +142,12 @@ public class Car implements Serializable {
         this.verified = verified;
     }
 
+    public LocalDate getYear() {
+        return year;
+    }
 
+    public void setYear(String year) {
+        this.year = LocalDate.of(Integer.parseInt((year)), 1, 1);
+    }
 
 }

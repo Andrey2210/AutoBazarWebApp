@@ -8,4 +8,6 @@ import by.autobazar.entity.Comment;
  * Time: 22:26
  */
 public interface ICommentService extends IService<Comment> {
-        }
+
+    long createComment(String text, long carId, long userId);
+}

@@ -1,0 +1,276 @@
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page"
+          xmlns="http://www.w3.org/1999/xhtml"
+          xmlns:c="http://java.sun.com/jsp/jstl/core"
+          xmlns:s="http://www.springframework.org/tags"
+          xmlns:sf="http://www.springframework.org/tags/form"
+          version="2.0">
+    <div  ng-controller="CarsController" class="m-listingsTwo" data-scrolling-animations="true">
+        <section class="b-pageHeader">
+            <div class="container">
+                <h1 class=" wow zoomInLeft" data-wow-delay="0.5s"><s:message code="list.autos"/></h1>
+                <div class="b-pageHeader__search wow zoomInRight" data-wow-delay="0.5s">
+                    <h3><s:message code="list.header"/> ${sessionScope.pageDetails.amountOfItems} <s:message
+                            code="list.header.end"/></h3>
+                </div>
+            </div>
+        </section><!--b-pageHeader-->
+
+        <div class="b-infoBar">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-xs-12">
+                        <div class="b-infoBar__select wow zoomInUp" data-wow-delay="0.5s">
+                            <form id="form-page" method="post" action="" >
+                                <div class="b-infoBar__select-one">
+                                    <span class="b-infoBar__select-one-title"><s:message code="list.view"/></span>
+                                    <a href="#" ng-click="load('items')" class="m-list m-active"><span
+                                            class="fa fa-list"/></a>
+                                    <a href="#" ng-click="load('itemsTable')" class="m-table"><span
+                                            class="fa fa-table"/></a>
+                                </div>
+                                <div class="b-infoBar__select-one">
+                                    <span class="b-infoBar__select-one-title"><s:message code="list.onPage"/></span>
+                                    <select name="itemsOnPage" class="m-select" ng-model="currentItems"
+                                            ng-change="go(currentItems)">
+                                        <option value="10">10 items</option>
+                                        <option value="15">15 items</option>
+                                        <option value="30">30 items</option>
+                                    </select>
+                                    <span class="fa fa-caret-down"/>
+                                </div>
+                                <div class="b-infoBar__select-one">
+                                    <span class="b-infoBar__select-one-title"><s:message code="list.sort"/></span>
+                                    <select name="sort" class="m-select" ng-model="currentSort"
+                                            ng-change="go(currentSort)">
+                                        <option value="id" selected="selected">By Date</option>
+                                        <option value="id desc">By Date</option>
+                                        <option value="price">By Price</option>
+                                        <option value="price desc">By Price</option>
+                                        <option value="year">By Year</option>
+                                        <option value="year desc">By Year</option>
+                                    </select>
+                                    <span id="span-sort" class="fa fa-caret-down"/>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!--b-infoBar-->
+
+        <div class="b-items">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-sm-4 col-xs-12">
+                        <aside class="b-items__aside">
+                            <h2 class="s-title wow zoomInUp" data-wow-delay="0.5s"><s:message code="list.refineSearch"/>
+                            </h2>
+                            <div class="b-items__aside-main wow zoomInUp" data-wow-delay="0.5s">
+                                <form action="${pageContext.request.contextPath}/cars" method="get">
+                                    <div class="b-items__aside-main-body">
+                                        <div class="b-items__aside-main-body-item">
+                                            <label>SELECT A MAKE</label>
+                                            <div>
+                                                <select id="#mark" name="mark" class="m-select" ng-model="currentMark"
+                                                        ng-change="byMark(currentMark)">
+                                                    <option value="" selected="selected">All Makes</option>
+                                                    <c:forEach var="make" items="${requestScope.allMakes}">
+                                                        <option value="${make}">${make}</option>
+                                                    </c:forEach>
+                                                </select>
+                                                <span class="fa fa-caret-down"/>
+                                            </div>
+                                        </div>
+                                        <div class="b-items__aside-main-body-item">
+                                            <label>SELECT A MODEL</label>
+                                            <div>
+                                                <select id="model" class="m-select" name="model"
+                                                        ng-model="model" ng-options="m for m in models"
+                                                        ng-change="byModel(model)">
+                                                    <option value="" selected="selected">Model</option>
+                                                </select>
+                                                <span class="fa fa-caret-down"/>
+                                            </div>
+                                        </div>
+
+                                        <div class="b-items__aside-main-body-item">
+                                            <label>YEAR</label>
+                                            <div class="dropdown dropdown-select dropdown-search">
+                                                <button class="btn dropdown-toggle" type="button"
+                                                        data-toggle="dropdown">Year
+                                                    Range
+                                                    <span class="caret"/></button>
+                                                <ul class="dropdown-menu dropdown-select-menu dropdown-menu-search">
+                                                    <li>
+                                                        <div class="b-search__main-form-range">
+                                                            <input type="hidden" name="minYear" class="j-min"
+                                                                   value="1960"/>
+                                                            <input type="hidden" name="maxYear" class="j-max"
+                                                                   value="2017"/>
+                                                            <div data-min="1960" data-max="2017"
+                                                                 class="slider slider-search">
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
+                                        <div class="b-items__aside-main-body-item">
+                                            <label>PRICE</label>
+                                            <input type="number" min="0" max="10000000" name="minPrice" class="j-min"
+                                                   value="0"
+                                                   placeholder="FROM"/> -
+                                            <input type="number" min="0" max="10000000" name="maxPrice" class="j-max"
+                                                   value="10000000"
+                                                   placeholder="TO"/>
+                                        </div>
+
+                                        <div class="b-items__aside-main-body-item">
+                                            <label>ENGINE CAPACITY</label>
+                                            <div class="dropdown dropdown-select dropdown-search">
+                                                <button class="btn dropdown-toggle" type="button"
+                                                        data-toggle="dropdown">Engine
+                                                    Capacity
+                                                    <span class="caret"/></button>
+                                                <ul class="dropdown-menu dropdown-select-menu dropdown-menu-search">
+                                                    <li>
+                                                        <div class="b-search__main-form-range">
+                                                            <input type="hidden" name="minEngineCapacity" class="j-min"
+                                                                   value="0"/>
+                                                            <input type="hidden" name="maxEngineCapacity" class="j-max"
+                                                                   value="10"/>
+                                                            <div data-min="0" data-max="10"
+                                                                 class="slider slider-search">
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
+                                        <div class="b-items__aside-main-body-item">
+                                            <label>TRANSMISSION</label>
+                                            <div>
+                                                <select name="transmission" class="m-select">
+                                                    <option value="" selected="selected">Transmission</option>
+                                                    <option value="AUTOMATIC">AUTOMATIC</option>
+                                                    <option value="MANUAL">MANUAL</option>
+                                                    <option value="CVT">CVT</option>
+                                                </select>
+                                                <span class="fa fa-caret-down"/>
+                                            </div>
+                                        </div>
+                                        <div class="b-items__aside-main-body-item">
+                                            <label>FUEL TYPE</label>
+                                            <div>
+                                                <select name="fuelType" class="m-select">
+                                                    <option value="" selected="selected">Fuel Type</option>
+                                                    <option value="PETROL">Petrol</option>
+                                                    <option value="DIESEL">Diesel</option>
+                                                    <option value="ELECTRO">Electro</option>
+                                                </select>
+                                                <span class="fa fa-caret-down"/>
+                                            </div>
+                                        </div>
+                                        <div class="b-items__aside-main-body-item">
+                                            <label>BODY TYPE</label>
+                                            <div>
+                                                <select name="bodyType" class="m-select">
+                                                    <option value="" selected="selected">Body Types</option>
+                                                    <option value="PICKUP">Pickup</option>
+                                                    <option value="SUV">Suv</option>
+                                                    <option value="COUPE">Coupe</option>
+                                                    <option value="CONVERTIBLE">Convertible</option>
+                                                    <option value="HATCHBACK">Hatchback</option>
+                                                </select>
+                                                <span class="fa fa-caret-down"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <footer class="b-items__aside-main-footer">
+                                        <button type="reset" class="btn-link">RESET ALL FILTERS<span
+                                                class="fa fa-angle-right"/></button>
+                                    </footer>
+                                </form>
+                            </div>
+
+                        </aside>
+                    </div>
+
+                                <div ng-include="template"></div>
+
+                </div>
+            </div><!--b-items-->
+        </div>
+
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#mark').change(function () {
+                getCar(this);
+            });
+        });
+
+        function getCar(_this) {
+            var value = _this.value;
+            var url = "/autobazar/cars/" + value;
+            $.ajax({
+                url: url,
+                headers: "accept: application/json",
+                method: get,
+                data: {'mark': value},
+                success: function (result) {
+                    $(".b-items-cars").html(result);
+                }
+            });
+        }
+        function onChangeSort(_this) {
+            var value = _this.value;
+            if (_this.name == "itemsOnPage") {
+                $.ajax({
+                    method: "GET",
+                    url: "/autobazar/cars/search",
+                    data: {'itemsOnPage': value, 'pageType': "items"},
+                    success: function (result) {
+//                    $(".b-items-cars").load("items.jsp");
+                        $(".b-items-cars").empty();
+                        $("#clientTemplate").tmpl(result).appendTo(".b-items-cars");
+                    }
+                });
+            } else {
+                $.ajax({
+                    method: "GET",
+                    url: "/autobazar/cars/search",
+                    data: {'sort': value, 'pageType': "items"},
+                    success: function (result) {
+                        $(".b-items-cars").html(result);
+                    }
+                });
+            }
+        }
+        function changePageType(_this) {
+            if (_this.classList.contains("m-list")) {
+                $.ajax({
+                    method: "GET",
+                    url: "/autobazar/cars/search",
+                    data: {'pageType': "items"},
+                    success: function (result) {
+                        $(".b-items-cars").html(result);
+                    }
+                });
+            } else {
+                $.ajax({
+                    method: "GET",
+                    url: "/autobazar/cars/search",
+                    data: {'pageType': "itemsTable"},
+                    success: function (result) {
+                        $(".b-items-cars").html(result);
+                    }
+                });
+            }
+
+
+        }
+    </script>
+</jsp:root>
