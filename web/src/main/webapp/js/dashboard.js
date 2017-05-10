@@ -1,22 +1,18 @@
-/**
- * Created by Andrey on 10.04.2017.
- */
+
 function changeTable(_this) {
     var value = _this.value;
     if (_this.name == "users") {
         $.ajax({
-            method: "POST",
-            url: "/autobazar/controller",
-            data: {"command": "UsersDashboard"},
+            method: "GET",
+            url: "/autobazar/dashboard/users",
             success: function (result) {
                 $(".b-submit__main").html(result);
             }
         });
     } else {
         $.ajax({
-            method: "POST",
-            url: "/autobazar/controller",
-            data: {"command": "CarsDashboard"},
+            method: "GET",
+            url: "/autobazar/dashboard/cars",
             success: function (result) {
                 $(".b-submit__main").html(result);
             }

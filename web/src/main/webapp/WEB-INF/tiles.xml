@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+        "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+    <definition name="default" template="/WEB-INF/jsp/layouts/default.jspx">
+        <put-attribute name="title" value=""/>
+        <put-attribute name="header" value="/WEB-INF/jsp/common/header.jspx"/>
+        <put-attribute name="body" value=""/>
+        <put-attribute name="footer" value="/WEB-INF/jsp/common/footer.jspx"/>
+    </definition>
+
+    <definition name="home" extends="default">
+        <put-attribute name="title" value="Home page"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/autoBazar.jspx"/>
+    </definition>
+
+    <definition name="cars" extends="default">
+        <put-attribute name="title" value="Cars catalog"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/carsList.jspx"/>
+    </definition>
+
+    <definition name="login" extends="default">
+        <put-attribute name="title" value="Login page"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/login.jspx"/>
+    </definition>
+
+    <definition name="registration" extends="default">
+        <put-attribute name="title" value="Registration page"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/registration.jspx"/>
+    </definition>
+
+    <definition name="accountInfo" extends="default">
+        <put-attribute name="title" value="Account Info"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/profile.jspx"/>
+    </definition>
+
+    <definition name="submit" extends="default">
+        <put-attribute name="title" value="Add your ads"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/submit1.jspx"/>
+    </definition>
+
+    <definition name="updateCar" extends="default">
+        <put-attribute name="title" value="Update your ads"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/edit.jspx"/>
+    </definition>
+
+    <definition name="dashboard" extends="default">
+        <put-attribute name="title" value="Dashboard"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/dashboard.jspx"/>
+    </definition>
+
+    <definition name="detail" extends="default">
+        <put-attribute name="title" value="Detail"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/detail.jspx"/>
+    </definition>
+
+</tiles-definitions>

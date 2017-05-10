@@ -1,0 +1,520 @@
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page"
+          xmlns="http://www.w3.org/1999/xhtml"
+          xmlns:c="http://java.sun.com/jsp/jstl/core"
+          xmlns:s="http://www.springframework.org/tags"
+          xmlns:sf="http://www.springframework.org/tags/form"
+          version="2.0">
+    <div class="m-submit1" data-scrolling-animations="true">
+
+<section class="b-pageHeader">
+    <div class="container">
+        <h1 class="wow zoomInLeft" data-wow-delay="0.5s">Edit Your Vehicle</h1>
+    </div>
+</section><!--b-pageHeader-->
+
+
+<div id="b-submit" class="b-submit">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-lg-9 col-md-8 col-sm-7 col-xs-6">
+                <div class="b-submit__main">
+                    <header class="s-headerSubmit s-lineDownLeft wow zoomInUp" data-wow-delay="0.5s">
+                        <h2 class="">Add Your Vehicle Details</h2>
+                    </header>
+                    <sf:form id="car" modelAttribute="car" name="car" class="s-submit clearfix"
+                             action="${pageContext.request.contextPath}/cars/${car.id}" method="post"
+                             enctype="multipart/form-data" >
+                        <div id="step1" class="row">
+                            <p style="color: red">${errorMessage}</p>
+                            <div class="col-md-6 col-xs-12">
+                                <div class="b-submit__main-element wow zoomInUp" data-wow-delay="0.5s">
+                                    <label>Enter Make <span id="markError">*</span></label>
+                                    <div class='s-relative'>
+                                        <select class="m-select" name="mark" >
+                                        </select>
+                                        <sf:select id="mark" path="mark" class="m-select" name="mark">
+                                            <option value="${car.mark}" selected="selected">${car.mark}</option>
+                                        </sf:select>
+                                        <span class="fa fa-caret-down"/>
+                                    </div>
+                                </div>
+
+                                <div class="b-submit__main-element wow zoomInUp" data-wow-delay="0.5s">
+                                    <label>Select Body Type <span id="bodyTypeError">*</span></label>
+                                    <div class='s-relative'>
+                                        <sf:select path="bodyType" class="m-select" id="bodyType" name="bodyType">
+                                            <option value="${car.bodyType}"
+                                                    selected="selected">${car.bodyType}</option>
+                                            <option>PICKUP</option>
+                                            <option>SUV</option>
+                                            <option>COUPE</option>
+                                            <option>CONVERTIBLE</option>
+                                            <option>SEDAN</option>
+                                            <option>HATCHBACK</option>
+                                        </sf:select>
+                                        <span class="fa fa-caret-down"/>
+                                    </div>
+                                </div>
+
+                                <div class="b-submit__main-element wow zoomInUp" data-wow-delay="0.5s">
+                                    <label>Select Fuel Type <span id="fuelTypeError">*</span></label>
+                                    <div class='s-relative'>
+                                        <sf:select path="fuelType" class="m-select" id="fuelType" name="fuelType">
+                                            <option value="${car.fuelType}" selected="selected">${car.fuelType}</option>
+                                            <option>PETROL</option>
+                                            <option>DIESEL</option>
+                                            <option>ELECTRO</option>
+                                        </sf:select>
+                                        <span class="fa fa-caret-down"/>
+                                    </div>
+                                </div>
+
+
+                                <div class="b-submit__main-element wow zoomInUp" data-wow-delay="0.5s">
+                                    <label>No. of Doors <span id="doorsNumberError">*</span></label>
+                                    <sf:input path="doorsNumber" value="${car.doorsNumber}" placeholder="Enter No. of Doors"
+                                              id="doorsNumber" type="text"
+                                              name="doorsNumber"/>
+                                </div>
+
+                                <div class="b-submit__main-element wow zoomInUp" data-wow-delay="0.5s">
+                                    <label>Vehicle Manufacturer Year<span id="yearError">*</span></label>
+                                    <div class="b-submit__main-element">
+                                        <input  value="${car.year.getYear()}" id="year" type="text" name="year"/>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 col-xs-12">
+                                <div class="b-submit__main-element wow zoomInUp" data-wow-delay="0.5s">
+                                    <label>Enter Vehicle Model <span id="modelError">*</span></label>
+                                    <div class='s-relative'>
+                                        <sf:select path="model" id="model" class="m-select" name="model">
+                                            <option value="${car.model}" selected="selected">${car.model}</option>
+                                        </sf:select>
+                                        <span class="fa fa-caret-down"/>
+                                    </div>
+                                </div>
+
+                                <div class="b-submit__main-element wow zoomInUp" data-wow-delay="0.5s">
+                                    <label>Select Drive Type <span id="drivingError">*</span></label>
+                                    <div class='s-relative'>
+                                        <sf:select path="driving" id="driving" class="m-select" name="driving">
+                                            <option value="${car.driving}" selected="selected">${car.driving}</option>
+                                            <option>AWD</option>
+                                            <option>FWD</option>
+                                            <option>RWD</option>
+                                        </sf:select>
+                                        <span class="fa fa-caret-down"/>
+                                    </div>
+                                </div>
+
+                                <div class="b-submit__main-element wow zoomInUp" data-wow-delay="0.5s">
+                                    <label>Vehicle Transmission Type <span id="transmissionError">*</span></label>
+                                    <div class='s-relative'>
+                                        <sf:select path="transmission" id="transmission" class="m-select"
+                                                   name="transmission">
+                                            <option value="${car.transmission}" selected="selected">${car.transmission}</option>
+                                            <option>MANUAL</option>
+                                            <option>AUTOMATIC</option>
+                                            <option>CVT</option>
+                                        </sf:select>
+                                        <span class="fa fa-caret-down"/>
+                                    </div>
+                                </div>
+
+                                <div class="b-submit__main-element wow zoomInUp" data-wow-delay="0.5s">
+                                    <label>Select Car Condition <span id="carConditionError">*</span></label>
+                                    <div class='s-relative'>
+                                        <sf:select path="carCondition" id="carCondition" class="m-select"
+                                                   name="carCondition">
+                                            <option value="${car.carCondition}"
+                                                    selected="selected">${car.carCondition}</option>
+                                            <option>USED</option>
+                                            <option>NEW</option>
+                                            <option>CRASH</option>
+                                        </sf:select>
+                                        <span class="fa fa-caret-down"/>
+                                    </div>
+                                </div>
+
+                                <div class="b-submit__main-element wow zoomInUp" data-wow-delay="0.5s">
+                                    <label>Enter Engine Capacity <span id="engineCapacityError">*</span></label>
+                                    <sf:input path="engineCapacity" id="engineCapacity"
+                                              placeholder="Enter Capacity" type="text"
+                                              name="engineCapacity" value="${car.engineCapacity}"/>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="step2">
+                            <div class="b-submit__main-contacts wow zoomInUp" data-wow-delay="0.3s">
+                                <header class="s-headerSubmit s-lineDownLeft">
+                                    <h2>SELECT PRICE</h2>
+                                </header>
+                                <div class="b-submit__main-contacts-price">
+                                    <div class="row m-smallPadding">
+                                        <div class="col-lg-4 col-xs-12">
+                                            <h6>Enter Your Expected Price</h6>
+                                        </div>
+                                        <div class="col-lg-8 col-xs-12">
+                                            <div class="b-submit__main-contacts-price-input">
+                                                <sf:input path="price" id="price" value="${car.price}" type='number' name="price"/>
+                                                <span class="b-submit__main-contacts-price-input-usd">
+														IN USD $
+													</span>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="b-submit__main-contacts wow zoomInUp" data-wow-delay="0.3s">
+                                <div class="row">
+                                    <div class="col-md-6 col-xs-12">
+                                        <div class="b-submit__main-element">
+                                            <label>Enter Mileage <span id="milleageError">*</span></label>
+                                            <div class="b-submit__main-contacts-inputSelect">
+                                                <sf:input path="milleage" value="${car.milleage}" id="milleage" type="number"
+                                                          name="milleage"/>
+                                                <div class="b-submit__main-contacts-select">
+                                                    <select name="km" class="m-select">
+                                                        <option>IN KMS</option>
+                                                    </select>
+                                                    <span class="fa fa-caret-down"/>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="b-submit__main-element">
+                                            <label>Select Exterior Color <span id="carColorError">*</span></label>
+                                            <div class="s-relative">
+                                                <sf:select path="carColor" id="carColor" class="m-select"
+                                                           name="carColor">
+                                                    <option value="${car.carColor}"
+                                                            selected="selected">${car.carColor}</option>
+                                                    <option>BLACK</option>
+                                                    <option>BLUE</option>
+                                                    <option>WHITE</option>
+                                                    <option>GREEN</option>
+                                                    <option>GRAY</option>
+                                                    <option>ORANGE</option>
+                                                    <option>YELLOW</option>
+                                                    <option>BROWN</option>
+                                                    <option>RED</option>
+                                                    <option>SILVER</option>
+                                                    <option>PURPLE</option>
+                                                    <option>BURGUNDY</option>
+                                                </sf:select>
+                                                <span class="fa fa-caret-down"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-xs-12">
+                                        <div class="b-submit__main-element">
+                                            <label>Select Interior Material <span id="interiorMaterialError">*</span></label>
+                                            <div class="s-relative">
+                                                <sf:select path="interiorMaterial" id="interiorMaterial" class="m-select"
+                                                           name="interiorMaterial">
+                                                    <option value="${car.interiorMaterial}"
+                                                            selected="selected">${car.interiorMaterial}</option>
+                                                    <option>LEATHER</option>
+                                                    <option>TISSUE</option>
+                                                    <option>VELOURS</option>
+                                                    <option>ALCANTARA</option>
+                                                </sf:select>
+                                                <span class="fa fa-caret-down"/>
+                                            </div>
+                                        </div>
+
+                                        <div class="b-submit__main-element">
+                                            <label>Select Interior Color <span id="interiorColorError">*</span></label>
+                                            <div class="s-relative">
+                                                <sf:select path="interiorColor" id="interiorColor"
+                                                           class="m-select"
+                                                           name="interiorColor">
+                                                    <option value="${car.interiorColor}"
+                                                            selected="selected">${car.interiorColor}</option>
+                                                    <option>BLACK</option>
+                                                    <option>WHITE</option>
+                                                    <option>GRAY</option>
+                                                    <option>ORANGE</option>
+                                                    <option>BROWN</option>
+                                                    <option>RED</option>
+                                                </sf:select>
+                                                <span class="fa fa-caret-down"/>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="step3" class="b-submit__main-contacts wow zoomInUp" data-wow-delay="0.3s">
+                            <header class="s-headerSubmit s-lineDownLeft">
+                                <h2>Tell Us How Buyers Contact You</h2>
+                            </header>
+                            <div class="row">
+                                <div class="col-md-6 col-xs-12">
+                                    <div class="b-submit__main-element">
+                                        <label>Region <span id="regionError">*</span></label>
+                                        <sf:input value="${car.region}" path="region" id="region" type="text" name="region"/>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-xs-12">
+                                    <div class="b-submit__main-element">
+                                        <label>City <span id="cityError">*</span></label>
+                                        <sf:input path="city" id="city" type="text" name="city" value="${car.city}"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="step4" class="s-form">
+                            <div class="b-submit__main-file">
+                                <header class="s-headerSubmit s-lineDownLeft wow zoomInUp" data-wow-delay="0.3s">
+                                    <h2>Your Vehicle Photos</h2>
+                                </header>
+                                <label class="b-submit__main-file-label btn m-btn wow zoomInUp"
+                                       data-wow-delay="0.3s">
+                                    <input id="img" type="file" class="" name="img"
+                                           accept="image/*,image/jpeg"/>
+                                    <span>CHANGE A  PHOTO</span>
+                                    <span class="fa fa-angle-right"/>
+                                </label>
+                                <ul class="b-detail__main-info-images-big bxslider enable-bx-slider"
+                                    data-pager-custom="#bx-pager" data-mode="horizontal" data-pager-slide="true"
+                                    data-mode-pager="vertical" data-pager-qty="5">
+                                    <li class="s-relative">
+                                        <img class="img-responsive center-block"
+                                             src="${pageContext.request.contextPath}/${car.imageList.get(0).imagePath}"
+                                             alt="nissan"/>
+                                    </li>
+
+                                </ul>
+                            </div>
+                            <div class="b-submit__main-file wow zoomInUp" data-wow-delay="0.3s">
+                                <header class="s-headerSubmit s-lineDownLeft">
+                                    <h2>Write Some Additional Comments About Your Vehicle</h2>
+                                </header>
+                                <sf:textarea path="description" id="description" name="description"/>
+                            </div>
+                            <button type="submit" onclick="return validate(this.form)" class="btn m-btn pull-right wow zoomInUp"
+                                    data-wow-delay="0.3s">Save changes<span class="fa fa-angle-right"/>
+                            </button>
+                        </div>
+
+                    </sf:form>>
+                </div>
+            </div>
+        </div>
+    </div>
+</div><!--b-submit-->
+
+
+<footer class="b-footer">
+    <a id="to-top" href="#this-is-top"><i class="fa fa-chevron-up"></i></a>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-4">
+                <div class="b-footer__company wow slideInLeft" data-wow-delay="0.3s">
+                    <div class="b-nav__logo">
+                        <h3><a href="/autobazar/controller">Auto<span>BAZAR</span></a></h3>
+                    </div>
+                    <p> 2017 Designed by Andrey Berezovskiy</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</footer><!--b-footer-->
+</div>
+<!--Main-->
+<script src="js/jquery-1.11.3.min.js"></script>
+<script src="js/jquery-ui.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/modernizr.custom.js"></script>
+
+<script src="assets/rendro-easy-pie-chart/dist/jquery.easypiechart.min.js"></script>
+<script src="js/waypoints.min.js"></script>
+<script src="js/jquery.easypiechart.min.js"></script>
+<script src="js/classie.js"></script>
+
+<!--Switcher-->
+<script src="assets/switcher/js/switcher.js"></script>
+<!--Owl Carousel-->
+<script src="assets/owl-carousel/owl.carousel.min.js"></script>
+<!--bxSlider-->
+<script src="assets/bxslider/jquery.bxslider.js"></script>
+<!-- jQuery UI Slider -->
+<script src="assets/slider/jquery.ui-slider.js"></script>
+
+<!--Theme-->
+<script src="js/jquery.smooth-scroll.js"></script>
+<script src="js/jquery.maskedinput.min.js"></script>
+<script src="js/wow.min.js"></script>
+<script src="js/jquery.placeholder.min.js"></script>
+<script src="js/theme.js"></script>
+<script src="js/search.js"></script>
+<script type="text/javascript">
+
+    $(function($){
+        $("#doorsNumber").mask("9");
+    });
+    $(function($){
+        $("#year").mask("9999");
+    });
+    $(function($){
+        $("#engineCapacity").mask("9.9");
+    });
+
+
+    document.getElementById("doorsNumber").addEventListener("change", function () {
+        if ( this.value == "" ) {
+            this.style.borderColor = 'red';
+            document.getElementById("doorsNumberError").innerHTML = "* Enter a doors number";
+        } else {
+            this.style.borderColor = '#eee';
+            document.getElementById("doorsNumberError").innerHTML = "*";
+
+        }
+    });
+
+    document.getElementById("year").addEventListener("change", function () {
+        if ( this.value == "" ) {
+            this.style.borderColor = 'red';
+            document.getElementById("yearError").innerHTML = "* Enter a year";
+        } else {
+            this.style.borderColor = '#eee';
+            document.getElementById("yearError").innerHTML = "*";
+
+        }
+    });
+
+    document.getElementById("engineCapacity").addEventListener("change", function () {
+        if ( this.value == "" ) {
+            this.style.borderColor = 'red';
+            document.getElementById("engineCapacityError").innerHTML = "* Enter a engine capacity";
+        } else {
+            this.style.borderColor = '#eee';
+            document.getElementById("engineCapacityError").innerHTML = "*";
+
+        }
+    });
+
+    document.getElementById("price").addEventListener("change", function () {
+        if ( this.value == "" ) {
+            this.style.borderColor = 'red';
+            document.getElementById("priceError").innerHTML = "* Enter a price";
+        } else {
+            this.style.borderColor = '#eee';
+            document.getElementById("priceError").innerHTML = "*";
+
+        }
+    });
+
+    document.getElementById("milleage").addEventListener("change", function () {
+        if ( this.value == "" ) {
+            this.style.borderColor = 'red';
+            document.getElementById("milleageError").innerHTML = "* Enter a milleage";
+        } else {
+            this.style.borderColor = '#eee';
+            document.getElementById("milleageError").innerHTML = "*";
+
+        }
+    });
+
+    document.getElementById("region").addEventListener("change", function () {
+        if ( this.value == "" ) {
+            this.style.borderColor = 'red';
+            document.getElementById("regionError").innerHTML = "* Enter a region";
+        } else {
+            this.style.borderColor = '#eee';
+            document.getElementById("regionError").innerHTML = "*";
+
+        }
+    });
+
+    document.getElementById("city").addEventListener("change", function () {
+        if ( this.value == "" ) {
+            this.style.borderColor = 'red';
+            document.getElementById("cityError").innerHTML = "* Enter a city";
+        } else {
+            this.style.borderColor = '#eee';
+            document.getElementById("cityError").innerHTML = "*";
+
+        }
+    });
+
+
+    function validate(form) {
+        var elems = form.elements;
+        var valid = true;
+
+        if ( elems.doorsNumber.value == "" ) {
+            elems.doorsNumber.style.borderColor = 'red';
+            document.getElementById("doorsNumberError").innerHTML = "* Enter a doors number";
+            valid = false;
+        } else {
+            elems.doorsNumber.style.borderColor = '#eee';
+            document.getElementById("doorsNumberError").innerHTML = "*";
+        }
+
+        if ( elems.year.value == "" ) {
+            elems.year.style.borderColor = 'red';
+            document.getElementById("yearError").innerHTML = "* Enter a year";
+            valid = false;
+        } else {
+            elems.year.style.borderColor = '#eee';
+            document.getElementById("yearError").innerHTML = "*";
+        }
+
+        if ( elems.engineCapacity.value == "" ) {
+            elems.engineCapacity.style.borderColor = 'red';
+            document.getElementById("engineCapacityError").innerHTML = "* Enter a engine capacity";
+            valid = false;
+        } else {
+            elems.engineCapacity.style.borderColor = '#eee';
+            document.getElementById("engineCapacityError").innerHTML = "*";
+        }
+
+        if ( elems.price.value == "" ) {
+            elems.price.style.borderColor = 'red';
+            valid = false;
+        } else {
+            elems.price.style.borderColor = '#eee';
+        }
+
+        if ( elems.milleage.value == "" ) {
+            elems.milleage.style.borderColor = 'red';
+            document.getElementById("milleageError").innerHTML = "* Enter a milleage";
+            valid = false;
+        } else {
+            elems.milleage.style.borderColor = '#eee';
+            document.getElementById("milleageError").innerHTML = "*";
+        }
+
+        if ( elems.region.value == "" ) {
+            elems.region.style.borderColor = 'red';
+            document.getElementById("regionError").innerHTML = "* Enter a region";
+            valid = false;
+        } else {
+            elems.region.style.borderColor = '#eee';
+            document.getElementById("regionError").innerHTML = "*";
+        }
+
+        if ( elems.city.value == "" ) {
+            elems.city.style.borderColor = 'red';
+            document.getElementById("cityError").innerHTML = "* Enter a city";
+            valid = false;
+        } else {
+            elems.city.style.borderColor = '#eee';
+            document.getElementById("cityError").innerHTML = "*";
+        }
+
+        return valid;
+    }
+</script>
+</jsp:root>

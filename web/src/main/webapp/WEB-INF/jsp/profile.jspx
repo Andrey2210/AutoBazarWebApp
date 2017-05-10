@@ -1,0 +1,68 @@
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page"
+          xmlns="http://www.w3.org/1999/xhtml"
+          xmlns:c="http://java.sun.com/jsp/jstl/core"
+          xmlns:s="http://www.springframework.org/tags"
+          xmlns:sf="http://www.springframework.org/tags/form"
+          version="2.0">
+
+    <div ng-controller="UserController" class="m-listingsTwo" data-scrolling-animations="true">
+
+        <section class="b-pageHeader">
+            <div class="container">
+                <h1 class="wow zoomInLeft" data-wow-delay="0.5s">PROFILE</h1>
+
+            </div>
+        </section><!--b-pageHeader-->
+
+
+        <div class="b-submit">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-2 col-md-3 col-sm-4 col-xs-5">
+                        <div class="b-more__info wow zoomInRight" data-wow-delay="0.5s">
+                            <h2 class="s-title"><a name="My ad" href="#" ng-click="loadProfileAds()">My ads</a></h2>
+                            <h2 class="s-title"><a name="Profile settings" href="#" ng-click="loadProfileSettings()">Settings</a>
+                            </h2>
+                        </div>
+                    </div>
+
+
+                    <div class="col-lg-10 col-md-9 col-sm-8 col-xs-7">
+                        <p style="color: red">${errorMessage}</p>
+
+                        <div class="b-items">
+                            <div class="b-submit__main b-items-cars">
+                                <div ng-include="userTemplate"></div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <script type="text/javascript">
+            function changeTable(_this) {
+                var value = _this.value;
+                if (_this.name == "Profile settings") {
+                    $.ajax({
+                        method: "GET",
+                        url: "/autobazar/profile/settings",
+                        success: function (result) {
+                            $(".b-submit__main").html(result);
+                        }
+                    });
+                } else {
+                    $.ajax({
+                        method: "GET",
+                        url: "/autobazar/profile/ads",
+                        success: function (result) {
+                            $(".b-submit__main").html(result);
+                        }
+                    });
+                }
+            }
+        </script>
+    </div>
+</jsp:root>

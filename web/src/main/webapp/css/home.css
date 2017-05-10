@@ -585,7 +585,7 @@ input::-webkit-inner-spin-button {
      -ms-appearance: none;
     appearance: none!important;
     cursor:pointer;
- 
+
 }
 .dropdown button:hover{
     padding: 10px 20px 10px 25px;
@@ -627,12 +627,11 @@ input::-webkit-inner-spin-button {
     text-decoration: none;
 }
 
-/*.b-search__main-form-range span{
-    display: inline-block;
-    width:225px;
-    margin-left: 15px;
-}
-*/
+/*.b-search__main-form-range span{*/
+    /*display: inline-block;*/
+    /*width:225px;*/
+    /*margin-left: 15px;*/
+/*}*/
 
 .slider{
     height:12px;
