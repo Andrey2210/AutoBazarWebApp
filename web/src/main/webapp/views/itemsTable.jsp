@@ -14,10 +14,10 @@
                     <div class="b-items__cell-info">
                         <div class="s-lineDownLeft b-items__cell-info-title">
                             <h2 class=""><a
-                                    href="/autobazar/controller?command=Detailid={{car.id}}">{{car.mark}} {{car.model}}</a>
+                                    href="${pageContext.request.contextPath}/cars/{{car.id}}">{{car.mark}} {{car.model}}</a>
                             </h2>
                         </div>
-                        <p>{{car.description}</p>
+                        <p>{{car.description}}</p>
                         <div>
                             <div class="row m-smallPadding">
                                 <div class="col-xs-5">

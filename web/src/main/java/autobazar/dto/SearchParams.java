@@ -14,6 +14,7 @@ public class SearchParams {
     private String mark;
     private String model;
     private String transmission;
+    private String fuelType;
 
     public SearchParams() {
     }

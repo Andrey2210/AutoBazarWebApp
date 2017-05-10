@@ -35,8 +35,8 @@ public class CommentService extends BaseService<Comment> implements ICommentServ
     public long createComment(String text, long carId, long userId) {
         log.info("Service createComment(): ");
 
-        User user = ((UserService)userService).getUserById(userId);
-        Car car = ((CarService)carService).getCarById(carId);
+        User user = userService.getUserById(userId);
+        Car car = carService.getCarById(carId);
 
         Comment comment = new Comment(text, LocalDateTime.now());
         comment.setUser(user);

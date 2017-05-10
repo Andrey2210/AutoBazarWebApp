@@ -76,6 +76,9 @@ public class CarsUtils {
         if (newSearchParams.getTransmission() != null) {
             searchPararms.put("transmission", newSearchParams.getTransmission());
         }
+        if (newSearchParams.getFuelType() != null) {
+            searchPararms.put("fuelType", newSearchParams.getFuelType());
+        }
         if (newSearchParams.getMinPrice() != 0) {
             searchPararms.put("minPrice", String.valueOf(newSearchParams.getMinPrice()));
         }

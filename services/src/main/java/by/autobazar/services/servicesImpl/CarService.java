@@ -29,7 +29,7 @@ public class CarService extends BaseService<Car> implements ICarService {
 
     public long createCar(HashMap<String, String> parameters, long id) {
         log.info("Service createCar(): ");
-        User user = ((UserService) userService).getUserById(id);
+        User user = ((IUserService) userService).getUserById(id);
 
         Car car = new Car();
         car.setMark(parameters.get("mark"));

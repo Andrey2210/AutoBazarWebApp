@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 /**
- * This class contains special methods for working with the entity Image
+ * This interface defines special methods for working with the entity Image
  *
  */
 @Repository

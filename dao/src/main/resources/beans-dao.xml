@@ -62,5 +62,4 @@
     </bean>
 
     <bean id="nStrategy" class="by.autobazar.util.CustomNamingStrategy"/>
-
 </beans>

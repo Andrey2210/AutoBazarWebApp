@@ -74,7 +74,7 @@
                                                 <select id="#mark" name="mark" class="m-select" ng-model="currentMark"
                                                         ng-change="byMark(currentMark)">
                                                     <option value="" selected="selected">All Makes</option>
-                                                    <c:forEach var="make" items="${requestScope.allMakes}">
+                                                    <c:forEach var="make" items="${allMakes}">
                                                         <option value="${make}">${make}</option>
                                                     </c:forEach>
                                                 </select>
@@ -104,9 +104,9 @@
                                                     <li>
                                                         <div class="b-search__main-form-range">
                                                             <input type="hidden" name="minYear" class="j-min"
-                                                                   value="1960"/>
+                                                                   value="1960" ng-model="minYear" ng-change="byMinYear(minYear)"/>
                                                             <input type="hidden" name="maxYear" class="j-max"
-                                                                   value="2017"/>
+                                                                   value="2017" ng-model="maxYear" ng-change="byMaxYear(maxYear)"/>
                                                             <div data-min="1960" data-max="2017"
                                                                  class="slider slider-search">
                                                             </div>
@@ -119,10 +119,10 @@
                                         <div class="b-items__aside-main-body-item">
                                             <label>PRICE</label>
                                             <input type="number" min="0" max="10000000" name="minPrice" class="j-min"
-                                                   value="0"
+                                                   value="0" ng-model="minPrice" ng-change="byMinPrice(minPrice)"
                                                    placeholder="FROM"/> -
                                             <input type="number" min="0" max="10000000" name="maxPrice" class="j-max"
-                                                   value="10000000"
+                                                   value="10000000" ng-model="maxPrice" ng-change="byMaxPrice(maxPrice)"
                                                    placeholder="TO"/>
                                         </div>
 
@@ -137,9 +137,9 @@
                                                     <li>
                                                         <div class="b-search__main-form-range">
                                                             <input type="hidden" name="minEngineCapacity" class="j-min"
-                                                                   value="0"/>
+                                                                   value="0" ng-model="minEngineCapacity" ng-change="byMinEngineCapacity(minEngineCapacity)"/>
                                                             <input type="hidden" name="maxEngineCapacity" class="j-max"
-                                                                   value="10"/>
+                                                                   value="10" ng-model="maxEngineCapacity" ng-change="byMaxEngineCapacity(maxEngineCapacity)"/>
                                                             <div data-min="0" data-max="10"
                                                                  class="slider slider-search">
                                                             </div>
@@ -152,7 +152,8 @@
                                         <div class="b-items__aside-main-body-item">
                                             <label>TRANSMISSION</label>
                                             <div>
-                                                <select name="transmission" class="m-select">
+                                                <select name="transmission" class="m-select"  ng-model="transmission"
+                                                        ng-change="byTransmission(transmission)">
                                                     <option value="" selected="selected">Transmission</option>
                                                     <option value="AUTOMATIC">AUTOMATIC</option>
                                                     <option value="MANUAL">MANUAL</option>
@@ -164,7 +165,8 @@
                                         <div class="b-items__aside-main-body-item">
                                             <label>FUEL TYPE</label>
                                             <div>
-                                                <select name="fuelType" class="m-select">
+                                                <select name="fuelType" class="m-select" ng-model="fuelType"
+                                                        ng-change="byFuelType(fuelType)">
                                                     <option value="" selected="selected">Fuel Type</option>
                                                     <option value="PETROL">Petrol</option>
                                                     <option value="DIESEL">Diesel</option>
@@ -176,10 +178,12 @@
                                         <div class="b-items__aside-main-body-item">
                                             <label>BODY TYPE</label>
                                             <div>
-                                                <select name="bodyType" class="m-select">
+                                                <select name="bodyType" class="m-select" ng-model="bodyType"
+                                                        ng-change="byBodyType(bodyType)">
                                                     <option value="" selected="selected">Body Types</option>
                                                     <option value="PICKUP">Pickup</option>
                                                     <option value="SUV">Suv</option>
+                                                    <option value="SEDAN">SEDAN</option>
                                                     <option value="COUPE">Coupe</option>
                                                     <option value="CONVERTIBLE">Convertible</option>
                                                     <option value="HATCHBACK">Hatchback</option>
@@ -197,9 +201,7 @@
 
                         </aside>
                     </div>
-
                                 <div ng-include="template"></div>
-
                 </div>
             </div><!--b-items-->
         </div>

@@ -34,8 +34,8 @@
                                 <p style="color: red">${errorLoginPassMessage}</p>
                                 <br/>
                                 <button type="submit" class="btn m-btn">SUBMIT NOW<span class="fa fa-angle-right"/>
-                                </button>
-                                <button type="reset" class="btn m-btn">RESET<span class="fa fa-angle-right"/>
+                                </button> <br/>
+                                <button type="reset" class="btn m-btn">RESET
                                 </button>
                             </form>
                         </div>

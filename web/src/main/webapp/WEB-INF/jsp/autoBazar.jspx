@@ -13,7 +13,7 @@
                                 <h3><s:message code="header.sidebar"/></h3>
                                 <h2>MercedesBenz <br/>CLS63 AMG</h2>
                                 <p>Model 2015 <span>$72,000</span></p>
-                                <a class="btn m-btn" href="/autobazar/controller">see details<span
+                                <a class="btn m-btn" href="${pageContext.request.contextPath}/cars">see details<span
                                         class="fa fa-angle-right"/></a>
                             </div>
                         </div>
@@ -25,7 +25,7 @@
                                 <h3><s:message code="header.sidebar"/></h3>
                                 <h2>BMW <br/>M5 F10</h2>
                                 <p>Model 2012 <span>$65,000</span></p>
-                                <a class="btn m-btn" href="/autobazar/controller">see details<span
+                                <a class="btn m-btn" href="${pageContext.request.contextPath}/cars">see details<span
                                         class="fa fa-angle-right"/></a>
                             </div>
                         </div>
@@ -37,7 +37,7 @@
                                 <h3><s:message code="header.sidebar"/></h3>
                                 <h2>PORSCHE <br/>PANAMERA TURBO S</h2>
                                 <p>Model 2013 <span>$70,000</span></p>
-                                <a class="btn m-btn" href="/autobazar/controller">see details<span
+                                <a class="btn m-btn" href="${pageContext.request.contextPath}/cars">see details<span
                                         class="fa fa-angle-right"/></a>
                             </div>
                         </div>
@@ -513,7 +513,7 @@
                                 <p><s:message code="autobazar.looking.description"/></p>
                             </div>
                             <div class="b-asks__first-arrow">
-                                <a id="submitLink2" href="#"><span class="fa fa-angle-right"/></a>
+                                <a id="submitLink2" href="${pageContext.request.contextPath}/cars"><span class="fa fa-angle-right"/></a>
                             </div>
                         </div>
                     </div>
@@ -527,7 +527,7 @@
                                 <p><s:message code="autobazar.description"/></p>
                             </div>
                             <div class="b-asks__first-arrow">
-                                <a href="/autobazar/submit"><span class="fa fa-angle-right"/></a>
+                                <a href="${pageContext.request.contextPath}/submit"><span class="fa fa-angle-right"/></a>
                             </div>
                         </div>
                     </div>

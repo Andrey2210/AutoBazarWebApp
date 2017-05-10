@@ -25,7 +25,7 @@
             <td>{{user.name}}</td>
             <td>{{user.phone}}</td>
             <td>{{user.role}}</td>
-            <td><a href="${pageContext.request.contextPath}/admin/users/{{user.id}}}" class="fa fa-times" aria-hidden="true" style="color: darkred"></a></td>
+            <td><a href="${pageContext.request.contextPath}/admin/users/{{user.id}}" class="fa fa-times" aria-hidden="true" style="color: darkred"></a></td>
         </tr>
 </table>
 

@@ -6,9 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- * Created by Andrey
- * Date: 25.04.2017.
- * Time: 20:14
+ * This interface defines special methods for working with the entity Car
+ *
  */
 public interface ICarDao extends Dao<Car> {
 

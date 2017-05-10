@@ -1,36 +1,29 @@
 package by.autobazar.services;
 
-import by.autobazar.util.HibernateUtil;
-import org.junit.AfterClass;
+import by.autobazar.entity.Car;
+import by.autobazar.entity.carEnum.*;
 import org.junit.Assert;
-import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.transaction.annotation.Transactional;
 
 
-/**
- * Created by Andrey
- * Date: 14.04.2017.
- * Time: 16:00
- */
+@ContextConfiguration(locations = {"classpath:test-service.xml"})
+@RunWith(SpringJUnit4ClassRunner.class)
+@Transactional
 public class CommentServiceTest {
-//    private static long id;
-//    private static CommentService commentService = CommentService.getInstance();
-//
-//    @BeforeClass
-//    public static void set() {
-//        AbstractService.session = HibernateUtil.getHibernateUtil().getSession();
-//    }
-//
-//    @AfterClass
-//    public static void deleteComment() {
-//        commentService.deleteComment(id);
-//        HibernateUtil.getHibernateUtil().closeSession(AbstractService.session);
-//    }
-//
-//    @Test
-//    public void createTest() {
-//        id = commentService.createComment("HI", 68L, 3L);
-//        Assert.assertNotNull(id);
-//        Assert.assertTrue(id > 0);
-//    }
+
+    @Autowired
+    private ICommentService commentService;
+
+    @Test
+    public void createTest() {
+        long id = commentService.createComment("HI", 134L, 503L);
+        Assert.assertNotNull(id);
+        Assert.assertTrue(id > 0);
+        commentService.deleteComment(id);
+    }
 }

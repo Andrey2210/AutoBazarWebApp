@@ -5,9 +5,8 @@ import by.autobazar.entity.User;
 import java.util.List;
 
 /**
- * Created by Andrey
- * Date: 25.04.2017.
- * Time: 21:22
+ * This interface defines special methods for working with the entity User
+ *
  */
 public interface IUserDao extends Dao<User> {
 
@@ -27,8 +26,20 @@ public interface IUserDao extends Dao<User> {
      */
     List<User> getAll();
 
+    /**
+     * This method load User by his login
+     *
+     * @param login    Users login in String
+     * @return Object of User appropriate
+     */
     User findByUserName(String login);
 
+    /**
+     * This method load User by his email
+     *
+     * @param email    Users email in String
+     * @return Object of User appropriate
+     */
     User getByEmail(String email);
 
     }

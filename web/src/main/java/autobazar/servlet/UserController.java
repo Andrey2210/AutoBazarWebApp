@@ -6,6 +6,7 @@ import by.autobazar.entity.User;
 import by.autobazar.services.ICarService;
 import by.autobazar.services.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -31,16 +32,19 @@ public class UserController {
 
     @RequestMapping(value = "/ads", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public List<Car> getProfileAds() {
+    public ResponseEntity<List<Car>> getProfileAds() {
         User user = userService.findByUserName(getPrincipal());
-        return userService.getCarsByUserId(user.getId());
+        List<Car> carList =  userService.getCarsByUserId(user.getId());
+        if (carList.size() == 0) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return ResponseEntity.ok(carList);
     }
 
     @RequestMapping(value = "/settings", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public User getProfileSettings() {
-        User user = userService.findByUserName(getPrincipal());
-        return user;
+        return userService.findByUserName(getPrincipal());
     }
 
     private String getPrincipal() {

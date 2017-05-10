@@ -31,13 +31,12 @@
                                         code="header.signIn"/></a>
                                 <ul class="dropdown-menu dropdown-menu-log">
                                     <li>
-                                        <form id="login-form" method="post"
-                                              action="${pageContext.request.contextPath}/login">
-                                            <input type="text" name="login" placeholder="LOGIN/EMAIL" required="required"/>
-                                            <input type="password" name="password" placeholder="PASSWORD" required="required"/>
+                                        <form action="${pageContext.request.contextPath}/login" method="post">
+                                            <input type="text" placeholder="LOGIN/EMAIL" value="" name="login" id="login"/>
+                                            <input type="password" placeholder="PASSWORD" value="" name="password" id="password"/>
                                         </form>
                                     </li>
-                                    <li><button type="submit" class="btn-link"><s:message code="header.signIn"/>
+                                    <li><button type="submit" class="btn"><s:message code="header.signIn"/>
                                     </button></li>
                                 </ul>
                             </div>
@@ -56,7 +55,7 @@
                     </div>
                     <div class="col-md-1 col-xs-6">
                         <nav class="b-topBar__lang">
-                            <s:url value="${pageContext.request.contextPath}/logout" var="logoutHref"/>
+                            <s:url value="/logout" var="logoutHref"/>
                             <a class="main-item" href="${logoutHref}" ><s:message code="header.signOut"/></a>
                         </nav>
                     </div>
@@ -71,9 +70,9 @@
                             <a class="m-langLink dropdown-toggle" data-toggle='dropdown' href="#"><span
                                     class="b-topBar__lang-flag m-en"/><span class="fa fa-caret-down"/></a>
                             <ul class="dropdown-menu h-lang">
-                                <li><a class="m-langLink dropdown-toggle" data-toggle='dropdown' href="?locale=ru"><span
-                                        class="b-topBar__lang-flag m-en"/>EN</a></li>
                                 <li><a class="m-langLink dropdown-toggle" data-toggle='dropdown' href="?locale=en"><span
+                                        class="b-topBar__lang-flag m-en"/>EN</a></li>
+                                <li><a class="m-langLink dropdown-toggle" data-toggle='dropdown' href="?locale=ru"><span
                                         class="b-topBar__lang-flag m-es"/>RU</a></li>
                             </ul>
                         </div>

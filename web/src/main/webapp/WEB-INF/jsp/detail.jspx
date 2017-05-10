@@ -6,7 +6,7 @@
           xmlns:sec="http://www.springframework.org/security/tags"
           version="2.0">
 
-    <div class="m-contacts" data-scrolling-animations="true">
+    <div ng-controller="CommentController" class="m-contacts" data-scrolling-animations="true">
         <section class="b-pageHeader">
             <div class="container">
                 <h1 class=" wow zoomInLeft" data-wow-delay="0.5s">Car Details </h1>
@@ -75,12 +75,15 @@
                                             <div class="col-md-12">
                                                 <div class="b-detail__main-aside wow zoomInUp" data-wow-delay="0.5s">
                                                     <div class="b-detail__main-aside-about-form">
-                                                        <form id="form1" onsubmit="sendMessage()" method="post">
-                                                            <input type="hidden" name="carId" value="${car.id}"/>
-                                                            <textarea name="comment" placeholder="message"/>
-                                                            <button type="submit" class="btn m-btn">SEND MESSAGE<span
+                                                        <sf:form id="commentForm"
+                                                                 modelAttribute="comment" name="commentForm"
+                                                                 class="s-submit clearfix">
+                                                            <sf:textarea ng-model="comment" path="comment" id="comment"
+                                                                         name="comment"
+                                                                         placeholder="message"/>
+                                                            <button type="button"  class="btn m-btn">SEND MESSAGE<span
                                                                     class="fa fa-angle-right"/></button>
-                                                        </form>
+                                                        </sf:form>
                                                     </div>
                                                 </div>
                                             </div>
@@ -89,7 +92,7 @@
                                 </sec:authorize>
                                 <div id="results" class="b-detail__main-info-text wow zoomInUp" data-wow-delay="0.5s"
                                      style="visibility: visible;">
-                                    <jsp:include page="comments.jsp"></jsp:include>
+                                    <!--<div ng-include="commentTemplate"></div>-->
                                 </div>
                             </div>
                         </div>
@@ -207,7 +210,7 @@
                                     </div>
                                 </div>
                                 <div class="b-detail__main-aside-about wow zoomInUp" data-wow-delay="0.5s"
-                                     style="visibility: visible;">
+                                     style="visibility: visible; animation-delay: 0.5s; animation-name: zoomInUp;">
                                     <h2 class="s-titleDet">CONTACTS</h2>
                                     <div class="b-detail__main-aside-about-call">
                                         <span class="fa fa-phone"/>
@@ -218,7 +221,6 @@
                                             <span>${car.user.name}, ${car.city}</span></p>
                                     </div>
                                 </div>
-
                             </aside>
                         </div>
                     </div>
@@ -266,21 +268,4 @@
         </section>
     </div>
 
-    <script type="text/javascript" language="javascript">
-        function sendMessage() {
-            var msg = $('#form1').serialize();
-            $.ajax({
-                type: 'POST',
-                url: '/autobazar/controller?command=Comment',
-                data: msg,
-                success: function (data) {
-                    $('#results').html(data);
-                },
-                error: function (xhr, str) {
-                    alert('Возникла ошибка: ' + xhr.responseCode);
-                }
-            });
-
-        }
-    </script>
 </jsp:root>

@@ -56,8 +56,11 @@ carApp.controller('CarsController',
                 url: "/autobazar/cars/search/parameters",
                 data: {'mark': mark}
             }).then(function success(response) {
-                $scope.cars = response.data;
-                $scope.template = 'views/' + $scope.pagesType;
+                if(response.status == 204) {
+                } else {
+                    $scope.cars = response.data;
+                    $scope.template = 'views/' + $scope.pagesType;
+                }
             });
         };
         $scope.byModel = function byModel(model) {
@@ -66,17 +69,151 @@ carApp.controller('CarsController',
                 url: "/autobazar/cars/search/parameters",
                 data: {'model': model}
             }).then(function success(response) {
-                $scope.cars = response.data;
-                $scope.template = 'views/' + $scope.pagesType;
+                if(response.status == 204) {
+                } else {
+                    $scope.cars = response.data;
+                    $scope.template = 'views/' + $scope.pagesType;
+                }
             });
         };
+
+        $scope.byMinPrice = function byMinPrice(price) {
+            $http({
+                method: 'POST',
+                url: "/autobazar/cars/search/parameters",
+                data: {'minPrice': price}
+            }).then(function success(response) {
+                if(response.status == 204) {
+                } else {
+                    $scope.cars = response.data;
+                    $scope.template = 'views/' + $scope.pagesType;
+                }
+            });
+        };
+
+        $scope.byMaxPrice = function byMaxPrice(price) {
+            $http({
+                method: 'POST',
+                url: "/autobazar/cars/search/parameters",
+                data: {'maxPrice': price}
+            }).then(function success(response) {
+                if(response.status == 204) {
+                } else {
+                    $scope.cars = response.data;
+                    $scope.template = 'views/' + $scope.pagesType;
+                }
+            });
+        };
+
+        $scope.byMinYear = function byMinYear(year) {
+            $http({
+                method: 'POST',
+                url: "/autobazar/cars/search/parameters",
+                data: {'minYear': year}
+            }).then(function success(response) {
+                if(response.status == 204) {
+                } else {
+                    $scope.cars = response.data;
+                    $scope.template = 'views/' + $scope.pagesType;
+                }
+            });
+        };
+
+        $scope.byMaxYear = function byMaxYear(year) {
+            $http({
+                method: 'POST',
+                url: "/autobazar/cars/search/parameters",
+                data: {'maxYear': year}
+            }).then(function success(response) {
+                if(response.status == 204) {
+                } else {
+                    $scope.cars = response.data;
+                    $scope.template = 'views/' + $scope.pagesType;
+                }
+            });
+        };
+
+        $scope.byMinEngineCapacity = function byMinEngineCapacity(capacity) {
+            $http({
+                method: 'POST',
+                url: "/autobazar/cars/search/parameters",
+                data: {'minEngineCapacity': capacity}
+            }).then(function success(response) {
+                if(response.status == 204) {
+                } else {
+                    $scope.cars = response.data;
+                    $scope.template = 'views/' + $scope.pagesType;
+                }
+            });
+        };
+
+        $scope.byMaxEngineCapacity = function byMaxEngineCapacity(capacity) {
+            $http({
+                method: 'POST',
+                url: "/autobazar/cars/search/parameters",
+                data: {'maxEngineCapacity': capacity}
+            }).then(function success(response) {
+                if(response.status == 204) {
+                } else {
+                    $scope.cars = response.data;
+                    $scope.template = 'views/' + $scope.pagesType;
+                }
+            });
+        };
+
+        $scope.byTransmission = function byTransmission(transmission) {
+            $http({
+                method: 'POST',
+                url: "/autobazar/cars/search/parameters",
+                data: {'transmission': transmission}
+            }).then(function success(response) {
+                if(response.status == 204) {
+                } else {
+                    $scope.cars = response.data;
+                    $scope.template = 'views/' + $scope.pagesType;
+                }
+            });
+        };
+
+        $scope.byFuelType = function byFuelType(fuelType) {
+            $http({
+                method: 'POST',
+                url: "/autobazar/cars/search/parameters",
+                data: {'fuelType': fuelType}
+            }).then(function success(response) {
+                if(response.status == 204) {
+                } else {
+                    $scope.cars = response.data;
+                    $scope.template = 'views/' + $scope.pagesType;
+                }
+            });
+        };
+
+
+        $scope.byBodyType = function byBodyType(bodyType) {
+            $http({
+                method: 'POST',
+                url: "/autobazar/cars/search/parameters",
+                data: {'bodyType': bodyType}
+            }).then(function success(response) {
+                if(response.status == 204) {
+                } else {
+                    $scope.cars = response.data;
+                    $scope.template = 'views/' + $scope.pagesType;
+                }
+            });
+        };
+
         $http({
             method: 'POST',
             url: "/autobazar/cars/search",
             data: {}
         }).then(function success(response) {
-            $scope.cars = response.data;
-            $scope.template = 'views/' + $scope.pagesType;
+            if(response.status == 204) {
+            } else {
+                $scope.cars = response.data;
+                $scope.template = 'views/' + $scope.pagesType;
+            }
         });
     }
 );
@@ -146,3 +283,29 @@ carApp.controller('AdminController',
         });
     }
 );
+//
+// carApp.controller('CommentController',
+//     function CommentController($scope, $http, $location) {
+//        $scope.path =  $location.path();
+//         $scope.mySubmit = function mySubmit(id) {
+//             if ($scope.comment) {
+//                 $http({
+//                     method: 'POST',
+//                     url: "/autobazar/cars/comments/" + id,
+//                     data: {'comment': $scope.comment}
+//                 }).then(function success(response) {
+//                     $scope.comments = response.data;
+//                     $scope.commentTemplate = 'views/comments.jsp';
+//                 });
+//             }
+//         };
+//
+//         $http({
+//             method: 'GET',
+//             url: "/autobazar" + $scope.path + "/comment"
+//         }).then(function success(response) {
+//             $scope.comments = response.data;
+//             $scope.commentTemplate = 'views/comments.jsp';
+//         });
+//     }
+// );

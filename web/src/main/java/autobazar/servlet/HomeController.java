@@ -3,6 +3,7 @@ package autobazar.servlet;
 import autobazar.utils.CarsUtils;
 import autobazar.dto.PageDetailsDto;
 import by.autobazar.entity.Car;
+import by.autobazar.entity.Comment;
 import by.autobazar.entity.Image;
 import by.autobazar.entity.User;
 import by.autobazar.services.ICarService;
@@ -84,11 +85,7 @@ public class HomeController {
     public String carsPage(ModelMap modelMap, HttpServletRequest request) {
         PageDetailsDto pageDetails = new PageDetailsDto(carService.getAmountOfCars(carsUtils.getSearchOptions(request)));
         pageDetails.setSearchParameters(carsUtils.getSearchOptions(request));
-        List<Car> carList = carService.searchCars(pageDetails.getSearchParameters(), pageDetails.getSort(),
-                (pageDetails.getPageNumber() - 1) * pageDetails.getItemsOnPage(), pageDetails.getItemsOnPage());
-        request.getSession().setAttribute("pageDetails", pageDetails);
-        request.setAttribute("list", carList);
-        request.setAttribute("allMakes", carService.getCarsMakes());
+        modelMap.addAttribute("allMakes", carService.getCarsMakes());
         return "cars";
     }
 
@@ -98,8 +95,7 @@ public class HomeController {
         PageDetailsDto pageDetails = new PageDetailsDto(carList.size());
         pageDetails.setSearchParameters(carsUtils.getDefaultSearchParams());
         request.getSession().setAttribute("pageDetails", pageDetails);
-        request.setAttribute("list", carList);
-        request.setAttribute("allMakes", carService.getCarsMakes());
+        modelMap.addAttribute("allMakes", carService.getCarsMakes());
         return "cars";
     }
 
@@ -125,7 +121,7 @@ public class HomeController {
     }
 
     @PostMapping(value = {"/submit"})
-    public String submitPage(@ModelAttribute MultipartFile img, @Valid Car car, HttpServletRequest request) {
+    public String submitPage(@ModelAttribute MultipartFile img, @Valid Car car, HttpServletRequest request, ModelMap modelMap) {
         try {
             validateImage(img);
             Random random = new Random();
@@ -141,7 +137,10 @@ public class HomeController {
             car.setUser(user);
             carService.saveOrUpdate(car);
         } catch (IOException e) {
-            e.printStackTrace();
+            modelMap.addAttribute("allMakes", carService.getAllCarsMakes());
+            modelMap.addAttribute("car", new Car());
+            modelMap.addAttribute("imageException", e.getMessage());
+            return "submit";
         }
         return "redirect:/home";
 
@@ -149,13 +148,17 @@ public class HomeController {
 
     private void validateImage(MultipartFile image) throws IOException {
         if (!image.getContentType().equals("image/jpeg")) {
-            throw new IOException("Only jpeg images accepted");
+            throw new IOException("submit.wrong.image");
         }
     }
 
     private void saveImage(MultipartFile image, String path) throws IOException {
         File file = new File(path);
-        FileUtils.writeByteArrayToFile(file, image.getBytes());
+        try {
+            FileUtils.writeByteArrayToFile(file, image.getBytes());
+        } catch (IOException e) {
+            throw new IOException("submit.load.image");
+        }
     }
 
     @PostMapping(value = {"/registration"})
@@ -178,7 +181,6 @@ public class HomeController {
         }
         try {
             userService.createUser(user);
-            modelMap.addAttribute("lastAction", "registration.success");
             return "home";
         } catch (ServiceException e) {
             modelMap.addAttribute("lastAction", "registration.notSuccess");
@@ -205,6 +207,7 @@ public class HomeController {
         modelMap.addAttribute("list", carsList);
         modelMap.addAttribute("car", car);
         modelMap.addAttribute("commentsList", car.getCommentList());
+        modelMap.addAttribute("comment", new Comment());
         return "detail";
     }
 
@@ -212,16 +215,16 @@ public class HomeController {
     public String updateUser(ModelMap modelMap, @Valid User user, BindingResult bindingResult) {
         try {
             userService.updateUser(user);
-            modelMap.addAttribute("lastAction", "registration.success");
             return "redirect:/profile";
         } catch (ServiceException e) {
+            modelMap.addAttribute("lastAction", "update.notSuccess");
             return "redirect:/profile";
         }
     }
 
     @RequestMapping(value = {"/cars/{id}"}, method = RequestMethod.POST)
-    public String searchCarsPage(@PathVariable("id") Long id, @ModelAttribute MultipartFile img,
-                                 @Valid Car newCar, HttpServletRequest request) {
+    public String updateCarsPage(@PathVariable("id") Long id, @ModelAttribute MultipartFile img,
+                                 @Valid Car newCar, HttpServletRequest request, ModelMap modelMap) {
         Car car = carService.get(id);
         try {
             if (img != null) {
@@ -252,7 +255,8 @@ public class HomeController {
             car.setVerified(false);
             carService.saveOrUpdate(car);
         } catch (IOException e) {
-            e.printStackTrace();
+            modelMap.addAttribute("imageException", e.getMessage());
+            return "redirect:/profile";
         }
         return "redirect:/profile";
     }
