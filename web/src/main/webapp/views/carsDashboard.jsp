@@ -34,30 +34,5 @@
             <td><a href="${pageContext.request.contextPath}/admin/cars/{{car.id}}" class="fa fa-times" aria-hidden="true" style="color: darkred"></a></td>
         </tr>
 </table>
-<script type="text/javascript">
-     function checkVerified(element) {
-        if (element.checked) {
-            addCarToList($(element).data("id"));
-        } else {
-            removeCarFromList($(element).data("id"));
-        }
-    };
 
-    function addCarToList(id) {
-        $.ajax({
-            method: "GET",
-            url: "/autobazar/admin/checkCar/" + id,
-            success: function (result) {
-            }
-        });
-    }
-    function removeCarFromList(id) {
-        $.ajax({
-            method: "GET",
-            url: "/autobazar/admin/uncheckCar/" + id,
-            success: function (result) {
-            }
-        });
-    }
-</script>
 
