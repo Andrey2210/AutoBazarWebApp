@@ -193,7 +193,5 @@
             }
         }
     }
-    showPagination();
-
+        showPagination();
 </script>
-

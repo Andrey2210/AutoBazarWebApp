@@ -1,7 +1,6 @@
 package by.autobazar.services;
 
 
-import by.autobazar.dao.ICarDao;
 import by.autobazar.entity.Car;
 import by.autobazar.entity.carEnum.*;
 import org.junit.Assert;
@@ -56,8 +55,8 @@ public class CarServiceTest {
 
     @Test
     public void getCarModelTest() {
-        List<String> makesList = carService.getCarsModels("Ford");
-        List<String> allMakesList = carService.getAllCarsModels("Ford");
+        List<String> makesList = carService.getCarsModels("Bmw");
+        List<String> allMakesList = carService.getAllCarsModels("Bmw");
         Assert.assertNotNull(makesList);
         Assert.assertTrue(makesList.size() > 0);
         Assert.assertNotNull(allMakesList);
