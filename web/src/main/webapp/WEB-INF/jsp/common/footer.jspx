@@ -1,0 +1,17 @@
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page"
+          xmlns="http://www.w3.org/1999/xhtml"
+          version="2.0">
+        <a id="to-top" href="#this-is-top"><i class="fa fa-chevron-up"/></a>
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-4">
+                    <div class="b-footer__company wow slideInLeft" data-wow-delay="0.3s">
+                        <div class="b-nav__logo">
+                            <h3><a href="${pageContext.request.contextPath}/home">Auto<span>BAZAR</span></a></h3>
+                        </div>
+                        <p> 2017 Designed by Andrey Berezovskiy</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+</jsp:root>

@@ -1,35 +1,25 @@
 package by.autobazar.services;
 
+import by.autobazar.dao.IUserDao;
 import by.autobazar.entity.Car;
 import by.autobazar.entity.User;
 import by.autobazar.entity.carEnum.Role;
-import by.autobazar.util.HibernateUtil;
-import org.junit.AfterClass;
 import org.junit.Assert;
-import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.jws.soap.SOAPBinding;
 import java.util.List;
 
-/**
- * Created by Andrey on 19.03.2017.
- */
+@ContextConfiguration(locations = {"classpath:test-service.xml"})
+@RunWith(SpringJUnit4ClassRunner.class)
+@Transactional
 public class UserServiceTest {
-    private static User user;
-    private static UserService userService = UserService.getInstance();
-
-    @BeforeClass
-    public static void setUser() {
-        user = new User("Andrei", "Andrey@mail.ru", "12345", "Andrey", "333-66-66", Role.USER);
-        AbstractService.session = HibernateUtil.getHibernateUtil().getSession();
-    }
-
-    @AfterClass
-    public static void deleteCar() throws ServiceException {
-        userService.deleteUser(user.getId());
-        HibernateUtil.getHibernateUtil().closeSession(AbstractService.session);
-    }
+    @Autowired
+    private IUserService userService;
 
     @Test
     public void getAllTest() throws ServiceException {
@@ -40,24 +30,25 @@ public class UserServiceTest {
 
     @Test
     public void createUserTest() throws ServiceException {
+        User user = new User("Andrei", "Andrey@mail.ru", "12345", "Andrey", "333-66-66", Role.USER);
         userService.createUser(user);
-        Assert.assertNotNull(user.getId());
+        Assert.assertTrue(user.getId() != 0);
+        user.setName("Misha");
+        userService.updateUser(user);
+        Assert.assertNotNull(userService.getUserById(user.getId()));
+        userService.delete(user);
     }
 
     @Test
     public void getLoggedUserTest() {
-        Assert.assertNotNull(userService.getLoggedUser("ivan123", "12345"));
+        Assert.assertNotNull(userService.findByUserName("ffffff"));
+        Assert.assertNotNull(userService.getByEmail("ffffff@mmmm"));
     }
 
     @Test
     public void getCarsByUserIdTest() {
-        List<Car> carList = userService.getCarsByUserId(3L);
+        List<Car> carList = userService.getCarsByUserId(503L);
         Assert.assertNotNull(carList);
         Assert.assertTrue(carList.size() > 0);
-    }
-
-    @Test
-    public void getUserByIdTest() {
-        Assert.assertNotNull(userService.getUserById(3L));
     }
 }

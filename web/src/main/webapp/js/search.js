@@ -1,41 +1,28 @@
-/**
- * Created by Andrey on 23.02.2017.
- */
+
 function onChange(_this){
-    var url = "/autobazar/controller?command=Model&make="+_this.value;
+    var url = "/autobazar/cars/search/"+_this.value;
     load("GET",url);
 }
 
 function onChangeMakes(_this){
-    var url = "/autobazar/controller?command=Model&allMake="+_this.value;
+    var url = "/autobazar/cars/submit/"+_this.value;
     load("GET",url);
 }
 
 function load(method,url){
-    var xmlHttp = null;
-    if (window.XMLHttpRequest) {
-        xmlHttp = new XMLHttpRequest();
-    }
-    else if (window.ActiveXObject) {
-        xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
-    }
-
-    xmlHttp.onreadystatechange = function () {
-        if(xmlHttp.readyState == 4){
-            if(xmlHttp.status == 200){
-                getModels(xmlHttp.responseXML.documentElement);
-            }else{
-                location.reload();
-            }
+    $.ajax({
+        url: url,
+        headers: "accept: application/json",
+        method: method,
+        success: function (result) {
+            getModels(result);
         }
-    };
-    xmlHttp.open(method, url, true);
-    xmlHttp.send(null);
+    });
+
 }
 
 
-function getModels(xml){
-    var models = xml.getElementsByTagName("model");
+function getModels(modelsNames){
     var _select = document.getElementById("model");
     _select.innerHTML = "";
     var option = document.createElement("option");
@@ -43,11 +30,11 @@ function getModels(xml){
     option.appendChild(optionText);
     option.setAttribute("value", "");
     _select.appendChild(option);
-    for(var i = 0; i < models.length; i++){
+    for(var i = 0; i < modelsNames.length; i++){
         option = document.createElement("option");
-        optionText = document.createTextNode(models[i].firstChild.data);
+        optionText = document.createTextNode(modelsNames[i]);
         option.appendChild(optionText);
-        option.setAttribute("value",models[i].firstChild.data);
+        option.setAttribute("value", modelsNames[i]);
         _select.appendChild(option);
     }
 }

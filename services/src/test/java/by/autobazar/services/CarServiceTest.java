@@ -1,29 +1,71 @@
 package by.autobazar.services;
 
+
 import by.autobazar.entity.Car;
-import by.autobazar.entity.Image;
 import by.autobazar.entity.carEnum.*;
-import by.autobazar.util.HibernateUtil;
-import org.junit.AfterClass;
 import org.junit.Assert;
-import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 
-/**
- * Created by Andrey on 19.03.2017.
- */
+@ContextConfiguration(locations = {"classpath:test-service.xml"})
+@RunWith(SpringJUnit4ClassRunner.class)
+@Transactional
 public class CarServiceTest {
-    private static long id;
-    private static HashMap<String, String> hashMap;
-    private static CarService carService = CarService.getInstance();
+    @Autowired
+    private ICarService carService;
 
-    @BeforeClass
-    public static void setCar() {
-        hashMap = new HashMap<>();
+    @Test
+    public void get() {
+        Car car = new Car("Bmw", "X5", 10000, LocalDate.now(), Transmission.AUTOMATIC, BodyType.SUV, "good car",
+                CarCondition.USED, 150000, 5, FuelType.PETROL, 5.5, WheelDriving.AWD, CarColor.BLACK,
+                InteriorMaterial.ALCANTARA, InteriorColor.BLACK, "Minsk", "Minsk", false);
+        carService.saveOrUpdate(car);
+        Assert.assertNotNull(car.getId());
+        Car getCar = carService.get(car.getId());
+        Assert.assertNotNull(getCar);
+
+        carService.deleteCar(car.getId());
+    }
+
+
+        @Test
+    public void getLimitAmountTest() {
+        List<Car> carsList = carService.getLimitAmount();
+        Assert.assertNotNull(carsList);
+        Assert.assertTrue(carsList.size() > 0);
+    }
+
+    @Test
+    public void getCarsMakesTest() {
+        List<String> makesList = carService.getCarsMakes();
+        List<String> allAMkeList = carService.getAllCarsMakes();
+        Assert.assertNotNull(makesList);
+        Assert.assertTrue(makesList.size() > 0);
+        Assert.assertNotNull(allAMkeList);
+        Assert.assertTrue(allAMkeList.size() > 0);
+    }
+
+    @Test
+    public void getCarModelTest() {
+        List<String> makesList = carService.getCarsModels("Bmw");
+        List<String> allMakesList = carService.getAllCarsModels("Bmw");
+        Assert.assertNotNull(makesList);
+        Assert.assertTrue(makesList.size() > 0);
+        Assert.assertNotNull(allMakesList);
+        Assert.assertTrue(allMakesList.size() > 0);
+    }
+
+    @Test
+    public void createCar() throws ServiceException {
+        HashMap<String, String> hashMap = new HashMap<>();
         hashMap.put("mark", "Bmw");
         hashMap.put("model", "X5");
         hashMap.put("price", "10000");
@@ -43,60 +85,10 @@ public class CarServiceTest {
         hashMap.put("region", "Minsk");
         hashMap.put("city", "Minsk");
         hashMap.put("image", "image/20000.jpeg");
-        AbstractService.session = HibernateUtil.getHibernateUtil().getSession();
-    }
-
-    @AfterClass
-    public static void deleteCar() {
-        carService.deleteCar(id);
-        HibernateUtil.getHibernateUtil().closeSession(AbstractService.session);
-    }
-
-        @Test
-    public void getLimitAmountTest() {
-
-        List<Car> carsList = CarService.getInstance().getLimitAmount();
-        Assert.assertNotNull(carsList);
-        Assert.assertTrue(carsList.size() > 0);
-    }
-
-    @Test
-    public void getCarsMakesTest() {
-
-        List<String> makesList = CarService.getInstance().getCarsMakes();
-        Assert.assertNotNull(makesList);
-        Assert.assertTrue(makesList.size() > 0);
-    }
-
-    @Test
-
-    public void getCarModelTest() {
-
-        List<String> makesList = CarService.getInstance().getCarsModels("Bmw");
-        Assert.assertNotNull(makesList);
-        Assert.assertTrue(makesList.size() > 0);
-    }
-
-    @Test
-    public void getAllCarsMakesTest() {
-
-        List<String> makesList = CarService.getInstance().getAllCarsMakes();
-        Assert.assertNotNull(makesList);
-        Assert.assertTrue(makesList.size() > 0);
-    }
-
-    @Test
-    public void getAllCarModelTest() {
-
-        List<String> makesList = CarService.getInstance().getAllCarsModels("Bmw");
-        Assert.assertNotNull(makesList);
-        Assert.assertTrue(makesList.size() > 0);
-    }
-    @Test
-    public void createCar() throws ServiceException {
-
-        id = carService.createCar(hashMap, 3L);
+        long id = carService.createCar(hashMap, 503);
         Assert.assertNotNull(id);
+        carService.verifiedCar(id, "true");
+        carService.deleteCar(id);
     }
 
     @Test
@@ -121,15 +113,20 @@ public class CarServiceTest {
         searchParam.put("maxYear", "2017");
         searchParam.put("maxEngineCapacity", "5.5");
 
-        List<Car> carsList = CarService.getInstance().searchCars(searchParam, "id", 0, 10);
+        List<Car> carsList = carService.searchCars(searchParam, "id", 0, 10);
         Assert.assertNotNull(carsList);
         Assert.assertTrue(carsList.size() > 0);
     }
 
     @Test
     public void getCarByIdTest() {
-        Car car = CarService.getInstance().getCarById(68L);
-        Assert.assertNotNull(car);
+        Car car = new Car("Bmw", "X5", 10000, LocalDate.now(), Transmission.AUTOMATIC, BodyType.SUV, "good car",
+                CarCondition.USED, 150000, 5, FuelType.PETROL, 5.5, WheelDriving.AWD, CarColor.BLACK,
+                InteriorMaterial.ALCANTARA, InteriorColor.BLACK, "Minsk", "Minsk", false);
+        carService.saveOrUpdate(car);
+        Assert.assertNotNull(car.getId());
+        Assert.assertNotNull(carService.getCarById(car.getId()));
+        carService.deleteCar(car.getId());
     }
 
     @Test

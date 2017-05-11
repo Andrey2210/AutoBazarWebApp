@@ -1,0 +1,62 @@
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page"
+          xmlns:tiles="http://tiles.apache.org/tags-tiles"
+          xmlns="http://www.w3.org/1999/xhtml"
+          version="2.0">
+    <jsp:directive.page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"/>
+    <html ng-app="carApp">
+    <head>
+        <![CDATA[
+    <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/images/favicon.png"/>
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/master.css"/>
+
+    <script src="${pageContext.request.contextPath}/js/angular.min.js" type="text/javascript"></script>
+    <script src="${pageContext.request.contextPath}/js/angular-route.min.js" type="text/javascript"></script>
+    <script src="${pageContext.request.contextPath}/js/jquery-1.11.3.min.js" type="text/javascript"></script>
+    <script src="${pageContext.request.contextPath}/js/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="http://ajax.microsoft.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="${pageContext.request.contextPath}/js/modernizr.custom.js" type="text/javascript"></script>
+
+    <script src="${pageContext.request.contextPath}/assets/rendro-easy-pie-chart/dist/jquery.easypiechart.min.js" type="text/javascript"></script>
+    <script src="${pageContext.request.contextPath}/js/waypoints.min.js" type="text/javascript"></script>
+    <script src="${pageContext.request.contextPath}/js/jquery.easypiechart.min.js" type="text/javascript"></script>
+    <script src="${pageContext.request.contextPath}/js/classie.js" type="text/javascript"></script>
+
+    <script src="${pageContext.request.contextPath}/assets/switcher/js/switcher.js" type="text/javascript"></script>
+    <script src="${pageContext.request.contextPath}/assets/owl-carousel/owl.carousel.min.js" type="text/javascript"></script>
+    <script src="${pageContext.request.contextPath}/assets/bxslider/jquery.bxslider.js" type="text/javascript"></script>
+    <script src="${pageContext.request.contextPath}/assets/slider/jquery.ui-slider.js" type="text/javascript"></script>
+
+    <script src="${pageContext.request.contextPath}/js/jquery.smooth-scroll.js" type="text/javascript"></script>
+    <script src="${pageContext.request.contextPath}/js/wow.min.js" type="text/javascript"></script>
+    <script src="${pageContext.request.contextPath}/js/jquery.placeholder.min.js" type="text/javascript"></script>
+    <script src="${pageContext.request.contextPath}/js/theme.js" type="text/javascript"></script>
+
+    <script src="${pageContext.request.contextPath}/js/search.js" type="text/javascript"></script>
+    <script src="${pageContext.request.contextPath}/js/listingsPage.js" type="text/javascript"></script>
+    <script src="${pageContext.request.contextPath}/js/app.js" type="text/javascript"></script>
+    <script src="${pageContext.request.contextPath}/js/registration.js" type="text/javascript"></script>
+    <script src="${pageContext.request.contextPath}/js/dashboard.js" type="text/javascript"></script>
+]]>
+        <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+
+    </head>
+    <body data-scrolling-animations="true">
+    <tiles:insertAttribute name="header"/>
+    <tiles:insertAttribute name="body"/>
+    <div class="m-home">
+        <footer class="b-footer">
+            <tiles:insertAttribute name="footer"/>
+        </footer>
+    </div>
+
+
+    </body>
+    </html>
+</jsp:root>

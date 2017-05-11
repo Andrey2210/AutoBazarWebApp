@@ -1,5 +1,6 @@
 package by.autobazar.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -39,6 +40,7 @@ public class Image implements Serializable {
 
     @ManyToOne
     @JoinColumn(name="F_CAR_ID")
+    @JsonIgnore
     private Car car;
 
     public Image(String imagePath, String status) {

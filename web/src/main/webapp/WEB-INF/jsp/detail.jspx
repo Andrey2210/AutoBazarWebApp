@@ -1,0 +1,271 @@
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page"
+          xmlns="http://www.w3.org/1999/xhtml"
+          xmlns:c="http://java.sun.com/jsp/jstl/core"
+          xmlns:s="http://www.springframework.org/tags"
+          xmlns:sf="http://www.springframework.org/tags/form"
+          xmlns:sec="http://www.springframework.org/security/tags"
+          version="2.0">
+
+    <div ng-controller="CommentController" class="m-contacts" data-scrolling-animations="true">
+        <section class="b-pageHeader">
+            <div class="container">
+                <h1 class=" wow zoomInLeft" data-wow-delay="0.5s">Car Details </h1>
+            </div>
+        </section><!--b-pageHeader-->
+
+
+        <section class="b-detail s-shadow">
+            <div class="container">
+                <header class="b-detail__head s-lineDownLeft wow zoomInUp" data-wow-delay="0.5s"
+                        style="visibility: visible; animation-delay: 0.5s; animation-name: zoomInUp;">
+                    <div class="row">
+                        <div class="col-sm-9 col-xs-12">
+                            <div class="b-detail__head-title">
+                                <h1>${car.mark} ${car.model} ${car.year.getYear()}</h1>
+                            </div>
+                        </div>
+                        <div class="col-sm-3 col-xs-12">
+                            <div class="b-detail__head-price">
+                                <div class="b-detail__head-price-num">$${car.price}</div>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+                <div class="b-detail__main">
+                    <div class="row">
+                        <div class="col-md-8 col-xs-12">
+                            <div class="b-detail__main-info">
+                                <div class="b-detail__main-info-images wow zoomInUp" data-wow-delay="0.5s"
+                                     style="visibility: visible; animation-delay: 0.5s; animation-name: zoomInUp;">
+                                    <div class="b-detail__main-info-images wow zoomInUp" data-wow-delay="0.5s">
+                                        <div class="row m-smallPadding">
+                                            <div class="col-xs-10">
+                                                <ul class="b-detail__main-info-images-big bxslider enable-bx-slider"
+                                                    data-pager-custom="#bx-pager" data-mode="horizontal"
+                                                    data-pager-slide="true"
+                                                    data-mode-pager="vertical" data-pager-qty="5">
+                                                    <li class="s-relative">
+                                                        <img class="img-responsive center-block"
+                                                             src="${pageContext.request.contextPath}/${car.imageList.get(0).imagePath}"
+                                                             alt="nissan"/>
+                                                    </li>
+
+                                                </ul>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="b-detail__main-info-text wow zoomInUp" data-wow-delay="0.5s"
+                                     style="visibility: visible; animation-delay: 0.5s; animation-name: zoomInUp;">
+                                    <div class="b-detail__main-aside-about-form-links">
+                                        <a href="#" class="j-tab m-active s-lineDownCenter"
+                                           data-to="#info1">FROM THE OWNER</a>
+                                    </div>
+                                    <div id="info1">
+                                        <p>${car.description}</p>
+                                    </div>
+                                </div>
+                                <sec:authorize access="isAuthenticated()">
+                                    <div class="b-detail__main-info-extra wow zoomInUp" data-wow-delay="0.5s"
+                                         style="visibility: visible; animation-delay: 0.5s; animation-name: zoomInUp;">
+                                        <h2 class="s-titleDet">Questions and discussion</h2>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="b-detail__main-aside wow zoomInUp" data-wow-delay="0.5s">
+                                                    <div class="b-detail__main-aside-about-form">
+                                                        <sf:form id="commentForm"
+                                                                 modelAttribute="comment" name="commentForm"
+                                                                 class="s-submit clearfix">
+                                                            <sf:textarea ng-model="comment" path="comment" id="comment"
+                                                                         name="comment"
+                                                                         placeholder="message"/>
+                                                            <button type="button"  class="btn m-btn">SEND MESSAGE<span
+                                                                    class="fa fa-angle-right"/></button>
+                                                        </sf:form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </sec:authorize>
+                                <div id="results" class="b-detail__main-info-text wow zoomInUp" data-wow-delay="0.5s"
+                                     style="visibility: visible;">
+                                    <!--<div ng-include="commentTemplate"></div>-->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-xs-12">
+                            <aside class="b-detail__main-aside">
+                                <div class="b-detail__main-aside-desc wow zoomInUp" data-wow-delay="0.5s"
+                                     style="visibility: visible; animation-delay: 0.5s; animation-name: zoomInUp;">
+                                    <h2 class="s-titleDet">Description</h2>
+                                    <div class="row">
+                                        <div class="col-xs-6">
+                                            <h4 class="b-detail__main-aside-desc-title">Make</h4>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <p class="b-detail__main-aside-desc-value">${car.mark}</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-6">
+                                            <h4 class="b-detail__main-aside-desc-title">Model</h4>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <p class="b-detail__main-aside-desc-value">${car.model}</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-6">
+                                            <h4 class="b-detail__main-aside-desc-title">Kilometres</h4>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <p class="b-detail__main-aside-desc-value">${car.milleage}
+                                                km</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-6">
+                                            <h4 class="b-detail__main-aside-desc-title">Body Type</h4>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <p class="b-detail__main-aside-desc-value">${car.bodyType}</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-xs-6">
+                                            <h4 class="b-detail__main-aside-desc-title">Engine</h4>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <p class="b-detail__main-aside-desc-value">${car.engineCapacity} </p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-6">
+                                            <h4 class="b-detail__main-aside-desc-title">Drive Type</h4>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <p class="b-detail__main-aside-desc-value">${car.driving}</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-6">
+                                            <h4 class="b-detail__main-aside-desc-title">Transmission</h4>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <p class="b-detail__main-aside-desc-value">${car.transmission}</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-6">
+                                            <h4 class="b-detail__main-aside-desc-title">Exterior Color</h4>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <p class="b-detail__main-aside-desc-value">${car.carColor}</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-6">
+                                            <h4 class="b-detail__main-aside-desc-title">Interior color</h4>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <p class="b-detail__main-aside-desc-value">${car.interiorColor}</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-6">
+                                            <h4 class="b-detail__main-aside-desc-title">Interior material</h4>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <p class="b-detail__main-aside-desc-value">${car.interiorMaterial}</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-6">
+                                            <h4 class="b-detail__main-aside-desc-title">Doors</h4>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <p class="b-detail__main-aside-desc-value">${car.doorsNumber}
+                                                Doors</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-6">
+                                            <h4 class="b-detail__main-aside-desc-title">Fuel Type</h4>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <p class="b-detail__main-aside-desc-value">${car.fuelType}</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-6">
+                                            <h4 class="b-detail__main-aside-desc-title">Condition </h4>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <p class="b-detail__main-aside-desc-value">${car.carCondition}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="b-detail__main-aside-about wow zoomInUp" data-wow-delay="0.5s"
+                                     style="visibility: visible; animation-delay: 0.5s; animation-name: zoomInUp;">
+                                    <h2 class="s-titleDet">CONTACTS</h2>
+                                    <div class="b-detail__main-aside-about-call">
+                                        <span class="fa fa-phone"/>
+                                        <div>${car.user.phone}</div>
+                                    </div>
+                                    <div class="b-detail__main-aside-about-seller">
+                                        <p>Seller Info:
+                                            <span>${car.user.name}, ${car.city}</span></p>
+                                    </div>
+                                </div>
+                            </aside>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="b-related m-home">
+            <div class="container">
+                <h5 class="s-titleBg wow zoomInUp" data-wow-delay="0.5s"
+                    style="visibility: visible;">FIND OUT MORE</h5><br/>
+                <h2 class="s-title wow zoomInUp" data-wow-delay="0.5s"
+                    style="visibility: visible; animation-delay: 0.5s; animation-name: zoomInUp;">LATEST VEHICLES ON SALE</h2>
+                <div class="row">
+                    <c:forEach var="car" items="${list}">
+                        <div class="col-md-3 col-sm-12">
+                            <div class="b-auto__main-item wow zoomInUp" data-wow-delay="0.3s">
+                                <img class="img-responsive center-block" src="${car.imageList.get(0).imagePath}"/>
+                                <div class="b-world__item-val">
+                                    <span class="b-world__item-val-title">REGISTERED <span>${car.year.getYear()}</span></span>
+                                </div>
+                                <h2>
+                                    <a href="${pageContext.request.contextPath}/cars/${car.id}">${car.mark} ${car.model}</a>
+                                </h2>
+                                <div class="b-auto__main-item-info">
+												<span class="m-price">
+													$${car.price}
+												</span>
+                                    <span class="m-number">
+													<span class="fa fa-tachometer"/>${car.milleage} KM
+												</span>
+                                </div>
+                                <div class="b-featured__item-links m-auto">
+                                    <a href="#">${car.carCondition}</a>
+                                    <a href="#">${car.year.getYear()}</a>
+                                    <a href="#">${car.transmission}</a>
+                                    <a href="#">${car.carColor}</a>
+                                    <a href="#">${car.fuelType}</a>
+                                </div>
+                            </div>
+                        </div>
+                    </c:forEach>
+                </div>
+            </div>
+        </section>
+    </div>
+
+</jsp:root>
